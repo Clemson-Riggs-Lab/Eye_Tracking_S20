@@ -13,48 +13,51 @@ ddn3aq
 Riggs Lab
 '''
 
-
 def enterCSV(event):
     file = nameEntry.get()
     if True:
     #if path.exists(file):
         message = "Successful."
-        #file = 'P1_Fam_D20200206T1130Output_EyeTracker1.csv'
-        file = 'dustinsTestFiles/test2.csv'
+        file = 'dustinsTestFiles/new.csv'
+        #file = 'dustinsTestFiles/test2.csv'
 
         df = pd.read_csv(file)
         df.dropna(subset=['BestPogX'], inplace=True)
 
+        myscreen = turtle.Screen()
+        myscreen.reset()
+        myscreen.setworldcoordinates(0, 1440, 2560, 0)
+        myscreen.screensize(2560, 1440)
+        myturtle = turtle.Turtle()
+
         #if we want a fast plot
         if v.get() == 0:
-
-            x_vals = []
-            y_vals = []
+            myscreen.tracer(0,0)
             for i in range(len(df)):
-                x_vals.append(df['BestPogX'])
-                y_vals.append(df['BestPogY'])
-            plt.scatter(x_vals, y_vals, marker='.')
-            plt.show()
+                myturtle.penup()
+                myturtle.goto(x=df['BestPogX'].iloc[i], y=df["BestPogY"].iloc[i])
+                myturtle.dot()
         #if we want lines and animation
         elif v.get() == 1:
-            myscreen = turtle.Screen()
-            myscreen.reset()
-            myscreen.setworldcoordinates(2560, 0, 0, 1440)
-            # myscreen.screensize(2560, 1440)
-            myturtle = turtle.Turtle()
             for i in range(len(df)):
                 myturtle.goto(x=df['BestPogX'].iloc[i], y=df["BestPogY"].iloc[i])
                 myturtle.dot()
+        # if we want to show fixations fast
         elif v.get() == 2:
-            x_vals = []
-            y_vals = []
+            myscreen.tracer(0, 0)
             for i in range(len(df)):
-                x_vals.append(df['FixedPogX'])
-                y_vals.append(df['FixedPogY'])
-            plt.scatter(x_vals, y_vals, marker='.',c='green')
-            plt.show()
+                myturtle.penup()
+                myturtle.goto(x=df['FixedPogX'].iloc[i], y=df["FixedPogY"].iloc[i])
+                myturtle.dot()
         elif v.get() == 3:
-            print("not done yet")
+            myotherturtle = turtle.Turtle()
+            myotherturtle.color("green")
+            for i in range(len(df)):
+                myturtle.goto(x=df['BestPogX'].iloc[i], y=df["BestPogY"].iloc[i])
+                myturtle.dot()
+                myotherturtle.goto(x=df['FixedPogX'].iloc[i], y=df["FixedPogY"].iloc[i])
+                myotherturtle.dot()
+
 
 
 
@@ -93,7 +96,7 @@ choices = [
     "Fast plot",
     "Include Lines and Animation",
     "Show Fixations",
-    "Show plot and Fixation (coming soon)"
+    "Show plot and Fixation"
 ]
 radioLabel = tk.Label(window,
          text="""Choose what you want to include:""")
@@ -107,5 +110,7 @@ for val, language in enumerate(choices):
                   variable=v,
                   value=val).grid(column=0,row=count)
     count+=1
+
+
 
 window.mainloop()
