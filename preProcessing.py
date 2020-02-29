@@ -1,10 +1,10 @@
 import pandas as pd
+from tkinter import *
 '''
 Dustin Nguyen
 ddn3aq
 2/18/2020
 Riggs Lab
-
 
 Usage Notes:
 
@@ -17,7 +17,7 @@ Usage Notes:
 
 def preProcess():
     #CHANGE OPTIONS OF THE PROGRAM HERE!!!!!!
-    file_name = "test.csv"
+    file_name = "dustinsTestFiles/test.csv"
     output_file_name = "test2.csv"
     width_of_screen = 2560
     height_of_screen = 1440
@@ -48,4 +48,44 @@ def preProcess():
 
     df.to_csv(output_file_name, index=False)
 
-preProcess()
+#preProcess()
+
+window = Tk()
+
+frame1 = Frame(window)
+frame2 = Frame(window)
+frame3 = Frame(window)
+frame4 = Frame(window)
+frame5 = Frame(window)
+frame1.pack()
+frame2.pack()
+frame3.pack()
+frame4.pack()
+frame5.pack()
+
+window.title("Eye Tracking Data")
+
+text1 = Label(frame1, text='Enter X resolution: ')
+text1.pack(side=LEFT)
+entry1 = Entry(frame1)
+entry1.pack(side=LEFT)
+
+text2 = Label(frame2, text='Enter Y resolution: ')
+text2.pack(side=LEFT)
+entry2 = Entry(frame2)
+entry2.pack(side=LEFT)
+
+text3 = Label(frame3, text='Enter Input File Name: ')
+text3.pack(side=LEFT)
+entry3 = Entry(frame3)
+entry3.pack(side=LEFT)
+
+text4 = Label(frame4, text='Enter Output File Name: ')
+text4.pack(side=LEFT)
+entry4 = Entry(frame4)
+entry4.pack(side=LEFT)
+
+button1 = Button(frame5, text='Submit',command=preProcess)
+button1.pack(side=RIGHT)
+
+window.mainloop()
