@@ -17,8 +17,8 @@ Usage Notes:
 
 def preProcess():
     #CHANGE OPTIONS OF THE PROGRAM HERE!!!!!!
-    file_name = "test.csv"
-    output_file_name = "test2.csv"
+    file_name = "dustinsTestFiles/test.csv"
+    output_file_name = "dustinsTestFiles/test2.csv"
     width_of_screen = 2560
     height_of_screen = 1440
     #-------------------------------------------------------
@@ -45,6 +45,22 @@ def preProcess():
     for each in column_names_bool:
         df[each].replace(True, 1, inplace=True)
         df[each].replace(False, 0, inplace=True)
+
+    #Change pupil diameters to mm from meters
+
+    column_names_Pupil_Diameter = ['LeftEyePupilDiamet', 'RightEyePupilDiame']
+    for each in column_names_Pupil_Diameter:
+        df[each] = df[each].multiply(1000)
+    
+
+    #Change pupil diameters from pixels to mm by multiplying with column AT
+
+    column_names_Pupil_to_mm = ['LeftPupilDiameter', 'RightPupilDiameter']
+    for each in column_names_Pupil_to_mm:
+        df[each] = df[each].multiply(df['MarkerScale'])
+    print(df['LeftPupilDiameter'])
+
+
 
     df.to_csv(output_file_name, index=False)
 
