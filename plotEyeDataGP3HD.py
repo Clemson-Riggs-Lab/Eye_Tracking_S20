@@ -11,13 +11,17 @@ Dustin Nguyen
 ddn3aq
 2/4/2020
 Riggs Lab
+
+Update: 3/5
+
+Can display fixation/saccade metrics now! (uses simple metrics from GP3HD but can change when new metric techniques arrive
 '''
 
 def enterCSV(event):
     file = nameEntry.get()
     if True:
     #if path.exists(file):
-        message = "Successful."
+
         file = 'dustinsTestFiles/new.csv'
         #file = 'dustinsTestFiles/test2.csv'
 
@@ -58,11 +62,20 @@ def enterCSV(event):
                 myotherturtle.goto(x=df['FixedPogX'].iloc[i], y=df["FixedPogY"].iloc[i])
                 myotherturtle.dot()
 
+        text = "Number of Fixations: "
+        amount = df['FixedPogId'][len(df.index) - 1] - df['FixedPogId'][0] + 1
+
+        text_2 = "Number of Saccades: "
+        amount_2 = amount - 1
+        message = text + str(amount) + '\n' + text_2 + str(amount_2)
+
+
 
 
 
     else:
         message = "file doesnt exist! try again"
+
 
     #UPDATE UI
     update_text.configure(state='normal')
