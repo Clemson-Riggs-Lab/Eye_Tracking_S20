@@ -58,8 +58,16 @@ def preProcess():
     column_names_Pupil_to_mm = ['LeftPupilDiameter', 'RightPupilDiameter']
     for each in column_names_Pupil_to_mm:
         df[each] = df[each].multiply(df['MarkerScale'])
-    print(df['LeftPupilDiameter'])
 
+    y_pupil_data = ['RightPupilY', 'LeftPupilY']
+    for each in y_pupil_data: 
+        df[each] = df[each].multiply(height_of_screen)
+        df[each] = df[each].multiply(df['MarkerScale'])
+
+    x_pupil_data = ['RightPupilX', 'LeftPupilX']
+    for each in x_pupil_data:
+        df[each] = df[each].multiply(width_of_screen)
+        df[each] = df[each].multiply(df['MarkerScale'])        
 
 
     df.to_csv(output_file_name, index=False)
