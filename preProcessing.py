@@ -1,7 +1,7 @@
 import pandas as pd
 '''
-Dustin Nguyen
-ddn3aq
+Dustin Nguyen and Sam Smith
+ddn3aq sjs5pg 
 2/18/2020
 Riggs Lab
 
