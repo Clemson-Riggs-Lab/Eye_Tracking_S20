@@ -78,7 +78,7 @@ for each in performance["TDTargetPresent"]:
         Now, just have to check coordinates of eye data with UAV coordinates in the below
         for loop. Using left eye data. 
         """
-        for i in range(20,25):
+        for i in range(20,40):
             datax = raw.iloc[first + i, leftx]
             datay = raw.iloc[first + i, lefty]
 
