@@ -3,6 +3,14 @@ from os import path
 #Sam Smith
 #04/09/2020
 
+"""
+Use the "time" column to count up 6 ms intervals, time zero is system time
+at which first target appears. Then, look at the TDbuttonclick time on 
+performance file to find the row at that same time in that column we created
+in raw data. In that row, look at best pog x and y, and compare that to the UAV
+video feed coordinates of the UAV whose target they clicked. 
+"""
+
 #Reading in eye tracking and performance csv files, just press enter for default values
 input_raw = input("Enter the name of a PreProcessed csv file: ") or "sET.csv"
 raw = pd.read_csv(input_raw)
