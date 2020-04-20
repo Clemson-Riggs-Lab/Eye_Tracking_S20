@@ -62,23 +62,6 @@ def preProcess():
         column_names_Pupil_Diameter = ['LeftEyePupilDiamet', 'RightEyePupilDiame']
         for each in column_names_Pupil_Diameter:
             df[each] = df[each].multiply(1000)
-        
-
-        #Change pupil diameters from pixels to mm by multiplying with column AT
-
-        column_names_Pupil_to_mm = ['LeftPupilDiameter', 'RightPupilDiameter']
-        for each in column_names_Pupil_to_mm:
-            df[each] = df[each].multiply(df['MarkerScale'])
-
-        y_pupil_data = ['RightPupilY', 'LeftPupilY']
-        for each in y_pupil_data: 
-            df[each] = df[each].multiply(height_of_screen)
-            df[each] = df[each].multiply(df['MarkerScale'])
-
-        x_pupil_data = ['RightPupilX', 'LeftPupilX']
-        for each in x_pupil_data:
-            df[each] = df[each].multiply(width_of_screen)
-            df[each] = df[each].multiply(df['MarkerScale'])        
 
         df.to_csv(output_file_name, index=False)
         text6.configure(text='Status: Success! PreProcessed file created')
