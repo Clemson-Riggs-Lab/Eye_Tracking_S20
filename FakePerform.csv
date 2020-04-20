@@ -1,0 +1,26 @@
+participantNumber,TrialNumber,WorkloadCondition,SystemDate,SystemTime,MissionTime,TaskType,UAVNumber,MessageTime,MessageFrom,MessageResponseRequested,MessageContent,MessageCorrectAnswer,MessageAnswerAccuracy,MessageResponseTime,FLPlannedStartTime,FLRealStartTime,FLStopSystemTime,FLStopTime,FLResponseTime,FLAccuracy,TDWaypointOrder,TDWaypointLocation,TDTargetPresent,TDTargetSpawnTime,TDFinalInput,TDRespone,TDButtonClickTime,TDResponseTimestamp,TDResponseTime,RRTimePlanProjNFZ,RRTimeProjNFZ,RRTimeofRR,RRFinalInput,RRSuccessfulRR,RRResponseTime,Score,HighestPossibleScore
+114,T,Training,3/5/2020,7:47:41 AM,0,TargetDetection,13,,,,,,,,,,,,,,0,5,1,6,1,TP,9.354639,8.349299,4.349299,,,,,,,100,100
+114,T,Training,3/5/2020,7:47:41 AM,0,TargetDetection,12,,,,,,,,,,,,,,0,2,0,,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:41 AM,0,TargetDetection,4,,,,,,,,,,,,,,0,7,0,,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:41 AM,0,TargetDetection,2,,,,,,,,,,,,,,0,4,0,,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:41 AM,0,TargetDetection,10,,,,,,,,,,,,,,0,14,1,5,1,TP,7.590569,7.08055,2.08055,,,,,,,100,100
+114,T,Training,3/5/2020,7:47:41 AM,0,TargetDetection,6,,,,,,,,,,,,,,0,1,0,,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:41 AM,0,TargetDetection,16,,,,,,,,,,,,,,0,15,0,,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:41 AM,0.02,ChatMessage,,0.02,HQ,0,[0:00] HQ: Beginning Mission,,,,,,,,,,,,,,,,,,,,,,,,,,
+114,T,Training,3/5/2020,7:47:52 AM,10.13727,TargetDetection,15,,,,,,,,,,,,,,1,7,0,NA,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:52 AM,10.13727,TargetDetection,14,,,,,,,,,,,,,,1,6,0,NA,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:52 AM,10.13727,TargetDetection,1,,,,,,,,,,,,,,1,2,0,NA,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:52 AM,10.13727,TargetDetection,11,,,,,,,,,,,,,,1,11,0,NA,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:52 AM,10.13727,TargetDetection,7,,,,,,,,,,,,,,1,15,0,NA,1,TN,,,,,,,,,,50,50
+114,T,Training,3/5/2020,7:47:52 AM,10.13727,TargetDetection,5,,,,,,,,,,,,,,1,5,1,4,1,FN,,,,,,,,,,-100,50
+114,T,Training,3/5/2020,7:47:52 AM,10.13727,TargetDetection,3,,,,,,,,,,,,,,1,8,0,NA,1,TN,,,,,,,,,,50,50
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

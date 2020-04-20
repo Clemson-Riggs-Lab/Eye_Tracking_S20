@@ -12,10 +12,10 @@ video feed coordinates of the UAV whose target they clicked.
 """
 
 #Reading in eye tracking and performance csv files, just press enter for default values
-input_raw = input("Enter the name of a PreProcessed csv file: ") or "sET.csv"
+input_raw = input("Enter the name of a PreProcessed csv file: ") or "FakeEyetrackOutput.csv"
 raw = pd.read_csv(input_raw)
 
-input_performance = input("Enter the name of a matching Performance csv: ") or "sP.csv"
+input_performance = input("Enter the name of a matching Performance csv: ") or "FakePerform.csv"
 performance = pd.read_csv(input_performance)
 
 
@@ -63,48 +63,77 @@ def findFirstInstance(time):
         if (each[3:10] == time[3:10]):
             break
         first +=1
+    print(first)
     return first
-# print(performance.iloc[12,SysTimeP])
-# print(findFirstInstance(performance.iloc[12, SysTimeP]))
-# print(raw.iloc[2700, SysTimeET])
-# Main loop for checking target data
-for each in performance["TDTargetPresent"]:
-    if each==1:
-        print("")
-        num = int(performance.iloc[count, UAVNumber])
-        # Establishing coordinates of the current video feed
-        coordinates = UAVs[num-1]
-        # finding the system time at which the target was present
-        system_time = performance.iloc[count, SysTimeP]
-        #substring of the time that we are concerned with 
-        time = system_time
-        first = findFirstInstance(time)
+
+#finds first system time at which target is present
+#This will be where mission time equals 0 
+def findFirstTime(Perf_csv):
+    count=0
+    time = ""
+    for each in Perf_csv["TDTargetPresent"]:
+        if each==1:
+            #system time is 4th col of performance
+            time = Perf_csv.iloc[count, 4]
+            break
+        count+=1
+    print(time)
+    return time
+
+raw["MissionTime"] = 0.0
+#How to update output at each iteration quickly?
+def setMissionTime(Raw_csv, start_index):
+    #LENGTH OF FAKE DATA IS CURRENTLY HARD CODED
+    for i in range(2571):
+        if i > start_index:
+            # Raw_csv.replace(to_replace = [Raw_csv["MissionTime"][i]],
+            # value = (Raw_csv["MissionTime"][i] - Raw_csv["MissionTime"][i-1]))
+            x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
+            Raw_csv.at[i, "MissionTime"] = float(Raw_csv.at[i-1, "MissionTime"]) + x
+    Raw_csv.to_csv('output1.csv', index=False)
+
+time = findFirstTime(performance)
+start = findFirstInstance(time)
+setMissionTime(raw, start)
+print(raw["MissionTime"])
+
+# for each in performance["TDTargetPresent"]:
+#     if each==1:
+#         print("")
+#         num = int(performance.iloc[count, UAVNumber])
+#         # Establishing coordinates of the current video feed
+#         coordinates = UAVs[num-1]
+#         # finding the system time at which the target was present
+#         system_time = performance.iloc[count, SysTimeP]
+#         #substring of the time that we are concerned with 
+#         time = system_time
+#         first = findFirstInstance(time)
 
         #using LeftPogY as an example column here, showing first 20 coordinates from 
         #the system time at which target was present
-        """
-        Now, just have to check coordinates of eye data with UAV coordinates in the below
-        for loop. Using left eye data. 
-        """
-        for i in range(100,120):
-            datax = raw.iloc[first + i, leftx]
-            datay = raw.iloc[first + i, lefty]
+        # """
+        # Now, just have to check coordinates of eye data with UAV coordinates in the below
+        # for loop. Using left eye data. 
+        # """
+        # for i in range(100,120):
+        #     datax = raw.iloc[first + i, leftx]
+        #     datay = raw.iloc[first + i, lefty]
 
-            xacc = (datax <= coordinates[1] and datax >= coordinates[0])
-            yacc = (datay <= coordinates[3] and datay >= coordinates[2])
+        #     xacc = (datax <= coordinates[1] and datax >= coordinates[0])
+        #     yacc = (datay <= coordinates[3] and datay >= coordinates[2])
 
 
-            if (xacc and not yacc):
-                print("Only x is accurate")
-            if (yacc and not xacc):
-                print("Only y is accurate")
-            if (yacc and xacc):
-                print("Both x and y are accurate")
-            else:
-                print("Neither are accurate")
+        #     if (xacc and not yacc):
+        #         print("Only x is accurate")
+        #     if (yacc and not xacc):
+        #         print("Only y is accurate")
+        #     if (yacc and xacc):
+        #         print("Both x and y are accurate")
+        #     else:
+        #         print("Neither are accurate")
 
 
 
             # print(datax)
 
-    count+=1
+    # count+=1
