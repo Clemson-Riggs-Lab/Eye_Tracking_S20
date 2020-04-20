@@ -63,7 +63,7 @@ def findFirstInstance(time):
         if (each[3:10] == time[3:10]):
             break
         first +=1
-    print(first)
+    # print(first)
     return first
 
 #finds first system time at which target is present
@@ -77,26 +77,41 @@ def findFirstTime(Perf_csv):
             time = Perf_csv.iloc[count, 4]
             break
         count+=1
-    print(time)
+    # print(time)
     return time
 
 raw["MissionTime"] = 0.0
-#How to update output at each iteration quickly?
 def setMissionTime(Raw_csv, start_index):
     #LENGTH OF FAKE DATA IS CURRENTLY HARD CODED
     for i in range(2571):
         if i > start_index:
-            # Raw_csv.replace(to_replace = [Raw_csv["MissionTime"][i]],
-            # value = (Raw_csv["MissionTime"][i] - Raw_csv["MissionTime"][i-1]))
             x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
             Raw_csv.at[i, "MissionTime"] = float(Raw_csv.at[i-1, "MissionTime"]) + x
+    #Output file is being hard coded here 
     Raw_csv.to_csv('output1.csv', index=False)
 
 time = findFirstTime(performance)
 start = findFirstInstance(time)
 setMissionTime(raw, start)
-print(raw["MissionTime"])
 
+
+
+count=0
+for each in performance["TDTargetPresent"]:
+    if each == 1.0:
+        raw_counter=0
+        for time in raw["MissionTime"]:
+            x = performance.iloc[count, 27]
+            if -.01 < time - x < .01 :
+                print(raw_counter)
+                """
+                What we need to do next is take one of the indices
+                That is being printed (they are all close enough)
+                and check the bestpogx and y with the current UAV
+                at those indices.
+                """
+            raw_counter+=1
+    count+=1
 # for each in performance["TDTargetPresent"]:
 #     if each==1:
 #         print("")
