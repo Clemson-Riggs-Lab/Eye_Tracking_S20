@@ -96,59 +96,50 @@ setMissionTime(raw, start)
 
 
 
+"""
+Create dictionary of the mission times (from the button clicks), assign 
+coordinates as values to the mission times key 
+"""
+missionDict = {}
+raw["DataQuality"] = False
 count=0
 for each in performance["TDTargetPresent"]:
     if each == 1.0:
         raw_counter=0
-        for time in raw["MissionTime"]:
-            x = performance.iloc[count, 27]
-            if -.01 < time - x < .01 :
-                print(raw_counter)
+        clickTime = performance.iloc[count, 27]
+        for mt in raw["MissionTime"]:
+            #Finding where button click time and MissionTime align
+            if -.01 < mt -  clickTime < .01 :
+                
+                uavNum = int(performance.at[count, "UAVNumber"])
+                uav = UAVs[uavNum-1]
+
+                x = raw.at[raw_counter, "BestPogX"]
+                y = raw.at[raw_counter, "BestPogY"]
+
+                xacc= (x >= uav[0] and x <= uav[1])
+                yacc = (y >= uav[2] and y <= uav[3])
                 """
-                What we need to do next is take one of the indices
-                That is being printed (they are all close enough)
-                and check the bestpogx and y with the current UAV
-                at those indices.
+                Value will be True if both x and y coordinates are accurate 
+                according to the current UAV and False if not. 
                 """
+                missionDict[clickTime] = xacc and yacc
+                raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                #stuff to help with testing 
+                # print ("Coordinates at mission time " + str(mt) + " : " + str(x) + ", " + str(y))
+
+                # if (xacc and not yacc):
+                #     print("Only x is accurate")
+                # if (yacc and not xacc):
+                #     print("Only y is accurate")
+                # if (yacc and xacc):
+                #     print("Both x and y are accurate")
+                # else:
+                #  print("Neither are accurate")
             raw_counter+=1
     count+=1
-# for each in performance["TDTargetPresent"]:
-#     if each==1:
-#         print("")
-#         num = int(performance.iloc[count, UAVNumber])
-#         # Establishing coordinates of the current video feed
-#         coordinates = UAVs[num-1]
-#         # finding the system time at which the target was present
-#         system_time = performance.iloc[count, SysTimeP]
-#         #substring of the time that we are concerned with 
-#         time = system_time
-#         first = findFirstInstance(time)
 
-        #using LeftPogY as an example column here, showing first 20 coordinates from 
-        #the system time at which target was present
-        # """
-        # Now, just have to check coordinates of eye data with UAV coordinates in the below
-        # for loop. Using left eye data. 
-        # """
-        # for i in range(100,120):
-        #     datax = raw.iloc[first + i, leftx]
-        #     datay = raw.iloc[first + i, lefty]
+print(missionDict)
 
-        #     xacc = (datax <= coordinates[1] and datax >= coordinates[0])
-        #     yacc = (datay <= coordinates[3] and datay >= coordinates[2])
+raw.to_csv('output1.csv', index=False)
 
-
-        #     if (xacc and not yacc):
-        #         print("Only x is accurate")
-        #     if (yacc and not xacc):
-        #         print("Only y is accurate")
-        #     if (yacc and xacc):
-        #         print("Both x and y are accurate")
-        #     else:
-        #         print("Neither are accurate")
-
-
-
-            # print(datax)
-
-    # count+=1
