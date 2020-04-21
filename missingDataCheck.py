@@ -49,9 +49,24 @@ def command():
                 output_file.write('Row ' + str(i) + ': Invalid Data based on Gazepoint (Column AG)\n')
                 marker_bad.append(i)
 
-        output_file.write('\nTotal Negative/Zero Coordinates: ' + str(len(negative_coordinates)) +'\n')
+        output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coordinates)) +'\n')
         output_file.write('Total Unordered Data Packets: ' + str(len(missing_packets)) +'\n')
         output_file.write('Total Invalid Data based on Gazepoint: ' + str(len(marker_bad)) +'\n')
+
+        proportion_impossible = len(negative_coordinates) / len(df.index)
+        proportion_packets = len(missing_packets) / len(df.index)
+        proportion_gazepoint = len(marker_bad) / len(df.index)
+        percentage_impossible = len(negative_coordinates) / len(df.index) * 100
+        percentage_packets = len(missing_packets) / len(df.index) * 100
+        percentage_gazepoint = len(marker_bad) / len(df.index) * 100
+
+        output_file.write('\nProportion of Negative/Zero/Impossible Coordinates: ' + str(proportion_impossible) + ' (' + str(percentage_impossible) + '%)' + '\n')
+        output_file.write('Proportion of Unordered Data Packets: '+ str(proportion_packets) + ' (' + str(percentage_packets) + '%)' + '\n')
+        output_file.write('Proportion of Invalid Data based on Gazepoint: ' + str(proportion_gazepoint) + ' (' + str(percentage_gazepoint) + '%)' + '\n')
+
+
+
+
 
         output_file.close()
 

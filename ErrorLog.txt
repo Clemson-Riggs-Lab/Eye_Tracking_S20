@@ -768,6 +768,10 @@ Row 44297: Invalid Data based on Gazepoint (Column AG)
 Row 44298: Invalid Data based on Gazepoint (Column AG)
 Row 44299: Invalid Data based on Gazepoint (Column AG)
 
-Total Negative/Zero Coordinates: 359
+Total Negative/Zero/Impossible Coordinates: 359
 Total Unordered Data Packets: 34
 Total Invalid Data based on Gazepoint: 376
+
+Proportion of Negative/Zero/Impossible Coordinates: 0.007881275932471296 (0.7881275932471297%)
+Total Unordered Data Packets: 0.0007464161050251367 (0.07464161050251367%)
+Total Invalid Data based on Gazepoint: 0.008254483984983864 (0.8254483984983864%)
