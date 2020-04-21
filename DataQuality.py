@@ -4,7 +4,7 @@ from os import path
 #04/09/2020
 
 """
-Use the "time" column to count up 6 ms intervals, time zero is system time
+Use the "time" column to count up 6 ms intervals (delta), time zero is system time
 at which first target appears. Then, look at the TDbuttonclick time on 
 performance file to find the row at that same time in that column we created
 in raw data. In that row, look at best pog x and y, and compare that to the UAV
@@ -56,14 +56,12 @@ count = 0
 coordinates = []
 
 #returns first index found of given time in raw data 
-#METHOD IS NOT WORKING
 def findFirstInstance(time):
     first = 0
     for each in raw["SystemTime"]: 
         if (each[3:10] == time[3:10]):
             break
         first +=1
-    # print(first)
     return first
 
 #finds first system time at which target is present
@@ -77,22 +75,26 @@ def findFirstTime(Perf_csv):
             time = Perf_csv.iloc[count, 4]
             break
         count+=1
-    # print(time)
     return time
 
+
+#Counting number of total rows
+totalRows=0
+for each in raw["BestPogX"]:
+    totalRows+=1
+
 raw["MissionTime"] = 0.0
-def setMissionTime(Raw_csv, start_index):
-    #LENGTH OF FAKE DATA IS CURRENTLY HARD CODED
-    for i in range(2571):
+def setMissionTime(Raw_csv, start_index, outFile):
+    for i in range(totalRows):
         if i > start_index:
             x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
             Raw_csv.at[i, "MissionTime"] = float(Raw_csv.at[i-1, "MissionTime"]) + x
-    #Output file is being hard coded here 
-    Raw_csv.to_csv('output1.csv', index=False)
+    Raw_csv.to_csv(outFile, index=False)
 
 time = findFirstTime(performance)
 start = findFirstInstance(time)
-setMissionTime(raw, start)
+#You can change output file with third parameter here 
+setMissionTime(raw, start, "output1.csv")
 
 
 
