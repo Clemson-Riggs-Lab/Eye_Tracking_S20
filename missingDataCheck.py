@@ -28,12 +28,12 @@ def command():
 
         '''----------Checking errors in the file-----------------'''
 
-        #identify and report bad data (coordinates that are negative or greater than 2560x14440)
+        #identify and report bad data (coordinates that are negative or greater than 2560x1440)
         for i in range(0,len(df.index)):
 
             #negative coordinates
             if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
-                output_file.write('Row ' + str(i) + ': Negative/Zero Coordinates (Columns AE and AF)\n')
+                output_file.write('Row ' + str(i) + ': Negative/Zero/Impossible Coordinates (Columns AE and AF)\n')
                 negative_coordinates.append(i)
 
             #ignore the first loop to avoid errors
@@ -64,7 +64,7 @@ def command():
             else:
                 # parameters: c='' for color , s=___ for size
                 plt.scatter([df['BestPogX'][i]], [df['BestPogY'][i]], s=2, c='r')
-
+        plt.title(file)
         plt.show()
 
 
