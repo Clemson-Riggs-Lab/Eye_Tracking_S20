@@ -64,8 +64,19 @@ def command():
         output_file.write('Proportion of Unordered Data Packets: '+ str(proportion_packets) + ' (' + str(percentage_packets) + '%)' + '\n')
         output_file.write('Proportion of Invalid Data based on Gazepoint: ' + str(proportion_gazepoint) + ' (' + str(percentage_gazepoint) + '%)' + '\n')
 
+        total_time_seconds = len(df.index) / 150
+        total_time_minutes = total_time_seconds / 60
 
+        output_file.write('\nTotal Time Elapsed: ' + str(total_time_minutes) + ' minutes (' + str(total_time_seconds) + ' seconds)' + '\n')
 
+        # combining the lists together for duplicate rows
+        combined_list = list(set(negative_coordinates).union(set(marker_bad)))
+
+        total_error_time_seconds = len(combined_list) / 150
+        total_error_time_minutes = total_error_time_seconds / 60
+
+        output_file.write('Error Time Elapsed: ' + str(total_error_time_minutes) + ' minutes (' + str(
+        total_error_time_seconds) + ' seconds)' + '\n')
 
 
         output_file.close()
@@ -84,9 +95,6 @@ def command():
 
 
         '''----------deleting errors from file-----------------'''
-
-        # combining the lists together for duplicate rows
-        combined_list = list(set(negative_coordinates).union(set(marker_bad)))
 
         df.drop(combined_list, axis=0, inplace=True)
 
