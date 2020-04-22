@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e507b49-1a2e-49d1-ba09-d0c87d9d1fef" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dustinsTestFiles/P1_Fam_D20200206T1130Output_EyeTracker1.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dustinsTestFiles/Results_Participant2_Day1_Low_906.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dustinsTestFiles/Results_Participant2_Day1_Low_906.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dustinsTestFiles/new.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dustinsTestFiles/new1.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dustinsTestFiles/test.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dustinsTestFiles/test.xlsm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dustinsTestFiles/test2.csv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/plotEyeDataFovio.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/plotEyeDataGP3HD.py" afterPath="$PROJECT_DIR$/plotEyeDataGP3HD.py" />
+      <change beforePath="$PROJECT_DIR$/ErrorLog.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/missingDataCheck.py" afterPath="$PROJECT_DIR$/missingDataCheck.py" />
+      <change beforePath="$PROJECT_DIR$/new.csv" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,13 +15,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="preProcessing.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/preProcessing.py">
+      <file leaf-file-name="missingDataCheck.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/missingDataCheck.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+            <state relative-caret-position="231">
+              <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,6 +78,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -93,17 +87,10 @@
               <item name="DataEntryProgram" type="b2602c69:ProjectViewProjectNode" />
               <item name="DataEntryProgram" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="DataEntryProgram" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataEntryProgram" type="462c0819:PsiDirectoryNode" />
-              <item name="dustinsTestFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -112,14 +99,14 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Dustin Nguyen/Documents/6th SEMESTER/Research/DataEntryProgram/plotEyeDataGP3HD.py" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dustin Nguyen\Documents\6th SEMESTER\Research\DataEntryProgram" />
+      <recent name="C:\Users\Dustin Nguyen\Documents\6th SEMESTER\Research\DataEntryProgram\dustinsTestFiles" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Dustin Nguyen\Documents\6th SEMESTER\Research\DataEntryProgram\dustinsTestFiles" />
       <recent name="C:\Users\Dustin Nguyen\Documents\6th SEMESTER\Research\DataEntryProgram" />
       <recent name="C:\Users\Dustin Nguyen\Documents\6th SEMESTER\Research\DataEntryProgram\test" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Dustin Nguyen\Documents\6th SEMESTER\Research\DataEntryProgram\dustinsTestFiles" />
-      <recent name="C:\Users\Dustin Nguyen\Documents\6th SEMESTER\Research\DataEntryProgram" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -296,9 +283,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -321,9 +305,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -333,9 +314,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -352,9 +330,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -386,13 +361,7 @@
     <entry file="file://$PROJECT_DIR$/ye.csv" />
     <entry file="file://$PROJECT_DIR$/dustinsTestFiles/short.csv" />
     <entry file="file://$PROJECT_DIR$/dustinsTestFiles/new.csv" />
-    <entry file="file://$PROJECT_DIR$/dustinsTestFiles/mytest.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dustinsTestFiles/mytest.csv" />
     <entry file="file://$PROJECT_DIR$/histogram_2d_01.png" />
     <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python36/site-packages/pandas/core/indexes/base.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -432,59 +401,43 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hi.py" />
-    <entry file="file://$PROJECT_DIR$/new.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="21">
-          <caret line="11" column="47" lean-forward="false" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+    <entry file="file://$PROJECT_DIR$/new.csv" />
+    <entry file="file://$PROJECT_DIR$/dustinsTestFiles/myprocessedtest2.csv" />
+    <entry file="file://$PROJECT_DIR$/tbd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dustinsTestFiles/myprocessedtest.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="294">
-          <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
+    <entry file="file://$PROJECT_DIR$/preProcessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2520">
+          <caret line="156" column="37" lean-forward="false" selection-start-line="156" selection-start-column="37" selection-end-line="156" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dustinsTestFiles/myprocessedtest2.csv">
+    <entry file="file://$PROJECT_DIR$/myprocessedtest.csv">
       <provider selected="true" editor-type-id="LargeFileEditor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tbd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ErrorLog.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15960">
-          <caret line="760" column="46" lean-forward="false" selection-start-line="760" selection-start-column="46" selection-end-line="760" selection-end-column="46" />
+        <state relative-caret-position="449">
+          <caret line="780" column="0" lean-forward="true" selection-start-line="780" selection-start-column="0" selection-end-line="780" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/missingDataCheck.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        <state relative-caret-position="231">
+          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preProcessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
