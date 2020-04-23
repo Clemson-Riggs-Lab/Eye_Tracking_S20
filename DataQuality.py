@@ -112,13 +112,23 @@ start = findFirstInstance(time)
 setMissionTime(raw, start, "output1.csv")
 
 
-
+def which_uav(x, y):
+    counter=0
+    for uav in UAVs:
+        xacc= (x >= uav[0] and x <= uav[1])
+        yacc = (y >= uav[2] and y <= uav[3])
+        if xacc and yacc:
+            return counter+1
+        counter+=1
+    return "Inconclusive"
 """
 Create dictionary of the mission times (from the button clicks), assign 
 coordinates as values to the mission times key 
 """
 missionDict = {}
 raw["DataQuality"] = False
+raw["TD_Task"] = ""
+raw["Qualitative"] = "N/A"
 count=0
 for each in performance["TDTargetPresent"]:
     if each == 1.0:
@@ -149,8 +159,12 @@ for each in performance["TDTargetPresent"]:
                 """
                 if -.01 < mt -  clickTime < .01:
                     missionDict[clickTime] = xacc and yacc
+                
+                cur_uav = which_uav(x, y)
+                #Adding more qualitative data 
                 raw.at[raw_counter, "DataQuality"] = xacc and yacc
-            
+                raw.at[raw_counter, "TD_Task"] = "Target detection task for UAV " + str(uavNum)
+                raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
             raw_counter+=1
     count+=1
 
