@@ -12,12 +12,27 @@ video feed coordinates of the UAV whose target they clicked.
 """
 
 #Reading in eye tracking and performance csv files, just press enter for default values
-input_raw = input("Enter the name of a PreProcessed csv file: ") or "FakeEyetrackOutput.csv"
-raw = pd.read_csv(input_raw)
+while True:
+    try:  
+        input_raw = input("Enter the name of a PreProcessed csv file: ") or "FakeEyetrackOutput.csv"
+        raw = pd.read_csv(input_raw)
+        break
+    except:
+        print("Invalid eye tracking file (must be in csv format).")
 
-input_performance = input("Enter the name of a matching Performance csv: ") or "FakePerform.csv"
-performance = pd.read_csv(input_performance)
+while True:
+    try:
+        input_performance = input("Enter the name of a matching Performance csv: ") or "FakePerform.csv"
+        performance = pd.read_csv(input_performance)
+        break
+    except:
+        print("Invalid performance file (must be in csv format).")
 
+
+#Gathering user input for error in calculating times and
+timeError = float(input("Enter the desired level of error for mission time in seconds: "))
+xError= float(input("Enter the desired level of error for the x direction: "))
+yError = float(input("Enter the desired level of error for the y direction: "))
 
 #Column numbers so accessing data is easier
 UAVNumber = 7
@@ -97,13 +112,23 @@ start = findFirstInstance(time)
 setMissionTime(raw, start, "output1.csv")
 
 
-
+def which_uav(x, y):
+    counter=0
+    for uav in UAVs:
+        xacc= (x >= uav[0] and x <= uav[1])
+        yacc = (y >= uav[2] and y <= uav[3])
+        if xacc and yacc:
+            return counter+1
+        counter+=1
+    return "Inconclusive"
 """
 Create dictionary of the mission times (from the button clicks), assign 
 coordinates as values to the mission times key 
 """
 missionDict = {}
 raw["DataQuality"] = False
+raw["TD_Task"] = ""
+raw["Qualitative"] = "N/A"
 count=0
 for each in performance["TDTargetPresent"]:
     if each == 1.0:
@@ -111,7 +136,7 @@ for each in performance["TDTargetPresent"]:
         clickTime = performance.iloc[count, 27]
         for mt in raw["MissionTime"]:
             #Finding where button click time and MissionTime align
-            if -.01 < mt -  clickTime < .01 :
+            if timeError * -1 < mt -  clickTime < timeError :
                 
                 uavNum = int(performance.at[count, "UAVNumber"])
                 uav = UAVs[uavNum-1]
@@ -119,25 +144,27 @@ for each in performance["TDTargetPresent"]:
                 x = raw.at[raw_counter, "BestPogX"]
                 y = raw.at[raw_counter, "BestPogY"]
 
-                xacc= (x >= uav[0] and x <= uav[1])
-                yacc = (y >= uav[2] and y <= uav[3])
+                #Now accuracy takes the errors into account 
+                xacc= (x >= uav[0] - xError and x <= uav[1] + xError)
+                yacc = (y >= uav[2] - yError and y <= uav[3] + yError)
                 """
                 Value will be True if both x and y coordinates are accurate 
                 according to the current UAV and False if not. 
                 """
-                missionDict[clickTime] = xacc and yacc
-                raw.at[raw_counter, "DataQuality"] = xacc and yacc
-                #stuff to help with testing 
-                # print ("Coordinates at mission time " + str(mt) + " : " + str(x) + ", " + str(y))
 
-                # if (xacc and not yacc):
-                #     print("Only x is accurate")
-                # if (yacc and not xacc):
-                #     print("Only y is accurate")
-                # if (yacc and xacc):
-                #     print("Both x and y are accurate")
-                # else:
-                #  print("Neither are accurate")
+                """
+                Below if statement ensures that only a time that is close
+                to clickTime will be used for the dictionary so we can pinpoint 
+                accuracy at exact clicktime.
+                """
+                if -.01 < mt -  clickTime < .01:
+                    missionDict[clickTime] = xacc and yacc
+                
+                cur_uav = which_uav(x, y)
+                #Adding more qualitative data 
+                raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                raw.at[raw_counter, "TD_Task"] = "Target detection task for UAV " + str(uavNum)
+                raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
             raw_counter+=1
     count+=1
 
