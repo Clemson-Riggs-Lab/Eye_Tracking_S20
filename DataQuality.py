@@ -14,7 +14,7 @@ video feed coordinates of the UAV whose target they clicked.
 #Reading in eye tracking and performance csv files, just press enter for default values
 while True:
     try:  
-        input_raw = input("Enter the name of a PreProcessed csv file: ") or "FakeEyetrackOutput.csv"
+        input_raw = input("Enter the name of a PreProcessed csv file: ") or "2ndTask_ET.csv"
         raw = pd.read_csv(input_raw)
         break
     except:
@@ -22,7 +22,7 @@ while True:
 
 while True:
     try:
-        input_performance = input("Enter the name of a matching Performance csv: ") or "FakePerform.csv"
+        input_performance = input("Enter the name of a matching Performance csv: ") or "2ndTask_P.csv"
         performance = pd.read_csv(input_performance)
         break
     except:
@@ -30,9 +30,9 @@ while True:
 
 
 #Gathering user input for error in calculating times and
-timeError = float(input("Enter the desired level of error for mission time in seconds: "))
-xError= float(input("Enter the desired level of error for the x direction: "))
-yError = float(input("Enter the desired level of error for the y direction: "))
+timeError = float(input("Enter the desired level of error for mission time in seconds: ") or "0")
+xError= float(input("Enter the desired level of error for the x direction: ") or "0")
+yError = float(input("Enter the desired level of error for the y direction: ") or "0")
 
 #Column numbers so accessing data is easier
 UAVNumber = 7
@@ -67,7 +67,7 @@ UAVs = [UAV1, UAV2, UAV3, UAV4, UAV5, UAV6, UAV7,
         UAV8, UAV9, UAV10, UAV11, UAV12, UAV13, 
         UAV14, UAV15, UAV16]
 system_time = ""
-count = 0
+TDcount = 0
 coordinates = []
 
 #returns first index found of given time in raw data 
@@ -129,16 +129,16 @@ missionDict = {}
 raw["DataQuality"] = False
 raw["TD_Task"] = ""
 raw["Qualitative"] = "N/A"
-count=0
+TDcount=0
 for each in performance["TDTargetPresent"]:
     if each == 1.0:
         raw_counter=0
-        clickTime = performance.iloc[count, 27]
+        clickTime = performance.iloc[TDcount, 27]
         for mt in raw["MissionTime"]:
             #Finding where button click time and MissionTime align
             if timeError * -1 < mt -  clickTime < timeError :
                 
-                uavNum = int(performance.at[count, "UAVNumber"])
+                uavNum = int(performance.at[TDcount, "UAVNumber"])
                 uav = UAVs[uavNum-1]
 
                 x = raw.at[raw_counter, "BestPogX"]
@@ -166,9 +166,16 @@ for each in performance["TDTargetPresent"]:
                 raw.at[raw_counter, "TD_Task"] = "Target detection task for UAV " + str(uavNum)
                 raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
             raw_counter+=1
-    count+=1
-
+    TDcount+=1
+raw.to_csv("output1.csv")
 print(missionDict)
 
+########### Secondary tasks 
+
+RRcount = 0
+for each in performance["RRTimeofRR"]:
+    if pd.notnull(performance.at[RRcount, "RRTimeofRR"]):
+        print(each)
+    RRcount+=1
 raw.to_csv('output1.csv', index=False)
 
