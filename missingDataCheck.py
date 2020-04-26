@@ -81,21 +81,6 @@ def command():
 
         output_file.close()
 
-        '''----------displaying the plot-----------------'''
-
-        # displaying points on the background ... density inversely related to number
-        for i in range(0, len(df.index), 100):
-            if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
-                ...
-            else:
-                # parameters: c='' for color , s=___ for size
-                plt.scatter([df['BestPogX'][i]], [df['BestPogY'][i]], s=2, c='r')
-        plt.title(file)
-        plt.show()
-
-        print(v.get())
-        print(type(v.get()))
-
         '''----------deleting errors from file-----------------'''
 
         if v.get() == 1:
@@ -111,13 +96,26 @@ def command():
             for each in combined_list:
                 defaultvals[each] = 'ERROR'
 
-
-
             series = pd.Series(defaultvals)
             df['MissingDataCheck'] = series
 
             # after all changes are made
             df.to_csv(newfile, index=False)
+
+        '''----------displaying the plot-----------------'''
+
+        # displaying points on the background ... density inversely related to number
+        for i in range(0, len(df.index), 100):
+            if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
+                ...
+            else:
+                # parameters: c='' for color , s=___ for size
+                plt.scatter([df['BestPogX'][i]], [df['BestPogY'][i]], s=2, c='r')
+        plt.title(file)
+        plt.show()
+
+        print(v.get())
+        print(type(v.get()))
 
 
 
