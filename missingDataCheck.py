@@ -93,13 +93,33 @@ def command():
         plt.title(file)
         plt.show()
 
+        print(v.get())
+        print(type(v.get()))
 
         '''----------deleting errors from file-----------------'''
 
-        df.drop(combined_list, axis=0, inplace=True)
+        if v.get() == 1:
+            df.drop(combined_list, axis=0, inplace=True)
 
-        # after all changes are made
-        df.to_csv(newfile, index=False)
+            # after all changes are made
+            df.to_csv(newfile, index=False)
+        elif v.get() == 2:
+            #do the stuff with marking the excel file here'
+
+            defaultvals = ['0'] * len(df.index)
+
+            for each in combined_list:
+                defaultvals[each] = 'ERROR'
+
+
+
+            series = pd.Series(defaultvals)
+            df['MissingDataCheck'] = series
+
+            # after all changes are made
+            df.to_csv(newfile, index=False)
+
+
 
     elif os.path.isdir(file):
         '''--------------------------DOING STUFF WITH FOLDERS-----------------------------'''
@@ -192,11 +212,13 @@ window = Tk()
 frame0 = Frame(window)
 frame1 = Frame(window)
 frame2 = Frame(window)
+frame5 = Frame(window)
 frame3 = Frame(window)
 frame4 = Frame(window)
 frame0.pack()
 frame1.pack()
 frame2.pack()
+frame5.pack()
 frame3.pack()
 frame4.pack()
 window.title("Missing/Bad Data checker")
@@ -214,10 +236,24 @@ text2.pack(side=LEFT)
 output_file_response = Entry(frame2)
 output_file_response.pack(side=LEFT)
 
+v = IntVar()
+
+button2 = Radiobutton(frame5,
+              text="Delete Rows Automatically",
+              padx = 20,
+              variable=v,
+              value=1).pack()
+button3 = Radiobutton(frame5,
+              text="Mark in Excel File for review",
+              padx = 20,
+              variable=v,
+              value=2).pack()
+
 button1 = Button(frame3, text='Submit',command=command)
 button1.pack(side=RIGHT)
 
 text3 = Label(frame4, text='Status: N/A')
 text3.pack()
+
 
 window.mainloop()
