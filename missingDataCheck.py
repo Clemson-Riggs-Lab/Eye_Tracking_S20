@@ -33,7 +33,7 @@ def command():
 
             #negative coordinates
             if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
-                output_file.write('Row ' + str(i) + ': Negative/Zero/Impossible Coordinates (Columns AE and AF)\n')
+                output_file.write('Row ' + str(i + 2) + ': Negative/Zero/Impossible Coordinates (Columns AE and AF)\n')
                 negative_coordinates.append(i)
 
             #ignore the first loop to avoid errors
@@ -43,10 +43,10 @@ def command():
                 #check for missing data ... see how the packet counter is
                 if df['Counter'][i] != df['Counter'][i-1] + 1:
                     output_file.write('Row ' + str(i + 2) + ': Unordered Data Packet Counters (Column E)\n')
-                    missing_packets.append(i+2)
+                    missing_packets.append(i)
 
             if df['BestPogValid'][i] != 1:
-                output_file.write('Row ' + str(i) + ': Invalid Data based on Gazepoint (Column AG)\n')
+                output_file.write('Row ' + str(i + 2) + ': Invalid Data based on Gazepoint (Column AG)\n')
                 marker_bad.append(i)
 
         output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coordinates)) +'\n')
@@ -95,6 +95,9 @@ def command():
 
             for each in combined_list:
                 defaultvals[each] = 'ERROR'
+
+            for each in missing_packets:
+                defaultvals[each] = 'Packet ERROR'
 
             series = pd.Series(defaultvals)
             df['MissingDataCheck'] = series
@@ -147,7 +150,7 @@ def command():
                 # negative coordinates
                 if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][
                     i] >= 1440:
-                    output_file.write('Row ' + str(i) + ': Negative/Zero/Impossible Coordinates (Columns AE and AF)\n')
+                    output_file.write('Row ' + str(i + 2) + ': Negative/Zero/Impossible Coordinates (Columns AE and AF)\n')
                     negative_coordinates.append(i)
 
                 # ignore the first loop to avoid errors
@@ -157,10 +160,10 @@ def command():
                     # check for missing data ... see how the packet counter is
                     if df['Counter'][i] != df['Counter'][i - 1] + 1:
                         output_file.write('Row ' + str(i + 2) + ': Unordered Data Packet Counters (Column E)\n')
-                        missing_packets.append(i + 2)
+                        missing_packets.append(i)
 
                 if df['BestPogValid'][i] != 1:
-                    output_file.write('Row ' + str(i) + ': Invalid Data based on Gazepoint (Column AG)\n')
+                    output_file.write('Row ' + str(i + 2) + ': Invalid Data based on Gazepoint (Column AG)\n')
                     marker_bad.append(i)
 
             final_df = final_df.append(df)
