@@ -10,7 +10,6 @@ def command():
     ''''''
     '''----------SET UP----------------'''
 
-    https: // github.com / Clemson - Riggs - Lab / Eye_Tracking_S20
 
     im = plt.imread('UAVSimPic.png')
     implot = plt.imshow(im)
