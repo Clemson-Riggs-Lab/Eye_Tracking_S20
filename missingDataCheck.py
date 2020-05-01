@@ -3,11 +3,14 @@ import pandas as pd
 from tkinter import *
 from os import path
 import os
+import more_itertools as mit
 
 
 def command():
     ''''''
     '''----------SET UP----------------'''
+
+    https: // github.com / Clemson - Riggs - Lab / Eye_Tracking_S20
 
     im = plt.imread('UAVSimPic.png')
     implot = plt.imshow(im)
@@ -71,6 +74,17 @@ def command():
 
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coordinates).union(set(marker_bad)))
+
+
+        sorted_combined_list = sorted(combined_list)
+
+        sub_lists = [list(group) for group in mit.consecutive_groups(sorted_combined_list)]
+        print(sub_lists)
+
+        for each in sub_lists:
+            if len(each) >= 150:
+                output_file.write('There is an unusual amount of missing data from row ' + str(each[0] + 2) + ' to row ' + str(each[len(each) - 1] + 2))
+
 
         total_error_time_seconds = len(combined_list) / 150
         total_error_time_minutes = total_error_time_seconds / 60
