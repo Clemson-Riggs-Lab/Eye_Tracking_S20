@@ -30,7 +30,6 @@ while True:
 
 
 #Gathering user input for error in calculating times and
-timeError = float(input("Enter the desired level of error for mission time in seconds: ") or "0")
 xError= float(input("Enter the desired level of error for the x direction: ") or "0")
 yError = float(input("Enter the desired level of error for the y direction: ") or "0")
 
@@ -67,7 +66,7 @@ UAVs = [UAV1, UAV2, UAV3, UAV4, UAV5, UAV6, UAV7,
         UAV8, UAV9, UAV10, UAV11, UAV12, UAV13, 
         UAV14, UAV15, UAV16]
 system_time = ""
-TDcount = 0
+count = 0
 coordinates = []
 
 #returns first index found of given time in raw data 
@@ -104,12 +103,20 @@ def setMissionTime(Raw_csv, start_index, outFile):
         if i > start_index:
             x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
             Raw_csv.at[i, "MissionTime"] = float(Raw_csv.at[i-1, "MissionTime"]) + x
-    Raw_csv.to_csv(outFile, index=False)
 
 time = findFirstTime(performance)
+print(time[0:10])
+
+#Not returning correct start index.
+#I think this is because system time in performance file is more accurate
+
 start = findFirstInstance(time)
+print(start)
+print(raw.iloc[781, SysTimeET])
 #You can change output file with third parameter here 
-setMissionTime(raw, start, "output1.csv")
+
+setMissionTime(raw, 781, "output1.csv")
+raw.to_csv('output1.csv', index=False)
 
 
 def which_uav(x, y):
@@ -126,19 +133,27 @@ Create dictionary of the mission times (from the button clicks), assign
 coordinates as values to the mission times key 
 """
 missionDict = {}
+#Tells us if target detection was accurate
 raw["DataQuality"] = False
+#Tells which uav the target appeared in
 raw["TD_Task"] = ""
+#Tells us which uav the participant was looking at
 raw["Qualitative"] = "N/A"
-TDcount=0
+#Gives the distance of best pog x from one bound of the video feed
+#(whichever bound it is closer to)
+raw["EuclidianX"] = 0
+#Same as above but for best pog y
+raw["EuclidianY"] = 0
+count=0
 for each in performance["TDTargetPresent"]:
     if each == 1.0:
         raw_counter=0
-        clickTime = performance.iloc[TDcount, 27]
+        clickTime = performance.iloc[count, 27]
         for mt in raw["MissionTime"]:
             #Finding where button click time and MissionTime align
-            if timeError * -1 < mt -  clickTime < timeError :
-                
-                uavNum = int(performance.at[TDcount, "UAVNumber"])
+            if -.01 <= mt -  clickTime <= .01 :
+                #print(raw.at[raw_counter, "BestPogY"])
+                uavNum = int(performance.at[count, "UAVNumber"])
                 uav = UAVs[uavNum-1]
 
                 x = raw.at[raw_counter, "BestPogX"]
@@ -161,21 +176,66 @@ for each in performance["TDTargetPresent"]:
                     missionDict[clickTime] = xacc and yacc
                 
                 cur_uav = which_uav(x, y)
+
+                #Calculating how far away the coordinates are from either 
+                #the upper or lower bound of the uav feed
+                xEuclidean = 0
+                yEuclidean = 0
+                if x < uav[0]:
+                    xEuclidean = uav[0] - x
+                elif x > uav[1]:
+                    xEuclidean = x - uav[1]
+
+                if y < uav[2]:
+                    yEuclidean = uav[2] - y
+                elif y > uav[3]:
+                    yEuclidean = y - uav[3]
+
+
                 #Adding more qualitative data 
                 raw.at[raw_counter, "DataQuality"] = xacc and yacc
                 raw.at[raw_counter, "TD_Task"] = "Target detection task for UAV " + str(uavNum)
                 raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
+                raw.at[raw_counter, "EuclidianX"] = xEuclidean
+                raw.at[raw_counter, "EuclidianY"] = yEuclidean
+
             raw_counter+=1
-    TDcount+=1
-raw.to_csv("output1.csv")
+    count+=1
+
 print(missionDict)
 
-########### Secondary tasks 
-
-RRcount = 0
+#Coordinates for the reroute menu 
+RRPanel = [0, 920, 930, 1440]
 for each in performance["RRTimeofRR"]:
-    if pd.notnull(performance.at[RRcount, "RRTimeofRR"]):
-        print(each)
-    RRcount+=1
+    if not pd.isnull(each):
+        raw_counter=0
+        for mt in raw["MissionTime"]:
+            if (-.01 <= mt- each <= .01):
+                x = raw.at[raw_counter, "BestPogX"]
+                y = raw.at[raw_counter, "BestPogY"]
+                xacc= (x >= RRPanel[0] - xError and x <= RRPanel[1] + xError)
+                yacc = (y >= RRPanel[2] - yError and y <= RRPanel[3] + yError)
+                # print(str(x) + ", " + str(y))
+                raw.at[raw_counter, "TD_Task"] = "Secondary detection task for reroute panel"
+                raw.at[raw_counter, "DataQuality"] = xacc and yacc
+            
+            raw_counter+=1
+
+FLPanel = [920, 2560, 812 ,1158]
+for each in performance["FLStopTime"]:
+    if not pd.isnull(each):
+        raw_counter=0
+        for mt in raw["MissionTime"]:
+            if (-.01 <= mt- each <= .01):
+                x = raw.at[raw_counter, "BestPogX"]
+                y = raw.at[raw_counter, "BestPogY"]
+                xacc= (x >= FLPanel[0] - xError and x <= FLPanel[1] + xError)
+                yacc = (y >= FLPanel[2] - yError and y <= FLPanel[3] + yError)
+                # print(str(x) + ", " + str(y))
+                raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Fuel Leak panel"
+                raw.at[raw_counter, "DataQuality"] = xacc and yacc
+
+            
+            raw_counter+=1
 raw.to_csv('output1.csv', index=False)
 
