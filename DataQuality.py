@@ -1,5 +1,6 @@
 import pandas as pd
 from os import path
+import math
 #Sam Smith
 #04/09/2020
 
@@ -73,7 +74,7 @@ coordinates = []
 def findFirstInstance(time):
     first = 0
     for each in raw["SystemTime"]: 
-        if (each[3:10] == time[3:10]):
+        if (each[2:7] == time[3:8]):
             break
         first +=1
     return first
@@ -111,11 +112,9 @@ print(time[0:10])
 #I think this is because system time in performance file is more accurate
 
 start = findFirstInstance(time)
-print(start)
-print(raw.iloc[781, SysTimeET])
 #You can change output file with third parameter here 
 
-setMissionTime(raw, 781, "output1.csv")
+setMissionTime(raw, start, "output1.csv")
 raw.to_csv('output1.csv', index=False)
 
 
@@ -128,6 +127,13 @@ def which_uav(x, y):
             return counter+1
         counter+=1
     return "Inconclusive"
+
+
+
+def calculateDistance(x1,y1,x2,y2):  
+     dist = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)  
+     return dist  
+
 """
 Create dictionary of the mission times (from the button clicks), assign 
 coordinates as values to the mission times key 
@@ -139,11 +145,13 @@ raw["DataQuality"] = False
 raw["TD_Task"] = ""
 #Tells us which uav the participant was looking at
 raw["Qualitative"] = "N/A"
-#Gives the distance of best pog x from one bound of the video feed
-#(whichever bound it is closer to)
-raw["EuclidianX"] = 0
-#Same as above but for best pog y
-raw["EuclidianY"] = 0
+
+"""
+Uses distance formula to calculate how far eye coordinates are 
+from the center of a video feed
+"""
+raw["DistanceFromCenter"] = 0
+
 count=0
 for each in performance["TDTargetPresent"]:
     if each == 1.0:
@@ -179,25 +187,16 @@ for each in performance["TDTargetPresent"]:
 
                 #Calculating how far away the coordinates are from either 
                 #the upper or lower bound of the uav feed
-                xEuclidean = 0
-                yEuclidean = 0
-                if x < uav[0]:
-                    xEuclidean = uav[0] - x
-                elif x > uav[1]:
-                    xEuclidean = x - uav[1]
 
-                if y < uav[2]:
-                    yEuclidean = uav[2] - y
-                elif y > uav[3]:
-                    yEuclidean = y - uav[3]
+                centerx = (uav[0] + uav[1])/2
+                centery = (uav[2] + uav[3])/2
 
 
-                #Adding more qualitative data 
+                #Updating the output csv file
                 raw.at[raw_counter, "DataQuality"] = xacc and yacc
                 raw.at[raw_counter, "TD_Task"] = "Target detection task for UAV " + str(uavNum)
                 raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
-                raw.at[raw_counter, "EuclidianX"] = xEuclidean
-                raw.at[raw_counter, "EuclidianY"] = yEuclidean
+                raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
             raw_counter+=1
     count+=1
@@ -216,9 +215,13 @@ for each in performance["RRTimeofRR"]:
                 xacc= (x >= RRPanel[0] - xError and x <= RRPanel[1] + xError)
                 yacc = (y >= RRPanel[2] - yError and y <= RRPanel[3] + yError)
                 # print(str(x) + ", " + str(y))
+
+                centerx = (RRPanel[0] + RRPanel[1])/2
+                centery = (RRPanel[2] + RRPanel[3])/2
                 raw.at[raw_counter, "TD_Task"] = "Secondary detection task for reroute panel"
                 raw.at[raw_counter, "DataQuality"] = xacc and yacc
-            
+                raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+
             raw_counter+=1
 
 FLPanel = [920, 2560, 812 ,1158]
@@ -232,10 +235,37 @@ for each in performance["FLStopTime"]:
                 xacc= (x >= FLPanel[0] - xError and x <= FLPanel[1] + xError)
                 yacc = (y >= FLPanel[2] - yError and y <= FLPanel[3] + yError)
                 # print(str(x) + ", " + str(y))
+                centerx = (FLPanel[0] + FLPanel[1])/2
+                centery = (FLPanel[2] + FLPanel[3])/2
                 raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Fuel Leak panel"
                 raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
             
             raw_counter+=1
+
+CMPanel = [920, 2560, 1158 ,1440]
+perf_counter=0
+for each in performance["MessageTime"]:
+    if not pd.isnull(each):
+        if (performance.at[perf_counter,"MessageFrom"] == 'user'):
+            print("user")
+            raw_counter=0
+
+            for mt in raw["MissionTime"]:
+                if (-.01 <= mt- each <= .01):
+                    x = raw.at[raw_counter, "BestPogX"]
+                    y = raw.at[raw_counter, "BestPogY"]
+                    xacc= (x >= CMPanel[0] - xError and x <= CMPanel[1] + xError)
+                    yacc = (y >= CMPanel[2] - yError and y <= CMPanel[3] + yError)
+                    # print(str(x) + ", " + str(y))
+                    centerx = (CMPanel[0] + CMPanel[1])/2
+                    centery = (CMPanel[2] + CMPanel[3])/2
+                    raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Chat Message panel"
+                    raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                    raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+
+                raw_counter+=1
+    perf_counter+=1
 raw.to_csv('output1.csv', index=False)
 
