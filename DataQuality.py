@@ -215,9 +215,13 @@ for each in performance["RRTimeofRR"]:
                 xacc= (x >= RRPanel[0] - xError and x <= RRPanel[1] + xError)
                 yacc = (y >= RRPanel[2] - yError and y <= RRPanel[3] + yError)
                 # print(str(x) + ", " + str(y))
+
+                centerx = (RRPanel[0] + RRPanel[1])/2
+                centery = (RRPanel[2] + RRPanel[3])/2
                 raw.at[raw_counter, "TD_Task"] = "Secondary detection task for reroute panel"
                 raw.at[raw_counter, "DataQuality"] = xacc and yacc
-            
+                raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+
             raw_counter+=1
 
 FLPanel = [920, 2560, 812 ,1158]
@@ -231,8 +235,11 @@ for each in performance["FLStopTime"]:
                 xacc= (x >= FLPanel[0] - xError and x <= FLPanel[1] + xError)
                 yacc = (y >= FLPanel[2] - yError and y <= FLPanel[3] + yError)
                 # print(str(x) + ", " + str(y))
+                centerx = (FLPanel[0] + FLPanel[1])/2
+                centery = (FLPanel[2] + FLPanel[3])/2
                 raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Fuel Leak panel"
                 raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
             
             raw_counter+=1
@@ -252,8 +259,11 @@ for each in performance["MessageTime"]:
                     xacc= (x >= CMPanel[0] - xError and x <= CMPanel[1] + xError)
                     yacc = (y >= CMPanel[2] - yError and y <= CMPanel[3] + yError)
                     # print(str(x) + ", " + str(y))
+                    centerx = (CMPanel[0] + CMPanel[1])/2
+                    centery = (CMPanel[2] + CMPanel[3])/2
                     raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Chat Message panel"
                     raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                    raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
                 raw_counter+=1
     perf_counter+=1
