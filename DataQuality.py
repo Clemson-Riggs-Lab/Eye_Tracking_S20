@@ -112,8 +112,6 @@ print(time[0:10])
 #I think this is because system time in performance file is more accurate
 
 start = findFirstInstance(time)
-print(start)
-print(raw.iloc[632, SysTimeET])
 #You can change output file with third parameter here 
 
 setMissionTime(raw, start, "output1.csv")
@@ -238,5 +236,26 @@ for each in performance["FLStopTime"]:
 
             
             raw_counter+=1
+
+CMPanel = [920, 2560, 1158 ,1440]
+perf_counter=0
+for each in performance["MessageTime"]:
+    if not pd.isnull(each):
+        if (performance.at[perf_counter,"MessageFrom"] == 'user'):
+            print("user")
+            raw_counter=0
+
+            for mt in raw["MissionTime"]:
+                if (-.01 <= mt- each <= .01):
+                    x = raw.at[raw_counter, "BestPogX"]
+                    y = raw.at[raw_counter, "BestPogY"]
+                    xacc= (x >= CMPanel[0] - xError and x <= CMPanel[1] + xError)
+                    yacc = (y >= CMPanel[2] - yError and y <= CMPanel[3] + yError)
+                    # print(str(x) + ", " + str(y))
+                    raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Chat Message panel"
+                    raw.at[raw_counter, "DataQuality"] = xacc and yacc
+
+                raw_counter+=1
+    perf_counter+=1
 raw.to_csv('output1.csv', index=False)
 
