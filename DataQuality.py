@@ -4,15 +4,10 @@ import math
 #Sam Smith
 #04/09/2020
 
-"""
-Use the "time" column to count up 6 ms intervals (delta), time zero is system time
-at which first target appears. Then, look at the TDbuttonclick time on 
-performance file to find the row at that same time in that column we created
-in raw data. In that row, look at best pog x and y, and compare that to the UAV
-video feed coordinates of the UAV whose target they clicked. 
-"""
 
-#Reading in eye tracking and performance csv files, just press enter for default values
+
+#Reading in eye tracking and performance csv files, just press enter for default values. 
+#In this case, the default is 2ndTask_ET.csv and 2ndTaskP.csv
 while True:
     try:  
         input_raw = input("Enter the name of a PreProcessed csv file: ") or "2ndTask_ET.csv"
@@ -30,11 +25,20 @@ while True:
         print("Invalid performance file (must be in csv format).")
 
 
-#Gathering user input for error in calculating times and
+#Gathering user input for error calculating the valid field of view for participants eyes.
+"""
+Essentially, the error that the user inputs is used to extend the bounds that we would
+consider to be acceptably accurate. For example, if a video feed's x coordinates were 
+200 to 1000, an xError of 50 would mean that any eye data in the x direction
+within the window of 150 to 1050 pixels would considered as accurate. This applies
+to the y direction as well.  
+"""
 xError= float(input("Enter the desired level of error for the x direction: ") or "0")
 yError = float(input("Enter the desired level of error for the y direction: ") or "0")
 
-#Column numbers so accessing data is easier
+#Column numbers in the eye tracking and performance files so accessing data is easier.
+"""Pandas does allow us to access a data column directly with its name as well,
+but sometimes I used these numbers to access specific cells."""
 UAVNumber = 7
 TaskType = 6
 SysTimeP = 4
@@ -42,9 +46,8 @@ SysTimeET = 47
 leftx = 24
 lefty = 25
 
-#iloc works like this : row, col
 
-#Coordinate fields for each UAV
+#Coordinate fields for each UAV in the 2560 x 1440 resolution
 #       x1    x2   y1   y2
 UAV1 = [930, 1326, 194, 0]
 UAV2 = [1326, 1738, 194, 0]
@@ -63,14 +66,21 @@ UAV14 = [1326, 1738, 606, 812]
 UAV15 = [1738, 2150, 606, 812]
 UAV16 = [2150, 2560, 606, 812]
 
+#This is the list of all of our UAVs
 UAVs = [UAV1, UAV2, UAV3, UAV4, UAV5, UAV6, UAV7, 
         UAV8, UAV9, UAV10, UAV11, UAV12, UAV13, 
         UAV14, UAV15, UAV16]
+
+#Global variables to help with later calculations 
 system_time = ""
 count = 0
 coordinates = []
 
-#returns first index found of given time in raw data 
+#returns first index found of given time in raw data
+"""
+This function is still being changed around given that the system time column 
+in the eye tracking data seems to be causing problems. 
+"""
 def findFirstInstance(time):
     first = 0
     for each in raw["SystemTime"]: 
@@ -79,8 +89,8 @@ def findFirstInstance(time):
         first +=1
     return first
 
-#finds first system time at which target is present
-#This will be where mission time equals 0 
+#finds first system time at which target is present in the performance file 
+#This will be where mission time equals 0, because this was the time when the mission actually began
 def findFirstTime(Perf_csv):
     count=0
     time = ""
@@ -93,11 +103,16 @@ def findFirstTime(Perf_csv):
     return time
 
 
-#Counting number of total rows
+#Counting number of total rows within eye tracking file 
 totalRows=0
 for each in raw["BestPogX"]:
     totalRows+=1
 
+"""
+This function uses the time column in the eyetracking data to create a MissionTime 
+column that matches up with the mission time in the performance csv. This allows us to more
+easily pinpoint where the participant was looking throughout the mission. 
+"""
 raw["MissionTime"] = 0.0
 def setMissionTime(Raw_csv, start_index, outFile):
     for i in range(totalRows):
@@ -105,19 +120,20 @@ def setMissionTime(Raw_csv, start_index, outFile):
             x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
             Raw_csv.at[i, "MissionTime"] = float(Raw_csv.at[i-1, "MissionTime"]) + x
 
+
+#Calling the setMissionTime function below 
 time = findFirstTime(performance)
 print(time[0:10])
-
-#Not returning correct start index.
-#I think this is because system time in performance file is more accurate
-
 start = findFirstInstance(time)
 #You can change output file with third parameter here 
-
 setMissionTime(raw, start, "output1.csv")
 raw.to_csv('output1.csv', index=False)
 
 
+"""
+Given x and y coordinates, this function determines which UAV the corrdinates would
+fall into. 
+"""
 def which_uav(x, y):
     counter=0
     for uav in UAVs:
@@ -129,7 +145,7 @@ def which_uav(x, y):
     return "Inconclusive"
 
 
-
+#Helper function that essentially uses the distance formula to find distance between two points
 def calculateDistance(x1,y1,x2,y2):  
      dist = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)  
      return dist  
@@ -152,6 +168,13 @@ from the center of a video feed
 """
 raw["DistanceFromCenter"] = 0
 
+
+
+"""
+When there is a target present, this loop looks at the mission time, finds a matching time in the 
+eye tracking file's mission time file (or a time that is very close to the same) and checks that the 
+participants eyes are looking in the correct area. This logic is repeated for the secondary tasks below. 
+"""
 count=0
 for each in performance["TDTargetPresent"]:
     if each == 1.0:
