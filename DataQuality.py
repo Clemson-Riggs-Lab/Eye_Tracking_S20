@@ -1,6 +1,7 @@
 import pandas as pd
 from os import path
 import math
+from datetime import time, datetime, timedelta
 #Sam Smith
 #04/09/2020
 
@@ -109,12 +110,64 @@ for each in raw["BestPogX"]:
     totalRows+=1
 
 """
+Converting the system time string into a datetime object
+which allows us to more easily add time using timedeltas.
+See the python datetime documentation (https://docs.python.org/3/library/datetime.html)
+for more information. 
+"""
+def convert_to_datetime(Raw_csv, row):
+    real_st = Raw_csv.at[row, "NewSystemTime"]
+    #If statement is basically checking if hours is a single digit
+    if ":" in real_st[0:2]:
+        hours = int(real_st[0])
+        minutes = int(real_st[2:4])
+        seconds = int(real_st[5:7])
+        micro = int(real_st[8:])
+
+    else:
+        hours = int(real_st[0:2])
+        minutes = int(real_st[3:5])
+        seconds = int(real_st[6:8])
+        micro = int(real_st[9:])
+    fulldate = datetime(100, 1, 1, hours, minutes, seconds, micro)
+    # time = fulldate.strftime("%H:%M:%S.%f")
+    return fulldate.time()
+
+def addSecs(tm, msecs):
+    #arbitrary date, its the time that matters.
+    #For some reason python doesnt allow you to deal strictly with times
+    fulldate = datetime(100, 1, 1, tm.hour, tm.minute, tm.second, tm.microsecond)
+    fulldate = fulldate + timedelta(microseconds=msecs)
+    return fulldate.time()
+
+raw["NewSystemTime"] = ""
+raw.at[0, "NewSystemTime"]= raw.at[0, "SystemTime"]+ ".0"
+
+def setSystemTime(Raw_csv):
+    for i in range(1,totalRows):
+
+        #Previous milisecond value (in microseconds)
+        previous = convert_to_datetime(Raw_csv, i-1)
+        #Difference between current time and previous time
+        delta = float((Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"]))
+        #Converting delta into microseconds 
+        micro_delta = delta*1000000
+        current = addSecs(previous, micro_delta)
+        str_time = current.strftime("%H:%M:%S.%f")
+        Raw_csv.at[i, "NewSystemTime"] = str_time
+
+setSystemTime(raw)
+# 7:47:35.0
+
+
+"""
 This function uses the time column in the eyetracking data to create a MissionTime 
 column that matches up with the mission time in the performance csv. This allows us to more
 easily pinpoint where the participant was looking throughout the mission. 
 """
+
 raw["MissionTime"] = 0.0
-def setMissionTime(Raw_csv, start_index, outFile):
+def setMissionTime(Raw_csv, start_index, out_file):
     for i in range(totalRows):
         if i > start_index:
             x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
@@ -123,7 +176,6 @@ def setMissionTime(Raw_csv, start_index, outFile):
 
 #Calling the setMissionTime function below 
 time = findFirstTime(performance)
-print(time[0:10])
 start = findFirstInstance(time)
 #You can change output file with third parameter here 
 setMissionTime(raw, start, "output1.csv")
