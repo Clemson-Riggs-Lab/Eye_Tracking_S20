@@ -15,12 +15,13 @@ ddn3aq
 '''
 
 def showPlot():
-
+    #reading in the CSV file
     data = pandas.read_csv(str(input_file_response.get()), header=0)
 
     #change this value to change how detailed the heatmap is... lower numbers mean higher quality.
     precision = int(precision_response.get()) + 4
 
+    #extracting the data from the file
     col_a = list(data['BestPogX'])
     col_b = list(data['BestPogY'])
 
@@ -30,13 +31,11 @@ def showPlot():
     h = ax.hist2d(col_a, col_b, bins=[np.arange(0,2560,precision),np.arange(0,1440,precision)])
     plt.colorbar(h[3], ax=ax)
 
+    #inverting the axis so that the plot displays properly
     plt.gca().invert_yaxis()
 
     plt.title("Heat Map Demo")
-
-
     plt.show()
-
     plt.close()
 
 
