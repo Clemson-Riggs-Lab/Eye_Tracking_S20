@@ -24,6 +24,8 @@ def showPlot():
     col_a = list(data['BestPogX'])
     col_b = list(data['BestPogY'])
 
+
+    #code taken from: https://stackoverflow.com/questions/47915951/heatmap-in-python-to-represent-x-y-coordinates-in-a-given-rectangular-area
     fig, ax = plt.subplots()
     h = ax.hist2d(col_a, col_b, bins=[np.arange(0,2560,precision),np.arange(0,1440,precision)])
     plt.colorbar(h[3], ax=ax)
