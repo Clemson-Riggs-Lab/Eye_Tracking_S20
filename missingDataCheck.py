@@ -5,18 +5,29 @@ from os import path
 import os
 import more_itertools as mit
 
+'''
+Dustin Nguyen
+ddn3aq
+5/19/20
+
+5/19 update - added comments
+
+'''
+
 
 def command():
     ''''''
     '''----------SET UP----------------'''
 
-
+    #setting the background of the plot
     im = plt.imread('UAVSimPic.png')
     implot = plt.imshow(im)
 
+    #getting new files from the input the user types in
     file = input_file_response.get()
     newfile = output_file_response.get()
 
+    #checking to see if the file exists and it is a FILE not a folder
     if path.exists(file) and os.path.isfile(file) and newfile != '':
         text3.configure(
             text='Status: Success!')
@@ -47,14 +58,17 @@ def command():
                     output_file.write('Row ' + str(i + 2) + ': Unordered Data Packet Counters (Column E)\n')
                     missing_packets.append(i)
 
+            #report when gazepoint has a 0 in the BESTPOGVALID column
             if df['BestPogValid'][i] != 1:
                 output_file.write('Row ' + str(i + 2) + ': Invalid Data based on Gazepoint (Column AG)\n')
                 marker_bad.append(i)
 
+        #3 lines that write to ErrorLog.txt the summary statistics
         output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coordinates)) +'\n')
         output_file.write('Total Unordered Data Packets: ' + str(len(missing_packets)) +'\n')
         output_file.write('Total Invalid Data based on Gazepoint: ' + str(len(marker_bad)) +'\n')
 
+        #doing simple calculaations to report more summary statistics
         proportion_impossible = len(negative_coordinates) / len(df.index)
         proportion_packets = len(missing_packets) / len(df.index)
         proportion_gazepoint = len(marker_bad) / len(df.index)
@@ -62,9 +76,11 @@ def command():
         percentage_packets = len(missing_packets) / len(df.index) * 100
         percentage_gazepoint = len(marker_bad) / len(df.index) * 100
 
+        #writing these statistics to the file
         output_file.write('\nProportion of Negative/Zero/Impossible Coordinates: ' + str(proportion_impossible) + ' (' + str(percentage_impossible) + '%)' + '\n')
         output_file.write('Proportion of Unordered Data Packets: '+ str(proportion_packets) + ' (' + str(percentage_packets) + '%)' + '\n')
         output_file.write('Proportion of Invalid Data based on Gazepoint: ' + str(proportion_gazepoint) + ' (' + str(percentage_gazepoint) + '%)' + '\n')
+
 
         total_time_seconds = len(df.index) / 150
         total_time_minutes = total_time_seconds / 60
@@ -74,17 +90,18 @@ def command():
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coordinates).union(set(marker_bad)))
 
-
+        #sorting the list so row numbers show in order
         sorted_combined_list = sorted(combined_list)
 
+        #putting consequetive rows into individual lists. sub_lists is a list of lists.
         sub_lists = [list(group) for group in mit.consecutive_groups(sorted_combined_list)]
-        print(sub_lists)
 
+        #if a sublist is > 150 in length, report that there is an unusual amount of error rows at that location
         for each in sub_lists:
             if len(each) >= 150:
                 output_file.write('There is an unusual amount of missing data from row ' + str(each[0] + 2) + ' to row ' + str(each[len(each) - 1] + 2))
 
-
+        #more summary statistics
         total_error_time_seconds = len(combined_list) / 150
         total_error_time_minutes = total_error_time_seconds / 60
 
@@ -134,7 +151,7 @@ def command():
         print(type(v.get()))
 
 
-
+    #only go here if it is detected that it is a folder instead
     elif os.path.isdir(file):
         '''--------------------------DOING STUFF WITH FOLDERS-----------------------------'''
         text3.configure(
@@ -142,10 +159,12 @@ def command():
 
         output_file = open("ErrorLog.txt", "w")
 
+        #initializing empty lists
         negative_coordinates = []
         missing_packets = []
         marker_bad = []
 
+        #read in each file individually
         for each in os.listdir(file):
             df = pd.read_csv(file + '/' + each)
             columns = df.columns
@@ -181,11 +200,12 @@ def command():
 
             final_df = final_df.append(df)
 
-
+        #writing summary statistics
         output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coordinates)) + '\n')
         output_file.write('Total Unordered Data Packets: ' + str(len(missing_packets)) + '\n')
         output_file.write('Total Invalid Data based on Gazepoint: ' + str(len(marker_bad)) + '\n')
 
+        #calculating more summary statistics
         proportion_impossible = len(negative_coordinates) / len(final_df.index)
         proportion_packets = len(missing_packets) / len(final_df.index)
         proportion_gazepoint = len(marker_bad) / len(final_df.index)
@@ -193,6 +213,7 @@ def command():
         percentage_packets = len(missing_packets) / len(final_df.index) * 100
         percentage_gazepoint = len(marker_bad) / len(final_df.index) * 100
 
+        #write these additional statistics to the output file
         output_file.write(
             '\nProportion of Negative/Zero/Impossible Coordinates: ' + str(proportion_impossible) + ' (' + str(
                 percentage_impossible) + '%)' + '\n')
