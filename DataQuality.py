@@ -84,9 +84,14 @@ in the eye tracking data seems to be causing problems.
 """
 def findFirstInstance(time):
     first = 0
-    for each in raw["SystemTime"]: 
-        if (each[2:7] == time[3:8]):
-            break
+    for each in raw["NewSystemTime"]: 
+        if (each[0:8] == time[0:8]):
+            e_ms = int(each[9:11])
+            p_ms = int(time[9:11])
+            if p_ms -10 < e_ms < p_ms + 10:
+                # print(each)
+                # print(time)
+                break
         first +=1
     return first
 
@@ -143,6 +148,12 @@ def addSecs(tm, msecs):
 raw["NewSystemTime"] = ""
 raw.at[0, "NewSystemTime"]= raw.at[0, "SystemTime"]+ ".0"
 
+"""
+Takes the previous value in the NewSystemTime column,
+whch was initialized with a starting value as the first time in
+the original system time column, and adds the difference between
+the previous time and the the current time to the new system time.
+"""
 def setSystemTime(Raw_csv):
     for i in range(1,totalRows):
 
@@ -151,13 +162,16 @@ def setSystemTime(Raw_csv):
         #Difference between current time and previous time
         delta = float((Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"]))
         #Converting delta into microseconds 
-        micro_delta = delta*1000000
+        #Im finding that the micro_delta multiple strongly affects the accuracy
+        micro_delta = delta* 1100000
         current = addSecs(previous, micro_delta)
         str_time = current.strftime("%H:%M:%S.%f")
         Raw_csv.at[i, "NewSystemTime"] = str_time
 
 setSystemTime(raw)
 # 7:47:35.0
+
+
 
 
 """
@@ -176,7 +190,8 @@ def setMissionTime(Raw_csv, start_index, out_file):
 
 #Calling the setMissionTime function below 
 time = findFirstTime(performance)
-start = findFirstInstance(time)
+start = (findFirstInstance(time))
+print(start) 
 #You can change output file with third parameter here 
 setMissionTime(raw, start, "output1.csv")
 raw.to_csv('output1.csv', index=False)
@@ -324,7 +339,6 @@ perf_counter=0
 for each in performance["MessageTime"]:
     if not pd.isnull(each):
         if (performance.at[perf_counter,"MessageFrom"] == 'user'):
-            print("user")
             raw_counter=0
 
             for mt in raw["MissionTime"]:
