@@ -87,8 +87,11 @@ which allows us to more easily add time using timedeltas.
 See the python datetime documentation (https://docs.python.org/3/library/datetime.html)
 for more information. 
 """
-def convert_to_datetime(Raw_csv, row):
-    real_st = Raw_csv.at[row, "NewSystemTime"]
+def convert_to_datetime(Raw_csv, row, boolean=False):
+    if boolean:
+        real_st = Raw_csv.at[row, "SystemTime"]
+    else:
+        real_st = Raw_csv.at[row, "NewSystemTime"]
     #If statement is basically checking if hours is a single digit
     if ":" in real_st[0:2]:
         hours = int(real_st[0])
@@ -137,8 +140,18 @@ def setSystemTime(Raw_csv, total_rows):
         #Im finding that the micro_delta multiple strongly affects the accuracy
         micro_delta = delta* 1000000
         current = addSecs(previous, micro_delta)
-        str_time = current.strftime("%H:%M:%S.%f")
-        Raw_csv.at[i, "NewSystemTime"] = str_time
+        prev_x = convert_to_datetime(Raw_csv, i-1, True)
+        x = convert_to_datetime(Raw_csv,i, True)
+
+        #If system time incremented by 1 second, change the    
+        #New System time second to equal the system time second. 
+        if prev_x.second != x.second:
+            new_current = current.replace(second=x.second, microsecond=0)
+            str_time = new_current.strftime("%H:%M:%S.%f")
+            Raw_csv.at[i, "NewSystemTime"] = str_time
+        else:
+            str_time = current.strftime("%H:%M:%S.%f")
+            Raw_csv.at[i, "NewSystemTime"] = str_time
 
 
 
@@ -238,8 +251,8 @@ def dq():
             #You can change output file with third parameter here 
             raw["MissionTime"] = 0.0
 
-            setMissionTime(raw, start, "output1.csv", totalRows)
-            raw.to_csv('output1.csv', index=False)
+            setMissionTime(raw, start, output_file_name, totalRows)
+            raw.to_csv(output_file_name, index=False)
             """
             Create dictionary of the mission times (from the button clicks), assign 
             coordinates as values to the mission times key 
@@ -305,7 +318,7 @@ def dq():
 
 
                             #Updating the output csv file
-                            raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "TD_Task"] = "Target detection task for UAV " + str(uavNum)
                             raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
@@ -331,7 +344,7 @@ def dq():
                             centerx = (RRPanel[0] + RRPanel[1])/2
                             centery = (RRPanel[2] + RRPanel[3])/2
                             raw.at[raw_counter, "TD_Task"] = "Secondary detection task for reroute panel"
-                            raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
                         raw_counter+=1
@@ -350,7 +363,7 @@ def dq():
                             centerx = (FLPanel[0] + FLPanel[1])/2
                             centery = (FLPanel[2] + FLPanel[3])/2
                             raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Fuel Leak panel"
-                            raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
                         
@@ -373,7 +386,7 @@ def dq():
                                 centerx = (CMPanel[0] + CMPanel[1])/2
                                 centery = (CMPanel[2] + CMPanel[3])/2
                                 raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Chat Message panel"
-                                raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                                raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                                 raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
                             raw_counter+=1
