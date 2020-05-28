@@ -87,8 +87,11 @@ which allows us to more easily add time using timedeltas.
 See the python datetime documentation (https://docs.python.org/3/library/datetime.html)
 for more information. 
 """
-def convert_to_datetime(Raw_csv, row):
-    real_st = Raw_csv.at[row, "NewSystemTime"]
+def convert_to_datetime(Raw_csv, row, boolean=False):
+    if boolean:
+        real_st = Raw_csv.at[row, "SystemTime"]
+    else:
+        real_st = Raw_csv.at[row, "NewSystemTime"]
     #If statement is basically checking if hours is a single digit
     if ":" in real_st[0:2]:
         hours = int(real_st[0])
@@ -137,8 +140,18 @@ def setSystemTime(Raw_csv, total_rows):
         #Im finding that the micro_delta multiple strongly affects the accuracy
         micro_delta = delta* 1000000
         current = addSecs(previous, micro_delta)
-        str_time = current.strftime("%H:%M:%S.%f")
-        Raw_csv.at[i, "NewSystemTime"] = str_time
+        prev_x = convert_to_datetime(Raw_csv, i-1, True)
+        x = convert_to_datetime(Raw_csv,i, True)
+
+        #If system time incremented by 1 second, change the    
+        #New System time second to equal the system time second. 
+        if prev_x.second != x.second:
+            new_current = current.replace(second=x.second, microsecond=0)
+            str_time = new_current.strftime("%H:%M:%S.%f")
+            Raw_csv.at[i, "NewSystemTime"] = str_time
+        else:
+            str_time = current.strftime("%H:%M:%S.%f")
+            Raw_csv.at[i, "NewSystemTime"] = str_time
 
 
 
@@ -175,6 +188,16 @@ def which_uav(x, y):
         counter+=1
     return "Inconclusive"
 
+#Determines if participant is looking at one of the secondary tasks
+def which_secondary_task(x, y, tasks):
+    counter=0
+    for task in tasks:
+        xacc= (x >= tasks[task][0] and x <= tasks[task][1])
+        yacc = (y >= tasks[task][2] and y <= tasks[task][3])
+        if xacc and yacc:
+            return task
+        counter+=1
+    return "Inconclusive"
 
 #Helper function that essentially uses the distance formula to find distance between two points
 def calculateDistance(x1,y1,x2,y2):  
@@ -198,11 +221,11 @@ def dq():
             else:
                 performance = pd.read_csv(inputP_name.get())
 
-            if output_name.get() == '' or not os.path.isfile(output_name.get()):
-                output_file_name = "output1.csv"
-            else:
-                output_file_name = output_name.get()
-            
+            # if output_name.get() == '' or not os.path.isfile(output_name.get()):
+            #     output_file_name = "output1.csv"
+            # else:
+            #     output_file_name = output_name.get()
+            output_file_name = output_name.get()
             #Gathering user input for error calculating the valid field of view for participants eyes.
             """
             Essentially, the error that the user inputs is used to extend the bounds that we would
@@ -238,8 +261,8 @@ def dq():
             #You can change output file with third parameter here 
             raw["MissionTime"] = 0.0
 
-            setMissionTime(raw, start, "output1.csv", totalRows)
-            raw.to_csv('output1.csv', index=False)
+            setMissionTime(raw, start, output_file_name, totalRows)
+            raw.to_csv(output_file_name, index=False)
             """
             Create dictionary of the mission times (from the button clicks), assign 
             coordinates as values to the mission times key 
@@ -305,7 +328,7 @@ def dq():
 
 
                             #Updating the output csv file
-                            raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "TD_Task"] = "Target detection task for UAV " + str(uavNum)
                             raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
@@ -315,8 +338,11 @@ def dq():
 
             print(missionDict)
 
-            #Coordinates for the reroute menu 
+            #Coordinates for secondary tasks
             RRPanel = [0, 920, 930, 1440]
+            FLPanel = [920, 2560, 812 ,1158]
+            CMPanel = [920, 2560, 1158 ,1440]
+            lst = {"Reroute task" :RRPanel, "Fuel leak task":FLPanel, "Chat message task":CMPanel}
             for each in performance["RRTimeofRR"]:
                 if not pd.isnull(each):
                     raw_counter=0
@@ -331,12 +357,25 @@ def dq():
                             centerx = (RRPanel[0] + RRPanel[1])/2
                             centery = (RRPanel[2] + RRPanel[3])/2
                             raw.at[raw_counter, "TD_Task"] = "Secondary detection task for reroute panel"
-                            raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                            
+                            if xacc and yacc:
+                                raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the reroute panel."
+                            else: 
+                                cur_uav = which_uav(x, y)
 
+                                if cur_uav == "Inconclusive":
+                                    cur_task = which_secondary_task(x, y, lst)
+                                    if cur_task=="Inconclusive":
+                                        raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
+                                    else:
+                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
+                                else:
+                                    raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
+                         
                         raw_counter+=1
 
-            FLPanel = [920, 2560, 812 ,1158]
             for each in performance["FLStopTime"]:
                 if not pd.isnull(each):
                     raw_counter=0
@@ -350,13 +389,24 @@ def dq():
                             centerx = (FLPanel[0] + FLPanel[1])/2
                             centery = (FLPanel[2] + FLPanel[3])/2
                             raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Fuel Leak panel"
-                            raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                            if xacc and yacc:
+                                raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the Fuel leak panel."
+                            else: 
+                                cur_uav = which_uav(x, y)
 
+                                if cur_uav == "Inconclusive":
+                                    cur_task = which_secondary_task(x, y, lst)
+                                    if cur_task=="Inconclusive":
+                                        raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
+                                    else:
+                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
+                                else:
+                                    raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
                         
                         raw_counter+=1
 
-            CMPanel = [920, 2560, 1158 ,1440]
             perf_counter=0
             for each in performance["MessageTime"]:
                 if not pd.isnull(each):
@@ -373,9 +423,22 @@ def dq():
                                 centerx = (CMPanel[0] + CMPanel[1])/2
                                 centery = (CMPanel[2] + CMPanel[3])/2
                                 raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Chat Message panel"
-                                raw.at[raw_counter, "DataQuality"] = xacc and yacc
+                                raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                                 raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                                
+                                if xacc and yacc:
+                                    raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the chat message panel."
+                                else: 
+                                    cur_uav = which_uav(x, y)
 
+                                    if cur_uav == "Inconclusive":
+                                        cur_task = which_secondary_task(x, y, lst)
+                                        if cur_task=="Inconclusive":
+                                            raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
+                                        else:
+                                            raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
+                                    else:
+                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
                             raw_counter+=1
                 perf_counter+=1
             raw.to_csv(output_file_name, index=False)
