@@ -221,11 +221,11 @@ def dq():
             else:
                 performance = pd.read_csv(inputP_name.get())
 
-            if output_name.get() == '' or not os.path.isfile(output_name.get()):
-                output_file_name = "output1.csv"
-            else:
-                output_file_name = output_name.get()
-            
+            # if output_name.get() == '' or not os.path.isfile(output_name.get()):
+            #     output_file_name = "output1.csv"
+            # else:
+            #     output_file_name = output_name.get()
+            output_file_name = output_name.get()
             #Gathering user input for error calculating the valid field of view for participants eyes.
             """
             Essentially, the error that the user inputs is used to extend the bounds that we would
