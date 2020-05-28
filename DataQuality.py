@@ -188,6 +188,16 @@ def which_uav(x, y):
         counter+=1
     return "Inconclusive"
 
+#Determines if participant is looking at one of the secondary tasks
+def which_secondary_task(x, y, tasks):
+    counter=0
+    for task in tasks:
+        xacc= (x >= tasks[task][0] and x <= tasks[task][1])
+        yacc = (y >= tasks[task][2] and y <= tasks[task][3])
+        if xacc and yacc:
+            return task
+        counter+=1
+    return "Inconclusive"
 
 #Helper function that essentially uses the distance formula to find distance between two points
 def calculateDistance(x1,y1,x2,y2):  
@@ -328,8 +338,11 @@ def dq():
 
             print(missionDict)
 
-            #Coordinates for the reroute menu 
+            #Coordinates for secondary tasks
             RRPanel = [0, 920, 930, 1440]
+            FLPanel = [920, 2560, 812 ,1158]
+            CMPanel = [920, 2560, 1158 ,1440]
+            lst = {"Reroute task" :RRPanel, "Fuel leak task":FLPanel, "Chat message task":CMPanel}
             for each in performance["RRTimeofRR"]:
                 if not pd.isnull(each):
                     raw_counter=0
@@ -346,10 +359,23 @@ def dq():
                             raw.at[raw_counter, "TD_Task"] = "Secondary detection task for reroute panel"
                             raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                            
+                            if xacc and yacc:
+                                raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the reroute panel."
+                            else: 
+                                cur_uav = which_uav(x, y)
 
+                                if cur_uav == "Inconclusive":
+                                    cur_task = which_secondary_task(x, y, lst)
+                                    if cur_task=="Inconclusive":
+                                        raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
+                                    else:
+                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
+                                else:
+                                    raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
+                         
                         raw_counter+=1
 
-            FLPanel = [920, 2560, 812 ,1158]
             for each in performance["FLStopTime"]:
                 if not pd.isnull(each):
                     raw_counter=0
@@ -365,11 +391,22 @@ def dq():
                             raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Fuel Leak panel"
                             raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                            if xacc and yacc:
+                                raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the Fuel leak panel."
+                            else: 
+                                cur_uav = which_uav(x, y)
 
+                                if cur_uav == "Inconclusive":
+                                    cur_task = which_secondary_task(x, y, lst)
+                                    if cur_task=="Inconclusive":
+                                        raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
+                                    else:
+                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
+                                else:
+                                    raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
                         
                         raw_counter+=1
 
-            CMPanel = [920, 2560, 1158 ,1440]
             perf_counter=0
             for each in performance["MessageTime"]:
                 if not pd.isnull(each):
@@ -388,7 +425,20 @@ def dq():
                                 raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Chat Message panel"
                                 raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                                 raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                                
+                                if xacc and yacc:
+                                    raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the chat message panel."
+                                else: 
+                                    cur_uav = which_uav(x, y)
 
+                                    if cur_uav == "Inconclusive":
+                                        cur_task = which_secondary_task(x, y, lst)
+                                        if cur_task=="Inconclusive":
+                                            raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
+                                        else:
+                                            raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
+                                    else:
+                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
                             raw_counter+=1
                 perf_counter+=1
             raw.to_csv(output_file_name, index=False)
