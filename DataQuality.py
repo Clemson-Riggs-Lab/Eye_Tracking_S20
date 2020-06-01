@@ -146,12 +146,15 @@ def setSystemTime(Raw_csv, total_rows):
         #If system time incremented by 1 second, change the    
         #New System time second to equal the system time second. 
         if prev_x.second != x.second:
-            new_current = current.replace(second=x.second, microsecond=0)
+            new_current = current.replace(hour=x.hour, minute=x.minute, second=x.second,microsecond=0)
+           
             str_time = new_current.strftime("%H:%M:%S.%f")
             Raw_csv.at[i, "NewSystemTime"] = str_time
         else:
             str_time = current.strftime("%H:%M:%S.%f")
             Raw_csv.at[i, "NewSystemTime"] = str_time
+        
+            
 
 
 
@@ -269,9 +272,9 @@ def dq():
             """
             missionDict = {}
             #Tells us if target detection was accurate
-            raw["DataAccurate"] = False
+            raw["DataAccurate"] = ""
             #Tells which uav the target appeared in
-            raw["TD_Task"] = ""
+            raw["Task"] = ""
             #Tells us which uav the participant was looking at
             raw["Qualitative"] = "N/A"
 
@@ -329,7 +332,7 @@ def dq():
 
                             #Updating the output csv file
                             raw.at[raw_counter, "DataAccurate"] = xacc and yacc
-                            raw.at[raw_counter, "TD_Task"] = "Target detection task for UAV " + str(uavNum)
+                            raw.at[raw_counter, "Task"] = "Target detection task for UAV " + str(uavNum)
                             raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
@@ -356,7 +359,7 @@ def dq():
 
                             centerx = (RRPanel[0] + RRPanel[1])/2
                             centery = (RRPanel[2] + RRPanel[3])/2
-                            raw.at[raw_counter, "TD_Task"] = "Secondary detection task for reroute panel"
+                            raw.at[raw_counter, "Task"] = "Secondary detection task for reroute panel"
                             raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
                             
@@ -388,7 +391,7 @@ def dq():
                             # print(str(x) + ", " + str(y))
                             centerx = (FLPanel[0] + FLPanel[1])/2
                             centery = (FLPanel[2] + FLPanel[3])/2
-                            raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Fuel Leak panel"
+                            raw.at[raw_counter, "Task"] = "Secondary detection task for Fuel Leak panel"
                             raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                             raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
                             if xacc and yacc:
@@ -422,7 +425,7 @@ def dq():
                                 # print(str(x) + ", " + str(y))
                                 centerx = (CMPanel[0] + CMPanel[1])/2
                                 centery = (CMPanel[2] + CMPanel[3])/2
-                                raw.at[raw_counter, "TD_Task"] = "Secondary detection task for Chat Message panel"
+                                raw.at[raw_counter, "Task"] = "Secondary detection task for Chat Message panel"
                                 raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                                 raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
                                 
