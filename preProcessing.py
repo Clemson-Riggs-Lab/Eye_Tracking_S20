@@ -142,10 +142,16 @@ def preProcess():
                 df[each] = df[each].multiply(width_of_screen)
                 df[each] = df[each].multiply(df['MarkerScale'])
 
-
-            #df.to_csv(output_file_name + str(counter), index=False)
+            index_counter=0
+            for char in output_file_name:
+                if char==".":
+                    break
+                else:
+                    index_counter+=1
             final_df = final_df.append(df)
-            df.to_csv("output.csv", index=False)
+            # df.to_csv("output.csv", index=False)
+            df.to_csv(output_file_name[:index_counter] + str(counter)+".csv", index=False)
+
             counter += 1
         #Add option in GUI to process folder into one master file or one file
         #for each eyetracking file. Save this response as a boolean
@@ -154,7 +160,7 @@ def preProcess():
         """
         final_df.to_csv(output_file_name, index=False)
 
-        text6.configure(text='Status: Success! Multiple files processed into one file.')
+        text6.configure(text='Status: Success! Multiple files processed into one file as well as individual files.')
 
 
     else:
@@ -171,6 +177,8 @@ frame3 = Frame(window)
 frame4 = Frame(window)
 frame5 = Frame(window)
 frame6 = Frame(window)
+frame7 = Frame(window)
+
 frame0.pack()
 frame1.pack()
 frame2.pack()
@@ -178,6 +186,7 @@ frame3.pack()
 frame4.pack()
 frame5.pack()
 frame6.pack()
+frame7.pack()
 
 window.title("Eye Tracking Data")
 
@@ -211,4 +220,16 @@ button1.pack(side=RIGHT)
 text6 = Label(frame6, text='Status: N/A')
 text6.pack()
 
+# text7 = Label(frame7, text='If the input is a folder, would you like the files to each have their own processed files?')
+# text7.pack(side=LEFT)
+# var = IntVar()
+# var.set(0)
+# radio1 = Radiobutton(frame7, text = "yes",variable=var,value=1)
+# radio1.pack(side=LEFT)
+
+# radio2 = Radiobutton(frame7, text = "no", variable=var, value=1)
+# radio2.pack(side=LEFT)
+
+# radio3 = Radiobutton(frame7, text = "N/A", variable=var, value=1)
+# radio3.pack(side=LEFT)
 window.mainloop()
