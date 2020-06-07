@@ -145,8 +145,13 @@ def preProcess():
 
             #df.to_csv(output_file_name + str(counter), index=False)
             final_df = final_df.append(df)
+            df.to_csv("output.csv", index=False)
             counter += 1
-
+        #Add option in GUI to process folder into one master file or one file
+        #for each eyetracking file. Save this response as a boolean
+        """
+        something like if boolean, final_df.to_csv else make individual preprocessed file
+        """
         final_df.to_csv(output_file_name, index=False)
 
         text6.configure(text='Status: Success! Multiple files processed into one file.')
