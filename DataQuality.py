@@ -414,6 +414,7 @@ frame3 = Frame(window)
 frame4 = Frame(window)
 frame5 = Frame(window)
 frame6 = Frame(window)
+frame7 = Frame(window)
 
 frame0.pack()
 frame1.pack()
@@ -422,6 +423,7 @@ frame3.pack()
 frame4.pack()
 frame5.pack()
 frame6.pack()
+frame7.pack()
 
 window.title("Data Quality GUI")
 
@@ -440,20 +442,22 @@ text2.pack(side=LEFT)
 output_name = Entry(frame2)
 output_name.pack(side=LEFT)
 
-text3 = Label(frame3, text='Enter xError: ')
+text3 = Label(frame3, text='Enter horizontal (x) margin of error value [pixels]: ')
 text3.pack(side=LEFT)
 xError=Entry(frame3)
 xError.pack(side=LEFT)
 
-text4 = Label(frame4, text='Enter yError: ')
+text4 = Label(frame4, text='Enter vertical (y) margin of error value [pixels]: ')
 text4.pack(side=LEFT)
 yError=Entry(frame4)
 yError.pack(side=LEFT)
 
-button1 = Button(frame5, text='Submit',command=dq)
+note = Label(frame5, text='Note: Margin of error refers to how far a gaze point can be from the boundary and still be classified as an accurate gaze point')
+note.pack()
+button1 = Button(frame6, text='Submit',command=dq)
 button1.pack(side=RIGHT)
 
-text6 = Label(frame6, text='Status: N/A')
+text6 = Label(frame7, text='Status: N/A')
 text6.pack()
 
 window.mainloop()
