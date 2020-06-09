@@ -45,6 +45,12 @@ def command():
         for i in range(0,len(df.index)):
 
             #negative coordinates
+            """
+            This statement checks for negative eyetracking coordinates, because this would mean that 
+            the data was collected incorrectly (participants were looking at a 2560x1440 pixel screen).
+            If negative points are found, the coordinates are appended to a list which is later displayed in 
+            an output text file called errorlog.txt
+            """
             if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
                 output_file.write('Row ' + str(i + 2) + ': Negative/Zero/Impossible Coordinates (Columns AE and AF)\n')
                 negative_coordinates.append(i)
@@ -138,6 +144,7 @@ def command():
         '''----------displaying the plot-----------------'''
 
         # displaying points on the background ... density inversely related to number
+        #Third parameter means the plot is displaying every 100 points
         for i in range(0, len(df.index), 100):
             if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
                 ...

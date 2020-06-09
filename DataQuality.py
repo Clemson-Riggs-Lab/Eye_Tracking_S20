@@ -8,7 +8,15 @@ import os
 #Sam Smith
 #04/09/2020
 
-
+"""
+Overall, I'd say this file is somewhat difficult to understand because there are many things
+going on at once. The gist is that we are looking through a participant's performance file and 
+finding when they clicked on the different tasks (target detection, reroute, chat message, fuel leak)
+and checking to see that at the time of clicking those tasks, was the user actually looking where 
+they clicked. This is basically a sanity check to ensure that the preprocessed data we are using to analyze is 
+accurate. The goal of this file is to identify what is accurate and what isn't so we know what data
+to rely on and analyze in the future. 
+"""
 #Column numbers in the eye tracking and performance files so accessing data is easier.
 """Pandas does allow us to access a data column directly with its name as well,
 but sometimes I used these numbers to access specific cells."""
@@ -20,6 +28,10 @@ leftx = 24
 lefty = 25
 
 
+"""
+These coordinates are based on the layout of the screen that the participants 
+are looking at during the test. 
+"""
 #Coordinate fields for each UAV in the 2560 x 1440 resolution
 #       x1    x2   y1   y2
 UAV1 = [930, 1326, 194, 0]
@@ -51,8 +63,10 @@ coordinates = []
 
 #returns first index found of given time in raw data
 """
-This function is still being changed around given that the system time column 
-in the eye tracking data seems to be causing problems. 
+This function finds the first instance of a given time in the preprocessed eye
+tracking folder so that we know when the test actually started. THis is critical to
+calculating the mission time, which we then use to check the participants eye data when 
+they clicked certain things on the screen.
 """
 def findFirstInstance(time, Raw_csv):
     first = 0
@@ -85,7 +99,8 @@ def findFirstTime(Perf_csv):
 Converting the system time string into a datetime object
 which allows us to more easily add time using timedeltas.
 See the python datetime documentation (https://docs.python.org/3/library/datetime.html)
-for more information. 
+for more information. Depending on the boolean value, convert either a SystemTime 
+or a NewSystemTime. 
 """
 def convert_to_datetime(Raw_csv, row, boolean=False):
     if boolean:
@@ -111,9 +126,12 @@ def convert_to_datetime(Raw_csv, row, boolean=False):
         else:
             micro = int(real_st[9:])
     fulldate = datetime(100, 1, 1, hours, minutes, seconds, micro)
-    # time = fulldate.strftime("%H:%M:%S.%f")
     return fulldate.time()
 
+"""
+This function allows us to add time, because this is strangely difficult 
+with the provided datetime functions. The same goes for the subSecs function. 
+"""
 def addSecs(tm, msecs):
     #arbitrary date, its the time that matters.
     #For some reason python doesnt allow you to deal strictly with times
@@ -127,7 +145,9 @@ def addSecs(tm, msecs):
 Takes the previous value in the NewSystemTime column,
 whch was initialized with a starting value as the first time in
 the original system time column, and adds the difference between
-the previous time and the the current time to the new system time.
+the previous time and the the current time to the new system time. The 
+Datetime library is strange and I ran into errors when trying to update the
+NewSystemTime with time objects, so I converted them back into strings instead. 
 """
 def setSystemTime(Raw_csv, total_rows):
     for i in range(1,total_rows):
@@ -164,7 +184,10 @@ def setSystemTime(Raw_csv, total_rows):
 """
 This function uses the time column in the eyetracking data to create a MissionTime 
 column that matches up with the mission time in the performance csv. This allows us to more
-easily pinpoint where the participant was looking throughout the mission. 
+easily pinpoint where the participant was looking throughout the mission. We are using 
+MissionTime as opposed to system time because mission time is more accurate and controllable.
+MissionTime is a column we created whereas SystemTime is created by the eyetracking gazepoint 
+software I believe. 
 """
 
 def setMissionTime(Raw_csv, start_index, out_file, total_rows):
@@ -179,7 +202,7 @@ def setMissionTime(Raw_csv, start_index, out_file, total_rows):
 
 """
 Given x and y coordinates, this function determines which UAV the corrdinates would
-fall into. 
+fall into. Future edit may be to combine this function with the secondary task function. 
 """
 def which_uav(x, y):
     counter=0
@@ -256,7 +279,6 @@ def dq():
             raw["NewSystemTime"] = ""
             raw.at[0, "NewSystemTime"]= raw.at[0, "SystemTime"]+ ".0"
             setSystemTime(raw, totalRows)
-            # 7:47:35.0
             #Calling the setMissionTime function below 
             time = findFirstTime(performance)
             start = (findFirstInstance(time, raw))
@@ -280,7 +302,7 @@ def dq():
 
             """
             Uses distance formula to calculate how far eye coordinates are 
-            from the center of a video feed
+            from the center of a video feed or secondary task.
             """
             raw["DistanceFromCenter"] = 0
 
@@ -291,6 +313,9 @@ def dq():
             eye tracking file's mission time file (or a time that is very close to the same) and checks that the 
             participants eyes are looking in the correct area. This logic is repeated for the secondary tasks below. 
             """
+            number_true = 0
+            number_false = 0
+            number_analyzed=0
             count=0
             for each in performance["TDTargetPresent"]:
                 if each == 1.0:
@@ -300,6 +325,7 @@ def dq():
                         #Finding where button click time and MissionTime align
                         if -.01 <= mt -  clickTime <= .01 :
                             #print(raw.at[raw_counter, "BestPogY"])
+                            number_analyzed+=1
                             uavNum = int(performance.at[count, "UAVNumber"])
                             uav = UAVs[uavNum-1]
                             x = raw.at[raw_counter, "BestPogX"]
@@ -318,6 +344,10 @@ def dq():
                             to clickTime will be used for the dictionary so we can pinpoint 
                             accuracy at exact clicktime.
                             """
+                            if xacc and yacc:
+                                number_true +=1
+                            else:
+                                number_false+=1
                             if -.01 < mt -  clickTime < .01:
                                 missionDict[clickTime] = xacc and yacc
                             
@@ -341,114 +371,67 @@ def dq():
 
             print(missionDict)
 
-            #Coordinates for secondary tasks
+            """
+            Here, we repeat the logic used for target detection but in the context of 
+            the secondary tasks. 
+            """
             RRPanel = [0, 920, 930, 1440]
             FLPanel = [920, 2560, 812 ,1158]
             CMPanel = [920, 2560, 1158 ,1440]
-            lst = {"Reroute task" :RRPanel, "Fuel leak task":FLPanel, "Chat message task":CMPanel}
-            for each in performance["RRTimeofRR"]:
-                if not pd.isnull(each):
-                    raw_counter=0
-                    for mt in raw["MissionTime"]:
-                        if (-.01 <= mt- each <= .01):
-                            x = raw.at[raw_counter, "BestPogX"]
-                            y = raw.at[raw_counter, "BestPogY"]
-                            xacc= (x >= RRPanel[0] - input_xError and x <= RRPanel[1] + input_xError)
-                            yacc = (y >= RRPanel[2] - input_yError and y <= RRPanel[3] + input_yError)
-                            # print(str(x) + ", " + str(y))
-
-                            centerx = (RRPanel[0] + RRPanel[1])/2
-                            centery = (RRPanel[2] + RRPanel[3])/2
-                            raw.at[raw_counter, "Task"] = "Secondary detection task for reroute panel"
-                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
-                            raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+            task_dict = {"RRTimeofRR" :RRPanel, "FLStopTime":FLPanel, "MessageTime":CMPanel}
+            for task in task_dict:
+                perf_counter=0
+                for each in performance[task]:
+                   
+                    if not pd.isnull(each):
+                        if task == "MessageTime":
+                            if (performance.at[perf_counter,"MessageFrom"] != 'user'):
+                                perf_counter+=1
+                                continue
                             
-                            if xacc and yacc:
-                                raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the reroute panel."
-                            else: 
-                                cur_uav = which_uav(x, y)
-
-                                if cur_uav == "Inconclusive":
-                                    cur_task = which_secondary_task(x, y, lst)
-                                    if cur_task=="Inconclusive":
-                                        raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
-                                    else:
-                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
-                                else:
-                                    raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
-                         
-                        raw_counter+=1
-
-            for each in performance["FLStopTime"]:
-                if not pd.isnull(each):
-                    raw_counter=0
-                    for mt in raw["MissionTime"]:
-                        if (-.01 <= mt- each <= .01):
-                            x = raw.at[raw_counter, "BestPogX"]
-                            y = raw.at[raw_counter, "BestPogY"]
-                            xacc= (x >= FLPanel[0] - input_xError and x <= FLPanel[1] + input_xError)
-                            yacc = (y >= FLPanel[2] - input_yError and y <= FLPanel[3] + input_yError)
-                            # print(str(x) + ", " + str(y))
-                            centerx = (FLPanel[0] + FLPanel[1])/2
-                            centery = (FLPanel[2] + FLPanel[3])/2
-                            raw.at[raw_counter, "Task"] = "Secondary detection task for Fuel Leak panel"
-                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
-                            raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
-                            if xacc and yacc:
-                                raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the Fuel leak panel."
-                            else: 
-                                cur_uav = which_uav(x, y)
-
-                                if cur_uav == "Inconclusive":
-                                    cur_task = which_secondary_task(x, y, lst)
-                                    if cur_task=="Inconclusive":
-                                        raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
-                                    else:
-                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
-                                else:
-                                    raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
-                        
-                        raw_counter+=1
-
-            perf_counter=0
-            for each in performance["MessageTime"]:
-                if not pd.isnull(each):
-                    if (performance.at[perf_counter,"MessageFrom"] == 'user'):
+                            
                         raw_counter=0
-
                         for mt in raw["MissionTime"]:
                             if (-.01 <= mt- each <= .01):
+                                number_analyzed+=1
                                 x = raw.at[raw_counter, "BestPogX"]
                                 y = raw.at[raw_counter, "BestPogY"]
-                                xacc= (x >= CMPanel[0] - input_xError and x <= CMPanel[1] + input_xError)
-                                yacc = (y >= CMPanel[2] - input_yError and y <= CMPanel[3] + input_yError)
-                                # print(str(x) + ", " + str(y))
-                                centerx = (CMPanel[0] + CMPanel[1])/2
-                                centery = (CMPanel[2] + CMPanel[3])/2
-                                raw.at[raw_counter, "Task"] = "Secondary detection task for Chat Message panel"
+                                xacc= (x >= task_dict[task][0] - input_xError and x <= task_dict[task][1] + input_xError)
+                                yacc = (y >= task_dict[task][2] - input_yError and y <= task_dict[task][3] + input_yError)
+
+                                centerx = (task_dict[task][0] + task_dict[task][1])/2
+                                centery = (task_dict[task][2] + task_dict[task][3])/2
+                                raw.at[raw_counter, "Task"] = "Secondary detection task for "+ task
                                 raw.at[raw_counter, "DataAccurate"] = xacc and yacc
                                 raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
                                 
                                 if xacc and yacc:
-                                    raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the chat message panel."
+                                    number_true+=1
+                                    raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the " + task
                                 else: 
                                     cur_uav = which_uav(x, y)
-
+                                    number_false+=1
                                     if cur_uav == "Inconclusive":
-                                        cur_task = which_secondary_task(x, y, lst)
+                                        cur_task = which_secondary_task(x, y, task_dict)
                                         if cur_task=="Inconclusive":
                                             raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
                                         else:
                                             raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
                                     else:
-                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_uav
+                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ str(cur_uav)
                             raw_counter+=1
-                perf_counter+=1
+                    perf_counter+=1
+           
             raw.to_csv(output_file_name, index=False)
             text6.configure(text='Status: Success! The output file now shows data quality information.')
+            #Creating summary statistics file (STILL IN PROGRESS)
+            percent_accurate = number_true/number_analyzed
+            summary_stats = open("quality_summary.txt", 'w')
+            summary_stats.write("The data was "+ str(100 * percent_accurate) + " percent accurate.\n")
+            summary_stats.write("Of the "+ str(number_analyzed)+  " data points analyzed, " + str(number_true)+" data points were accurate while " + str(number_false) + " were inaccurate." )
+            summary_stats.close()
 
-
-# UI things
+# UI things. This is very similar to preprocessing UI 
 window = Tk()
 frame0 = Frame(window)
 frame1 = Frame(window)
@@ -457,6 +440,7 @@ frame3 = Frame(window)
 frame4 = Frame(window)
 frame5 = Frame(window)
 frame6 = Frame(window)
+frame7 = Frame(window)
 
 frame0.pack()
 frame1.pack()
@@ -465,6 +449,7 @@ frame3.pack()
 frame4.pack()
 frame5.pack()
 frame6.pack()
+frame7.pack()
 
 window.title("Data Quality GUI")
 
@@ -483,20 +468,22 @@ text2.pack(side=LEFT)
 output_name = Entry(frame2)
 output_name.pack(side=LEFT)
 
-text3 = Label(frame3, text='Enter xError: ')
+text3 = Label(frame3, text='Enter horizontal (x) margin of error value [pixels]: ')
 text3.pack(side=LEFT)
 xError=Entry(frame3)
 xError.pack(side=LEFT)
 
-text4 = Label(frame4, text='Enter yError: ')
+text4 = Label(frame4, text='Enter vertical (y) margin of error value [pixels]: ')
 text4.pack(side=LEFT)
 yError=Entry(frame4)
 yError.pack(side=LEFT)
 
-button1 = Button(frame5, text='Submit',command=dq)
+note = Label(frame5, text='Note: Margin of error refers to how far a gaze point can be from the boundary and still be classified as an accurate gaze point')
+note.pack()
+button1 = Button(frame6, text='Submit',command=dq)
 button1.pack(side=RIGHT)
 
-text6 = Label(frame6, text='Status: N/A')
+text6 = Label(frame7, text='Status: N/A')
 text6.pack()
 
 window.mainloop()
