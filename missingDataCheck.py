@@ -51,6 +51,7 @@ def command():
             If negative points are found, the coordinates are appended to a list which is later displayed in 
             an output text file called errorlog.txt
             """
+            #Go back later and look at the logic
             if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
                 output_file.write('Row ' + str(i + 2) + ': Negative/Zero/Impossible Coordinates (Columns AE and AF)\n')
                 negative_coordinates.append(i)

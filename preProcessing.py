@@ -117,6 +117,7 @@ def preProcess():
 
         counter = 1
         #Essentially, we iterate through the files in the specified folder and process each one. 
+        
         for each in os.listdir(file_name):
             df = pd.read_csv(file_name + '/' + each)
             columns = df.columns
