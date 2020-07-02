@@ -21,7 +21,7 @@ coordinates from an eyetracking file.
 
 def butter():
     #Checking that input file is valid
-    if path.exists(inputET_name.get()) and os.path.isfile(inputET_name.get()):
+    if path.exists(inputET_name.get()) and os.path.isfile(inputET_name.get()) and path.exists(inputET_name.get()) and os.path.isfile(inputET_name.get()):
         df = pd.read_csv(inputET_name.get())
         #Converting coordinates into arrays that are usable by filtfilt function
         x = np.array(df["BestPogX"])
@@ -36,8 +36,8 @@ def butter():
         #Changing updating the coordinates with the filtered ones
         df["BestPogX"] = filtered_x
         df["BestPogY"] = filtered_y
-        df.to_csv("output_butter.csv")
-        text4.configure(text='Status: Success! Left and right eye coordinates from ' + inputET_name.get() + ' have been filtered.')
+        df.to_csv(output_file.get())
+        text5.configure(text='Status: Success! Left and right eye coordinates from ' + inputET_name.get() + ' have been filtered into ' + output_file.get() + '.')
         """
         If you are testing this file out, I would suggest using matplotlib to see the
         original data on a graph versus the smoothed data from after the filter was applied.
@@ -49,7 +49,7 @@ def butter():
         plt.show()
    
     else:
-        text4.configure(text='Input file not found! Try again.')
+        text5.configure(text='Error. Make sure both your input and output files exist.')
 
   
 
@@ -90,10 +90,15 @@ text2.pack(side=LEFT)
 Wn = Entry(frame2)
 Wn.pack(side=LEFT)
 
-button1 = Button(frame3, text='Submit',command=butter)
+text3 = Label(frame3, text='Enter output file name: ')
+text3.pack(side=LEFT)
+output_file = Entry(frame3)
+output_file.pack(side=LEFT)
+
+button1 = Button(frame4, text='Submit',command=butter)
 button1.pack(side=RIGHT)
 
-text4 = Label(frame4, text='Status: N/A')
-text4.pack()
+text5 = Label(frame5, text='Status: N/A')
+text5.pack()
 
 window.mainloop()
