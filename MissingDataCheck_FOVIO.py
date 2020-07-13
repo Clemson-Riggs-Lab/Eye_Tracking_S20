@@ -22,8 +22,8 @@ def command():
     '''----------SET UP----------------'''
 
     #setting the background of the plot
-    im = plt.imread('UAVSimPic.png')
-    implot = plt.imshow(im)
+    #im = plt.imread('UAVSimPic.png')
+    #implot = plt.imshow(im)
 
     #getting new files from the input the user types in
     file = input_file_response.get()
@@ -41,8 +41,8 @@ def command():
         missing_packets = []
         marker_bad = []
         final_index = len(df.index)
-        final_time = df.tail()['Time']
-        
+        final_time = df.iloc[-1]['Time'] 
+        print(final_time)
         '''----------Checking errors in the file-----------------'''        
         negative_coordinates,missing_packets,marker_bad = CheckErrors(df,output_file)
         '''----------Gathering statistics-----------------'''
@@ -87,7 +87,7 @@ def command():
             columns = df.columns
         final_df = pd.DataFrame(columns = columns)
         final_index = len(final_df.index)
-        final_time = final_df.tail()['Time']   
+        final_time = final_df.iloc[-1]['Time']   
         
         for each in os.listdir(file):
             df = pd.read_csv(file + '/' + each)
@@ -124,7 +124,7 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,o
                 percentage_gazepoint) + '%)' + '\n')
 
         # Time recorded is in ms, fetch last time recorded in csv file
-        total_time_seconds = len(final_time) / 1000
+        total_time_seconds = final_time / 1000
         total_time_minutes = total_time_seconds / 60
 
         output_file.write('\nTotal Time Elapsed: ' + str(total_time_minutes) + ' minutes (' + str(
