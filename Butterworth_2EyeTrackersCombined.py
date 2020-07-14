@@ -140,7 +140,7 @@ text4 = Label(frame5, text='Eye Tracker Type: Choose which eye tracker you are u
 text4.pack(side=LEFT)
 
 
-one = Button(window, text="GazePoint", width="10", height="3",command=lambda : butter(1))
+one = Button(window, text="Gazepoint", width="10", height="3",command=lambda : butter(1))
 one.pack(side="top")
 
 
