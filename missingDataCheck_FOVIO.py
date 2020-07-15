@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""
+Created on Wed Jul 15 08:59:27 2020
+
+@author: mbeliskandarani
+"""
+# -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 import pandas as pd
 from tkinter import *
@@ -11,7 +17,6 @@ Dustin Nguyen
 ddn3aq
 5/19/20
 5/19 update - added comments
-
 Mohamad El Iskandarani
 7/13/20 - added support for FOVIO tracker and refined codes & comments
 '''
@@ -40,33 +45,23 @@ def command():
         negative_coordinates = []
         missing_packets = []
         marker_bad = []
+        X_coords = []
+        Y_coords = []
+        
         final_index = len(df.index)
         final_time = df.iloc[-1]['Time'] 
         print(final_time)
         '''----------Checking errors in the file-----------------'''        
-        negative_coordinates,missing_packets,marker_bad = CheckErrors(df,output_file)
+        negative_coordinates,missing_packets,marker_bad,X_coords,Y_coords = CheckErrors(df,output_file)
         '''----------Gathering statistics-----------------'''
         Statistics(negative_coordinates,missing_packets,marker_bad,final_index,final_time,output_file)
         '''----------deleting errors from file-----------------'''
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coordinates).union(set(marker_bad)))
         DeleteErrors(combined_list,df,newfile)
-        '''----------displaying the plot-----------------'''
-        '''
-        # displaying points on the background ... density inversely related to number
-        for i in range(0, len(df.index), 100):
-            if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
-                ...
-            else:
-                # parameters: c='' for color , s=___ for size
-                plt.scatter([df['BestPogX'][i]], [df['BestPogY'][i]], s=2, c='r')
-        plt.title(file)
-        plt.show()
+        '''----------Displaying the plot-----------------'''
+        ScatterPlot(X_coords,Y_coords,file)
 
-        print(v.get())
-        print(type(v.get()))
-
-        '''
          
     #If path detected is a folder 
     elif os.path.isdir(file):
@@ -80,7 +75,8 @@ def command():
         negative_coordinates = []
         missing_packets = []
         marker_bad = []
-
+        X_coords = [] #to be used for Scatterplot
+        Y_coords = [] #to be used for Scatterplot
         #read in each file individually
         for each in os.listdir(file):
             df = pd.read_csv(file + '/' + each)
@@ -92,13 +88,16 @@ def command():
         for each in os.listdir(file):
             df = pd.read_csv(file + '/' + each)
             '''----------Checking errors in the file-----------------''' 
-            negative_coordinates,missing_packets,marker_bad = CheckErrors(df,output_file)
+            negative_coordinates,missing_packets,marker_bad,X_coords,Y_coords = CheckErrors(df,output_file)
             final_df = final_df.append(df)           
         '''----------Gathering statistics-----------------'''
-        Statistics(negative_coordinates,missing_packets,marker_bad,final_index,final_time,output_file)      
+        Statistics(negative_coordinates,missing_packets,marker_bad,final_index,final_time,output_file)
+
     else:
         text3.configure(
             text='Status: Either the path to the input is wrong, or an output file name was not specified. Please try again.')
+        
+        
 def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,output_file):     
         #writing summary statistics
         output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coords)) + '\n')
@@ -138,6 +137,9 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,o
 
         output_file.write('Error Time Elapsed: ' + str(total_error_time_minutes) + ' minutes (' + str(total_error_time_seconds) + ' seconds)' + '\n')  
 def CheckErrors(df,output_file):
+        valid_point = TRUE #initial condition of boolean. If it fails any of the checks, it flips to FALSE. If it remains true, it is a valid point
+        X_coords = []
+        Y_coords = []
         negative_coordinates = []
         missing_packets = []
         marker_bad = []
@@ -147,7 +149,7 @@ def CheckErrors(df,output_file):
             if df['Lft X Pos'][i] <= 0 or df['Lft X Pos'][i] >= 2560 or df['Rt X Pos'][i] <= 0 or df['Rt X Pos'][i] >= 2560 or df['Lft Y Pos'][i] <= 0 or df['Lft Y Pos'][i] >= 1440  or df['Rt Y Pos'][i] <= 0 or df['Rt Y Pos'][i] >= 1440 :
                 output_file.write('Row ' + str(i + 2) + ': Negative/Zero/Impossible Coordinates\n')
                 negative_coordinates.append(i)
-
+                valid_point = FALSE
             #ignore the first loop to avoid errors
             if i == 0:
                 ...
@@ -156,12 +158,26 @@ def CheckErrors(df,output_file):
                 if df['Frame'][i] != df['Frame'][i-1] + 1:
                     output_file.write('Row ' + str(i + 2) + ': Unordered Data Packet Counters\n')
                     missing_packets.append(i)
+                    valid_point = FALSE
 
             #report when gazepoint has a 0 in the either L Display or R Display columns
             if df['L Display'][i] == 0 or df['R Display'][i] == 0 :
                 output_file.write('Row ' + str(i + 2) + ': Invalid Data based on Gazepoint\n')
                 marker_bad.append(i)
-        return negative_coordinates,missing_packets,marker_bad
+                valid_point = FALSE
+            if valid_point == TRUE and (i%100==0): #modulo condition to reduce number of points and explore a wider scope (take 1 point every 100 iterations)
+                X_coords.append(df['Lft X Pos'][i])
+                Y_coords.append(df['Lft Y Pos'][i])
+                
+            valid_point = TRUE #reset boolean variable for next iteration
+        return negative_coordinates,missing_packets,marker_bad,X_coords,Y_coords
+def ScatterPlot(X_coords,Y_coords,file):
+        # displaying points on the background ... density inversely related to number
+        plt.scatter(X_coords,Y_coords, s=2, c='r')
+        plt.title(file)
+        plt.show()
+        print(v.get())
+        print(type(v.get())) 
 
 def DeleteErrors(combined_list,df,newfile):
         if v.get() == 1:
@@ -237,3 +253,4 @@ text3.pack()
 
 
 window.mainloop()
+
