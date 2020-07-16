@@ -21,8 +21,8 @@ def missingDataCheck(tracker):
     '''----------SET UP----------------'''
 
     #setting the background of the plot
-    #im = plt.imread('UAVSimPic.png')
-    #implot = plt.imshow(im)
+    im = plt.imread('UAVSimPic.png')
+    implot = plt.imshow(im)
 
     #getting new files from the input the user types in
     file = input_file_response.get()
