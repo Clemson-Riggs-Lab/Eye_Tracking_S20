@@ -21,8 +21,8 @@ def missingDataCheck(tracker):
     '''----------SET UP----------------'''
 
     #setting the background of the plot
-    im = plt.imread('UAVSimPic.png')
-    implot = plt.imshow(im)
+    #im = plt.imread('UAVSimPic.png')
+    #implot = plt.imshow(im)
 
     #getting new files from the input the user types in
     file = input_file_response.get()
@@ -51,7 +51,7 @@ def missingDataCheck(tracker):
         '''----------deleting errors from file-----------------'''
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coordinates).union(set(marker_bad)))
-        DeleteErrors(combined_list,df,newfile)
+        DeleteErrors(combined_list,missing_packets,df,newfile)
         '''----------displaying the plot-----------------'''
         ScatterPlot(X_coords,Y_coords,file)
          
@@ -189,7 +189,7 @@ def ScatterPlot(X_coords,Y_coords,file):
         print(v.get())
         print(type(v.get())) 
  
-def DeleteErrors(combined_list,df,newfile):
+def DeleteErrors(combined_list,missing_packets,df,newfile):
         if v.get() == 1:
             df.drop(combined_list, axis=0, inplace=True)
 
@@ -270,3 +270,5 @@ text3 = Label(frame4, text='Status: N/A')
 text3.pack()
 
 window.mainloop()
+
+
