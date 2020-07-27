@@ -42,19 +42,22 @@ def butter(tracker_type):
             order = int(N.get())
             freq = float(Wn.get())
             #Creating the filter
-            B, A = signal.butter(order, freq, output='ba')
+            B, A = signal.butter(order, freq, fs=150, output='ba')
             #Passing x and y coordinates through the filter
             filtered_x = signal.filtfilt(B, A, x)
             filtered_y = signal.filtfilt(B, A, y)
             #Changing updating the coordinates with the filtered ones
             df["BestPogX"] = filtered_x
             df["BestPogY"] = filtered_y
-            df.to_csv(output_file.get())
+            df.to_csv(output_file.get(), index=False)
             text5.configure(text='Status: Success! Left and right eye coordinates from ' + inputET_name.get() + ' have been filtered into ' + output_file.get() + '.')
             
             #Before and after plot to see the difference
-            plt.plot(filtered_x, linewidth=2.0)
-            plt.plot(x, linewidth=.75)
+
+            
+            fig, axs = plt.subplots(2)
+            axs[0].plot(x, linewidth=1)
+            axs[1].plot(filtered_x, linewidth=1)
             plt.show()
         
         elif tracker_type == 2:      
@@ -65,7 +68,7 @@ def butter(tracker_type):
             order = int(N.get())
             freq = float(Wn.get())
             #Creating the filter
-            B, A = signal.butter(order, freq, output='ba')
+            B, A = signal.butter(order, freq, fs=60, output='ba')
             #Passing x and y coordinates through the filter
             filtered_x = signal.filtfilt(B, A, x)
             filtered_y = signal.filtfilt(B, A, y)
@@ -76,7 +79,7 @@ def butter(tracker_type):
             df["Lft Y Pos"] = filtered_y
             df["Rt X Pos"] = filtered_z
             df["Rt Y Pos"] = filtered_w 
-            df.to_csv(output_file.get())
+            df.to_csv(output_file.get(), index=False)
             text5.configure(text='Status: Success! Left and right eye coordinates from ' + inputET_name.get() + ' have been filtered into ' + output_file.get() + '.')
             """
             If you are testing this file out, I would suggest using matplotlib to see the
@@ -84,8 +87,10 @@ def butter(tracker_type):
             For example, the commented code below plots both the filtered x coordinates and the raw 
             x coordinates. 
             """
-            plt.plot(filtered_x, linewidth=2.0)
-            plt.plot(x, linewidth=.75)
+            
+            fig, axs = plt.subplots(2)
+            axs[0].plot(x, linewidth=1)
+            axs[1].plot(filtered_x, linewidth=1)
             plt.show()
         
    
@@ -114,7 +119,7 @@ frame5.pack()
 frame6.pack()
 frame7.pack()
 
-window.title("Data Quality GUI")
+window.title("Butterworth Filtering")
 
 text0 = Label(frame0, text='Enter Eye tracking file name (.csv): ')
 text0.pack(side=LEFT)
@@ -126,7 +131,7 @@ text1.pack(side=LEFT)
 N = Entry(frame1)
 N.pack(side=LEFT)
 
-text2 = Label(frame2, text='Enter critical frequency (Wn, must be between 0 and 1): ')
+text2 = Label(frame2, text='Enter critical frequency (Wn): ')
 text2.pack(side=LEFT)
 Wn = Entry(frame2)
 Wn.pack(side=LEFT)
