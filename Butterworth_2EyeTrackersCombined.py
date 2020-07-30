@@ -63,8 +63,7 @@ def butter(tracker_type):
         elif tracker_type == 2:      
             x = np.array(df["Lft X Pos"])
             y = np.array(df["Lft Y Pos"])
-            z = np.array(df["Rt X Pos"])
-            w = np.array(df["Rt Y Pos"])
+  
             order = int(N.get())
             freq = float(Wn.get())
             #Creating the filter
@@ -72,13 +71,12 @@ def butter(tracker_type):
             #Passing x and y coordinates through the filter
             filtered_x = signal.filtfilt(B, A, x)
             filtered_y = signal.filtfilt(B, A, y)
-            filtered_z = signal.filtfilt(B, A, z)
-            filtered_w = signal.filtfilt(B, A, w)
+        
             #Changing updating the coordinates with the filtered ones
             df["Lft X Pos"] = filtered_x
             df["Lft Y Pos"] = filtered_y
-            df["Rt X Pos"] = filtered_z
-            df["Rt Y Pos"] = filtered_w 
+            df["Rt X Pos"] = filtered_x
+            df["Rt Y Pos"] = filtered_y 
             df.to_csv(output_file.get(), index=False)
             text5.configure(text='Status: Success! Left and right eye coordinates from ' + inputET_name.get() + ' have been filtered into ' + output_file.get() + '.')
             """
