@@ -5,7 +5,7 @@ import os
 import numpy as np
 import math
 '''
-Dustin Nguyen ,Sam Smith, and Mohamad El Iskandarani
+Dustin Nguyen and Sam Smith
 ddn3aq sjs5pg 
 2/18/2020
 Riggs Lab
@@ -16,7 +16,6 @@ Update 4/2: Multiple files allowed!
 Update to-do : get multiple files into one output file
 4/5: all go into one file now
 
-7/29: Updated file to support two trackers and calculate visual distances and angles
 '''
 
 """
@@ -25,7 +24,7 @@ It contains all of the logic for the file.
 """
 
 
-def preProcess(input):
+def preProcess(tracker_type):
     # CHANGE OPTIONS OF THE PROGRAM HERE!!!!!!
 
     file_name = input_name.get()
@@ -51,7 +50,7 @@ def preProcess(input):
         column_names_Y = []
         column_names_bool = []
         column_names_Pupil_Diameter = []
-        if input == '1':
+        if tracker_type == 1:
             # Tracker used is that of experiment 1
             # all the names of the columns we want to convert proportions to pixels for
             column_names_X = ['CursorX', 'LeftEyeX', 'RightEyeX', 'FixedPogX', 'LeftPogX', 'RightPogX', 'BestPogX',
@@ -66,7 +65,7 @@ def preProcess(input):
             for each in column_names_bool:
                 df[each].replace(True, 1, inplace=True)
                 df[each].replace(False, 0, inplace=True)
-        elif input == '2':
+        elif tracker_type == 2:
             #Tracker used is that of experiment 2 (60 Hz)
             column_names_X = ['Lft X Pos', 'Rt X Pos', 'L Eye Rot (X)', 'R Eye Rot (X)','L Eye Pos (X)','R Eye Pos (X)',
                               'Head Rot (X)','Head Pos (X)']
@@ -92,22 +91,50 @@ def preProcess(input):
         Delta = [] #in pixels
         Angular_Velocity = []
         Delta_mm = []
-        Delta_rad = []    
-        if input =='2':
+        Delta_rad = [] 
+        if tracker_type==1: #If Gazepoint Tracker
+            for i in range(0,len(df.index)):
+                if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
+                    x1 = df['BestPogX'][i-1]
+                    y1 = df['BestPogY'][i-1]  
+                    time_diff =abs(df['Time'][i-1])
+                    
+                else:
+                    
+                    x1 = df['BestPogX'][i+1]-df['BestPogX'][i]
+                    y1 = df['BestPogY'][i+1]-df['BestPogY'][i]
+                    time_diff=abs(df['Time'][i+1]-df['Time'][i])  
+                    
+                Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
+                Delta_mm.append(Delta[i]*0.207565625)
+                Delta_rad.append(math.atan(Delta_mm[i]/(23.62204724*25.4)))
+                velocity = Delta_rad[i]*57.29577951*1000/time_diff #convert to degrees and divide by time difference
+                Angular_Velocity.append(velocity)
+                
+        elif tracker_type ==2: #If FOVIO Tracker
             for i in range(0,len(df.index)):
                 if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
                     x1 = df['Lft X Pos'][i-1]
                     y1 = df['Lft Y Pos'][i-1]  
+                    time_diff =abs(df['Time'][i-1])
+                    
                 else:
+                    
                     x1 = df['Lft X Pos'][i+1]-df['Lft X Pos'][i]
                     y1 = df['Lft Y Pos'][i+1]-df['Lft Y Pos'][i]
+                    time_diff=abs(df['Time'][i+1]-df['Time'][i])
+                
                 Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
                 Delta_mm.append(Delta[i]*0.269279688)
                 Delta_rad.append(math.atan(Delta_mm[i]/(29.5*25.4)))
-        
-            df['Delta (in pixels)'] = Delta #Create a new column and append the visual angle values in pixels
-            df['Delta (in mm)'] = Delta_mm #Create a new column and append the visual angle values in mm
-            df['Delta (in rad)'] = Delta_rad #Create a new column and append the visual angle values in rad
+                velocity = Delta_rad[i]*57.29577951*1000/time_diff #convert to degrees and divide by time difference
+                Angular_Velocity.append(velocity)
+
+            
+        df['Delta (in pixels)'] = Delta #Create a new column and append the visual angle values in pixels
+        df['Delta (in mm)'] = Delta_mm #Create a new column and append the visual angle values in mm
+        df['Delta (in rad)'] = Delta_rad #Create a new column and append the visual angle values in rad
+        df['Angular Velocity (in degrees/second)'] = Angular_Velocity #Create a new column and append the angular velocity in degrees per second
 ################################################################
         
         df.to_csv(output_file_name, index=False)
@@ -265,13 +292,14 @@ text4.pack(side=LEFT)
 output_name = Entry(frame4)
 output_name.pack(side=LEFT)
 
-text5 = Label(frame5, text='Tracker Type: ')
-text5.pack(side=LEFT)
-tracker_type = Entry(frame5)
-tracker_type.pack(side=LEFT)
 
-button1 = Button(frame6, text='Submit', command=lambda: preProcess(tracker_type))
-button1.pack(side=RIGHT)
+text5 = Label(frame5, text='Eye Tracker Type:')
+
+one = Button(window, text="Gazepoint", width="10", height="3",command=lambda : preProcess(1))
+one.pack(side="top")
+
+two = Button(window, text="FOVIO", width="10", height="3", command=lambda : preProcess(2))
+two.pack(side="top")
 
 text6 = Label(frame7, text='Status: N/A')
 text6.pack()
