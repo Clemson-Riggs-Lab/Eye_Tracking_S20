@@ -108,7 +108,7 @@ def preProcess(tracker_type):
                 Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
                 Delta_mm.append(Delta[i]*0.207565625)
                 Delta_rad.append(math.atan(Delta_mm[i]/(23.62204724*25.4)))
-                velocity = Delta_rad[i]*57.29577951*1000/time_diff #convert to degrees and divide by time difference
+                velocity = Delta_rad[i]*57.29577951/time_diff #convert to degrees and divide by time difference
                 Angular_Velocity.append(velocity)
                 
         elif tracker_type ==2: #If FOVIO Tracker
