@@ -42,12 +42,15 @@ def event_detection(tracker_type):
             counter +=1
         time = df["MissionTime"][counter-1:len(df["MissionTime"])]
         velocities = df["Angular Velocity (in degrees/second)"][counter-1:len(df["Angular Velocity (in degrees/second)"])]
+        #Pandas series are not sliceable
         time = list(time)
         velocities = list(velocities)
 
     else:
         time = df["Time"]
         velocities = df["Angular Velocity (in degrees/second)"]
+        time = list(time)
+        velocities = list(velocities)
 
     PT = int(peak_thresh.get())
     onset_threshold = int(on_thresh.get())
