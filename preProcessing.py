@@ -1,4 +1,5 @@
 import pandas as pd
+import statistics
 from tkinter import *
 from os import path
 import os
@@ -23,7 +24,32 @@ This function is called by the GUI when user presses the submit button.
 It contains all of the logic for the file. 
 """
 
-
+def ThresholdEstimation(df):
+    mean = 0
+    std_dev = 0
+    summ = 0
+    N = 0
+    vel_list = []
+    PTold = 250 #Dummy value .Initially, it is the value set by us (in the 100-300 degrees/sec range)
+    PTnew = 0
+    diff = PTnew - PTold
+    velocities = df['Angular Velocity (in degrees/second)'] #list of angular velocities, probably a column from a Pandas dataframe 
+    i=0
+    while abs(diff)>1:
+        summ = 0
+        N = 0
+        for vel in velocities:
+            if vel < PTold:
+                summ=summ+vel
+                N=N+1
+                vel_list.append(vel)   
+        if (N!=0):
+            mean=summ/N
+        std_dev = statistics.stdev(vel_list,mean)
+        PTold = PTnew
+        PTnew = mean +6*std_dev
+        diff = PTnew - PTold
+    return PTnew
 def preProcess(tracker_type):
     # CHANGE OPTIONS OF THE PROGRAM HERE!!!!!!
 
@@ -152,6 +178,8 @@ def preProcess(tracker_type):
         df['Delta (in mm)'] = Delta_mm #Create a new column and append the visual angle values in mm
         df['Delta (in rad)'] = Delta_rad #Create a new column and append the visual angle values in rad
         df['Angular Velocity (in degrees/second)'] = Angular_Velocity #Create a new column and append the angular velocity in degrees per second
+        Threshold=ThresholdEstimation(df)
+        print(Threshold)
 ################################################################
         
         df.to_csv(output_file_name, index=False)
