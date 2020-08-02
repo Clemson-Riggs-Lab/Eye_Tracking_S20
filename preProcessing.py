@@ -65,6 +65,14 @@ def preProcess(tracker_type):
             for each in column_names_bool:
                 df[each].replace(True, 1, inplace=True)
                 df[each].replace(False, 0, inplace=True)
+            # CHANGE RESOLUTION OF X HERE
+            for each in column_names_X:
+                df[each] = df[each].multiply(width_of_screen)
+
+            # CHANGE RESOLUTION OF Y HERE
+            for each in column_names_Y:
+                df[each] = df[each].multiply(height_of_screen)
+                
         elif tracker_type == 2:
             #Tracker used is that of experiment 2 (60 Hz)
             column_names_X = ['Lft X Pos', 'Rt X Pos', 'L Eye Rot (X)', 'R Eye Rot (X)','L Eye Pos (X)','R Eye Pos (X)',
@@ -72,20 +80,29 @@ def preProcess(tracker_type):
             column_names_Y = ['Lft Y Pos', 'Rt Y Pos', 'L Eye Rot (Y)', 'R Eye Rot (Y)','L Eye Pos (Y)','R Eye Pos (Y)',
                               'Head Rot (Y)','Head Pos (Y)']
             column_names_Pupil_Diameter = ['Lft Pupil Diameter', 'Rt Pupil Diameter']
-
-        # CHANGE RESOLUTION OF X HERE
-        for each in column_names_X:
-            df[each] = df[each].multiply(width_of_screen)
-
-        # CHANGE RESOLUTION OF Y HERE
-        for each in column_names_Y:
-            df[each] = df[each].multiply(height_of_screen)
-
-        # Change pupil diameters to mm from meters
-        for each in column_names_Pupil_Diameter:
-            df[each] = df[each].multiply(1000)
- 
-
+            ################################################################
+            # In this section we append the BestPogX and BestPogY columns to the FOVIO tracker
+            BestPogX = []
+            BestPogY = []
+            for i in range(0,len(df.index)):
+                if (df['Lft X Pos'][i]==0) and (df['Rt X Pos'][i] ==0):
+                    BestPogX.append(0)
+                else:
+                    if (df['Lft X Pos'][i]!=0):
+                        BestPogX.append((df['Lft X Pos'][i]))
+                    elif (df['Rt X Pos'][i]!=0):
+                        BestPogX.append((df['Rt X Pos'][i]))
+                        
+                if (df['Lft Y Pos'][i]==0) and (df['Rt Y Pos'][i] ==0):
+                    BestPogY.append(0)
+                else:
+                    if (df['Lft Y Pos'][i]!=0):
+                        BestPogY.append((df['Lft Y Pos'][i]))
+                    elif (df['Rt Y Pos'][i]!=0):
+                        BestPogY.append((df['Rt Y Pos'][i]))    
+            df['BestPogX'] = BestPogX #Create a new column and append BestPogX
+            df['BestPogY'] = BestPogY #Create a new column and append BestPogY
+                
 ################################################################
 # In this section we calculate the visual angles, angular velocities, and append the to the dataframe
         Delta = [] #in pixels
@@ -114,14 +131,14 @@ def preProcess(tracker_type):
         elif tracker_type ==2: #If FOVIO Tracker
             for i in range(0,len(df.index)):
                 if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
-                    x1 = df['Lft X Pos'][i-1]
-                    y1 = df['Lft Y Pos'][i-1]  
+                    x1 = df['BestPogX'][i-1]
+                    y1 = df['BestPogY'][i-1]  
                     time_diff =abs(df['Time'][i-1])
                     
                 else:
                     
-                    x1 = df['Lft X Pos'][i+1]-df['Lft X Pos'][i]
-                    y1 = df['Lft Y Pos'][i+1]-df['Lft Y Pos'][i]
+                    x1 = df['BestPogX'][i+1]-df['BestPogX'][i]
+                    y1 = df['BestPogY'][i+1]-df['BestPogY'][i]
                     time_diff=abs(df['Time'][i+1]-df['Time'][i])
                 
                 Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
