@@ -1,4 +1,5 @@
 import pandas as pd
+import statistics
 from tkinter import *
 from os import path
 import os
@@ -23,7 +24,32 @@ This function is called by the GUI when user presses the submit button.
 It contains all of the logic for the file. 
 """
 
-
+def ThresholdEstimation(df):
+    mean = 0
+    std_dev = 0
+    summ = 0
+    N = 0
+    vel_list = []
+    PTold = 250 #Dummy value .Initially, it is the value set by us (in the 100-300 degrees/sec range)
+    PTnew = 0
+    diff = PTnew - PTold
+    velocities = df['Angular Velocity (in degrees/second)'] #list of angular velocities, probably a column from a Pandas dataframe 
+    i=0
+    while abs(diff)>1:
+        summ = 0
+        N = 0
+        for vel in velocities:
+            if vel < PTold:
+                summ=summ+vel
+                N=N+1
+                vel_list.append(vel)   
+        if (N!=0):
+            mean=summ/N
+        std_dev = statistics.stdev(vel_list,mean)
+        PTold = PTnew
+        PTnew = mean +6*std_dev
+        diff = PTnew - PTold
+    return PTnew
 def preProcess(tracker_type):
     # CHANGE OPTIONS OF THE PROGRAM HERE!!!!!!
 
@@ -65,6 +91,14 @@ def preProcess(tracker_type):
             for each in column_names_bool:
                 df[each].replace(True, 1, inplace=True)
                 df[each].replace(False, 0, inplace=True)
+            # CHANGE RESOLUTION OF X HERE
+            for each in column_names_X:
+                df[each] = df[each].multiply(width_of_screen)
+
+            # CHANGE RESOLUTION OF Y HERE
+            for each in column_names_Y:
+                df[each] = df[each].multiply(height_of_screen)
+                
         elif tracker_type == 2:
             #Tracker used is that of experiment 2 (60 Hz)
             column_names_X = ['Lft X Pos', 'Rt X Pos', 'L Eye Rot (X)', 'R Eye Rot (X)','L Eye Pos (X)','R Eye Pos (X)',
@@ -72,20 +106,29 @@ def preProcess(tracker_type):
             column_names_Y = ['Lft Y Pos', 'Rt Y Pos', 'L Eye Rot (Y)', 'R Eye Rot (Y)','L Eye Pos (Y)','R Eye Pos (Y)',
                               'Head Rot (Y)','Head Pos (Y)']
             column_names_Pupil_Diameter = ['Lft Pupil Diameter', 'Rt Pupil Diameter']
-
-        # CHANGE RESOLUTION OF X HERE
-        for each in column_names_X:
-            df[each] = df[each].multiply(width_of_screen)
-
-        # CHANGE RESOLUTION OF Y HERE
-        for each in column_names_Y:
-            df[each] = df[each].multiply(height_of_screen)
-
-        # Change pupil diameters to mm from meters
-        for each in column_names_Pupil_Diameter:
-            df[each] = df[each].multiply(1000)
- 
-
+            ################################################################
+            # In this section we append the BestPogX and BestPogY columns to the FOVIO tracker
+            BestPogX = []
+            BestPogY = []
+            for i in range(0,len(df.index)):
+                if (df['Lft X Pos'][i]==0) and (df['Rt X Pos'][i] ==0):
+                    BestPogX.append(0)
+                else:
+                    if (df['Lft X Pos'][i]!=0):
+                        BestPogX.append((df['Lft X Pos'][i]))
+                    elif (df['Rt X Pos'][i]!=0):
+                        BestPogX.append((df['Rt X Pos'][i]))
+                        
+                if (df['Lft Y Pos'][i]==0) and (df['Rt Y Pos'][i] ==0):
+                    BestPogY.append(0)
+                else:
+                    if (df['Lft Y Pos'][i]!=0):
+                        BestPogY.append((df['Lft Y Pos'][i]))
+                    elif (df['Rt Y Pos'][i]!=0):
+                        BestPogY.append((df['Rt Y Pos'][i]))    
+            df['BestPogX'] = BestPogX #Create a new column and append BestPogX
+            df['BestPogY'] = BestPogY #Create a new column and append BestPogY
+                
 ################################################################
 # In this section we calculate the visual angles, angular velocities, and append the to the dataframe
         Delta = [] #in pixels
@@ -114,14 +157,14 @@ def preProcess(tracker_type):
         elif tracker_type ==2: #If FOVIO Tracker
             for i in range(0,len(df.index)):
                 if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
-                    x1 = df['Lft X Pos'][i-1]
-                    y1 = df['Lft Y Pos'][i-1]  
+                    x1 = df['BestPogX'][i-1]
+                    y1 = df['BestPogY'][i-1]  
                     time_diff =abs(df['Time'][i-1])
                     
                 else:
                     
-                    x1 = df['Lft X Pos'][i+1]-df['Lft X Pos'][i]
-                    y1 = df['Lft Y Pos'][i+1]-df['Lft Y Pos'][i]
+                    x1 = df['BestPogX'][i+1]-df['BestPogX'][i]
+                    y1 = df['BestPogY'][i+1]-df['BestPogY'][i]
                     time_diff=abs(df['Time'][i+1]-df['Time'][i])
                 
                 Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
@@ -135,6 +178,8 @@ def preProcess(tracker_type):
         df['Delta (in mm)'] = Delta_mm #Create a new column and append the visual angle values in mm
         df['Delta (in rad)'] = Delta_rad #Create a new column and append the visual angle values in rad
         df['Angular Velocity (in degrees/second)'] = Angular_Velocity #Create a new column and append the angular velocity in degrees per second
+        Threshold=ThresholdEstimation(df)
+        print(Threshold)
 ################################################################
         
         df.to_csv(output_file_name, index=False)
