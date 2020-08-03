@@ -135,8 +135,7 @@ def preProcess(tracker_type):
         Angular_Velocity = []
         Delta_mm = []
         Delta_rad = [] 
-        if tracker_type==1: #If Gazepoint Tracker
-            for i in range(0,len(df.index)):
+        for i in range(0,len(df.index)):
                 if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
                     x1 = df['BestPogX'][i-1]
                     y1 = df['BestPogY'][i-1]  
@@ -146,8 +145,9 @@ def preProcess(tracker_type):
                     
                     x1 = df['BestPogX'][i+1]-df['BestPogX'][i]
                     y1 = df['BestPogY'][i+1]-df['BestPogY'][i]
-                    time_diff=abs(df['Time'][i+1]-df['Time'][i])  
+                    time_diff=abs(df['Time'][i+1]-df['Time'][i]) 
                     
+        if tracker_type==1: #If Gazepoint Tracker                    
                 Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
                 Delta_mm.append(Delta[i]*0.207565625)
                 Delta_rad.append(math.atan(Delta_mm[i]/(23.62204724*25.4)))
@@ -155,18 +155,6 @@ def preProcess(tracker_type):
                 Angular_Velocity.append(velocity)
                 
         elif tracker_type ==2: #If FOVIO Tracker
-            for i in range(0,len(df.index)):
-                if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
-                    x1 = df['BestPogX'][i-1]
-                    y1 = df['BestPogY'][i-1]  
-                    time_diff =abs(df['Time'][i-1])
-                    
-                else:
-                    
-                    x1 = df['BestPogX'][i+1]-df['BestPogX'][i]
-                    y1 = df['BestPogY'][i+1]-df['BestPogY'][i]
-                    time_diff=abs(df['Time'][i+1]-df['Time'][i])
-                
                 Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
                 Delta_mm.append(Delta[i]*0.269279688)
                 Delta_rad.append(math.atan(Delta_mm[i]/(29.5*25.4)))
