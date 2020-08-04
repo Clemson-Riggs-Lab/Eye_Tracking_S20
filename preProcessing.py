@@ -33,8 +33,6 @@ def ThresholdEstimation(df):
     PTold = 250 #Dummy value .Initially, it is the value set by us (in the 100-300 degrees/sec range)
     PTnew = 0
     diff = PTnew - PTold
-    velocities = df['Angular Velocity (in degrees/second)'] #list of angular velocities, probably a column from a Pandas dataframe 
-    mean_velocities=sum(velocities)/len(velocities)
     std_dev_velocities = statistics.stdev(velocities,mean_velocities)
     i=0
     while abs(diff)>1:
@@ -51,9 +49,10 @@ def ThresholdEstimation(df):
         PTold = PTnew
         PTnew = mean +6*std_dev
         onset_threshold = mean +3*std_dev
-        offset_threshold = 0.7*onset_threshold + 0.3*(mean_velocities+3*std_dev_velocities)
+        #Shannon suggested we go for a data driven offset_threshold that is set at the beginning of each participant/trial 
+        #offset_threshold = 0.7*onset_threshold + 0.3*(mu_t+3*sigma_t)
         diff = PTnew - PTold
-    return PTnew,onset_threshold, offset_threshold
+    return PTnew,onset_threshold
 def preProcess(tracker_type):
     # CHANGE OPTIONS OF THE PROGRAM HERE!!!!!!
 
