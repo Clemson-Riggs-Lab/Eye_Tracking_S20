@@ -34,6 +34,8 @@ def ThresholdEstimation(df):
     PTnew = 0
     diff = PTnew - PTold
     velocities = df['Angular Velocity (in degrees/second)'] #list of angular velocities, probably a column from a Pandas dataframe 
+    mean_velocities=sum(velocities)/len(velocities)
+    std_dev_velocities = statistics.stdev(velocities,mean_velocities)
     i=0
     while abs(diff)>1:
         summ = 0
@@ -48,8 +50,10 @@ def ThresholdEstimation(df):
         std_dev = statistics.stdev(vel_list,mean)
         PTold = PTnew
         PTnew = mean +6*std_dev
+        onset_threshold = mean +3*std_dev
+        offset_threshold = 0.7*onset_threshold + 0.3*(mean_velocities+3*std_dev_velocities)
         diff = PTnew - PTold
-    return PTnew
+    return PTnew,onset_threshold, offset_threshold
 def preProcess(tracker_type):
     # CHANGE OPTIONS OF THE PROGRAM HERE!!!!!!
 
