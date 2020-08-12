@@ -4,6 +4,8 @@ import pandas as pd
 from scipy.signal import find_peaks
 import matplotlib.pyplot as plt
 from tkinter import *
+from scipy.signal import savgol_filter
+
 
 """
 Created on Thu Jul 23 18:50:45 2020
@@ -35,14 +37,18 @@ def event_detection(tracker_type):
     file_name = inputET_name.get()
     df = pd.read_csv(file_name)
     if tracker_type == 1:
-        counter=0
-        for i in df["MissionTime"]:
-            if i > 0.0:
-                break
-            counter +=1
-        time = df["MissionTime"][counter-1:len(df["MissionTime"])]
-        velocities = df["Angular Velocity (in degrees/second)"][counter-1:len(df["Angular Velocity (in degrees/second)"])]
-        #Pandas series are not sliceable
+        # counter=0
+        # for i in df["MissionTime"]:
+        #     if i > 0.0:
+        #         break
+        #     counter +=1
+        # time = df["MissionTime"][counter-1:len(df["MissionTime"])]
+        # velocities = df["Angular Velocity (in degrees/second)"][counter-1:len(df["Angular Velocity (in degrees/second)"])]
+        # #Pandas series are not sliceable
+        # time = list(time)
+        # velocities = list(velocities)
+        time = df["Time"]
+        velocities = df["Angular Velocity (in degrees/second)"]
         time = list(time)
         velocities = list(velocities)
 
@@ -66,8 +72,12 @@ def event_detection(tracker_type):
     offsets=[]
     peak_times = []
     peaks = [] 
+    sac_amps= []
+    # indices = find_peaks(velocities, height = PT)[0]
 
-    indices = find_peaks(velocities, height = PT)[0]
+      #smooth the velocities with and SG filter. Used the parameters suggested by Nystrom & Holmqvist
+    velocities_filt = savgol_filter(velocities, window_length = 5, polyorder = 3) #NOTE: window length will depend on eye tracker as Nystrom & Holmqvist suggest a filter length of 20 ms so that is a window length = 2 for FOVIO and window length = 3 or 4 for Gazepoint
+    indices_filt = find_peaks(velocities_filt, height = PT)[0]
 
 
     #I drew this plot to visually see the peaks and follow each point. The velocities VS time plot is below
@@ -93,9 +103,9 @@ def event_detection(tracker_type):
     #returns the index of the velocity in the list not the time
     #I added below a new list for the peak times
 
-    print (len(indices),'peaks were detected')
-    for i in range(len(indices)): 
-        r=indices[i]
+    print (len(indices_filt),'peaks were detected')
+    for i in range(len(indices_filt)): 
+        r=indices_filt[i]
         peak_times.append(time[r])
         peaks.append(i+1)
         #we need to add ouput.write at the end as we create a seperate column/text file
@@ -116,14 +126,22 @@ def event_detection(tracker_type):
     left_most=0
     vel=[]
 
-    for each in range(len(indices)):
-        i=indices[each]
+    for each in range(len(indices_filt)):
+        i=indices_filt[each]
+        flag=False
         for v in range(i,left_most,-1):
-            if velocities[v]<onset_threshold and velocities[v]-velocities[v-1]<0 and velocities[v]-velocities[v+1]<0:
-                    onsets_velocities.append(velocities[v])
+            #this flag will tell us if we've found an onset
+            if velocities_filt[v]<onset_threshold and velocities_filt[v]-velocities_filt[v-1]<0 and velocities_filt[v]-velocities_filt[v+1]<0:
+                    onsets_velocities.append(velocities_filt[v])
                     onsets_times.append(time[v])
                     #when we write in excel or text, we say peak #1 had onset velcoties[j]
+                    #When flag is True, we correctly found onset
+                    flag=True
                     break
+        if flag==False:
+            #999 for both velocities and times?
+            onsets_times.append(999)
+            onsets_velocities.append(999)
         left_most=i
 
     df["OnsetsTimes"] = pd.Series(onsets_times)
@@ -131,25 +149,32 @@ def event_detection(tracker_type):
 
     #######################################################
 
-    for each in range(len(indices)):
-        i=indices[each]
-        if each==len(indices)-1:
-            for index in range(len(velocities)):
-                if index==len(velocities)-1:
+    for each in range(len(indices_filt)):
+        i=indices_filt[each]
+        if each==len(indices_filt)-1:
+            for index in range(len(velocities_filt)):
+                if index==len(velocities_filt)-1:
                     right_most=index
         else:
-            right_most=indices[each+1]
-            
+            right_most=indices_filt[each+1]
+        flag=False   
         for v in range(i,right_most,1):
-            if velocities[v]<offset_threshold and velocities[v]-velocities[v-1]<0 and velocities[v]-velocities[v+1]<0:
-                offsets_velocities.append(velocities[v])
+           
+            if velocities_filt[v]<offset_threshold and velocities_filt[v]-velocities_filt[v-1]<0 and velocities_filt[v]-velocities_filt[v+1]<0:
+                offsets_velocities.append(velocities_filt[v])
                 offsets_times.append(time[v])
                 #when we write in excel or text, we say peak #1 had offset velcoties[v]
+                flag=True
                 break
+        if flag==False:
+            offsets_times.append(0)
+            offsets_velocities.append(0)
 
     df["OffsetsTimes"] = pd.Series(offsets_times)
     df["OffsetsVelocities"] = pd.Series(offsets_velocities)
 
+    print(len(onsets_times))
+    print(len(offsets_times))
     saccade_duration=[]
     #Using len(indices) was causing problems here because it was much larger than the 
     #other lists (like onsets times and velocities etc)
@@ -159,6 +184,16 @@ def event_detection(tracker_type):
 
     df["SaccadeDurations"] = pd.Series(saccade_duration)
 
+    for i in range(len(indices_filt)):
+        peak_v = df.at[indices_filt[i], "Angular Velocity (in degrees/second)"]
+        onset_v = onsets_velocities[i]
+        offset_v = offsets_velocities[i]
+        avg = (peak_v + onset_v + offset_v)/3
+        time_diff = offsets_times[i] - onsets_times[i]
+        sac_amp = avg * time_diff
+        sac_amps.append(sac_amp)
+    
+    df["SaccadeAmplitudes"] = pd.Series(sac_amps)
 
     """
     updating the csv with the new information
