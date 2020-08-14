@@ -122,8 +122,8 @@ def event_detection(tracker_type):
         if flag==False:
             #999 for both velocities and times?
             onset_indices.append(left_most)
-            onsets_times.append(999)
-            onsets_velocities.append(999)
+            onsets_times.append(999999)
+            onsets_velocities.append(999999)
         left_most=i
 
     df["OnsetsTimes"] = pd.Series(onsets_times)
