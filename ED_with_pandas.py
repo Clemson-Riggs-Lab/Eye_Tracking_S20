@@ -5,6 +5,7 @@ from scipy.signal import find_peaks
 import matplotlib.pyplot as plt
 from tkinter import *
 from scipy.signal import savgol_filter
+import math
 
 
 """
@@ -35,6 +36,7 @@ That's why fixations are short as not my purpose now
 
 def event_detection(tracker_type):
     file_name = inputET_name.get()
+    # Leaving for testing: file_name="Ready_for_ED.csv"
     df = pd.read_csv(file_name)
     if tracker_type == 1:
         # counter=0
@@ -61,6 +63,9 @@ def event_detection(tracker_type):
     PT = int(peak_thresh.get())
     onset_threshold = int(on_thresh.get())
     offset_threshold = int(off_thresh.get())
+
+  
+
     #I chose any numbers until we determine the velocity threshold, onset and offset thresholds
     #arbitrary values, PT will be determined before (each participant has a different PT for a different load)
 
@@ -73,6 +78,9 @@ def event_detection(tracker_type):
     peak_times = []
     peaks = [] 
     sac_amps= []
+    saccade_indices = []
+    onset_indices=[]
+    offset_indices=[]
     # indices = find_peaks(velocities, height = PT)[0]
 
       #smooth the velocities with and SG filter. Used the parameters suggested by Nystrom & Holmqvist
@@ -80,28 +88,6 @@ def event_detection(tracker_type):
     indices_filt = find_peaks(velocities_filt, height = PT)[0]
 
 
-    #I drew this plot to visually see the peaks and follow each point. The velocities VS time plot is below
-    # fig = go.Figure()
-    # fig.add_trace(go.Scatter(
-    #     y=velocities,
-    #     mode='lines+markers',
-    #     name='Original Plot'
-    # ))
-
-    # fig.add_trace(go.Scatter(
-    #     x=indices,
-    #     y=[velocities[j] for j in indices],
-    #     mode='markers',
-    #     marker=dict(
-    #         size=8,
-    #         color='red',
-    #         symbol='cross'
-    #     ),
-    #     name='Detected Peaks'
-    # ))
-    #this shows a graph of velocites as a function of indices of the velocities as the the function 
-    #returns the index of the velocity in the list not the time
-    #I added below a new list for the peak times
 
     print (len(indices_filt),'peaks were detected')
     for i in range(len(indices_filt)): 
@@ -112,26 +98,18 @@ def event_detection(tracker_type):
         # print('Peak',i+1,'has a velocity of',velocities[r],'degrees/s at time',time[r],'ms')
         
 
-        
-    # fig.show()
-
-    #velocities VS time plot
-    # plt.title('Velocities (degrees/s) VS Time (ms)')
-    # plt.xlabel('Time (ms)')
-    # plt.ylabel('Velocities (degrees/s)')
-    # plt.plot(time,velocities)
-    # plt.show()
-
-
     left_most=0
     vel=[]
 
     for each in range(len(indices_filt)):
         i=indices_filt[each]
         flag=False
+        saccade_indices.append(i)
         for v in range(i,left_most,-1):
+            saccade_indices.append(v)
             #this flag will tell us if we've found an onset
             if velocities_filt[v]<onset_threshold and velocities_filt[v]-velocities_filt[v-1]<0 and velocities_filt[v]-velocities_filt[v+1]<0:
+                    onset_indices.append(v)
                     onsets_velocities.append(velocities_filt[v])
                     onsets_times.append(time[v])
                     #when we write in excel or text, we say peak #1 had onset velcoties[j]
@@ -140,8 +118,9 @@ def event_detection(tracker_type):
                     break
         if flag==False:
             #999 for both velocities and times?
-            onsets_times.append(999)
-            onsets_velocities.append(999)
+            onset_indices.append(i-1)
+            onsets_times.append(999999)
+            onsets_velocities.append(999999)
         left_most=i
 
     df["OnsetsTimes"] = pd.Series(onsets_times)
@@ -159,22 +138,73 @@ def event_detection(tracker_type):
             right_most=indices_filt[each+1]
         flag=False   
         for v in range(i,right_most,1):
-           
+            saccade_indices.append(v)
             if velocities_filt[v]<offset_threshold and velocities_filt[v]-velocities_filt[v-1]<0 and velocities_filt[v]-velocities_filt[v+1]<0:
+                offset_indices.append(v)
                 offsets_velocities.append(velocities_filt[v])
                 offsets_times.append(time[v])
                 #when we write in excel or text, we say peak #1 had offset velcoties[v]
                 flag=True
                 break
         if flag==False:
+            offset_indices.append(i+1)
             offsets_times.append(0)
             offsets_velocities.append(0)
 
     df["OffsetsTimes"] = pd.Series(offsets_times)
     df["OffsetsVelocities"] = pd.Series(offsets_velocities)
 
-    print(len(onsets_times))
-    print(len(offsets_times))
+    #getting fixation indices
+    #I think I still need to account for data before the first offset
+    #and after the last offset
+    fixation_indices=[]
+    for i in range(len(offset_indices)-1):
+        j=offset_indices[i] + 1
+        mini_lst = []
+        while j < onset_indices[i+1]:
+            mini_lst.append(j)
+            j+=1
+        fixation_indices.append(mini_lst)
+    
+    #distance formula
+    def calculateDistance(x1,y1,x2,y2):  
+        dist = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)  
+        return dist  
+
+
+    #Adding the spatial and temporal constraints
+    fixations_after_constraints = []
+    center_points = []
+    for fixation in fixation_indices:
+        if len(fixation) < 1:
+            continue
+        else:
+            for i in range(len(fixation)):
+                g = fixation[0]
+                fix_lst = [g]
+                for index in fixation[1:len(fixation)-1]:
+                    #if distance between index and g > constraint px, break
+                    #else, add index to fix_lst
+
+                    dist = calculateDistance(df.at[g, "BestPogX"], df.at[g, "BestPogY"] ,
+                    df.at[index, "BestPogX"], df.at[index, "BestPogY"])
+                            #this is the pixel radius. Not sure if this value is supposed to be data driven
+                    if dist <= int(fix_radius.get()):
+                        fix_lst.append(index)
+                    else:
+                        break
+                #checking time constraint
+                time_elapsed = len(fix_lst) * 16.667
+                if time_elapsed > 80:
+                    fixations_after_constraints.append(fix_lst)
+                    center_points.append(fix_lst[0])
+                    break
+                else:
+                    if len(fixation) ==1:
+                        break
+                    fixation.remove(fixation[0])
+            
+
     saccade_duration=[]
     #Using len(indices) was causing problems here because it was much larger than the 
     #other lists (like onsets times and velocities etc)
@@ -194,14 +224,33 @@ def event_detection(tracker_type):
         sac_amps.append(sac_amp)
     
     df["SaccadeAmplitudes"] = pd.Series(sac_amps)
+    
 
     """
     updating the csv with the new information
     """
     out_file = output_name.get()
+    # out_file = "output_ED.csv"
     df.to_csv(out_file, index=False)
+    
 
-
+    #For testing 
+    """
+    This nested for loop checks if there is overlap between saccade indices
+    and fixation indices. There was no overlap on my end which is a good sign. 
+    Also BEWARE, this testing loop requires a lot of computing power so make sure
+    you don't have a lot of other things open when running it!
+    """
+    for i in fixations_after_constraints:
+        for j in i:
+            for s in saccade_indices:
+                if s == j:
+                    print("Overlap")
+              
+    
+    #This is our total number of fixations
+    print(len(fixations_after_constraints))
+  
 # UI things. This is very similar to preprocessing UI 
 window = Tk()
 frame0 = Frame(window)
@@ -248,6 +297,11 @@ text4 = Label(frame4, text='Enter Offset Threshold: ')
 text4.pack(side=LEFT)
 off_thresh = Entry(frame4)
 off_thresh.pack(side=LEFT)
+
+text5 = Label(frame5, text='Enter Fixation Radius (px): ')
+text5.pack(side=LEFT)
+fix_radius = Entry(frame5)
+fix_radius.pack(side=LEFT)
 
 one = Button(window, text="Gazepoint", width="10", height="3",command=lambda : event_detection(1))
 one.pack(side="top")
