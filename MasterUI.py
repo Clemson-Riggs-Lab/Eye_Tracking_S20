@@ -87,23 +87,17 @@ def butter(tracker_type,df):
             plt.show()
     return df
 def preProcess(tracker_type,df):
-        # Default width is 2560 and default height is 1440
-        if x_response.get() == '':
-            width_of_screen = 2560
-        else:
-            width_of_screen = x_response.get()
-
-        if y_response.get() == '':
-            height_of_screen = 1440
-        else:
-            height_of_screen = y_response.get()
+        # Default width is 2560 and default height is 1440 for Gazepoint
         column_names_X = []
         column_names_Y = []
         column_names_bool = []
         column_names_Pupil_Diameter = []
         if tracker_type == 1:
+            # Default width is 2560 and default height is 1440 for Gazepoint
             # Tracker used is that of experiment 1
             # all the names of the columns we want to convert proportions to pixels for
+            width_of_screen = int(2560)
+            height_of_screen = int(1440)
             column_names_X = ['CursorX', 'LeftEyeX', 'RightEyeX', 'FixedPogX', 'LeftPogX', 'RightPogX', 'BestPogX',
                               'LeftPupilX', 'RightPupilX']
             column_names_Y = ['CursorY', 'LeftEyeY', 'RightEyeY', 'FixedPogY', 'LeftPogY', 'RightPogY', 'BestPogY',
@@ -125,12 +119,27 @@ def preProcess(tracker_type,df):
                 df[each] = df[each].multiply(height_of_screen)
                 
         elif tracker_type == 2:
-             #Tracker used is that of experiment 2 (60 Hz)
-             column_names_X = ['Lft X Pos', 'Rt X Pos', 'L Eye Rot (X)', 'R Eye Rot (X)','L Eye Pos (X)','R Eye Pos (X)',
-                               'Head Rot (X)','Head Pos (X)']
-             column_names_Y = ['Lft Y Pos', 'Rt Y Pos', 'L Eye Rot (Y)', 'R Eye Rot (Y)','L Eye Pos (Y)','R Eye Pos (Y)',
-                               'Head Rot (Y)','Head Pos (Y)']
-             column_names_Pupil_Diameter = ['Lft Pupil Diameter', 'Rt Pupil Diameter']  
+            # Find BestPogX and BestPogY values for FOVIO tracker
+            BestPogX = []
+            BestPogY = []
+            for i in range(0,len(df.index)):
+                if (df['Lft X Pos'][i]==0) and (df['Rt X Pos'][i] ==0):
+                    BestPogX.append(0)
+                else:
+                    if (df['Lft X Pos'][i]!=0):
+                        BestPogX.append((df['Lft X Pos'][i]))
+                    elif (df['Rt X Pos'][i]!=0):
+                        BestPogX.append((df['Rt X Pos'][i]))
+                    
+                if (df['Lft Y Pos'][i]==0) and (df['Rt Y Pos'][i] ==0):
+                    BestPogY.append(0)
+                else:
+                    if (df['Lft Y Pos'][i]!=0):
+                        BestPogY.append((df['Lft Y Pos'][i]))
+                    elif (df['Rt Y Pos'][i]!=0):
+                        BestPogY.append((df['Rt Y Pos'][i]))                  
+            df['BestPogX'] = BestPogX #Create a new column and append BestPogX
+            df['BestPogY'] = BestPogY #Create a new column and append BestPogY 
         return df             
 def missingDataCheck(tracker_type,df,file):
         output_file = open("ErrorLog.txt", "w")
@@ -141,13 +150,11 @@ def missingDataCheck(tracker_type,df,file):
         marker_bad = []
         final_index = len(df.index)
         final_time = df.iloc[-1]['Time'] 
-        if tracker_type ==2:
-            df=FOVIOPog(df)
         '''----------checking errors in the file-----------------'''
         #Function returns the following lists given the dataframe        
         negative_coordinates,missing_packets,marker_bad,X_coords,Y_coords = CheckErrors(df,output_file,tracker_type)
         '''----------gathering statistics-----------------'''
-        Statistics(negative_coordinates,missing_packets,marker_bad,final_index,final_time,output_file)
+        Statistics(negative_coordinates,missing_packets,marker_bad,final_index,final_time,output_file,tracker_type)
         '''----------deleting errors from file-----------------'''
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coordinates).union(set(marker_bad)))
@@ -155,7 +162,7 @@ def missingDataCheck(tracker_type,df,file):
         '''-------------displaying the plot-------------------'''
         ScatterPlot(X_coords,Y_coords,file)
         return df
-def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,output_file):     
+def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,output_file,tracker_type):     
         #writing summary statistics
         output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coords)) + '\n')
         output_file.write('Total Unordered Data Packets: ' + str(len(missing_data)) + '\n')
@@ -188,8 +195,12 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,o
 
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coords).union(set(bad_markers)))
-
-        total_error_time_seconds = len(combined_list) / 150
+        if tracker_type == 1:
+            total_error_time_seconds = len(combined_list)*6.6667 #multiply by 1/refresh rate
+            total_error_time_seconds = total_error_time_seconds/1000 #convert to seconds            
+        elif tracker_type ==2: 
+            total_error_time_seconds = len(combined_list) / 16.6667 
+            total_error_time_seconds = total_error_time_seconds/1000 #convert to seconds
         total_error_time_minutes = total_error_time_seconds / 60
 
         output_file.write('Error Time Elapsed: ' + str(total_error_time_minutes) + ' minutes (' + str(total_error_time_seconds) + ' seconds)' + '\n')  
@@ -271,28 +282,6 @@ def DeleteErrors(combined_list,missing_packets,df):
             series = pd.Series(defaultvals)
             df['MissingDataCheck'] = series  
         return df
-def FOVIOPog(df):
-    BestPogX = []
-    BestPogY = []
-    for i in range(0,len(df.index)):
-        if (df['Lft X Pos'][i]==0) and (df['Rt X Pos'][i] ==0):
-            BestPogX.append(0)
-        else:
-            if (df['Lft X Pos'][i]!=0):
-                BestPogX.append((df['Lft X Pos'][i]))
-            elif (df['Rt X Pos'][i]!=0):
-                BestPogX.append((df['Rt X Pos'][i]))
-            
-        if (df['Lft Y Pos'][i]==0) and (df['Rt Y Pos'][i] ==0):
-            BestPogY.append(0)
-        else:
-            if (df['Lft Y Pos'][i]!=0):
-                BestPogY.append((df['Lft Y Pos'][i]))
-            elif (df['Rt Y Pos'][i]!=0):
-                BestPogY.append((df['Rt Y Pos'][i]))                  
-    df['BestPogX'] = BestPogX #Create a new column and append BestPogX
-    df['BestPogY'] = BestPogY #Create a new column and append BestPogY
-    return df   
 def VelocityCalculation(tracker_type,df):
 # In this function we calculate the visual angles, angular velocities, and append the to the dataframe
         Delta = [] #in pixels
@@ -344,6 +333,7 @@ def ThresholdEstimation(df):
     mean_velocities=sum(velocities)/len(velocities)
     std_dev_velocities = statistics.stdev(velocities,mean_velocities)
     while abs(diff)>1:
+        vel_list.clear #clear list at each iteration according to Holmqvist's desription of the algorithm
         summ = 0
         N = 0
         for vel in velocities:
@@ -384,7 +374,7 @@ frame11 = Frame(window)
 frame12 = Frame(window)
 frame13 = Frame(window)
 frame14 = Frame(window)
-
+frame15  = Frame(window)
 frame0.pack()
 frame1.pack()
 frame2.pack()
@@ -400,77 +390,71 @@ frame11.pack()
 frame12.pack()
 frame13.pack()
 frame14.pack()
+frame15.pack()
 
 window.title("Eye Tracking Data")
 
 text0 = Label(frame0,
               text='\n 1. Basic Information: \n')
 text0.pack()
-
-text1 = Label(frame1, text='Enter X resolution (default: 2560):                    ')
-text1.pack(side=LEFT)
-x_response = Entry(frame1) # x resolution variable
-x_response.pack(side=LEFT)
-
-text2 = Label(frame2, text='Enter Y resolution (default: 1440):                    ')
-text2.pack(side=LEFT)
-y_response = Entry(frame2) # y resolution variable
-y_response.pack(side=LEFT)
-
-text3 = Label(frame3, text='Enter Input File/Folder Name (include .csv):  ')
-text3.pack(side=LEFT)
-input_name = Entry(frame3) # input name variable 
-input_name.pack(side=LEFT)
-
-text4 = Label(frame4, text='Enter Output File Name (include .csv):            ')
-text4.pack(side=LEFT)
-output_name = Entry(frame4) #output name variable
-output_name.pack(side=LEFT)
-
-text5 = Label(frame5,
-              text='\n 2. Filtering Information:\n')
-text5.pack()
-
-text6 = Label(frame6, text='Enter filter order (N):                                         ')
-text6.pack(side=LEFT)
-N = Entry(frame6) #Filter order variable
-N.pack(side=LEFT)
-
-text7 = Label(frame7, text='Enter critical frequency (Wn):                          ')
-text7.pack(side=LEFT)
-Wn = Entry(frame7) #Wn variable
-Wn.pack(side=LEFT)
-
-text8 = Label(frame8,
-              text='\n 3. MissingDataCheck Information:\n')
-text8.pack()
-
-v = IntVar() # Options variable
-
-button2 = Radiobutton(frame9,
-              text=" Delete Rows Automatically",
-              padx = 20,
-              variable=v,
-              value=1).pack()
-button3 = Radiobutton(frame10,
-              text="Mark in Excel File for review",
-              padx = 20,
-              variable=v,
-              value=2).pack()
-
+text14 = Label(frame1,
+              text='\n Select Tracker Type: \n')
+text14.pack()
 tracker_type = IntVar() #tracker type variable
-text11 = Label(frame11, text='\n 4. Eye Tracker Type: \n')
-text11.pack()
-button4 = Radiobutton(frame12,
+button4 = Radiobutton(frame2,
               text="Gazepoint",
               padx = 200,
               variable=tracker_type,
               value=1).pack()
-button5 = Radiobutton(frame13,
+button5 = Radiobutton(frame3,
               text="      FOVIO",
               padx = 20,
               variable=tracker_type,
               value=2).pack()
+
+text3 = Label(frame4, text='Enter Input File/Folder Name (include .csv):  ')
+text3.pack(side=LEFT)
+input_name = Entry(frame4) # input name variable 
+input_name.pack(side=LEFT)
+
+text4 = Label(frame5, text='Enter Output File Name (include .csv):            ')
+text4.pack(side=LEFT)
+output_name = Entry(frame5) #output name variable
+output_name.pack(side=LEFT)
+
+text5 = Label(frame6,
+              text='\n 2. Butterworth Filtering Information:\n')
+text5.pack()
+
+text6 = Label(frame7, text='Enter filter order (N):                                         ')
+text6.pack(side=LEFT)
+N = Entry(frame7) #Filter order variable
+N.pack(side=LEFT)
+
+text7 = Label(frame8, text='Enter critical frequency (Wn):                          ')
+text7.pack(side=LEFT)
+Wn = Entry(frame8) #Wn variable
+Wn.pack(side=LEFT)
+
+text8 = Label(frame9,
+              text='\n 3. Missing Data Check Information:\n')
+text8.pack()
+
+v = IntVar() # Options variable
+
+button2 = Radiobutton(frame10,
+              text=" Delete Rows Automatically",
+              padx = 20,
+              variable=v,
+              value=1).pack()
+button3 = Radiobutton(frame11,
+              text="Mark in separate Excel file for review",
+              padx = 20,
+              variable=v,
+              value=2).pack()
+
+
+
 
 one = Button(window, text="GO", width="10", height="2",command=lambda : eyeTracking())
 one.pack(side="top")
