@@ -1,5 +1,5 @@
 # import plotly.graph_objects as go
-import numpy as np
+#import numpy as np
 import pandas as pd
 from scipy.signal import find_peaks
 import matplotlib.pyplot as plt
@@ -10,14 +10,12 @@ import math
 
 """
 Created on Thu Jul 23 18:50:45 2020
-
 23/07/2020: Jad peaks + onsets
 24/07/2020: refined + comments + graphs
 25/07/2020: offsets + saccade detection (onsets,offsets, and duration)
-
 @author: Jad Atweh
 """
-#Open in Jupyter
+
 
 """
 Those values are placed just to come up with the logic and proceed.
@@ -53,12 +51,14 @@ def event_detection(tracker_type):
         velocities = df["Angular Velocity (in degrees/second)"]
         time = list(time)
         velocities = list(velocities)
-
+        
+        
     else:
         time = df["Time"]
         velocities = df["Angular Velocity (in degrees/second)"]
-        time = list(time)
-        velocities = list(velocities)
+        #time = list(time) 
+        #velocities = list(velocities)
+        
 
     PT = int(peak_thresh.get())
     onset_threshold = int(on_thresh.get())
@@ -86,9 +86,11 @@ def event_detection(tracker_type):
       #smooth the velocities with and SG filter. Used the parameters suggested by Nystrom & Holmqvist
     velocities_filt = savgol_filter(velocities, window_length = 5, polyorder = 3) #NOTE: window length will depend on eye tracker as Nystrom & Holmqvist suggest a filter length of 20 ms so that is a window length = 2 for FOVIO and window length = 3 or 4 for Gazepoint
     indices_filt = find_peaks(velocities_filt, height = PT)[0]
-
-
-
+    """
+    for each in range(len(velocities_filt)):
+        if velocities_filt[each]<0:
+            velocities_filt.remove(velocities_filt[each])
+    """        
     print (len(indices_filt),'peaks were detected')
     for i in range(len(indices_filt)): 
         r=indices_filt[i]
@@ -96,6 +98,17 @@ def event_detection(tracker_type):
         peaks.append(i+1)
         #we need to add ouput.write at the end as we create a seperate column/text file
         # print('Peak',i+1,'has a velocity of',velocities[r],'degrees/s at time',time[r],'ms')
+    peak_velocities=[]
+    for each in range(len(indices_filt)):
+        i=indices_filt[each]
+        peak_velocities.append(velocities_filt[i])
+    df["Filtered Velocities"] = pd.Series(velocities_filt)
+    
+    average_peak_velocity=sum(peak_velocities)/len(peak_velocities)
+    max_peak_velocity=max(peak_velocities)
+    print (average_peak_velocity,'is the average peak velocity')
+    print (max_peak_velocity,'is the max peak velocity')
+    
         
 
     left_most=0
@@ -139,7 +152,7 @@ def event_detection(tracker_type):
         flag=False   
         for v in range(i,right_most,1):
             saccade_indices.append(v)
-            if velocities_filt[v]<offset_threshold and velocities_filt[v]-velocities_filt[v-1]<0 and velocities_filt[v]-velocities_filt[v+1]<0:
+            if velocities_filt[v]<offset_threshold:
                 offset_indices.append(v)
                 offsets_velocities.append(velocities_filt[v])
                 offsets_times.append(time[v])
@@ -219,7 +232,7 @@ def event_detection(tracker_type):
         onset_v = onsets_velocities[i]
         offset_v = offsets_velocities[i]
         avg = (peak_v + onset_v + offset_v)/3
-        time_diff = offsets_times[i] - onsets_times[i]
+        time_diff = (offsets_times[i] - onsets_times[i])/1000
         sac_amp = avg * time_diff
         sac_amps.append(sac_amp)
     
@@ -232,7 +245,7 @@ def event_detection(tracker_type):
     out_file = output_name.get()
     # out_file = "output_ED.csv"
     df.to_csv(out_file, index=False)
-    
+    text6.configure(text='Status: Success! Fixations and Saccades have been detected successfully')
 
     #For testing 
     """
@@ -249,7 +262,7 @@ def event_detection(tracker_type):
               
     
     #This is our total number of fixations
-    print(len(fixations_after_constraints))
+    print (len(fixations_after_constraints),'fixations were detected')
   
 # UI things. This is very similar to preprocessing UI 
 window = Tk()
@@ -313,4 +326,3 @@ text6 = Label(frame7, text='Status: N/A')
 text6.pack()
 
 window.mainloop()
-
