@@ -56,8 +56,8 @@ def event_detection(tracker_type):
     else:
         time = df["Time"]
         velocities = df["Angular Velocity (in degrees/second)"]
-        #time = list(time) 
-        #velocities = list(velocities)
+        time = list(time) 
+        velocities = list(velocities)
         
 
     PT = int(peak_thresh.get())
