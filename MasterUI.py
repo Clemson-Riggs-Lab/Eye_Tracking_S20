@@ -9,7 +9,7 @@ import pandas as pd
 import statistics
 from tkinter import *
 from os import path
-import os 
+import os
 import numpy as np
 import math
 from os import path
@@ -18,23 +18,45 @@ import numpy as np
 import scipy.signal as signal
 import matplotlib.pyplot as plt
 
-def eyeTracking():
-        #Checking that input file is valid
+def eyeTracking():       
+    file=input_name.get()
+    newfile = output_name.get()
+    t= tracker_type.get() # t stores the tracker_type int variable
     file_name = input_name.get()
-    if path.exists(file_name) and os.path.isfile(file_name):
+    if path.exists(file_name) and os.path.isfile(file_name):     #Checking that input file is valid
         if output_name.get() == '':
             Status.configure(text='Status:Output file name not specified!')
             return
-        file=input_name.get()
-        newfile = output_name.get()
+        if (t0.get()=='' or tf.get() ==''):
+            Status.configure(text='Status: Times not specified!')
+            return
+        start_time=int(t0.get())
+        end_time=int(tf.get())
+        # We will use the start and end times to only use the data within these two values and discard all the rest
         df = pd.read_csv(file_name)
-        t= tracker_type.get() # t stores the tracker_type int variable
+        i=0
+        start=0
+        end = 0
+        while start <start_time: #find closest value to start time
+            start=df['Time'][i]
+            i=i+1
+        
+        while end <end_time: #find closest value to end time
+            end=df['Time'][i]
+            i=i+1          
+        df=df.truncate(start,end)
+        df.reset_index(drop=True, inplace=True)
+        ##############################################
         df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
         df=preProcess(t,df)
         df=missingDataCheck(t,df,file)
         df=VelocityCalculation(t,df)
         df=ThresholdEstimation(df)
         # after all changes are made
+        df.drop(df.filter(regex="Unnamed"),axis=1, inplace=True)
+        del df['Panel']
+        del df['Panel.1']
+        del df['Occurences']
         df.to_csv(newfile, index=False)
         Status.configure(text='Success!')  
     else:
@@ -143,6 +165,10 @@ def preProcess(tracker_type,df):
         return df             
 def missingDataCheck(tracker_type,df,file):
         output_file = open("ErrorLog.txt", "w")
+        output_file.write(
+        'File name:'+str(file)+'\n')
+        output_file.write(
+        '-------------------------------------------------------------------------'+'\n')
         X_coords = []
         Y_coords = []
         negative_coordinates = []
@@ -154,16 +180,19 @@ def missingDataCheck(tracker_type,df,file):
         #Function returns the following lists given the dataframe        
         negative_coordinates,missing_packets,marker_bad,X_coords,Y_coords = CheckErrors(df,output_file,tracker_type)
         '''----------gathering statistics-----------------'''
-        Statistics(negative_coordinates,missing_packets,marker_bad,final_index,final_time,output_file,tracker_type)
+        Statistics(negative_coordinates,missing_packets,marker_bad,final_index,final_time,file,output_file,tracker_type)
         '''----------deleting errors from file-----------------'''
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coordinates).union(set(marker_bad)))
         df=DeleteErrors(combined_list,missing_packets,df)
         '''-------------displaying the plot-------------------'''
         ScatterPlot(X_coords,Y_coords,file)
+        '''-------------displaying the plot-------------------'''
+        TimeGap(tracker_type,df,output_file)
         return df
-def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,output_file,tracker_type):     
+def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,file,output_file,tracker_type):     
         #writing summary statistics
+
         output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coords)) + '\n')
         output_file.write('Total Unordered Data Packets: ' + str(len(missing_data)) + '\n')
         output_file.write('Total Invalid Data based on Gazepoint: ' + str(len(bad_markers)) + '\n')
@@ -175,16 +204,17 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,o
         percentage_impossible = len(negative_coords) / final_index * 100
         percentage_packets = len(missing_data) / final_index * 100
         percentage_gazepoint = len(bad_markers) / final_index * 100
+        
 
         #write these additional statistics to the output file
         output_file.write(
-            '\nProportion of Negative/Zero/Impossible Coordinates: ' + str(proportion_impossible) + ' (' + str(
-                percentage_impossible) + '%)' + '\n')
-        output_file.write('Proportion of Unordered Data Packets: ' + str(proportion_packets) + ' (' + str(
-            percentage_packets) + '%)' + '\n')
+            'Negative/Zero/Impossible Coordinates: ' + str(
+                percentage_impossible) + '%' + '\n')
+        output_file.write('Unordered Data Packets: ' + str(
+            percentage_packets) + '%' + '\n')
         output_file.write(
-            'Proportion of Invalid Data based on Gazepoint: ' + str(proportion_gazepoint) + ' (' + str(
-                percentage_gazepoint) + '%)' + '\n')
+            'Invalid Data based on Eye Tracker: ' + str(
+                percentage_gazepoint) + '%' + '\n')
 
         # Time recorded is in ms, fetch last time recorded in csv file
         total_time_seconds = final_time / 1000
@@ -203,7 +233,7 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,o
             total_error_time_seconds = total_error_time_seconds/1000 #convert to seconds
         total_error_time_minutes = total_error_time_seconds / 60
 
-        output_file.write('Error Time Elapsed: ' + str(total_error_time_minutes) + ' minutes (' + str(total_error_time_seconds) + ' seconds)' + '\n')  
+        output_file.write('Total Amount Of Time Of Invalid Data: ' + str(total_error_time_minutes) + ' minutes (' + str(total_error_time_seconds) + ' seconds)' + '\n')  
 def CheckErrors(df,output_file,tracker):
         X_coords = []
         Y_coords = []
@@ -236,7 +266,7 @@ def CheckErrors(df,output_file,tracker):
             #If FOVIO tracker        
             elif tracker ==2:
                 #Check if recorded coordinates are within the resolution ranges
-                if df['Lft X Pos'][i] <= 0 or df['Lft X Pos'][i] >= 2560 or df['Rt X Pos'][i] <= 0 or df['Rt X Pos'][i] >= 2560 or df['Lft Y Pos'][i] <= 0 or df['Lft Y Pos'][i] >= 1440  or df['Rt Y Pos'][i] <= 0 or df['Rt Y Pos'][i] >= 1440 :
+                if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1600:
                     output_file.write('Row ' + str(i + 2) + ': Negative/Zero/Impossible Coordinates\n')
                     negative_coordinates.append(i)
                     valid_point = FALSE
@@ -288,6 +318,8 @@ def VelocityCalculation(tracker_type,df):
         Angular_Velocity = []
         Delta_mm = []
         Delta_rad = [] 
+        inch_to_mm=25.4
+        rad_to_degrees = 57.29577951
         for i in range(0,len(df.index)):
                 if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
                     x1 = df['BestPogX'][i-1]
@@ -301,18 +333,22 @@ def VelocityCalculation(tracker_type,df):
                     time_diff=abs(df['Time'][i+1]-df['Time'][i]) 
                     
                   
-                if tracker_type==1: #If Gazepoint Tracker                    
+                if tracker_type==1: #If Gazepoint Tracker 
+                    distance_from_screen = 23.62204724
+                    pixel_to_mm=0.207565625
                     Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
-                    Delta_mm.append(Delta[i]*0.207565625)
-                    Delta_rad.append(math.atan(Delta_mm[i]/(23.62204724*25.4)))
-                    velocity = Delta_rad[i]*57.29577951/time_diff #convert to degrees and divide by time difference
+                    Delta_mm.append(Delta[i]*pixel_to_mm)
+                    Delta_rad.append(math.atan(Delta_mm[i]/(distance_from_screen*inch_to_mm)))
+                    velocity = Delta_rad[i]*rad_to_degrees/time_diff #convert to degrees and divide by time difference
                     Angular_Velocity.append(velocity)
                     
                 elif tracker_type ==2: #If FOVIO Tracker
+                    distance_from_screen = 29.5
+                    pixel_to_mm=0.269279688
                     Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
-                    Delta_mm.append(Delta[i]*0.269279688)
-                    Delta_rad.append(math.atan(Delta_mm[i]/(29.5*25.4)))
-                    velocity = Delta_rad[i]*57.29577951*1000/time_diff #convert to degrees and divide by time difference
+                    Delta_mm.append(Delta[i]*pixel_to_mm)
+                    Delta_rad.append(math.atan(Delta_mm[i]/(distance_from_screen*inch_to_mm)))
+                    velocity = Delta_rad[i]*rad_to_degrees*1000/time_diff #convert to degrees and divide by time difference
                     Angular_Velocity.append(velocity)
           
         df['Delta (in pixels)'] = Delta #Create a new column and append the visual angle values in pixels
@@ -354,7 +390,19 @@ def ThresholdEstimation(df):
     df['Onset Threshold']=onset_threshold
     df['Offset Threshold']=offset_threshold
     return df
-
+def TimeGap(tracker_type,df,output_file):
+    #This function calculates the time gap in seconds
+    times=[]
+    times = df['Time']
+    gap = 0
+    for i in range(0,len(times)-1): 
+        diff = times[i+1]-times[i]
+        if diff>gap:
+            gap=diff
+    if tracker_type ==2: #FOVIO time is in ms while Gazepoint time is in second
+        gap=gap/1000
+    output_file.write('\nLargest Timegap of missing data: ' + str(gap) +' seconds' + '\n')    
+    return
 ###############################################################################
 ## UI stuff
 
@@ -417,37 +465,47 @@ text3.pack(side=LEFT)
 input_name = Entry(frame4) # input name variable 
 input_name.pack(side=LEFT)
 
-text4 = Label(frame5, text='Enter Output File Name (include .csv):            ')
+text4 = Label(frame5, text='Enter Output File Name (include .csv):           ')
 text4.pack(side=LEFT)
 output_name = Entry(frame5) #output name variable
 output_name.pack(side=LEFT)
 
-text5 = Label(frame6,
-              text='\n 2. Butterworth Filtering Information:\n')
-text5.pack()
+text5 = Label(frame6, text='Enter start time(ms):                                          ')
+text5.pack(side=LEFT)
+t0 = Entry(frame6) # input name variable 
+t0.pack(side=LEFT)
 
-text6 = Label(frame7, text='Enter filter order (N):                                         ')
+text6 = Label(frame7, text='Enter end time (ms):                                          ')
 text6.pack(side=LEFT)
-N = Entry(frame7) #Filter order variable
+tf = Entry(frame7) #output name variable
+tf.pack(side=LEFT)
+
+text7 = Label(frame8,
+              text='\n 2. Butterworth Filtering Information:\n')
+text7.pack()
+
+text8 = Label(frame9, text='Enter filter order (N):                                         ')
+text8.pack(side=LEFT)
+N = Entry(frame9) #Filter order variable
 N.pack(side=LEFT)
 
-text7 = Label(frame8, text='Enter critical frequency (Wn):                          ')
-text7.pack(side=LEFT)
-Wn = Entry(frame8) #Wn variable
+text9 = Label(frame10, text='Enter critical frequency (Wn):                          ')
+text9.pack(side=LEFT)
+Wn = Entry(frame10) #Wn variable
 Wn.pack(side=LEFT)
 
-text8 = Label(frame9,
+text10 = Label(frame11,
               text='\n 3. Missing Data Check Information:\n')
-text8.pack()
+text10.pack()
 
 v = IntVar() # Options variable
 
-button2 = Radiobutton(frame10,
-              text=" Delete Rows Automatically",
+button2 = Radiobutton(frame12,
+              text="                   Delete rows in output file",
               padx = 20,
               variable=v,
               value=1).pack()
-button3 = Radiobutton(frame11,
+button3 = Radiobutton(frame13,
               text="Mark in separate Excel file for review",
               padx = 20,
               variable=v,
