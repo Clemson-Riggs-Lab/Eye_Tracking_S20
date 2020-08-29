@@ -27,36 +27,30 @@ def eyeTracking():
         if output_name.get() == '':
             Status.configure(text='Status:Output file name not specified!')
             return
-        if (t0.get()=='' or tf.get() ==''):
+        if (t==2 and (t0.get()=='' or tf.get() =='')):
             Status.configure(text='Status: Times not specified!')
             return
         start_time=int(t0.get())
         end_time=int(tf.get())
         # We will use the start and end times to only use the data within these two values and discard all the rest
-        df = pd.read_csv(file_name)
-        i=0
-        start=0
-        end = 0
-        while start <start_time: #find closest value to start time
-            start=df['Time'][i]
-            i=i+1
-        
-        while end <end_time: #find closest value to end time
-            end=df['Time'][i]
-            i=i+1          
-        df=df.truncate(start,end)
-        df.reset_index(drop=True, inplace=True)
+        df = pd.read_csv(file_name) 
+        if t ==2:  #truncate the dataframe if the tracker is a FOVIO one      
+            df=df[(df.Time>=start_time)&(df.Time<=end_time)]
+            df.reset_index(drop=True, inplace=True)
         ##############################################
-        df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
         df=preProcess(t,df)
         df=missingDataCheck(t,df,file)
+        df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
         df=VelocityCalculation(t,df)
         df=ThresholdEstimation(df)
         # after all changes are made
         df.drop(df.filter(regex="Unnamed"),axis=1, inplace=True)
-        del df['Panel']
-        del df['Panel.1']
-        del df['Occurences']
+        if 'Panel' in df.columns:
+            del df['Panel']
+        if 'Panel.1' in df.columns:
+            del df['Panel.1']
+        if 'Occurences' in df.columns:
+            del df['Occurences']
         df.to_csv(newfile, index=False)
         Status.configure(text='Success!')  
     else:
@@ -64,49 +58,25 @@ def eyeTracking():
     return
 def butter(tracker_type,df):
         #Converting coordinates into arrays that are usable by filtfilt function
+    x = np.array(df["BestPogX"])
+    y = np.array(df["BestPogY"])
+    order = int(N.get())
+    freq = float(Wn.get())
+    #Creating the filter
     if tracker_type == 1:
-            x = np.array(df["BestPogX"])
-            y = np.array(df["BestPogY"])
-            order = int(N.get())
-            freq = float(Wn.get())
-            #Creating the filter
-            B, A = signal.butter(order, freq, fs=150, output='ba')
-            #Passing x and y coordinates through the filter
-            filtered_x = signal.filtfilt(B, A, x)
-            filtered_y = signal.filtfilt(B, A, y)
-            #Changing updating the coordinates with the filtered ones
-            df["BestPogX"] = filtered_x
-            df["BestPogY"] = filtered_y
-            
-            
-            #Before and after plot to see the difference
-
-            
-            fig, axs = plt.subplots(2)
-            axs[0].plot(x, linewidth=1)
-            axs[1].plot(filtered_x, linewidth=1)
-            plt.show()      
+            B, A = signal.butter(order, freq, fs=150, output='ba')      
     elif tracker_type == 2:    
-            x = np.array(df["Lft X Pos"])
-            y = np.array(df["Lft Y Pos"])
-  
-            order = int(N.get())
-            freq = float(Wn.get())
-            #Creating the filter
-            B, A = signal.butter(order, freq, fs=60, output='ba')
-            #Passing x and y coordinates through the filter
-            filtered_x = signal.filtfilt(B, A, x)
-            filtered_y = signal.filtfilt(B, A, y)
-        
-            #Changing updating the coordinates with the filtered ones
-            df["Lft X Pos"] = filtered_x
-            df["Lft Y Pos"] = filtered_y
-            df["Rt X Pos"] = filtered_x
-            df["Rt Y Pos"] = filtered_y            
-            fig, axs = plt.subplots(2)
-            axs[0].plot(x, linewidth=1)
-            axs[1].plot(filtered_x, linewidth=1)
-            plt.show()
+            B, A = signal.butter(order, freq, fs=60, output='ba') 
+    #Passing x and y coordinates through the filter
+    filtered_x = signal.filtfilt(B, A, x)
+    filtered_y = signal.filtfilt(B, A, y)
+    #Changing updating the coordinates with the filtered ones
+    df["BestPogX"] = filtered_x
+    df["BestPogY"] = filtered_y 
+    fig, axs = plt.subplots(2)
+    axs[0].plot(x, linewidth=1)
+    axs[1].plot(filtered_x, linewidth=1)
+    plt.show()           
     return df
 def preProcess(tracker_type,df):
         # Default width is 2560 and default height is 1440 for Gazepoint
@@ -195,7 +165,8 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,f
 
         output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coords)) + '\n')
         output_file.write('Total Unordered Data Packets: ' + str(len(missing_data)) + '\n')
-        output_file.write('Total Invalid Data based on Gazepoint: ' + str(len(bad_markers)) + '\n')
+        if tracker_type==1:
+            output_file.write('Total Invalid Data based on Gazepoint: ' + str(len(bad_markers)) + '\n')
 
         #calculating more summary statistics
         proportion_impossible = len(negative_coords) / final_index
@@ -212,9 +183,10 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,f
                 percentage_impossible) + '%' + '\n')
         output_file.write('Unordered Data Packets: ' + str(
             percentage_packets) + '%' + '\n')
-        output_file.write(
-            'Invalid Data based on Eye Tracker: ' + str(
-                percentage_gazepoint) + '%' + '\n')
+        if tracker_type==1:
+            output_file.write(
+                'Invalid Data based on Eye Tracker: ' + str(
+                    percentage_gazepoint) + '%' + '\n')
 
         # Time recorded is in ms, fetch last time recorded in csv file
         total_time_seconds = final_time / 1000
@@ -279,11 +251,6 @@ def CheckErrors(df,output_file,tracker):
                         output_file.write('Row ' + str(i + 2) + ': Unordered Data Packet Counters\n')
                         missing_packets.append(i)
                         valid_point = FALSE
-                #report when gazepoint has a 0 in the either L Display or R Display columns
-                if df['L Display'][i] == 0 or df['R Display'][i] == 0 :
-                    output_file.write('Row ' + str(i + 2) + ': Invalid Data based on Gazepoint\n')
-                    marker_bad.append(i)
-                    valid_point = FALSE 
             if valid_point == TRUE and (i%100==0): #modulo condition to reduce number of points and explore a wider scope (take 1 point every 100 iterations)
                 X_coords.append(df['Lft X Pos'][i])
                 Y_coords.append(df['Lft Y Pos'][i])
