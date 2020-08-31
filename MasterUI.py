@@ -61,7 +61,7 @@ def butter(tracker_type,df):
     x = np.array(df["BestPogX"])
     y = np.array(df["BestPogY"])
     order = int(N.get())
-    freq = float(Wn.get())
+    freq = float(fc.get())
     #Creating the filter
     if tracker_type == 1:
             B, A = signal.butter(order, freq, fs=150, output='ba')      
@@ -456,10 +456,10 @@ text8.pack(side=LEFT)
 N = Entry(frame9) #Filter order variable
 N.pack(side=LEFT)
 
-text9 = Label(frame10, text='Enter critical frequency (Wn):                          ')
+text9 = Label(frame10, text='Enter the critical frequency (fc):                          ')
 text9.pack(side=LEFT)
-Wn = Entry(frame10) #Wn variable
-Wn.pack(side=LEFT)
+fc = Entry(frame10) #fc variable
+fc.pack(side=LEFT)
 
 text10 = Label(frame11,
               text='\n 3. Missing Data Check Information:\n')
