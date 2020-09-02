@@ -8,22 +8,15 @@ import math
 import DataQuality
 from DataQuality import UAVs
 '''
-Dustin Nguyen and Sam Smith
-ddn3aq sjs5pg 
-2/18/2020
+Sam Smith
+ sjs5pg 
+09/01/2020
 Riggs Lab
-
-Update 3/3: New UI interface!
-Update 4/2: Multiple files allowed!
-
-Update to-do : get multiple files into one output file
-4/5: all go into one file now
 
 '''
 
 """
-This function is called by the GUI when user presses the submit button.
-It contains all of the logic for the file. 
+This function is called by the GUI when user presses the gazepoint button.
 """
 
 #Could potentially clean this up by creating an object 
@@ -55,20 +48,19 @@ def dq():
 
             """Currently commenting this out. Need to add x and yerrors to this
             GUI eventually. """
-            # try: 
-            #     int(xError.get())
-            #     input_xError = int(xError.get())
-            # except:
-            #     input_xError = 0
+            try: 
+                int(xError.get())
+                input_xError = int(xError.get())
+            except:
+                input_xError = 0
 
-            # try: 
-            #     int(yError.get())
-            #     input_yError = int(yError.get())
-            # except:
-            #     input_yError = 0
+            try: 
+                int(yError.get())
+                input_yError = int(yError.get())
+            except:
+                input_yError = 0
             
-            input_yError = 0
-            input_xError = 0
+           
 
             totalRows=0
             for each in raw["BestPogX"]:
@@ -177,6 +169,7 @@ def dq():
             FLPanel = [920, 2560, 812 ,1158]
             CMPanel = [920, 2560, 1158 ,1440]
             task_dict = {"RRTimeofRR" :RRPanel, "FLStopTime":FLPanel, "MessageTime":CMPanel}
+            #TRY TO SIMPLIFY THIS CODE IN FUTURE
             for task in task_dict:
                 perf_counter=0
                 for each in performance[task]:
@@ -187,7 +180,7 @@ def dq():
                                 perf_counter+=1
                                 continue
                             
-                            
+                        
                         raw_counter=0
                         for mt in raw["MissionTime"]:
                             if (-.01 <= mt- each <= .01):
@@ -347,7 +340,7 @@ def preProcess(tracker_type):
 ################################################################
         
         df.to_csv(output_file_name, index=False)
-        text6.configure(text='Status: Success! PreProcessed file created')
+        text8.configure(text='Status: Success! PreProcessed file created')
     # if its a folder instead of a file
     elif os.path.isdir(file_name):
 
@@ -443,7 +436,7 @@ def preProcess(tracker_type):
         """
         final_df.to_csv(output_file_name, index=False)
 
-        text6.configure(text='Status: Success! Multiple files processed into one file as well as individual files.')
+        text8.configure(text='Status: Success! Multiple files processed into one file as well as individual files.')
 
 
     else:
@@ -464,6 +457,7 @@ frame4 = Frame(window)
 frame5 = Frame(window)
 frame6 = Frame(window)
 frame7 = Frame(window)
+frame8 = Frame(window)
 
 frame0.pack()
 frame1.pack()
@@ -473,8 +467,9 @@ frame4.pack()
 frame5.pack()
 frame6.pack()
 frame7.pack()
+frame8.pack()
 
-window.title("Eye Tracking Data")
+window.title("Gazepoint preprocessing")
 
 text0 = Label(frame0,
               text='1. Leave X and Y resolution BLANK if you want the default values of 2560x1440 \n 2. Include ".csv" in the Input and Output file names \n '
@@ -508,13 +503,21 @@ output_name = Entry(frame5)
 output_name.pack(side=LEFT)
 
 
-text6 = Label(frame6, text='Eye Tracker Type:')
+text6 = Label(frame6, text='Enter horizontal (x) margin of error value [pixels]: ')
+text6.pack(side=LEFT)
+xError=Entry(frame6)
+xError.pack(side=LEFT)
+
+text7 = Label(frame7, text='Enter vertical (y) margin of error value [pixels]: ')
+text7.pack(side=LEFT)
+yError=Entry(frame7)
+yError.pack(side=LEFT)
 
 one = Button(window, text="Gazepoint", width="10", height="3",command=lambda : preProcess(1))
 one.pack(side="top")
 
 
-text7 = Label(frame7, text='Status: N/A')
-text7.pack()
+text8 = Label(frame8, text='Status: N/A')
+text8.pack()
 
 window.mainloop()
