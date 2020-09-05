@@ -11,7 +11,6 @@ from DataQuality import UAVs
 Sam Smith
  sjs5pg 
 09/01/2020
-Riggs Lab
 
 '''
 
@@ -214,7 +213,7 @@ def dq():
                     perf_counter+=1
            
             raw.to_csv(output_file_name, index=False)
-            text6.configure(text='Status: Success! The output file now shows data quality information.')
+            text8.configure(text='Status: Success! The output file now shows data quality information.')
             #Creating summary statistics file (STILL IN PROGRESS)
             percent_accurate = number_true/number_analyzed
             summary_stats = open("quality_summary.txt", 'w')
