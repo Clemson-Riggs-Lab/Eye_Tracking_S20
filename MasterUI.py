@@ -17,6 +17,7 @@ from datetime import time, datetime, timedelta
 import numpy as np
 import scipy.signal as signal
 import matplotlib.pyplot as plt
+import DataQuality
 
 def eyeTracking():       
     file=input_name.get()
@@ -39,7 +40,21 @@ def eyeTracking():
             df.reset_index(drop=True, inplace=True)
         ##############################################
         df=preProcess(t,df)
-        df=missingDataCheck(t,df,file)
+        """
+        Here we need to call dataquality program if t==1.
+
+        TODO: add xError and yError to GUI, figure out why missing data check is 
+        causing errors, create two output files, one after dataquality call and the
+        other after every other step has been executed
+        """
+        #Call dataquality if gazepoint file 
+        if t == 1:
+            df = DataQuality.dq(df, performance.get(), 0, 0)
+            #This is meant to remove indices so velocity calculation works 
+            df.reset_index(drop = True, inplace=True)
+
+        """TODO: this is causing errors for gazepoint"""
+        # df=missingDataCheck(t,df,file)
         df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
         df=VelocityCalculation(t,df)
         df=ThresholdEstimation(df)
@@ -279,6 +294,8 @@ def DeleteErrors(combined_list,missing_packets,df):
             series = pd.Series(defaultvals)
             df['MissingDataCheck'] = series  
         return df
+
+
 def VelocityCalculation(tracker_type,df):
 # In this function we calculate the visual angles, angular velocities, and append the to the dataframe
         Delta = [] #in pixels
@@ -287,6 +304,9 @@ def VelocityCalculation(tracker_type,df):
         Delta_rad = [] 
         inch_to_mm=25.4
         rad_to_degrees = 57.29577951
+
+        """TODO: This is causing errors for gazepoint. I think it's because 
+the indices are off. """
         for i in range(0,len(df.index)):
                 if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
                     x1 = df['BestPogX'][i-1]
@@ -390,6 +410,9 @@ frame12 = Frame(window)
 frame13 = Frame(window)
 frame14 = Frame(window)
 frame15  = Frame(window)
+frame16  = Frame(window)
+frame17  = Frame(window)
+
 frame0.pack()
 frame1.pack()
 frame2.pack()
@@ -406,6 +429,8 @@ frame12.pack()
 frame13.pack()
 frame14.pack()
 frame15.pack()
+frame16.pack()
+frame17.pack()
 
 window.title("Eye Tracking Data")
 
@@ -420,7 +445,7 @@ button4 = Radiobutton(frame2,
               text="Gazepoint",
               padx = 200,
               variable=tracker_type,
-              value=1).pack()
+              value=1).pack(padx=200)
 button5 = Radiobutton(frame3,
               text="      FOVIO",
               padx = 20,
@@ -479,12 +504,15 @@ button3 = Radiobutton(frame13,
               value=2).pack()
 
 
-
+p_file = Label(frame15, text= "Enter performance file (ONLY FOR GAZEPOINT)")
+p_file.pack(side=LEFT)
+performance = Entry(frame15)
+performance.pack(side=LEFT)
 
 one = Button(window, text="GO", width="10", height="2",command=lambda : eyeTracking())
 one.pack(side="top")
 
-Status = Label(frame14, text='Status: N/A')
+Status = Label(frame17, text='Status: N/A')
 Status.pack()
 
 window.mainloop()

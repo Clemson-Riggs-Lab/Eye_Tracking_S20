@@ -233,9 +233,9 @@ def calculateDistance(x1,y1,x2,y2):
 
 
 
-def dq(inputET, inputP, xError, yError):
+def dq(df, inputP, xError, yError):
           
-            raw = pd.read_csv(inputET)
+            
             performance = pd.read_csv(inputP)
 
            
@@ -251,20 +251,20 @@ def dq(inputET, inputP, xError, yError):
            
           
             totalRows=0
-            for each in raw["BestPogX"]:
+            for each in df["BestPogX"]:
                 totalRows+=1
 
-            raw["NewSystemTime"] = ""
-            raw.at[0, "NewSystemTime"]= raw.at[0, "SystemTime"]+ ".0"
-            setSystemTime(raw, totalRows)
+            df["NewSystemTime"] = ""
+            df.at[0, "NewSystemTime"]= df.at[0, "SystemTime"]+ ".0"
+            setSystemTime(df, totalRows)
             #Calling the setMissionTime function below 
             time = findFirstTime(performance)
-            start = (findFirstInstance(time, raw))
+            start = (findFirstInstance(time, df))
             print("starting mission time at: "+ str(start)) 
             #You can change output file with third parameter here 
-            raw["MissionTime"] = 0.0
+            df["MissionTime"] = 0.0
 
-            setMissionTime(raw, start, totalRows)
+            setMissionTime(df, start, totalRows)
             # raw.to_csv(output, index=False)
             """
             Create dictionary of the mission times (from the button clicks), assign 
@@ -272,17 +272,17 @@ def dq(inputET, inputP, xError, yError):
             """
             missionDict = {}
             #Tells us if target detection was accurate
-            raw["DataAccurate"] = ""
+            df["DataAccurate"] = ""
             #Tells which uav the target appeared in
-            raw["Task"] = ""
+            df["Task"] = ""
             #Tells us which uav the participant was looking at
-            raw["Qualitative"] = "N/A"
+            df["Qualitative"] = "N/A"
 
             """
             Uses distance formula to calculate how far eye coordinates are 
             from the center of a video feed or secondary task.
             """
-            raw["DistanceFromCenter"] = 0
+            df["DistanceFromCenter"] = 0
 
 
 
@@ -299,15 +299,15 @@ def dq(inputET, inputP, xError, yError):
                 if each == 1.0:
                     raw_counter=0
                     clickTime = performance.iloc[count, 27]
-                    for mt in raw["MissionTime"]:
+                    for mt in df["MissionTime"]:
                         #Finding where button click time and MissionTime align
                         if -.01 <= mt -  clickTime <= .01 :
                             #print(raw.at[raw_counter, "BestPogY"])
                             number_analyzed+=1
                             uavNum = int(performance.at[count, "UAVNumber"])
                             uav = UAVs[uavNum-1]
-                            x = raw.at[raw_counter, "BestPogX"]
-                            y = raw.at[raw_counter, "BestPogY"]
+                            x = df.at[raw_counter, "BestPogX"]
+                            y = df.at[raw_counter, "BestPogY"]
 
                             #Now accuracy takes the errors into account 
                             xacc= (x >= uav[0] - xError and x <= uav[1] + xError)
@@ -339,15 +339,15 @@ def dq(inputET, inputP, xError, yError):
 
 
                             #Updating the output csv file
-                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
-                            raw.at[raw_counter, "Task"] = "Target detection task for UAV " + str(uavNum)
-                            raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
-                            raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                            df.at[raw_counter, "DataAccurate"] = xacc and yacc
+                            df.at[raw_counter, "Task"] = "Target detection task for UAV " + str(uavNum)
+                            df.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
+                            df.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
                         raw_counter+=1
                 count+=1
 
-            print(missionDict)
+            # print(missionDict)
 
             """
             Here, we repeat the logic used for target detection but in the context of 
@@ -369,34 +369,34 @@ def dq(inputET, inputP, xError, yError):
                             
                             
                         raw_counter=0
-                        for mt in raw["MissionTime"]:
+                        for mt in df["MissionTime"]:
                             if (-.01 <= mt- each <= .01):
                                 number_analyzed+=1
-                                x = raw.at[raw_counter, "BestPogX"]
-                                y = raw.at[raw_counter, "BestPogY"]
+                                x = df.at[raw_counter, "BestPogX"]
+                                y = df.at[raw_counter, "BestPogY"]
                                 xacc= (x >= task_dict[task][0] - xError and x <= task_dict[task][1] + xError)
                                 yacc = (y >= task_dict[task][2] - yError and y <= task_dict[task][3] + yError)
 
                                 centerx = (task_dict[task][0] + task_dict[task][1])/2
                                 centery = (task_dict[task][2] + task_dict[task][3])/2
-                                raw.at[raw_counter, "Task"] = "Secondary detection task for "+ task
-                                raw.at[raw_counter, "DataAccurate"] = xacc and yacc
-                                raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                                df.at[raw_counter, "Task"] = "Secondary detection task for "+ task
+                                df.at[raw_counter, "DataAccurate"] = xacc and yacc
+                                df.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
                                 
                                 if xacc and yacc:
                                     number_true+=1
-                                    raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the " + task
+                                    df.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the " + task
                                 else: 
                                     cur_uav = which_uav(x, y)
                                     number_false+=1
                                     if cur_uav == "Inconclusive":
                                         cur_task = which_secondary_task(x, y, task_dict)
                                         if cur_task=="Inconclusive":
-                                            raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
+                                            df.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
                                         else:
-                                            raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
+                                            df.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
                                     else:
-                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ str(cur_uav)
+                                        df.at[raw_counter, "Qualitative"] = "Participant was looking at "+ str(cur_uav)
                             raw_counter+=1
                     perf_counter+=1
            
@@ -412,5 +412,5 @@ def dq(inputET, inputP, xError, yError):
             Important to note that this function no longer puts the dataframe 
             into an output file. It just returns a dataframe. 
             """
-            return raw[start:start+900]
+            return df[start:start+900]
 
