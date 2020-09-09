@@ -43,18 +43,21 @@ def eyeTracking():
         """
         Here we need to call dataquality program if t==1.
 
-        TODO: add xError and yError to GUI, figure out why missing data check is 
-        causing errors, create two output files, one after dataquality call and the
-        other after every other step has been executed
+        TODO: figure out why missing data check is 
+        causing errors for gazepoint
         """
         #Call dataquality if gazepoint file 
         if t == 1:
-            df = DataQuality.dq(df, performance.get(), 0, 0)
+            xe = int(xError.get())
+            ye = int(yError.get())
+            df = DataQuality.dq(df, performance.get(), xe, ye)
             #This is meant to remove indices so velocity calculation works 
             df.reset_index(drop = True, inplace=True)
+            df.to_csv(dqoutput.get())
 
-        """TODO: this is causing errors for gazepoint"""
-        # df=missingDataCheck(t,df,file)
+        """missing data check is causing errors for gazepoint, so right now it is only called for FOVIO"""
+        if t== 2:
+            df=missingDataCheck(t,df,file)
         df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
         df=VelocityCalculation(t,df)
         df=ThresholdEstimation(df)
@@ -412,6 +415,8 @@ frame14 = Frame(window)
 frame15  = Frame(window)
 frame16  = Frame(window)
 frame17  = Frame(window)
+frame18 = Frame(window)
+frame19 = Frame(window)
 
 frame0.pack()
 frame1.pack()
@@ -431,6 +436,8 @@ frame14.pack()
 frame15.pack()
 frame16.pack()
 frame17.pack()
+frame18.pack()
+frame19.pack()
 
 window.title("Eye Tracking Data")
 
@@ -504,15 +511,31 @@ button3 = Radiobutton(frame13,
               value=2).pack()
 
 
-p_file = Label(frame15, text= "Enter performance file (ONLY FOR GAZEPOINT)")
+p_file = Label(frame15, text= "Enter performance file (GAZEPOINT)")
 p_file.pack(side=LEFT)
 performance = Entry(frame15)
 performance.pack(side=LEFT)
 
+text11 = Label(frame16, text='(GAZEPOINT) Enter horizontal (x) margin of error value [pixels]: ')
+text11.pack(side=LEFT)
+xError=Entry(frame16)
+xError.pack(side=LEFT)
+
+text12 = Label(frame17, text='(GAZEPOINT) Enter vertical (y) margin of error value [pixels]: ')
+text12.pack(side=LEFT)
+yError=Entry(frame17)
+yError.pack(side=LEFT)
+
+text13 = Label(frame18, text= '(GAZEPOINT) Enter output file for dataquality information: ' )
+text13.pack(side=LEFT)
+dqoutput = Entry(frame18) 
+dqoutput.pack(side=LEFT)
+
+
 one = Button(window, text="GO", width="10", height="2",command=lambda : eyeTracking())
 one.pack(side="top")
 
-Status = Label(frame17, text='Status: N/A')
+Status = Label(frame19, text='Status: N/A')
 Status.pack()
 
 window.mainloop()
