@@ -31,10 +31,14 @@ def eyeTracking():
         if (t==2 and (t0.get()=='' or tf.get() =='')):
             Status.configure(text='Status: Times not specified!')
             return
-        start_time=int(t0.get())
-        end_time=int(tf.get())
+            start_time=int(t0.get())
+            end_time=int(tf.get())
         # We will use the start and end times to only use the data within these two values and discard all the rest
         df = pd.read_csv(file_name) 
+        if (t==1):
+            #REMOVING BLANK LINE FROM GAZEPOINT
+            df = df[1:df.index.stop]
+            df.reset_index(drop=True, inplace=True)
         if t ==2:  #truncate the dataframe if the tracker is a FOVIO one      
             df=df[(df.Time>=start_time)&(df.Time<=end_time)]
             df.reset_index(drop=True, inplace=True)
@@ -345,6 +349,7 @@ the indices are off. """
         df['Delta (in mm)'] = Delta_mm #Create a new column and append the visual angle values in mm
         df['Delta (in rad)'] = Delta_rad #Create a new column and append the visual angle values in rad
         df['Angular Velocity (in degrees/second)'] = Angular_Velocity #Create a new column and append the angular velocity in degrees per second
+        df.to_csv("output.csv", index=False)
         return df
 def ThresholdEstimation(df):
     mean = 0
@@ -363,12 +368,15 @@ def ThresholdEstimation(df):
         summ = 0
         N = 0
         for vel in velocities:
-            if vel < PTold:
+            #THIS LINE WAS CAUSING ISSUES FOR THE FILE I WAS USING
+            #SHOULD THE DUMMY VALUE BE DIFFERENT FOR GAZEPOINT?
+            # if vel < PTold:
                 summ=summ+vel
                 N=N+1
                 vel_list.append(vel)   
         if (N!=0):
             mean=summ/N
+     
         std_dev = statistics.stdev(vel_list,mean)
         PTold = PTnew
         PTnew = mean +6*std_dev

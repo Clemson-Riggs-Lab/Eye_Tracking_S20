@@ -8,6 +8,7 @@ import os
 #Sam Smith
 #04/09/2020
 
+
 """
 Overall, I'd say this file is somewhat difficult to understand because there are many things
 going on at once. The gist is that we are looking through a participant's performance file and 
