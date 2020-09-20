@@ -5,6 +5,7 @@ from datetime import time, datetime, timedelta
 from tkinter import *
 from os import path
 import os
+import numpy as np
 #Sam Smith
 #04/09/2020
 
@@ -63,72 +64,19 @@ system_time = ""
 count = 0
 coordinates = []
 
-#returns first index found of given time in raw data
-"""
-This function finds the first instance of a given time in the preprocessed eye
-tracking folder so that we know when the test actually started. THis is critical to
-calculating the mission time, which we then use to check the participants eye data when 
-they clicked certain things on the screen.
-"""
-def findFirstInstance(time, Raw_csv):
-    first = 0
-    for each in Raw_csv["NewSystemTime"]: 
-        if (each[0:8] == time[0:8]):
-            e_ms = int(each[9:11])
-            p_ms = int(time[9:11])
-            if p_ms -10 < e_ms < p_ms + 10:
-                break
-        first +=1
-    return first
 
-#finds first system time at which target is present in the performance file 
-#This will be where mission time equals 0, because this was the time when the mission actually began
-def findFirstTime(Perf_csv):
-    count=0
-    time = ""
-    for each in Perf_csv["TDTargetPresent"]:
-        if each==1:
-            #system time is 4th col of performance
-            time = Perf_csv.iloc[count, 4]
-            break
+def find_mission_start(first_perf_time,df):
+    fulldate = datetime(100, 1, 1, 1, int(first_perf_time[0:2]), int(first_perf_time[3:5]), int(first_perf_time[6]) * 100000)
+    time = fulldate.time()
+    count = 0
+    for each in (df["NST"]): 
+        #should change this to be within a range, unlikely we will find the exact time we're looking for
+        if each == time:
+            return count
         count+=1
-    return time
-
-
-#Counting number of total rows within eye tracking file 
-
-"""
-Converting the system time string into a datetime object
-which allows us to more easily add time using timedeltas.
-See the python datetime documentation (https://docs.python.org/3/library/datetime.html)
-for more information. Depending on the boolean value, convert either a SystemTime 
-or a NewSystemTime. 
-"""
-def convert_to_datetime(Raw_csv, row, boolean=False):
-    if boolean:
-        real_st = Raw_csv.at[row, "SystemTime"]
-    else:
-        real_st = Raw_csv.at[row, "NewSystemTime"]
-    #If statement is basically checking if hours is a single digit
-    if ":" in real_st[0:2]:
-        hours = int(real_st[0])
-        minutes = int(real_st[2:4])
-        seconds = int(real_st[5:7])
-        if len(real_st) ==7:
-            micro=0
-        else:
-            micro = int(real_st[8:])
-
-    else:
-        hours = int(real_st[0:2])
-        minutes = int(real_st[3:5])
-        seconds = int(real_st[6:8])
-        if len(real_st)==8:
-            micro=0
-        else:
-            micro = int(real_st[9:])
-    fulldate = datetime(100, 1, 1, hours, minutes, seconds, micro)
-    return fulldate.time()
+    
+    #if we didn't find the start of the mission 
+    return -1
 
 """
 This function allows us to add time, because this is strangely difficult 
@@ -232,7 +180,47 @@ def calculateDistance(x1,y1,x2,y2):
      dist = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)  
      return dist  
 
+#This works!
 
+def create_ST_lst(df):
+    base = (df.loc[1, "SystemTime"])
+
+    fulldate = datetime(100, 1, 1, 1, int(base[0:2]), int(base[3:5]), 0)
+    time = fulldate.time()
+    arr = [time]
+    # ser = pd.Series(arr)
+    return arr
+
+
+#This works but it's innacurate; might have to use Time column for more 
+#accuracy 
+"""
+TODO: add df as an argument so you can set system time within function, 
+figure out how to make this more accurate (Maybe using time column?)
+"""
+# def set_NST(arr, length_of_df):
+#     for i in range(1, length_of_df):
+#         x = addSecs(arr[i-1], 6000)
+#         arr.append(x)
+def deltas(df):
+        dlst = []
+        tm = df["Time"].tolist()
+        for i in range(len(tm)):
+            delta = float((tm[i]) - (tm[i-1])) * 1000000
+            dlst.append(delta)
+            
+        return dlst
+
+def set_NST(arr, df, deltas):
+    for i in range(1, df.index.stop-2):
+        
+        #this worked in command line
+
+        x = addSecs(arr[i-1], deltas[i]) 
+        arr.append(x)
+
+def add_NST_to_df(arr, df):
+    df["NST"] = pd.Series(arr)
 
 def dq(df, inputP, xError, yError):
           
