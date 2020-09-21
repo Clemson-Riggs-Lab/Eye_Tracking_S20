@@ -70,8 +70,8 @@ def find_mission_start(first_perf_time,df):
     time = fulldate.time()
     count = 0
     for each in (df["NST"]): 
-        #should change this to be within a range, unlikely we will find the exact time we're looking for
-        if each == time:
+        #Finding the first time within 10 ms
+        if subSecs(time, 10000) <= each <= addSecs(time, 10000):
             return count
         count+=1
     
@@ -89,44 +89,12 @@ def addSecs(tm, msecs):
     fulldate = fulldate + timedelta(microseconds=msecs)
     return fulldate.time()
 
-
-
-"""
-Takes the previous value in the NewSystemTime column,
-whch was initialized with a starting value as the first time in
-the original system time column, and adds the difference between
-the previous time and the the current time to the new system time. The 
-Datetime library is strange and I ran into errors when trying to update the
-NewSystemTime with time objects, so I converted them back into strings instead. 
-"""
-def setSystemTime(Raw_csv, total_rows):
-    for i in range(1,total_rows):
-
-        #Previous milisecond value (in microseconds)
-        previous = convert_to_datetime(Raw_csv, i-1)
-        #Difference between current time and previous time
-        delta = float((Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"]))
-        #Converting delta into microseconds 
-        #Im finding that the micro_delta multiple strongly affects the accuracy
-        micro_delta = delta* 1000000
-        current = addSecs(previous, micro_delta)
-        prev_x = convert_to_datetime(Raw_csv, i-1, True)
-        x = convert_to_datetime(Raw_csv,i, True)
-
-        #If system time incremented by 1 second, change the    
-        #New System time second to equal the system time second. 
-        if prev_x.second != x.second:
-            new_current = current.replace(hour=x.hour, minute=x.minute, second=x.second,microsecond=0)
-           
-            str_time = new_current.strftime("%H:%M:%S.%f")
-            Raw_csv.at[i, "NewSystemTime"] = str_time
-        else:
-            str_time = current.strftime("%H:%M:%S.%f")
-            Raw_csv.at[i, "NewSystemTime"] = str_time
-        
-            
-
-
+def subSecs(tm, msecs):
+    #arbitrary date, its the time that matters.
+    #For some reason python doesnt allow you to deal strictly with times
+    fulldate = datetime(100, 1, 1, tm.hour, tm.minute, tm.second, tm.microsecond)
+    fulldate = fulldate - timedelta(microseconds=msecs)
+    return fulldate.time()
 
 
 
@@ -140,14 +108,49 @@ MissionTime is a column we created whereas SystemTime is created by the eyetrack
 software I believe. 
 """
 
-def setMissionTime(Raw_csv, start_index, total_rows):
-    for i in range(total_rows):
+#Only setting the mission time for start index + 900 to avoid unnecessary computation
+def setMissionTime(df, start_index):
+    df["MissionTime"] = 0
+    for i in range(start_index, start_index + 5000):
         if i > start_index:
-            x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
-            Raw_csv.at[i, "MissionTime"] = float(Raw_csv.at[i-1, "MissionTime"]) + x
+            x = (df.loc[i, "Time"]) - (df.loc[i-1, "Time"])
+            df.loc[i, "MissionTime"] = float(df.loc[i-1, "MissionTime"]) + x
+    return df
+
+def create_ST_lst(df):
+    base = (df.loc[1, "SystemTime"])
+
+    fulldate = datetime(100, 1, 1, 1, int(base[0:2]), int(base[3:5]), 0)
+    time = fulldate.time()
+    arr = [time]
+    # ser = pd.Series(arr)
+    return arr
 
 
+#This works but it's innacurate; might have to use Time column for more 
+#accuracy 
+"""
+TODO: add df as an argument so you can set system time within function, 
+figure out how to make this more accurate (Maybe using time column?)
+"""
 
+def deltas(df):
+        dlst = []
+        tm = df["Time"].tolist()
+        for i in range(len(tm)):
+            delta = float((tm[i]) - (tm[i-1])) * 1000000
+            dlst.append(delta)
+            
+        return dlst
+
+def set_NST(arr, df, delta_lst):
+    for i in range(1, df.index.stop):
+        
+        x = addSecs(arr[i-1], delta_lst[i]) 
+        arr.append(x)
+
+def add_NST_to_df(arr, df):
+    df["NST"] = pd.Series(arr)
 
 
 """
@@ -182,79 +185,58 @@ def calculateDistance(x1,y1,x2,y2):
 
 #This works!
 
-def create_ST_lst(df):
-    base = (df.loc[1, "SystemTime"])
 
-    fulldate = datetime(100, 1, 1, 1, int(base[0:2]), int(base[3:5]), 0)
-    time = fulldate.time()
-    arr = [time]
-    # ser = pd.Series(arr)
-    return arr
+def preProcess(df):
+        # Default width is 2560 and default height is 1440 for Gazepoint
+        column_names_X = []
+        column_names_Y = []
+        column_names_bool = []
+        column_names_Pupil_Diameter = []
+       
+        # Default width is 2560 and default height is 1440 for Gazepoint
+        # Tracker used is that of experiment 1
+        # all the names of the columns we want to convert proportions to pixels for
+        width_of_screen = int(2560)
+        height_of_screen = int(1440)
+        column_names_X = ['CursorX', 'LeftEyeX', 'RightEyeX', 'FixedPogX', 'LeftPogX', 'RightPogX', 'BestPogX',
+                            'LeftPupilX', 'RightPupilX']
+        column_names_Y = ['CursorY', 'LeftEyeY', 'RightEyeY', 'FixedPogY', 'LeftPogY', 'RightPogY', 'BestPogY',
+                            'LeftPupilY', 'RightPupilY']
+        column_names_bool = ['LeftEyePupilValid', 'RightEyePupilValid', 'FixedPogValid', 'LeftPogValid',
+                                'RightPogValid', 'BestPogValid', 'LeftPupilValid', 'RightPupilValid', 'MarkerValid']
+        column_names_Pupil_Diameter = ['LeftEyePupilDiamet', 'RightEyePupilDiame']
 
+        # turn TRUES and FALSES to 1s and 0s
+        for each in column_names_bool:
+            df[each].replace(True, 1, inplace=True)
+            df[each].replace(False, 0, inplace=True)
+        # CHANGE RESOLUTION OF X HERE
+        for each in column_names_X:
+            df[each] = df[each].multiply(width_of_screen)
 
-#This works but it's innacurate; might have to use Time column for more 
-#accuracy 
-"""
-TODO: add df as an argument so you can set system time within function, 
-figure out how to make this more accurate (Maybe using time column?)
-"""
-# def set_NST(arr, length_of_df):
-#     for i in range(1, length_of_df):
-#         x = addSecs(arr[i-1], 6000)
-#         arr.append(x)
-def deltas(df):
-        dlst = []
-        tm = df["Time"].tolist()
-        for i in range(len(tm)):
-            delta = float((tm[i]) - (tm[i-1])) * 1000000
-            dlst.append(delta)
-            
-        return dlst
-
-def set_NST(arr, df, deltas):
-    for i in range(1, df.index.stop-2):
-        
-        #this worked in command line
-
-        x = addSecs(arr[i-1], deltas[i]) 
-        arr.append(x)
-
-def add_NST_to_df(arr, df):
-    df["NST"] = pd.Series(arr)
-
+        # CHANGE RESOLUTION OF Y HERE
+        for each in column_names_Y:
+            df[each] = df[each].multiply(height_of_screen)
 def dq(df, inputP, xError, yError):
-          
+            #REMOVING BLANK LINE FROM GAZEPOINT
+            df = df[1:df.index.stop]
+            df.reset_index(drop=True, inplace=True)
             
+            #if there is a blank line in performance, you can repeat the above two lines
+            #with performance in place of df
             performance = pd.read_csv(inputP)
 
            
             
-            #Gathering user input for error calculating the valid field of view for participants eyes.
-            """
-            Essentially, the error that the user inputs is used to extend the bounds that we would
-            consider to be acceptably accurate. For example, if a video feed's x coordinates were 
-            200 to 1000, an xError of 50 would mean that any eye data in the x direction
-            within the window of 150 to 1050 pixels would considered as accurate. This applies
-            to the y direction as well.  
-            """
-           
+            arr = create_ST_lst(df)
+            ds = deltas(df)
+            set_NST(arr, df, ds)
+            add_NST_to_df(arr, df)
+            #Does performance start with blank line as well? 
+            start = find_mission_start(performance["SystemTime"][0], df)
+            setMissionTime(df, start)
           
-            totalRows=0
-            for each in df["BestPogX"]:
-                totalRows+=1
-
-            df["NewSystemTime"] = ""
-            df.at[0, "NewSystemTime"]= df.at[0, "SystemTime"]+ ".0"
-            setSystemTime(df, totalRows)
-            #Calling the setMissionTime function below 
-            time = findFirstTime(performance)
-            start = (findFirstInstance(time, df))
-            print("starting mission time at: "+ str(start)) 
-            #You can change output file with third parameter here 
-            df["MissionTime"] = 0.0
-
-            setMissionTime(df, start, totalRows)
-            # raw.to_csv(output, index=False)
+       
             """
             Create dictionary of the mission times (from the button clicks), assign 
             coordinates as values to the mission times key 
@@ -391,15 +373,15 @@ def dq(df, inputP, xError, yError):
            
             # raw.to_csv(output, index=False)
             #Creating summary statistics file (STILL IN PROGRESS)
-            percent_accurate = number_true/number_analyzed
-            summary_stats = open("quality_summary.txt", 'w')
-            summary_stats.write("The data was "+ str(100 * percent_accurate) + " percent accurate.\n")
-            summary_stats.write("Of the "+ str(number_analyzed)+  " data points analyzed, " + str(number_true)+" data points were accurate while " + str(number_false) + " were inaccurate." )
-            summary_stats.close()
+            # percent_accurate = number_true/number_analyzed
+            # summary_stats = open("quality_summary.txt", 'w')
+            # summary_stats.write("The data was "+ str(100 * percent_accurate) + " percent accurate.\n")
+            # summary_stats.write("Of the "+ str(number_analyzed)+  " data points analyzed, " + str(number_true)+" data points were accurate while " + str(number_false) + " were inaccurate." )
+            # summary_stats.close()
             #returning from mission time start to the 900th point after that
             """
             Important to note that this function no longer puts the dataframe 
             into an output file. It just returns a dataframe. 
             """
-            return df[start:start+900]
+            return df[start:start+5000]
 
