@@ -66,7 +66,10 @@ coordinates = []
 
 
 def find_mission_start(first_perf_time,df):
-    fulldate = datetime(100, 1, 1, 1, int(first_perf_time[0:2]), int(first_perf_time[3:5]), int(first_perf_time[6]) * 100000)
+    if (len(first_perf_time)==7):
+        fulldate = datetime(100, 1, 1, 1, int(first_perf_time[0:2]), int(first_perf_time[3:5]), int(first_perf_time[6]) * 100000)
+    elif (len(first_perf_time) == 11):
+        fulldate = datetime(100, 1, 1, int(first_perf_time[0:2]), int(first_perf_time[3:5]), int(first_perf_time[6:8]), int(first_perf_time[9:11])*10000)
     time = fulldate.time()
     count = 0
     for each in (df["NST"]): 
@@ -109,9 +112,9 @@ software I believe.
 """
 
 #Only setting the mission time for start index + 900 to avoid unnecessary computation
-def setMissionTime(df, start_index):
+def setMissionTime(df, start_index, end):
     df["MissionTime"] = 0
-    for i in range(start_index, start_index + 5000):
+    for i in range(start_index, start_index + end):
         if i > start_index:
             x = (df.loc[i, "Time"]) - (df.loc[i-1, "Time"])
             df.loc[i, "MissionTime"] = float(df.loc[i-1, "MissionTime"]) + x
@@ -119,8 +122,11 @@ def setMissionTime(df, start_index):
 
 def create_ST_lst(df):
     base = (df.loc[1, "SystemTime"])
+    if (len(base) == 7):
+        fulldate = datetime(100, 1, 1, 1, int(base[0:2]), int(base[3:5]), 0)
+    elif (len(base) == 11):
+        fulldate = datetime(100, 1, 1, int(base[0:2]), int(base[3:5]), int(base[6:8]), int(base[9:11])*10000)
 
-    fulldate = datetime(100, 1, 1, 1, int(base[0:2]), int(base[3:5]), 0)
     time = fulldate.time()
     arr = [time]
     # ser = pd.Series(arr)
@@ -185,6 +191,14 @@ def calculateDistance(x1,y1,x2,y2):
 
 #This works!
 
+def find_end(start, df):
+    counter = 0
+    for each in df["NST"]:
+        if(each.minute - df["NST"][start].minute == 15):
+            return counter
+        counter +=1
+
+
 
 def preProcess(df):
         # Default width is 2560 and default height is 1440 for Gazepoint
@@ -234,8 +248,9 @@ def dq(df, inputP, xError, yError):
             add_NST_to_df(arr, df)
             #Does performance start with blank line as well? 
             start = find_mission_start(performance["SystemTime"][0], df)
-            setMissionTime(df, start)
-          
+            end = find_end(start, df)
+            setMissionTime(df, start, end)
+            
        
             """
             Create dictionary of the mission times (from the button clicks), assign 
@@ -383,5 +398,8 @@ def dq(df, inputP, xError, yError):
             Important to note that this function no longer puts the dataframe 
             into an output file. It just returns a dataframe. 
             """
-            return df[start:start+5000]
+            """
+            TODO: Change the return df to return 900 seconds after starting point
+            """
+            return df[start:end]
 
