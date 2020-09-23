@@ -252,8 +252,8 @@ def CheckErrors(df,output_file,tracker):
                         missing_packets.append(i)
                         valid_point = FALSE
             if valid_point == TRUE and (i%100==0): #modulo condition to reduce number of points and explore a wider scope (take 1 point every 100 iterations)
-                X_coords.append(df['Lft X Pos'][i])
-                Y_coords.append(df['Lft Y Pos'][i])
+                X_coords.append(df['BestPogX'][i])
+                Y_coords.append(df['BestPogY'][i])
             valid_point = TRUE #reset boolean variable for next iteration
         return negative_coordinates,missing_packets,marker_bad,X_coords,Y_coords
 def ScatterPlot(X_coords,Y_coords,file):
