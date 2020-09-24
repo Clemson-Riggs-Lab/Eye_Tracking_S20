@@ -56,7 +56,6 @@ UAVs = [UAV1, UAV2, UAV3, UAV4, UAV5, UAV6, UAV7,
         UAV8, UAV9, UAV10, UAV11, UAV12, UAV13, 
         UAV14, UAV15, UAV16]
 
-
 #Global variables to help with later calculations 
 system_time = ""
 count = 0
@@ -191,7 +190,7 @@ MissionTime is a column we created whereas SystemTime is created by the eyetrack
 software I believe. 
 """
 
-def setMissionTime(Raw_csv, start_index, total_rows):
+def setMissionTime(Raw_csv, start_index, out_file, total_rows):
     for i in range(total_rows):
         if i > start_index:
             x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
@@ -233,13 +232,26 @@ def calculateDistance(x1,y1,x2,y2):
 
 
 
-def dq(inputET, inputP, xError, yError):
-          
-            raw = pd.read_csv(inputET)
-            performance = pd.read_csv(inputP)
-
-           
+"""
+The function that is called in the GUI. This is the back end 
+of the program that contains most of the logic. 
+"""
+def dq():
+            if inputET_name.get() == '' or not os.path.isfile(inputET_name.get()):
+                raw = pd.read_csv("2ndTask_ET.csv")
+            else:
+                raw = pd.read_csv(inputET_name.get())
             
+            if inputP_name.get() == '' or not os.path.isfile(inputP_name.get()):
+                performance = pd.read_csv("2ndTask_P.csv")
+            else:
+                performance = pd.read_csv(inputP_name.get())
+
+            # if output_name.get() == '' or not os.path.isfile(output_name.get()):
+            #     output_file_name = "output1.csv"
+            # else:
+            #     output_file_name = output_name.get()
+            output_file_name = output_name.get()
             #Gathering user input for error calculating the valid field of view for participants eyes.
             """
             Essentially, the error that the user inputs is used to extend the bounds that we would
@@ -248,7 +260,17 @@ def dq(inputET, inputP, xError, yError):
             within the window of 150 to 1050 pixels would considered as accurate. This applies
             to the y direction as well.  
             """
-           
+            try: 
+                int(xError.get())
+                input_xError = int(xError.get())
+            except:
+                input_xError = 0
+
+            try: 
+                int(yError.get())
+                input_yError = int(yError.get())
+            except:
+                input_yError = 0
           
             totalRows=0
             for each in raw["BestPogX"]:
@@ -264,8 +286,8 @@ def dq(inputET, inputP, xError, yError):
             #You can change output file with third parameter here 
             raw["MissionTime"] = 0.0
 
-            setMissionTime(raw, start, totalRows)
-            # raw.to_csv(output, index=False)
+            setMissionTime(raw, start, output_file_name, totalRows)
+            raw.to_csv(output_file_name, index=False)
             """
             Create dictionary of the mission times (from the button clicks), assign 
             coordinates as values to the mission times key 
@@ -310,8 +332,8 @@ def dq(inputET, inputP, xError, yError):
                             y = raw.at[raw_counter, "BestPogY"]
 
                             #Now accuracy takes the errors into account 
-                            xacc= (x >= uav[0] - xError and x <= uav[1] + xError)
-                            yacc = (y >= uav[2] - yError and y <= uav[3] + yError)
+                            xacc= (x >= uav[0] - input_xError and x <= uav[1] + input_xError)
+                            yacc = (y >= uav[2] - input_yError and y <= uav[3] + input_yError)
                             """
                             Value will be True if both x and y coordinates are accurate 
                             according to the current UAV and False if not. 
@@ -374,8 +396,8 @@ def dq(inputET, inputP, xError, yError):
                                 number_analyzed+=1
                                 x = raw.at[raw_counter, "BestPogX"]
                                 y = raw.at[raw_counter, "BestPogY"]
-                                xacc= (x >= task_dict[task][0] - xError and x <= task_dict[task][1] + xError)
-                                yacc = (y >= task_dict[task][2] - yError and y <= task_dict[task][3] + yError)
+                                xacc= (x >= task_dict[task][0] - input_xError and x <= task_dict[task][1] + input_xError)
+                                yacc = (y >= task_dict[task][2] - input_yError and y <= task_dict[task][3] + input_yError)
 
                                 centerx = (task_dict[task][0] + task_dict[task][1])/2
                                 centery = (task_dict[task][2] + task_dict[task][3])/2
@@ -400,17 +422,68 @@ def dq(inputET, inputP, xError, yError):
                             raw_counter+=1
                     perf_counter+=1
            
-            # raw.to_csv(output, index=False)
+            raw.to_csv(output_file_name, index=False)
+            text6.configure(text='Status: Success! The output file now shows data quality information.')
             #Creating summary statistics file (STILL IN PROGRESS)
             percent_accurate = number_true/number_analyzed
             summary_stats = open("quality_summary.txt", 'w')
             summary_stats.write("The data was "+ str(100 * percent_accurate) + " percent accurate.\n")
             summary_stats.write("Of the "+ str(number_analyzed)+  " data points analyzed, " + str(number_true)+" data points were accurate while " + str(number_false) + " were inaccurate." )
             summary_stats.close()
-            #returning from mission time start to the 900th point after that
-            """
-            Important to note that this function no longer puts the dataframe 
-            into an output file. It just returns a dataframe. 
-            """
-            return raw[start:start+900]
 
+# UI things. This is very similar to preprocessing UI 
+window = Tk()
+frame0 = Frame(window)
+frame1 = Frame(window)
+frame2 = Frame(window)
+frame3 = Frame(window)
+frame4 = Frame(window)
+frame5 = Frame(window)
+frame6 = Frame(window)
+frame7 = Frame(window)
+
+frame0.pack()
+frame1.pack()
+frame2.pack()
+frame3.pack()
+frame4.pack()
+frame5.pack()
+frame6.pack()
+frame7.pack()
+
+window.title("Data Quality GUI")
+
+text0 = Label(frame0, text='Enter Eyetracking file name: ')
+text0.pack(side=LEFT)
+inputET_name = Entry(frame0)
+inputET_name.pack(side=LEFT)
+
+text1 = Label(frame1, text='Enter Performance file name: ')
+text1.pack(side=LEFT)
+inputP_name = Entry(frame1)
+inputP_name.pack(side=LEFT)
+
+text2 = Label(frame2, text='Enter Output file name: ')
+text2.pack(side=LEFT)
+output_name = Entry(frame2)
+output_name.pack(side=LEFT)
+
+text3 = Label(frame3, text='Enter horizontal (x) margin of error value [pixels]: ')
+text3.pack(side=LEFT)
+xError=Entry(frame3)
+xError.pack(side=LEFT)
+
+text4 = Label(frame4, text='Enter vertical (y) margin of error value [pixels]: ')
+text4.pack(side=LEFT)
+yError=Entry(frame4)
+yError.pack(side=LEFT)
+
+note = Label(frame5, text='Note: Margin of error refers to how far a gaze point can be from the boundary and still be classified as an accurate gaze point')
+note.pack()
+button1 = Button(frame6, text='Submit',command=dq)
+button1.pack(side=RIGHT)
+
+text6 = Label(frame7, text='Status: N/A')
+text6.pack()
+
+window.mainloop()
