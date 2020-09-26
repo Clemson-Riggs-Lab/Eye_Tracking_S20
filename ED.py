@@ -264,7 +264,7 @@ def event_detection(tracker_type):
     # Saccade amplitude calculation
     for i in range(len(onsets_times)):
         df1=df[(df.Time>=onsets_times[i])&(df.Time<=offsets_times[i])] #create a mini dataframe consisting of the data of 1 saccade
-        vel = df1['Angular Velocity (in degrees/second)'].sum() #sum the velocity values
+        vel = df1['Velocity (in degrees of visual angle/second)'].sum() #sum the velocity values
         count=df1.Time.count() #get number of elements to use in average calculation
         if (float(count!=0)):
             avg= float(vel)/float(count)
@@ -280,7 +280,7 @@ def event_detection(tracker_type):
     AOI=[]
     for each in range(len(center_points)):
         if 0<=df.at[center_points[each], "BestPogX"]<=1010 and 0<=df.at[center_points[each], "BestPogY"]<=927:
-            AOI.append('AOI 1: Reroute Map')
+            AOI.append('AOI 1: Map')
         elif 0<=df.at[center_points[each], "BestPogX"]<=1010 and 951<=df.at[center_points[each], "BestPogY"]<=1600:
             AOI.append('AOI 2: Reroute Menu')
         elif 1036<=df.at[center_points[each], "BestPogX"]<=2560 and 0<=df.at[center_points[each], "BestPogY"]<811:

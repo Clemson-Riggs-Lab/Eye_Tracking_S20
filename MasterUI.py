@@ -277,10 +277,10 @@ def ScatterPlot(X_coords,Y_coords,file):
         plt.title(file)
         plt.show()
 def DeleteErrors(combined_list,missing_packets,df):
-        if v.get() == 1:
+        if v == 1: #.get()
             df.drop(combined_list, axis=0, inplace=True)
             df.reset_index(drop=True, inplace=True)
-        elif v.get() == 2:
+        elif v == 2: #.get()
             #do the stuff with marking the excel file here'
 
             defaultvals = ['0'] * len(df.index)
