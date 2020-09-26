@@ -213,7 +213,7 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,f
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coords).union(set(bad_markers)))
         if tracker_type == 1:
-            total_error_time_seconds = len(combined_list)*6.6667 #multiply by 1/refresh rate
+            total_error_time_seconds = len(combined_list)/6.6667 #multiply by 1/refresh rate
             total_error_time_seconds = total_error_time_seconds/1000 #convert to seconds            
         elif tracker_type ==2: 
             total_error_time_seconds = len(combined_list) / 16.6667 
@@ -492,19 +492,19 @@ text6.pack(side=LEFT)
 tf = Entry(frame7) #output name variable
 tf.pack(side=LEFT)
 
-text7 = Label(frame8,
-              text='\n 2. Butterworth Filtering Information:\n')
-text7.pack()
+# text7 = Label(frame8,
+#               text='\n 2. Butterworth Filtering Information:\n')
+# text7.pack()
 
-text8 = Label(frame9, text='Enter filter order (N):                                         ')
-text8.pack(side=LEFT)
-N = Entry(frame9) #Filter order variable
-N.pack(side=LEFT)
+# text8 = Label(frame9, text='Enter filter order (N):                                         ')
+# text8.pack(side=LEFT)
+# N = Entry(frame9) #Filter order variable
+# N.pack(side=LEFT)
 
-text9 = Label(frame10, text='Enter the critical frequency (fc):                          ')
-text9.pack(side=LEFT)
-fc = Entry(frame10) #fc variable
-fc.pack(side=LEFT)
+# text9 = Label(frame10, text='Enter the critical frequency (fc):                          ')
+# text9.pack(side=LEFT)
+# fc = Entry(frame10) #fc variable
+# fc.pack(side=LEFT)
 
 text10 = Label(frame11,
               text='\n 3. Missing Data Check Information:\n')
