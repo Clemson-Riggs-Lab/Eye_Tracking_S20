@@ -22,7 +22,7 @@ from scipy.signal import savgol_filter
 def eyeTracking():       
     file=input_name.get()
     newfile = output_name.get()
-    t= tracker_type.get() # t stores the tracker_type int variable
+    t = tracker_type.get() # t stores the tracker_type int variable
     file_name = input_name.get()
     if path.exists(file_name) and os.path.isfile(file_name):     #Checking that input file is valid
         if output_name.get() == '':
@@ -38,20 +38,7 @@ def eyeTracking():
         if t ==2:  #truncate the dataframe if the tracker is a FOVIO one      
             df=df[(df.Time>=start_time)&(df.Time<=end_time)]
             df.reset_index(drop=True, inplace=True)
-            samp_rate=16.6667
-            w=2560 #width of screen in pixels
-            h=1600 #height of screen in pixels
-            screen=32 #diagonal of screen in inches
-            D = 29.5 #participants distance from screen in inches
-            herz=60 #refresh rate of eye tracker
-            period = float(1.0/float(herz)) #period of the eye tracker (i.e. time between samples)
-        else:
-            w=2560 #width of screen in pixels
-            h=1440 #height of screen in pixels
-            screen=24 #diagonal of screen in inches
-            D = 23.6 #participants distance from screen in inches
-            herz=150 #refresh rate of eye tracker
-            period = float(1.0/float(herz)) #period of the eye tracker (i.e. time between samples)
+            
         ##############################################
         df=preProcess(t,df)
         df=missingDataCheck(t,df,file)
@@ -146,7 +133,13 @@ def preProcess(tracker_type,df):
                     elif (df['Rt Y Pos'][i]!=0):
                         BestPogY.append((df['Rt Y Pos'][i]))                  
             df['BestPogX'] = BestPogX #Create a new column and append BestPogX
-            df['BestPogY'] = BestPogY #Create a new column and append BestPogY 
+            df['BestPogY'] = BestPogY #Create a new column and append BestPogY
+            MissionTime=[0]
+            Time=df["Time"]
+            #df['MissionTime'] = 0
+            for k in range(len(df)-1):
+                MissionTime.append(float(MissionTime[k]+((Time[k+1]-Time[k])/1000))) #put MissionTime in seconds
+        df['MissionTime'] = MissionTime
         return df             
 def missingDataCheck(tracker_type,df,file):
         output_file = open("ErrorLog.txt", "w")
@@ -300,6 +293,21 @@ def VelocityCalculation(tracker_type,df):
     dfdegree=2 #order of the polynomial for SG filter
     dfo=1 #level of derivative for SG filter. 1 because we want to calculate velocity between points as we smooth
     
+    if tracker_type==1:
+       w=2560 #width of screen in pixels
+       h=1400 #height of screen in pixels
+       screen=24 #diagonal of screen in inches
+       D = 25.6 #participants distance from screen in inches
+       herz=150 #refresh rate of eye tracker
+       period = float(1.0/float(herz)) #period of the eye tracker (i.e. time between samples)
+    else:
+        w=2560 #width of screen in pixels
+        h=1600 #height of screen in pixels
+        screen=32 #diagonal of screen in inches
+        D = 29.5 #participants distance from screen in inches
+        herz=60 #refresh rate of eye tracker
+        period = float(1.0/float(herz)) #period of the eye tracker (i.e. time between samples)
+    
     #separate data out by x and y coordinates
     XCoord=df["BestPogX"]
     YCoord=df["BestPogY"]
@@ -325,6 +333,7 @@ def VelocityCalculation(tracker_type,df):
     for a in range(len(velx)):
         vel[a] = math.sqrt(velx[a]*velx[a] + vely[a]*vely[a])
     df["Velocity (degrees of visual angle/second)"]=vel
+    
     ###2 tap (sample-to-sample) velocity calculation approach
     #keeping so (1) less chance of code breaking (2) for comparative reference
     Delta = [] #in pixels
@@ -377,7 +386,7 @@ def ThresholdEstimation(df):
     PTold = 250 #Dummy value .Initially, it is the value set by us (in the 100-300 degrees/sec range)
     PTnew = 0
     diff = PTnew - PTold
-    velocities = df['Angular Velocity (in degrees/second)'] #list of angular velocities, probably a column from a Pandas dataframe 
+    velocities = df['Velocity (degrees of visual angle/second)'] #list of angular velocities, probably a column from a Pandas dataframe 
     mean_velocities=sum(velocities)/len(velocities)
     std_dev_velocities = statistics.stdev(velocities,mean_velocities)
     while abs(diff)>1:

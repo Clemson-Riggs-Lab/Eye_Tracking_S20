@@ -264,7 +264,7 @@ def event_detection(tracker_type):
     # Saccade amplitude calculation
     for i in range(len(onsets_times)):
         df1=df[(df.Time>=onsets_times[i])&(df.Time<=offsets_times[i])] #create a mini dataframe consisting of the data of 1 saccade
-        vel = df1['Velocity (in degrees of visual angle/second)'].sum() #sum the velocity values
+        vel = df1['Velocity (degrees of visual angle/second)'].sum() #sum the velocity values
         count=df1.Time.count() #get number of elements to use in average calculation
         if (float(count!=0)):
             avg= float(vel)/float(count)
@@ -314,7 +314,7 @@ def event_detection(tracker_type):
     for i in range(len(center_points)):
        fix_start_time.append(df.at[center_points[i],"MissionTime"]) #Find start times of fixation from time of center point
 
-    out =pd.DataFrame(out_data,columns=['Participant Number','Workload','Eyetracker','Event Type','Start time(s)','Duration','Amplitude (degrees)','X','Y','AOI'])
+    out =pd.DataFrame(out_data,columns=['Participant Number','Workload','Eyetracker','Event Type','Start time (s)','Duration','Amplitude (degrees)','X','Y','AOI'])
     i=0 #counter for saccades
     j=0 #counter for fixations
     while (i != len(onsets_times)-1 and j != len(fix_start_time)-1): 
