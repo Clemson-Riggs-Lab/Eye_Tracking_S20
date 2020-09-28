@@ -1,3 +1,4 @@
+
 """
 Created on Wed Aug 26 11:24:49 2020
 
@@ -9,6 +10,8 @@ import matplotlib.pyplot as plt
 from tkinter import *
 from scipy.signal import savgol_filter
 import math
+import numpy as np
+
 
 def event_detection(tracker_type):
     file_name = inputET_name.get()
@@ -18,8 +21,8 @@ def event_detection(tracker_type):
         samp_rate=6.66667
     else:
         samp_rate=16.6667
-    time = df["Time"]
-    velocities = df["Angular Velocity (in degrees/second)"]
+    time = df["MissionTime"]
+    velocities = df["Velocity (degrees of visual angle/second)"]
     time = list(time) 
     velocities = list(velocities)
   
@@ -44,26 +47,23 @@ def event_detection(tracker_type):
     onset_indices=[]
     offset_indices=[]
 
-    #smooth the velocities with and SG filter. Used the parameters suggested by Nystrom & Holmqvist
-    velocities_filt = savgol_filter(velocities, window_length = 3, polyorder = 2)
-    indices_filt = find_peaks(velocities_filt, height = PT)[0]
+    #Find peaks in velocity as defined by the adaptive algorithm
+    indices = find_peaks(velocities, height = PT)[0]
         
-    print (len(indices_filt),'peaks were detected')
+    print (len(indices),'peaks were detected')
     """
-    for i in range(len(indices_filt)): 
-        r=indices_filt[i]
+    for i in range(len(indices)): 
+        r=indices[i]
         peak_times.append(time[r])
         peaks.append(i+1)
         #we need to add ouput.write at the end as we create a seperate column/text file
         # print('Peak',i+1,'has a velocity of',velocities[r],'degrees/s at time',time[r],'ms')
     """
     peak_velocities=[]
-    for each in range(len(indices_filt)):
-        i=indices_filt[each]
-        peak_velocities.append(velocities_filt[i])
-    
-    #All filtered velocities are reported in a seperate column in output file 1
-    df["Filtered Velocities"] = pd.Series(velocities_filt)
+    for each in range(len(indices)):
+        i=indices[each]
+        peak_velocities.append(velocities[i])
+
     
     average_peak_velocity=sum(peak_velocities)/len(peak_velocities)
     max_peak_velocity=max(peak_velocities)
@@ -75,16 +75,16 @@ def event_detection(tracker_type):
     left_most=0
     vel=[]
 
-    for each in range(len(indices_filt)):
-        i=indices_filt[each]
+    for each in range(len(indices)):
+        i=indices[each]
         flag=False
         saccade_indices.append(i)
         for v in range(i,left_most,-1):
             saccade_indices.append(v)
             #this flag will tell us if we've found an onset
-            if velocities_filt[v]<onset_threshold and velocities_filt[v]-velocities_filt[v-1]<0 and velocities_filt[v]-velocities_filt[v+1]<0:
+            if velocities[v]<onset_threshold and velocities[v]-velocities[v-1]<0 and velocities[v]-velocities[v+1]<0:
                     onset_indices.append(v)
-                    onsets_velocities.append(velocities_filt[v])
+                    onsets_velocities.append(velocities[v])
                     onsets_times.append(time[v])
                     #when we write in excel or text, we say peak #1 had onset velcoties[j]
                     #When flag is True, we correctly found onset
@@ -102,20 +102,20 @@ def event_detection(tracker_type):
     #######################################################
 
     #Following the adaptive algorithm to detect an offset
-    for each in range(len(indices_filt)):
-        i=indices_filt[each]
-        if each==len(indices_filt)-1:
-            for index in range(len(velocities_filt)):
-                if index==len(velocities_filt)-1:
+    for each in range(len(indices)):
+        i=indices[each]
+        if each==len(indices)-1:
+            for index in range(len(velocities)):
+                if index==len(velocities)-1:
                     right_most=index
         else:
-            right_most=indices_filt[each+1]
+            right_most=indices[each+1]
         flag=False   
         for v in range(i,right_most,1):
             saccade_indices.append(v)
-            if velocities_filt[v]<offset_threshold:
+            if velocities[v]<offset_threshold:
                 offset_indices.append(v)
-                offsets_velocities.append(velocities_filt[v])
+                offsets_velocities.append(velocities[v])
                 offsets_times.append(time[v])
                 flag=True
                 break
@@ -154,7 +154,7 @@ def event_detection(tracker_type):
         
     j=(offset_indices[len(offset_indices)-1])+1 #go to the index where the last offset was detected as the starting point to find the last collection of fixation indices
     mini_lst = []
-    while j < len(velocities_filt):#want to search across all velocities past the last saccade's offset so use the filtered velocity list as the structure to base this off of
+    while j < len(velocities):#want to search across all velocities past the last saccade's offset so use the filtered velocity list as the structure to base this off of
         mini_lst.append(j)
         j+=1
     fixation_indices.append(mini_lst)
@@ -265,11 +265,11 @@ def event_detection(tracker_type):
     # Saccade amplitude calculation
     for i in range(len(onsets_times)):
         df1=df[(df.Time>=onsets_times[i])&(df.Time<=offsets_times[i])] #create a mini dataframe consisting of the data of 1 saccade
-        vel = df1['Angular Velocity (in degrees/second)'].sum() #sum the velocity values
+        vel = df1['Velocity (degrees of visual angle/second)'].sum() #sum the velocity values
         count=df1.Time.count() #get number of elements to use in average calculation
         if (float(count!=0)):
             avg= float(vel)/float(count)
-            time_diff = (offsets_times[i] - onsets_times[i])/1000
+            time_diff = (offsets_times[i] - onsets_times[i])
             sac_amp = avg * time_diff
             sac_amps.append(sac_amp)
         else:
@@ -281,7 +281,7 @@ def event_detection(tracker_type):
     AOI=[]
     for each in range(len(center_points)):
         if 0<=df.at[center_points[each], "BestPogX"]<=1010 and 0<=df.at[center_points[each], "BestPogY"]<=927:
-            AOI.append('AOI 1: Reroute Map')
+            AOI.append('AOI 1: Map')
         elif 0<=df.at[center_points[each], "BestPogX"]<=1010 and 951<=df.at[center_points[each], "BestPogY"]<=1600:
             AOI.append('AOI 2: Reroute Menu')
         elif 1036<=df.at[center_points[each], "BestPogX"]<=2560 and 0<=df.at[center_points[each], "BestPogY"]<811:
@@ -313,16 +313,16 @@ def event_detection(tracker_type):
     out_AOI = []
     fix_start_time = []
     for i in range(len(center_points)):
-       fix_start_time.append(df.at[center_points[i],"Time"]) #Find start times of fixation from time of center point
+       fix_start_time.append(df.at[center_points[i],"MissionTime"]) #Find start times of fixation from time of center point
 
-    out =pd.DataFrame(out_data,columns=['Participant Number','Workload','Eyetracker','Event Type','Start time(ms)','Duration','Amplitude (degrees)','X','Y','AOI'])
+    out =pd.DataFrame(out_data,columns=['Participant Number','Workload','Eyetracker','Event Type','Start time (s)','Duration','Amplitude (degrees)','X','Y','AOI'])
     i=0 #counter for saccades
     j=0 #counter for fixations
     while (i != len(onsets_times)-1 and j != len(fix_start_time)-1): 
         
         if (onsets_times[i]<fix_start_time[j]): #if saccade comes before fixation
             if(offsets_times[i] == 0):
-                print('Invalid saccade detected (missed offset) and its onset time is '+str(onsets_times[i])+' ms')
+                print('Invalid saccade detected (missed offset) and its onset time is '+str(onsets_times[i])+' s')
                 i=i+1
             else:
                 out_event.append("Saccade")
@@ -336,7 +336,7 @@ def event_detection(tracker_type):
 
         else: #Fixation comes before saccade
             if (onsets_times[i]==999999):
-                print('Invalid saccade detected (missed onset) and its offset is '+str(offsets_times[i])+' ms')
+                print('Invalid saccade detected (missed onset) and its offset is '+str(offsets_times[i])+' s')
                 i=i+1
             else:
                 out_event.append("Fixation")
@@ -349,7 +349,7 @@ def event_detection(tracker_type):
                 j=j+1
 
     out["Event Type"] = out_event
-    out["Start time(ms)"] = out_start_time
+    out["Start time (s)"] = out_start_time
     out["Duration"] = out_duration
     out["Amplitude (degrees)"] = out_amp
     out["X"] = out_X

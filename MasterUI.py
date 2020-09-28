@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Sun Aug  9 13:39:55 2020
@@ -17,11 +18,12 @@ from datetime import time, datetime, timedelta
 import numpy as np
 import scipy.signal as signal
 import matplotlib.pyplot as plt
+from scipy.signal import savgol_filter
 
 def eyeTracking():       
     file=input_name.get()
     newfile = output_name.get()
-    t= tracker_type.get() # t stores the tracker_type int variable
+    t = tracker_type.get() # t stores the tracker_type int variable
     file_name = input_name.get()
     if path.exists(file_name) and os.path.isfile(file_name):     #Checking that input file is valid
         if output_name.get() == '':
@@ -37,10 +39,11 @@ def eyeTracking():
         if t ==2:  #truncate the dataframe if the tracker is a FOVIO one      
             df=df[(df.Time>=start_time)&(df.Time<=end_time)]
             df.reset_index(drop=True, inplace=True)
+            
         ##############################################
         df=preProcess(t,df)
         df=missingDataCheck(t,df,file)
-        df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
+        #df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
         df=VelocityCalculation(t,df)
         df=ThresholdEstimation(df)
         # after all changes are made
@@ -56,28 +59,28 @@ def eyeTracking():
     else:
         Status.configure(text='Status: Invalid input path!')        
     return
-def butter(tracker_type,df):
-        #Converting coordinates into arrays that are usable by filtfilt function
-    x = np.array(df["BestPogX"])
-    y = np.array(df["BestPogY"])
-    order = int(N.get())
-    freq = float(fc.get())
-    #Creating the filter
-    if tracker_type == 1:
-            B, A = signal.butter(order, freq, fs=150, output='ba')      
-    elif tracker_type == 2:    
-            B, A = signal.butter(order, freq, fs=60, output='ba') 
-    #Passing x and y coordinates through the filter
-    filtered_x = signal.filtfilt(B, A, x)
-    filtered_y = signal.filtfilt(B, A, y)
-    #Changing updating the coordinates with the filtered ones
-    df["BestPogX"] = filtered_x
-    df["BestPogY"] = filtered_y 
-    fig, axs = plt.subplots(2)
-    axs[0].plot(x, linewidth=1)
-    axs[1].plot(filtered_x, linewidth=1)
-    plt.show()           
-    return df
+# def butter(tracker_type,df):
+#         #Converting coordinates into arrays that are usable by filtfilt function
+#     x = np.array(df["BestPogX"])
+#     y = np.array(df["BestPogY"])
+#     order = int(N.get())
+#     freq = float(fc.get())
+#     #Creating the filter
+#     if tracker_type == 1:
+#             B, A = signal.butter(order, freq, fs=150, output='ba')      
+#     elif tracker_type == 2:    
+#             B, A = signal.butter(order, freq, fs=60, output='ba') 
+#     #Passing x and y coordinates through the filter
+#     filtered_x = signal.filtfilt(B, A, x)
+#     filtered_y = signal.filtfilt(B, A, y)
+#     #Changing updating the coordinates with the filtered ones
+#     df["BestPogX"] = filtered_x
+#     df["BestPogY"] = filtered_y 
+#     fig, axs = plt.subplots(2)
+#     axs[0].plot(x, linewidth=1)
+#     axs[1].plot(filtered_x, linewidth=1)
+#     plt.show()           
+#     return df
 def preProcess(tracker_type,df):
         # Default width is 2560 and default height is 1440 for Gazepoint
         column_names_X = []
@@ -131,7 +134,13 @@ def preProcess(tracker_type,df):
                     elif (df['Rt Y Pos'][i]!=0):
                         BestPogY.append((df['Rt Y Pos'][i]))                  
             df['BestPogX'] = BestPogX #Create a new column and append BestPogX
-            df['BestPogY'] = BestPogY #Create a new column and append BestPogY 
+            df['BestPogY'] = BestPogY #Create a new column and append BestPogY
+            MissionTime=[0]
+            Time=df["Time"]
+            #df['MissionTime'] = 0
+            for k in range(len(df)-1):
+                MissionTime.append(float(MissionTime[k]+((Time[k+1]-Time[k])/1000))) #put MissionTime in seconds
+        df['MissionTime'] = MissionTime
         return df             
 def missingDataCheck(tracker_type,df,file):
         output_file = open("ErrorLog.txt", "w")
@@ -198,7 +207,7 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,f
         # combining the lists together for duplicate rows
         combined_list = list(set(negative_coords).union(set(bad_markers)))
         if tracker_type == 1:
-            total_error_time_seconds = len(combined_list)*6.6667 #multiply by 1/refresh rate
+            total_error_time_seconds = len(combined_list)/6.6667 #multiply by 1/refresh rate
             total_error_time_seconds = total_error_time_seconds/1000 #convert to seconds            
         elif tracker_type ==2: 
             total_error_time_seconds = len(combined_list) / 16.6667 
@@ -262,10 +271,10 @@ def ScatterPlot(X_coords,Y_coords,file):
         plt.title(file)
         plt.show()
 def DeleteErrors(combined_list,missing_packets,df):
-        if v.get() == 1:
+        if v.get() == 1: 
             df.drop(combined_list, axis=0, inplace=True)
             df.reset_index(drop=True, inplace=True)
-        elif v.get() == 2:
+        elif v.get() == 2: 
             #do the stuff with marking the excel file here'
 
             defaultvals = ['0'] * len(df.index)
@@ -280,49 +289,95 @@ def DeleteErrors(combined_list,missing_packets,df):
             df['MissingDataCheck'] = series  
         return df
 def VelocityCalculation(tracker_type,df):
-# In this function we calculate the visual angles, angular velocities, and append the to the dataframe
-        Delta = [] #in pixels
-        Angular_Velocity = []
-        Delta_mm = []
-        Delta_rad = [] 
-        inch_to_mm=25.4
-        rad_to_degrees = 57.29577951
-        for i in range(0,len(df.index)):
-                if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
-                    x1 = df['BestPogX'][i-1]
-                    y1 = df['BestPogY'][i-1]  
-                    time_diff =abs(df['Time'][i-1])
-                    
-                else:
-                    
-                    x1 = df['BestPogX'][i+1]-df['BestPogX'][i]
-                    y1 = df['BestPogY'][i+1]-df['BestPogY'][i]
-                    time_diff=abs(df['Time'][i+1]-df['Time'][i]) 
-                    
-                  
-                if tracker_type==1: #If Gazepoint Tracker 
-                    distance_from_screen = 23.62204724
-                    pixel_to_mm=0.207565625
-                    Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
-                    Delta_mm.append(Delta[i]*pixel_to_mm)
-                    Delta_rad.append(math.atan(Delta_mm[i]/(distance_from_screen*inch_to_mm)))
-                    velocity = Delta_rad[i]*rad_to_degrees/time_diff #convert to degrees and divide by time difference
-                    Angular_Velocity.append(velocity)
-                    
-                elif tracker_type ==2: #If FOVIO Tracker
-                    distance_from_screen = 29.5
-                    pixel_to_mm=0.269279688
-                    Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
-                    Delta_mm.append(Delta[i]*pixel_to_mm)
-                    Delta_rad.append(math.atan(Delta_mm[i]/(distance_from_screen*inch_to_mm)))
-                    velocity = Delta_rad[i]*rad_to_degrees*1000/time_diff #convert to degrees and divide by time difference
-                    Angular_Velocity.append(velocity)
-          
-        df['Delta (in pixels)'] = Delta #Create a new column and append the visual angle values in pixels
-        df['Delta (in mm)'] = Delta_mm #Create a new column and append the visual angle values in mm
-        df['Delta (in rad)'] = Delta_rad #Create a new column and append the visual angle values in rad
-        df['Angular Velocity (in degrees/second)'] = Angular_Velocity #Create a new column and append the angular velocity in degrees per second
-        return df
+# In this function we calculate the velocity of gazepoints with the SG filter approach and append the to the dataframe.We also compute the velocity with the 2-tap (sample-to-sample approach)
+    dfwidth=5 #window length for SG filter
+    dfdegree=2 #order of the polynomial for SG filter
+    dfo=1 #level of derivative for SG filter. 1 because we want to calculate velocity between points as we smooth
+    
+    if tracker_type==1:
+       w=2560 #width of screen in pixels
+       h=1400 #height of screen in pixels
+       screen=24 #diagonal of screen in inches
+       D = 25.6 #participants distance from screen in inches
+       herz=150 #refresh rate of eye tracker
+       period = float(1.0/float(herz)) #period of the eye tracker (i.e. time between samples)
+    else:
+        w=2560 #width of screen in pixels
+        h=1600 #height of screen in pixels
+        screen=32 #diagonal of screen in inches
+        D = 29.5 #participants distance from screen in inches
+        herz=60 #refresh rate of eye tracker
+        period = float(1.0/float(herz)) #period of the eye tracker (i.e. time between samples)
+    
+    #separate data out by x and y coordinates
+    XCoord=df["BestPogX"]
+    YCoord=df["BestPogY"]
+    #filter x and y coordinates with the inputted filter length, polynomial order, and derivative level with SG approach
+    FiltXCoord=savgol_filter(XCoord, window_length = dfwidth, polyorder = dfdegree, deriv = dfo)
+    FiltYCoord=savgol_filter(YCoord, window_length = dfwidth, polyorder = dfdegree, deriv = dfo)
+    #collecting information in order to convert derivative to visual angle and calculate velocity (i.e. divide by time elapsed)
+    dt = period * float(dfwidth) #change of time between samples to account for the fact multiple were accounted for velocity calculation
+    r = math.sqrt(float(w)*float(w) + float(h)*float(h)) #pythagorean theorem to get hypotenuse of screen (i.e. screen diagonal) in units of pixels
+    ppi = r/float(screen) #pixels per inch
+    #convert pixels to degrees of visual angle. store in a array for later mathematical calculations
+    degx=[0]*len(FiltXCoord)
+    degy=[0]*len(FiltYCoord)
+    for point in range(len(FiltXCoord)):
+        degx[point]=math.degrees(math.atan2((FiltXCoord[point]/ppi),(2*D)))
+        degy[point]=math.degrees(math.atan2((FiltYCoord[point]/ppi),(2*D)))
+    degx=np.array(degx)
+    degy=np.array(degy)
+    #calculate velocity for x and y and then combine for a singular velocity value
+    velx= degx/dt 
+    vely= degy/dt    
+    vel=[0]*len(velx)
+    for a in range(len(velx)):
+        vel[a] = math.sqrt(velx[a]*velx[a] + vely[a]*vely[a])
+    df["Velocity (degrees of visual angle/second)"]=vel
+    
+    ###2 tap (sample-to-sample) velocity calculation approach
+    #keeping so (1) less chance of code breaking (2) for comparative reference
+    Delta = [] #in pixels
+    Angular_Velocity = []
+    Delta_mm = []
+    Delta_rad = [] 
+    inch_to_mm=25.4
+    rad_to_degrees = 57.29577951
+
+    for i in range(0,len(df.index)):
+            if i==len(df.index)-1: #in this case we reach the end of the dataframe and dont have an i+1
+                x1 = df['BestPogX'][i-1]
+                y1 = df['BestPogY'][i-1]  
+                time_diff =abs(df['Time'][i-1])
+                
+            else:
+                
+                x1 = df['BestPogX'][i+1]-df['BestPogX'][i]
+                y1 = df['BestPogY'][i+1]-df['BestPogY'][i]
+                time_diff=abs(df['Time'][i+1]-df['Time'][i]) 
+                
+              
+            if tracker_type==1: #If Gazepoint Tracker 
+                pixel_to_mm=0.207565625
+                Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
+                Delta_mm.append(Delta[i]*pixel_to_mm)
+                Delta_rad.append(math.atan(Delta_mm[i]/(D*inch_to_mm)))
+                velocity = Delta_rad[i]*rad_to_degrees/time_diff #convert to degrees and divide by time difference
+                Angular_Velocity.append(velocity)
+                
+            elif tracker_type ==2: #If FOVIO Tracker
+                pixel_to_mm=0.269279688
+                Delta.append(math.sqrt(pow(x1,2)+pow(y1,2)))
+                Delta_mm.append(Delta[i]*pixel_to_mm)
+                Delta_rad.append(math.atan(Delta_mm[i]/(D*inch_to_mm)))
+                velocity = Delta_rad[i]*rad_to_degrees*1000/time_diff #convert to degrees and divide by time difference
+                Angular_Velocity.append(velocity)
+      
+    df['Delta (in pixels)'] = Delta #Create a new column and append the visual angle values in pixels
+    df['Delta (in mm)'] = Delta_mm #Create a new column and append the visual angle values in mm
+    df['Delta (in rad)'] = Delta_rad #Create a new column and append the visual angle values in rad
+    df['2 point velocity (degrees/second)'] = Angular_Velocity #Create a new column and append the angular velocity in degrees per second
+    return df
 def ThresholdEstimation(df):
     mean = 0
     std_dev = 0
@@ -332,7 +387,7 @@ def ThresholdEstimation(df):
     PTold = 250 #Dummy value .Initially, it is the value set by us (in the 100-300 degrees/sec range)
     PTnew = 0
     diff = PTnew - PTold
-    velocities = df['Angular Velocity (in degrees/second)'] #list of angular velocities, probably a column from a Pandas dataframe 
+    velocities = df['Velocity (degrees of visual angle/second)'] #list of angular velocities, probably a column from a Pandas dataframe 
     mean_velocities=sum(velocities)/len(velocities)
     std_dev_velocities = statistics.stdev(velocities,mean_velocities)
     while abs(diff)>1:
@@ -447,19 +502,19 @@ text6.pack(side=LEFT)
 tf = Entry(frame7) #output name variable
 tf.pack(side=LEFT)
 
-text7 = Label(frame8,
-              text='\n 2. Butterworth Filtering Information:\n')
-text7.pack()
+# text7 = Label(frame8,
+#               text='\n 2. Butterworth Filtering Information:\n')
+# text7.pack()
 
-text8 = Label(frame9, text='Enter filter order (N):                                         ')
-text8.pack(side=LEFT)
-N = Entry(frame9) #Filter order variable
-N.pack(side=LEFT)
+# text8 = Label(frame9, text='Enter filter order (N):                                         ')
+# text8.pack(side=LEFT)
+# N = Entry(frame9) #Filter order variable
+# N.pack(side=LEFT)
 
-text9 = Label(frame10, text='Enter the critical frequency (fc):                          ')
-text9.pack(side=LEFT)
-fc = Entry(frame10) #fc variable
-fc.pack(side=LEFT)
+# text9 = Label(frame10, text='Enter the critical frequency (fc):                          ')
+# text9.pack(side=LEFT)
+# fc = Entry(frame10) #fc variable
+# fc.pack(side=LEFT)
 
 text10 = Label(frame11,
               text='\n 3. Missing Data Check Information:\n')
