@@ -45,6 +45,8 @@ def eyeTracking():
         df=preProcess(t,df)
         if t==1:
             df = DataQuality.dq(df, perf.get() ,0,0)
+            df.reset_index(drop=True, inplace=True)
+
         df=missingDataCheck(t,df,file)
         #df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
         df=VelocityCalculation(t,df)
@@ -143,7 +145,8 @@ def preProcess(tracker_type,df):
             #df['MissionTime'] = 0
             for k in range(len(df)-1):
                 MissionTime.append(float(MissionTime[k]+((Time[k+1]-Time[k])/1000))) #put MissionTime in seconds
-        df['MissionTime'] = MissionTime
+            #below line was one indent further out before 10/01
+            df['MissionTime'] = MissionTime
         return df             
 def missingDataCheck(tracker_type,df,file):
         output_file = open("ErrorLog.txt", "w")
@@ -226,7 +229,7 @@ def CheckErrors(df,output_file,tracker):
         missing_packets = []
         marker_bad = []
         #identify and report bad data (coordinates that are negative or greater than 2560x1440)
-        for i in range(0,len(df.index)):
+        for i in range(0,df.index.stop):
             #If gazepoint tracker
             if tracker ==1:
                 if df['BestPogX'][i] <= 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] <= 0 or df['BestPogY'][i] >= 1440:
