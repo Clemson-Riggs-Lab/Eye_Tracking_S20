@@ -83,8 +83,8 @@ def event_detection(tracker_type):
     offset_indices=[]
     # indices = find_peaks(velocities, height = PT)[0]
 
-      #smooth the velocities with and SG filter. Used the parameters suggested by Nystrom & Holmqvist
-    velocities_filt = savgol_filter(velocities, window_length = 5, polyorder = 3) #NOTE: window length will depend on eye tracker as Nystrom & Holmqvist suggest a filter length of 20 ms so that is a window length = 2 for FOVIO and window length = 3 or 4 for Gazepoint
+    #smooth the velocities with and SG filter. Used the parameters suggested by Nystrom & Holmqvist
+    velocities_filt = savgol_filter(velocities, window_length = 3, polyorder = 3) #NOTE: window length is usually based on eye tracker as Nystrom & Holmqvist suggest a filter length of 20 ms so that is a window length = 1 or 2 for FOVIO and window length = 3 or 4 for Gazepoint. However, it says window length can't be even so just making 3 for both 
     indices_filt = find_peaks(velocities_filt, height = PT)[0]
     """
     for each in range(len(velocities_filt)):

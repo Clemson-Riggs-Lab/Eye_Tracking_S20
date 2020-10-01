@@ -305,7 +305,7 @@ frame7.pack()
 window.title("Eye Tracking Data")
 
 text0 = Label(frame0,
-              text='1. Leave X and Y resolution BLANK if you want the default values of 2560x1440 \n 2. Include ".csv" in the Input and Output file names \n '
+              text='1. Leave X and Y resolution BLANK if you want the default values of 2560x1440. Note: You only need to enter in the screen resolution for data collected with Gazepoint GP3HD. Otherwise, leave blank. \n 2. Include ".csv" in the Input and Output file names \n '
                    '3. If you want to process multiple files, place all the files into a single folder and put the path of the folder in the "Input" box below')
 text0.pack()
 

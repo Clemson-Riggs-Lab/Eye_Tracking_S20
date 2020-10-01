@@ -90,9 +90,9 @@ def missingDataCheck(tracker):
             text='Status: Either the path to the input is wrong, or an output file name was not specified. Please try again.')
 def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,output_file):     
         #writing summary statistics
-        output_file.write('\nTotal Negative/Zero/Impossible Coordinates: ' + str(len(negative_coords)) + '\n')
+        output_file.write('\nTotal Negative/Impossible Coordinates: ' + str(len(negative_coords)) + '\n')
         output_file.write('Total Unordered Data Packets: ' + str(len(missing_data)) + '\n')
-        output_file.write('Total Invalid Data based on Gazepoint: ' + str(len(bad_markers)) + '\n')
+        output_file.write('Total Invalid Data/Zero Coordinates based on eye tracker: ' + str(len(bad_markers)) + '\n')
 
         #calculating more summary statistics
         proportion_impossible = len(negative_coords) / final_index
@@ -156,10 +156,10 @@ def CheckErrors(df,output_file,tracker):
                     marker_bad.append(i)
                     valid_point = FALSE
             #If FOVIO tracker        
-            elif tracker ==2:
+            elif tracker ==2: 
                 #Check if recorded coordinates are within the resolution ranges
-                if df['Lft X Pos'][i] <= 0 or df['Lft X Pos'][i] >= 2560 or df['Rt X Pos'][i] <= 0 or df['Rt X Pos'][i] >= 2560 or df['Lft Y Pos'][i] <= 0 or df['Lft Y Pos'][i] >= 1440  or df['Rt Y Pos'][i] <= 0 or df['Rt Y Pos'][i] >= 1440 :
-                    output_file.write('Row ' + str(i + 2) + ': Negative/Zero/Impossible Coordinates\n')
+                if df['BestPogX'][i] < 0 or df['BestPogX'][i] >= 2560 or df['BestPogY'][i] < 0 or df['BestPogY'][i] >= 1600 :
+                    output_file.write('Row ' + str(i + 2) + ': Negative/Impossible Coordinates\n')
                     negative_coordinates.append(i)
                     valid_point = FALSE
                 #ignore the first loop to avoid errors
@@ -172,13 +172,13 @@ def CheckErrors(df,output_file,tracker):
                         missing_packets.append(i)
                         valid_point = FALSE
                 #report when gazepoint has a 0 in the either L Display or R Display columns
-                if df['L Display'][i] == 0 or df['R Display'][i] == 0 :
-                    output_file.write('Row ' + str(i + 2) + ': Invalid Data based on Gazepoint\n')
+                if df['BestPogX'][i] == 0 or df['BestPogY'][i] == 0 :
+                    output_file.write('Row ' + str(i + 2) + ': Zero Coordinate\n')
                     marker_bad.append(i)
                     valid_point = FALSE 
             if valid_point == TRUE and (i%100==0): #modulo condition to reduce number of points and explore a wider scope (take 1 point every 100 iterations)
-                X_coords.append(df['Lft X Pos'][i])
-                Y_coords.append(df['Lft Y Pos'][i])
+                X_coords.append(df['BestPogX'][i])
+                Y_coords.append(df['BestPogY'][i])
             valid_point = TRUE #reset boolean variable for next iteration
         return negative_coordinates,missing_packets,marker_bad,X_coords,Y_coords
 def ScatterPlot(X_coords,Y_coords,file):
