@@ -19,6 +19,7 @@ import numpy as np
 import scipy.signal as signal
 import matplotlib.pyplot as plt
 from scipy.signal import savgol_filter
+import DataQuality
 
 def eyeTracking():       
     file=input_name.get()
@@ -42,6 +43,8 @@ def eyeTracking():
             
         ##############################################
         df=preProcess(t,df)
+        if t==1:
+            df = DataQuality.dq(df, perf.get() ,0,0)
         df=missingDataCheck(t,df,file)
         #df= butter(t,df) # the panda dataframe that we wil carry throughout the whole process
         df=VelocityCalculation(t,df)
@@ -501,6 +504,11 @@ text6 = Label(frame7, text='Enter end time (ms):                                
 text6.pack(side=LEFT)
 tf = Entry(frame7) #output name variable
 tf.pack(side=LEFT)
+
+text7 = Label(frame8, text='Enter Performance file (for Gazepoint):                                         ')
+text7.pack(side=LEFT)
+perf = Entry(frame8) #Filter order variable
+perf.pack(side=LEFT)
 
 # text7 = Label(frame8,
 #               text='\n 2. Butterworth Filtering Information:\n')
