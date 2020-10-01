@@ -264,9 +264,9 @@ def event_detection(tracker_type):
                
     # Saccade amplitude calculation
     for i in range(len(onsets_times)):
-        df1=df[(df.Time>=onsets_times[i])&(df.Time<=offsets_times[i])] #create a mini dataframe consisting of the data of 1 saccade
+        df1=df[(df.MissionTime>=onsets_times[i])&(df.MissionTime<=offsets_times[i])] #create a mini dataframe consisting of the data of 1 saccade
         vel = df1['Velocity (degrees of visual angle/second)'].sum() #sum the velocity values
-        count=df1.Time.count() #get number of elements to use in average calculation
+        count=df1.MissionTime.count() #get number of elements to use in average calculation
         if (float(count!=0)):
             avg= float(vel)/float(count)
             time_diff = (offsets_times[i] - onsets_times[i])
