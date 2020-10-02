@@ -44,7 +44,7 @@ def eyeTracking():
         ##############################################
         df=preProcess(t,df)
         if t==1:
-            df = DataQuality.dq(df, perf.get() ,0,0)
+            df = DataQuality.dq(df, perf.get(), int(xError.get()),int(yError.get()))
             df.reset_index(drop=True, inplace=True)
 
         df=missingDataCheck(t,df,file)
@@ -512,6 +512,16 @@ text7 = Label(frame8, text='Enter Performance file (for Gazepoint):             
 text7.pack(side=LEFT)
 perf = Entry(frame8) #Filter order variable
 perf.pack(side=LEFT)
+
+text8 = Label(frame9, text='Enter xError (for Gazepoint):                                         ')
+text8.pack(side=LEFT)
+xError = Entry(frame9) #Filter order variable
+xError.pack(side=LEFT)
+
+text9 = Label(frame10, text='Enter yError (for Gazepoint):                                         ')
+text9.pack(side=LEFT)
+yError = Entry(frame10) #Filter order variable
+yError.pack(side=LEFT)
 
 # text7 = Label(frame8,
 #               text='\n 2. Butterworth Filtering Information:\n')
