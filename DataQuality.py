@@ -5,8 +5,10 @@ from datetime import time, datetime, timedelta
 from tkinter import *
 from os import path
 import os
+import numpy as np
 #Sam Smith
 #04/09/2020
+
 
 """
 Overall, I'd say this file is somewhat difficult to understand because there are many things
@@ -62,72 +64,22 @@ system_time = ""
 count = 0
 coordinates = []
 
-#returns first index found of given time in raw data
-"""
-This function finds the first instance of a given time in the preprocessed eye
-tracking folder so that we know when the test actually started. THis is critical to
-calculating the mission time, which we then use to check the participants eye data when 
-they clicked certain things on the screen.
-"""
-def findFirstInstance(time, Raw_csv):
-    first = 0
-    for each in Raw_csv["NewSystemTime"]: 
-        if (each[0:8] == time[0:8]):
-            e_ms = int(each[9:11])
-            p_ms = int(time[9:11])
-            if p_ms -10 < e_ms < p_ms + 10:
-                break
-        first +=1
-    return first
 
-#finds first system time at which target is present in the performance file 
-#This will be where mission time equals 0, because this was the time when the mission actually began
-def findFirstTime(Perf_csv):
-    count=0
-    time = ""
-    for each in Perf_csv["TDTargetPresent"]:
-        if each==1:
-            #system time is 4th col of performance
-            time = Perf_csv.iloc[count, 4]
-            break
+def find_mission_start(first_perf_time,df):
+    if (len(first_perf_time)==7):
+        fulldate = datetime(100, 1, 1, 1, int(first_perf_time[0:2]), int(first_perf_time[3:5]), int(first_perf_time[6]) * 100000)
+    elif (len(first_perf_time) == 11):
+        fulldate = datetime(100, 1, 1, int(first_perf_time[0:2]), int(first_perf_time[3:5]), int(first_perf_time[6:8]), int(first_perf_time[9:11])*10000)
+    time = fulldate.time()
+    count = 0
+    for each in (df["NST"]): 
+        #Finding the first time within 10 ms
+        if subSecs(time, 10000) <= each <= addSecs(time, 10000):
+            return count
         count+=1
-    return time
-
-
-#Counting number of total rows within eye tracking file 
-
-"""
-Converting the system time string into a datetime object
-which allows us to more easily add time using timedeltas.
-See the python datetime documentation (https://docs.python.org/3/library/datetime.html)
-for more information. Depending on the boolean value, convert either a SystemTime 
-or a NewSystemTime. 
-"""
-def convert_to_datetime(Raw_csv, row, boolean=False):
-    if boolean:
-        real_st = Raw_csv.at[row, "SystemTime"]
-    else:
-        real_st = Raw_csv.at[row, "NewSystemTime"]
-    #If statement is basically checking if hours is a single digit
-    if ":" in real_st[0:2]:
-        hours = int(real_st[0])
-        minutes = int(real_st[2:4])
-        seconds = int(real_st[5:7])
-        if len(real_st) ==7:
-            micro=0
-        else:
-            micro = int(real_st[8:])
-
-    else:
-        hours = int(real_st[0:2])
-        minutes = int(real_st[3:5])
-        seconds = int(real_st[6:8])
-        if len(real_st)==8:
-            micro=0
-        else:
-            micro = int(real_st[9:])
-    fulldate = datetime(100, 1, 1, hours, minutes, seconds, micro)
-    return fulldate.time()
+    
+    #if we didn't find the start of the mission 
+    return -1
 
 """
 This function allows us to add time, because this is strangely difficult 
@@ -140,44 +92,12 @@ def addSecs(tm, msecs):
     fulldate = fulldate + timedelta(microseconds=msecs)
     return fulldate.time()
 
-
-
-"""
-Takes the previous value in the NewSystemTime column,
-whch was initialized with a starting value as the first time in
-the original system time column, and adds the difference between
-the previous time and the the current time to the new system time. The 
-Datetime library is strange and I ran into errors when trying to update the
-NewSystemTime with time objects, so I converted them back into strings instead. 
-"""
-def setSystemTime(Raw_csv, total_rows):
-    for i in range(1,total_rows):
-
-        #Previous milisecond value (in microseconds)
-        previous = convert_to_datetime(Raw_csv, i-1)
-        #Difference between current time and previous time
-        delta = float((Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"]))
-        #Converting delta into microseconds 
-        #Im finding that the micro_delta multiple strongly affects the accuracy
-        micro_delta = delta* 1000000
-        current = addSecs(previous, micro_delta)
-        prev_x = convert_to_datetime(Raw_csv, i-1, True)
-        x = convert_to_datetime(Raw_csv,i, True)
-
-        #If system time incremented by 1 second, change the    
-        #New System time second to equal the system time second. 
-        if prev_x.second != x.second:
-            new_current = current.replace(hour=x.hour, minute=x.minute, second=x.second,microsecond=0)
-           
-            str_time = new_current.strftime("%H:%M:%S.%f")
-            Raw_csv.at[i, "NewSystemTime"] = str_time
-        else:
-            str_time = current.strftime("%H:%M:%S.%f")
-            Raw_csv.at[i, "NewSystemTime"] = str_time
-        
-            
-
-
+def subSecs(tm, msecs):
+    #arbitrary date, its the time that matters.
+    #For some reason python doesnt allow you to deal strictly with times
+    fulldate = datetime(100, 1, 1, tm.hour, tm.minute, tm.second, tm.microsecond)
+    fulldate = fulldate - timedelta(microseconds=msecs)
+    return fulldate.time()
 
 
 
@@ -191,14 +111,52 @@ MissionTime is a column we created whereas SystemTime is created by the eyetrack
 software I believe. 
 """
 
-def setMissionTime(Raw_csv, start_index, total_rows):
-    for i in range(total_rows):
+#Only setting the mission time for start index + 900 to avoid unnecessary computation
+def setMissionTime(df, start_index, end):
+    df["MissionTime"] = 0
+    for i in range(start_index, start_index + end):
         if i > start_index:
-            x = (Raw_csv.at[i, "Time"]) - (Raw_csv.at[i-1, "Time"])
-            Raw_csv.at[i, "MissionTime"] = float(Raw_csv.at[i-1, "MissionTime"]) + x
+            x = (df.loc[i, "Time"]) - (df.loc[i-1, "Time"])
+            df.loc[i, "MissionTime"] = float(df.loc[i-1, "MissionTime"]) + x
+    return df
+
+def create_ST_lst(df):
+    base = (df.loc[1, "SystemTime"])
+    if (len(base) == 7):
+        fulldate = datetime(100, 1, 1, 1, int(base[0:2]), int(base[3:5]), 0)
+    elif (len(base) == 11):
+        fulldate = datetime(100, 1, 1, int(base[0:2]), int(base[3:5]), int(base[6:8]), int(base[9:11])*10000)
+
+    time = fulldate.time()
+    arr = [time]
+    # ser = pd.Series(arr)
+    return arr
 
 
+#This works but it's innacurate; might have to use Time column for more 
+#accuracy 
+"""
+TODO: add df as an argument so you can set system time within function, 
+figure out how to make this more accurate (Maybe using time column?)
+"""
 
+def deltas(df):
+        dlst = []
+        tm = df["Time"].tolist()
+        for i in range(len(tm)):
+            delta = float((tm[i]) - (tm[i-1])) * 1000000
+            dlst.append(delta)
+            
+        return dlst
+
+def set_NST(arr, df, delta_lst):
+    for i in range(1, df.index.stop):
+        
+        x = addSecs(arr[i-1], delta_lst[i]) 
+        arr.append(x)
+
+def add_NST_to_df(arr, df):
+    df["NST"] = pd.Series(arr)
 
 
 """
@@ -231,58 +189,86 @@ def calculateDistance(x1,y1,x2,y2):
      dist = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)  
      return dist  
 
+#This works!
+
+def find_end(start, df):
+    counter = 0
+    for each in df["NST"]:
+        if(each.minute - df["NST"][start].minute == 15):
+            return counter
+        counter +=1
 
 
-def dq(inputET, inputP, xError, yError):
-          
-            raw = pd.read_csv(inputET)
+
+def preProcess(df):
+        # Default width is 2560 and default height is 1440 for Gazepoint
+        column_names_X = []
+        column_names_Y = []
+        column_names_bool = []
+        column_names_Pupil_Diameter = []
+       
+        # Default width is 2560 and default height is 1440 for Gazepoint
+        # Tracker used is that of experiment 1
+        # all the names of the columns we want to convert proportions to pixels for
+        width_of_screen = int(2560)
+        height_of_screen = int(1440)
+        column_names_X = ['CursorX', 'LeftEyeX', 'RightEyeX', 'FixedPogX', 'LeftPogX', 'RightPogX', 'BestPogX',
+                            'LeftPupilX', 'RightPupilX']
+        column_names_Y = ['CursorY', 'LeftEyeY', 'RightEyeY', 'FixedPogY', 'LeftPogY', 'RightPogY', 'BestPogY',
+                            'LeftPupilY', 'RightPupilY']
+        column_names_bool = ['LeftEyePupilValid', 'RightEyePupilValid', 'FixedPogValid', 'LeftPogValid',
+                                'RightPogValid', 'BestPogValid', 'LeftPupilValid', 'RightPupilValid', 'MarkerValid']
+        column_names_Pupil_Diameter = ['LeftEyePupilDiamet', 'RightEyePupilDiame']
+
+        # turn TRUES and FALSES to 1s and 0s
+        for each in column_names_bool:
+            df[each].replace(True, 1, inplace=True)
+            df[each].replace(False, 0, inplace=True)
+        # CHANGE RESOLUTION OF X HERE
+        for each in column_names_X:
+            df[each] = df[each].multiply(width_of_screen)
+
+        # CHANGE RESOLUTION OF Y HERE
+        for each in column_names_Y:
+            df[each] = df[each].multiply(height_of_screen)
+def dq(df, inputP, xError, yError):
+            #REMOVING BLANK LINE FROM GAZEPOINT
+            df = df[1:df.index.stop]
+            df.reset_index(drop=True, inplace=True)
+            
+            #if there is a blank line in performance, you can repeat the above two lines
+            #with performance in place of df
             performance = pd.read_csv(inputP)
 
            
             
-            #Gathering user input for error calculating the valid field of view for participants eyes.
-            """
-            Essentially, the error that the user inputs is used to extend the bounds that we would
-            consider to be acceptably accurate. For example, if a video feed's x coordinates were 
-            200 to 1000, an xError of 50 would mean that any eye data in the x direction
-            within the window of 150 to 1050 pixels would considered as accurate. This applies
-            to the y direction as well.  
-            """
-           
-          
-            totalRows=0
-            for each in raw["BestPogX"]:
-                totalRows+=1
-
-            raw["NewSystemTime"] = ""
-            raw.at[0, "NewSystemTime"]= raw.at[0, "SystemTime"]+ ".0"
-            setSystemTime(raw, totalRows)
-            #Calling the setMissionTime function below 
-            time = findFirstTime(performance)
-            start = (findFirstInstance(time, raw))
-            print("starting mission time at: "+ str(start)) 
-            #You can change output file with third parameter here 
-            raw["MissionTime"] = 0.0
-
-            setMissionTime(raw, start, totalRows)
-            # raw.to_csv(output, index=False)
+            arr = create_ST_lst(df)
+            ds = deltas(df)
+            set_NST(arr, df, ds)
+            add_NST_to_df(arr, df)
+            #Does performance start with blank line as well? 
+            start = find_mission_start(performance["SystemTime"][0], df)
+            end = find_end(start, df)
+            setMissionTime(df, start, end)
+            
+       
             """
             Create dictionary of the mission times (from the button clicks), assign 
             coordinates as values to the mission times key 
             """
             missionDict = {}
             #Tells us if target detection was accurate
-            raw["DataAccurate"] = ""
+            df["DataAccurate"] = ""
             #Tells which uav the target appeared in
-            raw["Task"] = ""
+            df["Task"] = ""
             #Tells us which uav the participant was looking at
-            raw["Qualitative"] = "N/A"
+            df["Qualitative"] = "N/A"
 
             """
             Uses distance formula to calculate how far eye coordinates are 
             from the center of a video feed or secondary task.
             """
-            raw["DistanceFromCenter"] = 0
+            df["DistanceFromCenter"] = 0
 
 
 
@@ -299,15 +285,15 @@ def dq(inputET, inputP, xError, yError):
                 if each == 1.0:
                     raw_counter=0
                     clickTime = performance.iloc[count, 27]
-                    for mt in raw["MissionTime"]:
+                    for mt in df["MissionTime"]:
                         #Finding where button click time and MissionTime align
                         if -.01 <= mt -  clickTime <= .01 :
                             #print(raw.at[raw_counter, "BestPogY"])
                             number_analyzed+=1
                             uavNum = int(performance.at[count, "UAVNumber"])
                             uav = UAVs[uavNum-1]
-                            x = raw.at[raw_counter, "BestPogX"]
-                            y = raw.at[raw_counter, "BestPogY"]
+                            x = df.at[raw_counter, "BestPogX"]
+                            y = df.at[raw_counter, "BestPogY"]
 
                             #Now accuracy takes the errors into account 
                             xacc= (x >= uav[0] - xError and x <= uav[1] + xError)
@@ -339,15 +325,15 @@ def dq(inputET, inputP, xError, yError):
 
 
                             #Updating the output csv file
-                            raw.at[raw_counter, "DataAccurate"] = xacc and yacc
-                            raw.at[raw_counter, "Task"] = "Target detection task for UAV " + str(uavNum)
-                            raw.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
-                            raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                            df.at[raw_counter, "DataAccurate"] = xacc and yacc
+                            df.at[raw_counter, "Task"] = "Target detection task for UAV " + str(uavNum)
+                            df.at[raw_counter, "Qualitative"] = "Participant was looking at UAV " + str(cur_uav)
+                            df.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
 
                         raw_counter+=1
                 count+=1
 
-            print(missionDict)
+            # print(missionDict)
 
             """
             Here, we repeat the logic used for target detection but in the context of 
@@ -369,48 +355,51 @@ def dq(inputET, inputP, xError, yError):
                             
                             
                         raw_counter=0
-                        for mt in raw["MissionTime"]:
+                        for mt in df["MissionTime"]:
                             if (-.01 <= mt- each <= .01):
                                 number_analyzed+=1
-                                x = raw.at[raw_counter, "BestPogX"]
-                                y = raw.at[raw_counter, "BestPogY"]
+                                x = df.at[raw_counter, "BestPogX"]
+                                y = df.at[raw_counter, "BestPogY"]
                                 xacc= (x >= task_dict[task][0] - xError and x <= task_dict[task][1] + xError)
                                 yacc = (y >= task_dict[task][2] - yError and y <= task_dict[task][3] + yError)
 
                                 centerx = (task_dict[task][0] + task_dict[task][1])/2
                                 centery = (task_dict[task][2] + task_dict[task][3])/2
-                                raw.at[raw_counter, "Task"] = "Secondary detection task for "+ task
-                                raw.at[raw_counter, "DataAccurate"] = xacc and yacc
-                                raw.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
+                                df.at[raw_counter, "Task"] = "Secondary detection task for "+ task
+                                df.at[raw_counter, "DataAccurate"] = xacc and yacc
+                                df.at[raw_counter, "DistanceFromCenter"] = calculateDistance(centerx,centery,x,y)
                                 
                                 if xacc and yacc:
                                     number_true+=1
-                                    raw.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the " + task
+                                    df.at[raw_counter, "Qualitative"] = "Participant was correctly looking at the " + task
                                 else: 
                                     cur_uav = which_uav(x, y)
                                     number_false+=1
                                     if cur_uav == "Inconclusive":
                                         cur_task = which_secondary_task(x, y, task_dict)
                                         if cur_task=="Inconclusive":
-                                            raw.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
+                                            df.at[raw_counter, "Qualitative"] = "Unable to pinpoint participant's gaze location."
                                         else:
-                                            raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
+                                            df.at[raw_counter, "Qualitative"] = "Participant was looking at "+ cur_task
                                     else:
-                                        raw.at[raw_counter, "Qualitative"] = "Participant was looking at "+ str(cur_uav)
+                                        df.at[raw_counter, "Qualitative"] = "Participant was looking at "+ str(cur_uav)
                             raw_counter+=1
                     perf_counter+=1
            
             # raw.to_csv(output, index=False)
             #Creating summary statistics file (STILL IN PROGRESS)
-            percent_accurate = number_true/number_analyzed
-            summary_stats = open("quality_summary.txt", 'w')
-            summary_stats.write("The data was "+ str(100 * percent_accurate) + " percent accurate.\n")
-            summary_stats.write("Of the "+ str(number_analyzed)+  " data points analyzed, " + str(number_true)+" data points were accurate while " + str(number_false) + " were inaccurate." )
-            summary_stats.close()
+            # percent_accurate = number_true/number_analyzed
+            # summary_stats = open("quality_summary.txt", 'w')
+            # summary_stats.write("The data was "+ str(100 * percent_accurate) + " percent accurate.\n")
+            # summary_stats.write("Of the "+ str(number_analyzed)+  " data points analyzed, " + str(number_true)+" data points were accurate while " + str(number_false) + " were inaccurate." )
+            # summary_stats.close()
             #returning from mission time start to the 900th point after that
             """
             Important to note that this function no longer puts the dataframe 
             into an output file. It just returns a dataframe. 
             """
-            return raw[start:start+900]
+            """
+            TODO: Change the return df to return 900 seconds after starting point
+            """
+            return df[start:end]
 
