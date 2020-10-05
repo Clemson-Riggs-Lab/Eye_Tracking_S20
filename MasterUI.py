@@ -33,11 +33,11 @@ def eyeTracking():
         if (t==2 and (t0.get()=='' or tf.get() =='')):
             Status.configure(text='Status: Times not specified!')
             return
-        start_time=int(t0.get())
-        end_time=int(tf.get())
         # We will use the start and end times to only use the data within these two values and discard all the rest
         df = pd.read_csv(file_name) 
         if t ==2:  #truncate the dataframe if the tracker is a FOVIO one      
+            start_time=int(t0.get())
+            end_time=int(tf.get())
             df=df[(df.Time>=start_time)&(df.Time<=end_time)]
             df.reset_index(drop=True, inplace=True)
             
@@ -160,7 +160,7 @@ def missingDataCheck(tracker_type,df,file):
         missing_packets = []
         marker_bad = []
         final_index = len(df.index)
-        final_time = df.iloc[-1]['Time'] 
+        final_time = df.iloc[-1]['MissionTime'] 
         '''----------checking errors in the file-----------------'''
         #Function returns the following lists given the dataframe        
         negative_coordinates,missing_packets,marker_bad,X_coords,Y_coords = CheckErrors(df,output_file,tracker_type)
@@ -187,9 +187,9 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,f
         proportion_impossible = len(negative_coords) / final_index
         proportion_packets = len(missing_data) / final_index
         proportion_gazepoint = len(bad_markers) / final_index
-        percentage_impossible = len(negative_coords) / final_index * 100
-        percentage_packets = len(missing_data) / final_index * 100
-        percentage_gazepoint = len(bad_markers) / final_index * 100
+        percentage_impossible = (len(negative_coords) / final_index) * 100
+        percentage_packets = (len(missing_data) / final_index) * 100
+        percentage_gazepoint = (len(bad_markers) / final_index) * 100
         
 
         #write these additional statistics to the output file
@@ -204,21 +204,22 @@ def Statistics(negative_coords,missing_data,bad_markers,final_index,final_time,f
                     percentage_gazepoint) + '%' + '\n')
 
         # Time recorded is in ms, fetch last time recorded in csv file
-        total_time_seconds = final_time / 1000
+        total_time_seconds = final_time
         total_time_minutes = total_time_seconds / 60
 
         output_file.write('\nTotal Time Elapsed: ' + str(total_time_minutes) + ' minutes (' + str(
             total_time_seconds) + ' seconds)' + '\n')
 
-        # combining the lists together for duplicate rows
-        combined_list = list(set(negative_coords).union(set(bad_markers)))
+        # combining the lists together for duplicate rows        
         if tracker_type == 1:
-            total_error_time_seconds = len(combined_list)/6.6667 #multiply by 1/refresh rate
-            total_error_time_seconds = total_error_time_seconds/1000 #convert to seconds            
+            combined_list = list(set(negative_coords).union(set(bad_markers)).union(set(missing_data)))
+            total_error_time_seconds = len(combined_list) * 6.6667 #multiply by 1/refresh rate
         elif tracker_type ==2: 
-            total_error_time_seconds = len(combined_list) / 16.6667 
-            total_error_time_seconds = total_error_time_seconds/1000 #convert to seconds
-        total_error_time_minutes = total_error_time_seconds / 60
+            combined_list = list(set(negative_coords).union(set(bad_markers)))
+            total_error_time_seconds = len(combined_list) * 16.6667 #multiply by 1/refresh rate
+
+        total_error_time_seconds = total_error_time_seconds/1000 #convert to seconds         
+        total_error_time_minutes = total_error_time_seconds / 60 #convert to minutes
 
         output_file.write('Total Amount Of Time Of Invalid Data: ' + str(total_error_time_minutes) + ' minutes (' + str(total_error_time_seconds) + ' seconds)' + '\n')  
 def CheckErrors(df,output_file,tracker):
@@ -498,27 +499,27 @@ text4.pack(side=LEFT)
 output_name = Entry(frame5) #output name variable
 output_name.pack(side=LEFT)
 
-text5 = Label(frame6, text='Enter start time(ms):                                          ')
+text5 = Label(frame6, text='Enter start time in ms (only for FOVIO):                                          ')
 text5.pack(side=LEFT)
 t0 = Entry(frame6) # input name variable 
 t0.pack(side=LEFT)
 
-text6 = Label(frame7, text='Enter end time (ms):                                          ')
+text6 = Label(frame7, text='Enter end time in ms (only for FOVIO):                                          ')
 text6.pack(side=LEFT)
 tf = Entry(frame7) #output name variable
 tf.pack(side=LEFT)
 
-text7 = Label(frame8, text='Enter Performance file (for Gazepoint):                                         ')
+text7 = Label(frame8, text='Enter Performance file (only for Gazepoint):                                         ')
 text7.pack(side=LEFT)
 perf = Entry(frame8) #Filter order variable
 perf.pack(side=LEFT)
 
-text8 = Label(frame9, text='Enter xError (for Gazepoint):                                         ')
+text8 = Label(frame9, text='Enter xError (only for Gazepoint):                                         ')
 text8.pack(side=LEFT)
 xError = Entry(frame9) #Filter order variable
 xError.pack(side=LEFT)
 
-text9 = Label(frame10, text='Enter yError (for Gazepoint):                                         ')
+text9 = Label(frame10, text='Enter yError (only for Gazepoint):                                         ')
 text9.pack(side=LEFT)
 yError = Entry(frame10) #Filter order variable
 yError.pack(side=LEFT)
