@@ -50,7 +50,7 @@ def event_detection(tracker_type):
     #Find peaks in velocity as defined by the adaptive algorithm
     indices = find_peaks(velocities, height = PT)[0]
         
-    print (len(indices),'peaks were detected')
+    print (len(indices),'saccade peaks were detected')
     """
     for i in range(len(indices)): 
         r=indices[i]
@@ -318,7 +318,7 @@ def event_detection(tracker_type):
     out =pd.DataFrame(out_data,columns=['Participant Number','Workload','Eyetracker','Event Type','Start time (s)','Duration','Amplitude (degrees)','X','Y','AOI'])
     i=0 #counter for saccades
     j=0 #counter for fixations
-    while (i != len(onsets_times)-1 and j != len(fix_start_time)-1): 
+    while (i != len(onsets_times) and j != len(fix_start_time)): 
         
         if (onsets_times[i]<fix_start_time[j]): #if saccade comes before fixation
             if(offsets_times[i] == 0):
@@ -347,10 +347,40 @@ def event_detection(tracker_type):
                 out_Y.append(df.at[center_points[j],"BestPogY"]) #Find Y of the center of the fixation
                 out_AOI.append(AOI[j])
                 j=j+1
-
+  
+                
+    if (i < len(onsets_times)):
+        while (i < len(onsets_times)):
+            if(offsets_times[i] == 0):
+                print('Invalid saccade detected (missed offset) and its onset time is '+str(onsets_times[i])+' s')
+                i=i+1
+            elif (onsets_times[i]==999999):
+                print('Invalid saccade detected (missed onset) and its offset is '+str(offsets_times[i])+' s')
+                i=i+1
+            else:
+                out_event.append("Saccade")
+                out_amp.append(sac_amps[i]) 
+                out_start_time.append(onsets_times[i])
+                out_duration.append(saccade_duration[i])
+                out_X.append("N/A")
+                out_Y.append("N/A")
+                out_AOI.append("N/A")
+                i=i+1                        
+    elif (j < len(fix_start_time)):
+        while (j < len(fix_start_time)):            
+            out_event.append("Fixation")
+            out_amp.append("N/A")
+            out_start_time.append(fix_start_time[j]) #Find time of the center of the fixation
+            out_duration.append((len(fixations_after_constraints[j])-1)*samp_rate) 
+            out_X.append(df.at[center_points[j],"BestPogX"]) #Find X of the center of the fixation
+            out_Y.append(df.at[center_points[j],"BestPogY"]) #Find Y of the center of the fixation
+            out_AOI.append(AOI[j])
+            j=j+1
+            
+        
     out["Event Type"] = out_event
     out["Start time (s)"] = out_start_time
-    out["Duration"] = out_duration
+    out["Duration (ms)"] = out_duration
     out["Amplitude (degrees)"] = out_amp
     out["X"] = out_X
     out["Y"] = out_Y
@@ -367,6 +397,8 @@ def event_detection(tracker_type):
     out.to_csv(out_file2,index=False)
     text11.configure(text='Status: Success! Fixations and Saccades have been detected successfully')
     print (len(fixations_after_constraints),'fixations were detected')
+    print ("Sanity check that all valid saccades outputted to Output file 2 (should equal # of saccade peaks):", i)
+    print ("Sanity check that all valid fixations outputted to Output file 2 (should equal # of fixations detected):",j)
   
 # UI things
 window = Tk()
