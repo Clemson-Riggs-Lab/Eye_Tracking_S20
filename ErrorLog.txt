@@ -1,3668 +1,658 @@
-File name:FOVIO_P10_Sudden.csv
+File name:FOVIO_P21_Gradual.csv
 -------------------------------------------------------------------------
-Row 58: Invalid Data based on FOVIO
-Row 60: Invalid Data based on FOVIO
-Row 62: Invalid Data based on FOVIO
-Row 64: Invalid Data based on FOVIO
-Row 67: Invalid Data based on FOVIO
-Row 89: Invalid Data based on FOVIO
-Row 90: Invalid Data based on FOVIO
-Row 91: Invalid Data based on FOVIO
-Row 94: Invalid Data based on FOVIO
-Row 115: Invalid Data based on FOVIO
-Row 117: Invalid Data based on FOVIO
-Row 119: Invalid Data based on FOVIO
-Row 120: Invalid Data based on FOVIO
-Row 188: Invalid Data based on FOVIO
-Row 189: Invalid Data based on FOVIO
-Row 190: Invalid Data based on FOVIO
-Row 191: Invalid Data based on FOVIO
-Row 192: Invalid Data based on FOVIO
-Row 193: Invalid Data based on FOVIO
-Row 194: Invalid Data based on FOVIO
-Row 195: Invalid Data based on FOVIO
-Row 196: Invalid Data based on FOVIO
-Row 274: Invalid Data based on FOVIO
-Row 276: Invalid Data based on FOVIO
-Row 278: Invalid Data based on FOVIO
-Row 282: Invalid Data based on FOVIO
-Row 284: Invalid Data based on FOVIO
-Row 286: Invalid Data based on FOVIO
-Row 288: Invalid Data based on FOVIO
-Row 293: Invalid Data based on FOVIO
-Row 295: Invalid Data based on FOVIO
-Row 297: Invalid Data based on FOVIO
-Row 400: Invalid Data based on FOVIO
-Row 401: Invalid Data based on FOVIO
-Row 402: Invalid Data based on FOVIO
-Row 403: Invalid Data based on FOVIO
-Row 404: Invalid Data based on FOVIO
-Row 405: Invalid Data based on FOVIO
-Row 406: Invalid Data based on FOVIO
-Row 407: Invalid Data based on FOVIO
-Row 408: Invalid Data based on FOVIO
-Row 409: Invalid Data based on FOVIO
-Row 493: Invalid Data based on FOVIO
-Row 497: Invalid Data based on FOVIO
-Row 544: Invalid Data based on FOVIO
-Row 545: Invalid Data based on FOVIO
-Row 548: Invalid Data based on FOVIO
-Row 549: Invalid Data based on FOVIO
-Row 552: Invalid Data based on FOVIO
-Row 553: Invalid Data based on FOVIO
-Row 617: Invalid Data based on FOVIO
-Row 665: Invalid Data based on FOVIO
-Row 666: Invalid Data based on FOVIO
-Row 675: Invalid Data based on FOVIO
-Row 679: Invalid Data based on FOVIO
-Row 721: Invalid Data based on FOVIO
-Row 727: Invalid Data based on FOVIO
-Row 859: Invalid Data based on FOVIO
-Row 860: Invalid Data based on FOVIO
-Row 861: Invalid Data based on FOVIO
-Row 862: Invalid Data based on FOVIO
-Row 863: Invalid Data based on FOVIO
-Row 864: Invalid Data based on FOVIO
-Row 881: Invalid Data based on FOVIO
-Row 901: Invalid Data based on FOVIO
-Row 945: Invalid Data based on FOVIO
-Row 969: Invalid Data based on FOVIO
-Row 1032: Invalid Data based on FOVIO
-Row 1033: Invalid Data based on FOVIO
-Row 1035: Invalid Data based on FOVIO
-Row 1045: Invalid Data based on FOVIO
-Row 1055: Invalid Data based on FOVIO
-Row 1056: Invalid Data based on FOVIO
-Row 1125: Invalid Data based on FOVIO
-Row 1163: Invalid Data based on FOVIO
-Row 1164: Invalid Data based on FOVIO
-Row 1167: Invalid Data based on FOVIO
-Row 1168: Invalid Data based on FOVIO
-Row 1179: Invalid Data based on FOVIO
-Row 1251: Invalid Data based on FOVIO
-Row 1255: Invalid Data based on FOVIO
-Row 1272: Invalid Data based on FOVIO
-Row 1274: Invalid Data based on FOVIO
-Row 1282: Invalid Data based on FOVIO
-Row 1284: Invalid Data based on FOVIO
-Row 1286: Invalid Data based on FOVIO
-Row 1339: Invalid Data based on FOVIO
-Row 1347: Invalid Data based on FOVIO
-Row 1353: Invalid Data based on FOVIO
-Row 1355: Invalid Data based on FOVIO
-Row 1358: Invalid Data based on FOVIO
-Row 1367: Invalid Data based on FOVIO
-Row 1368: Invalid Data based on FOVIO
-Row 1370: Invalid Data based on FOVIO
-Row 1376: Invalid Data based on FOVIO
-Row 1379: Invalid Data based on FOVIO
-Row 1395: Invalid Data based on FOVIO
-Row 1396: Invalid Data based on FOVIO
-Row 1452: Invalid Data based on FOVIO
-Row 1454: Invalid Data based on FOVIO
-Row 1456: Invalid Data based on FOVIO
-Row 1458: Invalid Data based on FOVIO
-Row 1462: Invalid Data based on FOVIO
-Row 1463: Invalid Data based on FOVIO
-Row 1464: Invalid Data based on FOVIO
-Row 1465: Invalid Data based on FOVIO
-Row 1466: Invalid Data based on FOVIO
-Row 1640: Invalid Data based on FOVIO
-Row 1642: Invalid Data based on FOVIO
-Row 1643: Invalid Data based on FOVIO
-Row 1645: Invalid Data based on FOVIO
-Row 1646: Invalid Data based on FOVIO
-Row 1648: Invalid Data based on FOVIO
-Row 1650: Invalid Data based on FOVIO
-Row 1651: Invalid Data based on FOVIO
-Row 1652: Invalid Data based on FOVIO
-Row 1653: Invalid Data based on FOVIO
-Row 1654: Invalid Data based on FOVIO
-Row 1655: Invalid Data based on FOVIO
-Row 1656: Invalid Data based on FOVIO
-Row 1657: Invalid Data based on FOVIO
-Row 1659: Invalid Data based on FOVIO
-Row 1661: Invalid Data based on FOVIO
-Row 1671: Invalid Data based on FOVIO
-Row 1672: Invalid Data based on FOVIO
-Row 1673: Invalid Data based on FOVIO
-Row 1674: Invalid Data based on FOVIO
-Row 1675: Invalid Data based on FOVIO
-Row 1676: Invalid Data based on FOVIO
-Row 1677: Invalid Data based on FOVIO
-Row 1678: Invalid Data based on FOVIO
-Row 1745: Invalid Data based on FOVIO
-Row 1771: Invalid Data based on FOVIO
-Row 1807: Invalid Data based on FOVIO
-Row 1933: Invalid Data based on FOVIO
-Row 1971: Invalid Data based on FOVIO
-Row 1986: Invalid Data based on FOVIO
-Row 1990: Invalid Data based on FOVIO
-Row 1993: Invalid Data based on FOVIO
-Row 1996: Invalid Data based on FOVIO
-Row 2042: Invalid Data based on FOVIO
-Row 2044: Invalid Data based on FOVIO
-Row 2047: Invalid Data based on FOVIO
-Row 2049: Invalid Data based on FOVIO
-Row 2051: Invalid Data based on FOVIO
-Row 2053: Invalid Data based on FOVIO
-Row 2061: Invalid Data based on FOVIO
-Row 2063: Invalid Data based on FOVIO
-Row 2065: Invalid Data based on FOVIO
-Row 2115: Invalid Data based on FOVIO
-Row 2127: Invalid Data based on FOVIO
-Row 2129: Invalid Data based on FOVIO
-Row 2131: Invalid Data based on FOVIO
-Row 2133: Invalid Data based on FOVIO
-Row 2217: Invalid Data based on FOVIO
-Row 2228: Invalid Data based on FOVIO
-Row 2244: Invalid Data based on FOVIO
-Row 2259: Invalid Data based on FOVIO
-Row 2285: Invalid Data based on FOVIO
-Row 2287: Invalid Data based on FOVIO
-Row 2289: Invalid Data based on FOVIO
-Row 2480: Invalid Data based on FOVIO
-Row 2484: Invalid Data based on FOVIO
-Row 2486: Invalid Data based on FOVIO
-Row 2488: Invalid Data based on FOVIO
-Row 2489: Invalid Data based on FOVIO
-Row 2517: Invalid Data based on FOVIO
-Row 2520: Invalid Data based on FOVIO
-Row 2524: Invalid Data based on FOVIO
-Row 2526: Invalid Data based on FOVIO
-Row 2527: Invalid Data based on FOVIO
-Row 2529: Invalid Data based on FOVIO
-Row 2530: Invalid Data based on FOVIO
-Row 2531: Invalid Data based on FOVIO
-Row 2532: Invalid Data based on FOVIO
-Row 2533: Invalid Data based on FOVIO
-Row 2534: Invalid Data based on FOVIO
-Row 2535: Invalid Data based on FOVIO
-Row 2536: Invalid Data based on FOVIO
-Row 2537: Invalid Data based on FOVIO
-Row 2538: Invalid Data based on FOVIO
-Row 2539: Invalid Data based on FOVIO
-Row 2541: Invalid Data based on FOVIO
-Row 2544: Invalid Data based on FOVIO
-Row 2545: Invalid Data based on FOVIO
-Row 2547: Invalid Data based on FOVIO
-Row 2549: Invalid Data based on FOVIO
-Row 2551: Invalid Data based on FOVIO
-Row 2552: Invalid Data based on FOVIO
-Row 2553: Invalid Data based on FOVIO
-Row 2554: Invalid Data based on FOVIO
-Row 2586: Invalid Data based on FOVIO
-Row 2596: Invalid Data based on FOVIO
-Row 2597: Invalid Data based on FOVIO
-Row 2639: Invalid Data based on FOVIO
-Row 2647: Invalid Data based on FOVIO
-Row 2657: Invalid Data based on FOVIO
-Row 2658: Invalid Data based on FOVIO
-Row 2659: Invalid Data based on FOVIO
-Row 2660: Invalid Data based on FOVIO
-Row 2661: Invalid Data based on FOVIO
-Row 2669: Invalid Data based on FOVIO
-Row 2677: Invalid Data based on FOVIO
-Row 2678: Invalid Data based on FOVIO
-Row 2681: Invalid Data based on FOVIO
-Row 2683: Invalid Data based on FOVIO
-Row 2691: Invalid Data based on FOVIO
-Row 2695: Invalid Data based on FOVIO
-Row 2731: Invalid Data based on FOVIO
-Row 2769: Invalid Data based on FOVIO
-Row 2770: Invalid Data based on FOVIO
-Row 2921: Invalid Data based on FOVIO
-Row 2980: Invalid Data based on FOVIO
-Row 2982: Invalid Data based on FOVIO
-Row 2985: Invalid Data based on FOVIO
-Row 2986: Invalid Data based on FOVIO
-Row 2989: Invalid Data based on FOVIO
-Row 2997: Invalid Data based on FOVIO
-Row 3001: Invalid Data based on FOVIO
-Row 3003: Invalid Data based on FOVIO
-Row 3005: Invalid Data based on FOVIO
-Row 3031: Invalid Data based on FOVIO
-Row 3033: Invalid Data based on FOVIO
-Row 3051: Invalid Data based on FOVIO
-Row 3065: Invalid Data based on FOVIO
-Row 3075: Invalid Data based on FOVIO
-Row 3077: Invalid Data based on FOVIO
-Row 3111: Invalid Data based on FOVIO
-Row 3112: Invalid Data based on FOVIO
-Row 3115: Invalid Data based on FOVIO
-Row 3117: Invalid Data based on FOVIO
-Row 3123: Invalid Data based on FOVIO
-Row 3125: Invalid Data based on FOVIO
-Row 3126: Invalid Data based on FOVIO
-Row 3187: Invalid Data based on FOVIO
-Row 3207: Invalid Data based on FOVIO
-Row 3208: Invalid Data based on FOVIO
-Row 3209: Invalid Data based on FOVIO
-Row 3210: Invalid Data based on FOVIO
-Row 3241: Invalid Data based on FOVIO
-Row 3320: Invalid Data based on FOVIO
-Row 3321: Invalid Data based on FOVIO
-Row 3322: Invalid Data based on FOVIO
-Row 3323: Invalid Data based on FOVIO
-Row 3324: Invalid Data based on FOVIO
-Row 3325: Invalid Data based on FOVIO
-Row 3326: Invalid Data based on FOVIO
-Row 3327: Invalid Data based on FOVIO
-Row 3328: Invalid Data based on FOVIO
-Row 3345: Invalid Data based on FOVIO
-Row 3385: Invalid Data based on FOVIO
-Row 3387: Invalid Data based on FOVIO
-Row 3393: Invalid Data based on FOVIO
-Row 3395: Invalid Data based on FOVIO
-Row 3437: Invalid Data based on FOVIO
-Row 3455: Invalid Data based on FOVIO
-Row 3458: Invalid Data based on FOVIO
-Row 3460: Invalid Data based on FOVIO
-Row 3577: Invalid Data based on FOVIO
-Row 3583: Invalid Data based on FOVIO
-Row 3589: Invalid Data based on FOVIO
-Row 3632: Invalid Data based on FOVIO
-Row 3699: Invalid Data based on FOVIO
-Row 3700: Invalid Data based on FOVIO
-Row 3743: Invalid Data based on FOVIO
-Row 3758: Invalid Data based on FOVIO
-Row 3760: Invalid Data based on FOVIO
-Row 3762: Invalid Data based on FOVIO
-Row 3764: Invalid Data based on FOVIO
-Row 3765: Invalid Data based on FOVIO
-Row 3767: Invalid Data based on FOVIO
-Row 3770: Invalid Data based on FOVIO
-Row 3772: Invalid Data based on FOVIO
-Row 3774: Invalid Data based on FOVIO
-Row 3776: Invalid Data based on FOVIO
-Row 3779: Invalid Data based on FOVIO
-Row 3837: Invalid Data based on FOVIO
-Row 3843: Invalid Data based on FOVIO
-Row 3848: Invalid Data based on FOVIO
-Row 3849: Invalid Data based on FOVIO
-Row 3850: Invalid Data based on FOVIO
-Row 3851: Invalid Data based on FOVIO
-Row 3852: Invalid Data based on FOVIO
-Row 3853: Invalid Data based on FOVIO
-Row 3854: Invalid Data based on FOVIO
-Row 3855: Invalid Data based on FOVIO
-Row 3856: Invalid Data based on FOVIO
-Row 3857: Invalid Data based on FOVIO
-Row 3858: Invalid Data based on FOVIO
-Row 3859: Invalid Data based on FOVIO
-Row 3861: Invalid Data based on FOVIO
-Row 3917: Invalid Data based on FOVIO
-Row 4317: Invalid Data based on FOVIO
-Row 4319: Invalid Data based on FOVIO
-Row 4324: Invalid Data based on FOVIO
-Row 4363: Invalid Data based on FOVIO
-Row 4369: Invalid Data based on FOVIO
-Row 4373: Invalid Data based on FOVIO
-Row 4375: Invalid Data based on FOVIO
-Row 4410: Invalid Data based on FOVIO
-Row 4411: Invalid Data based on FOVIO
-Row 4413: Invalid Data based on FOVIO
-Row 4415: Invalid Data based on FOVIO
-Row 4417: Invalid Data based on FOVIO
-Row 4419: Invalid Data based on FOVIO
-Row 4421: Invalid Data based on FOVIO
-Row 4425: Invalid Data based on FOVIO
-Row 4427: Invalid Data based on FOVIO
-Row 4443: Invalid Data based on FOVIO
-Row 4453: Invalid Data based on FOVIO
-Row 4459: Invalid Data based on FOVIO
-Row 4463: Invalid Data based on FOVIO
-Row 4688: Invalid Data based on FOVIO
-Row 4689: Invalid Data based on FOVIO
-Row 4690: Invalid Data based on FOVIO
-Row 4693: Invalid Data based on FOVIO
-Row 4695: Invalid Data based on FOVIO
-Row 4698: Invalid Data based on FOVIO
-Row 4704: Invalid Data based on FOVIO
-Row 4766: Invalid Data based on FOVIO
-Row 4768: Invalid Data based on FOVIO
-Row 4771: Invalid Data based on FOVIO
-Row 4809: Invalid Data based on FOVIO
-Row 4810: Invalid Data based on FOVIO
-Row 4860: Invalid Data based on FOVIO
-Row 4887: Invalid Data based on FOVIO
-Row 4895: Invalid Data based on FOVIO
-Row 4896: Invalid Data based on FOVIO
-Row 4897: Invalid Data based on FOVIO
-Row 4898: Invalid Data based on FOVIO
-Row 4899: Invalid Data based on FOVIO
-Row 4900: Invalid Data based on FOVIO
-Row 4903: Invalid Data based on FOVIO
-Row 4923: Invalid Data based on FOVIO
-Row 4969: Invalid Data based on FOVIO
-Row 5051: Invalid Data based on FOVIO
-Row 5055: Invalid Data based on FOVIO
-Row 5057: Invalid Data based on FOVIO
-Row 5115: Invalid Data based on FOVIO
-Row 5117: Invalid Data based on FOVIO
-Row 5119: Invalid Data based on FOVIO
-Row 5121: Invalid Data based on FOVIO
-Row 5123: Invalid Data based on FOVIO
-Row 5125: Invalid Data based on FOVIO
-Row 5127: Invalid Data based on FOVIO
-Row 5129: Invalid Data based on FOVIO
-Row 5131: Invalid Data based on FOVIO
-Row 5183: Invalid Data based on FOVIO
-Row 5185: Invalid Data based on FOVIO
-Row 5189: Invalid Data based on FOVIO
-Row 5250: Invalid Data based on FOVIO
-Row 5251: Invalid Data based on FOVIO
-Row 5252: Invalid Data based on FOVIO
-Row 5320: Invalid Data based on FOVIO
-Row 5322: Invalid Data based on FOVIO
-Row 5326: Invalid Data based on FOVIO
-Row 5342: Invalid Data based on FOVIO
-Row 5349: Invalid Data based on FOVIO
-Row 5483: Invalid Data based on FOVIO
-Row 5484: Invalid Data based on FOVIO
-Row 5487: Invalid Data based on FOVIO
-Row 5488: Invalid Data based on FOVIO
-Row 5489: Invalid Data based on FOVIO
-Row 5490: Invalid Data based on FOVIO
-Row 5491: Invalid Data based on FOVIO
-Row 5492: Invalid Data based on FOVIO
-Row 5526: Invalid Data based on FOVIO
-Row 5573: Invalid Data based on FOVIO
-Row 5575: Invalid Data based on FOVIO
-Row 5576: Invalid Data based on FOVIO
-Row 5581: Invalid Data based on FOVIO
-Row 5582: Invalid Data based on FOVIO
-Row 5661: Invalid Data based on FOVIO
-Row 5662: Invalid Data based on FOVIO
-Row 5663: Invalid Data based on FOVIO
-Row 5664: Invalid Data based on FOVIO
-Row 5665: Invalid Data based on FOVIO
-Row 5666: Invalid Data based on FOVIO
-Row 5667: Invalid Data based on FOVIO
-Row 5668: Invalid Data based on FOVIO
-Row 5669: Invalid Data based on FOVIO
-Row 5670: Invalid Data based on FOVIO
-Row 5671: Invalid Data based on FOVIO
-Row 5672: Invalid Data based on FOVIO
-Row 5673: Invalid Data based on FOVIO
-Row 5674: Invalid Data based on FOVIO
-Row 5675: Invalid Data based on FOVIO
-Row 5676: Invalid Data based on FOVIO
-Row 5677: Invalid Data based on FOVIO
-Row 5678: Invalid Data based on FOVIO
-Row 5679: Invalid Data based on FOVIO
-Row 5680: Invalid Data based on FOVIO
-Row 5681: Invalid Data based on FOVIO
-Row 5682: Invalid Data based on FOVIO
-Row 5683: Invalid Data based on FOVIO
-Row 5684: Invalid Data based on FOVIO
-Row 5685: Invalid Data based on FOVIO
-Row 5686: Invalid Data based on FOVIO
-Row 5687: Invalid Data based on FOVIO
-Row 5688: Invalid Data based on FOVIO
-Row 5689: Invalid Data based on FOVIO
-Row 5690: Invalid Data based on FOVIO
-Row 5691: Invalid Data based on FOVIO
-Row 5692: Invalid Data based on FOVIO
-Row 5767: Invalid Data based on FOVIO
-Row 5768: Invalid Data based on FOVIO
-Row 5769: Invalid Data based on FOVIO
-Row 5790: Invalid Data based on FOVIO
-Row 5791: Invalid Data based on FOVIO
-Row 5792: Invalid Data based on FOVIO
-Row 5793: Invalid Data based on FOVIO
-Row 5794: Invalid Data based on FOVIO
-Row 5795: Invalid Data based on FOVIO
-Row 5800: Invalid Data based on FOVIO
-Row 5801: Invalid Data based on FOVIO
-Row 5802: Invalid Data based on FOVIO
-Row 5803: Invalid Data based on FOVIO
-Row 5804: Invalid Data based on FOVIO
-Row 5805: Invalid Data based on FOVIO
-Row 5806: Invalid Data based on FOVIO
-Row 5808: Invalid Data based on FOVIO
-Row 5812: Invalid Data based on FOVIO
-Row 5814: Invalid Data based on FOVIO
-Row 5817: Invalid Data based on FOVIO
-Row 5819: Invalid Data based on FOVIO
-Row 5824: Invalid Data based on FOVIO
-Row 5828: Invalid Data based on FOVIO
-Row 6006: Invalid Data based on FOVIO
-Row 6015: Invalid Data based on FOVIO
-Row 6016: Invalid Data based on FOVIO
-Row 6020: Invalid Data based on FOVIO
-Row 6028: Invalid Data based on FOVIO
-Row 6067: Invalid Data based on FOVIO
-Row 6089: Invalid Data based on FOVIO
-Row 6091: Invalid Data based on FOVIO
-Row 6242: Invalid Data based on FOVIO
-Row 6244: Invalid Data based on FOVIO
-Row 6246: Invalid Data based on FOVIO
-Row 6249: Invalid Data based on FOVIO
-Row 6252: Invalid Data based on FOVIO
-Row 6258: Invalid Data based on FOVIO
-Row 6259: Invalid Data based on FOVIO
-Row 6260: Invalid Data based on FOVIO
-Row 6361: Invalid Data based on FOVIO
-Row 6363: Invalid Data based on FOVIO
-Row 6372: Invalid Data based on FOVIO
-Row 6388: Invalid Data based on FOVIO
-Row 6389: Invalid Data based on FOVIO
-Row 6390: Invalid Data based on FOVIO
-Row 6391: Invalid Data based on FOVIO
-Row 6392: Invalid Data based on FOVIO
-Row 6393: Invalid Data based on FOVIO
-Row 6394: Invalid Data based on FOVIO
-Row 6395: Invalid Data based on FOVIO
-Row 6428: Invalid Data based on FOVIO
-Row 6430: Invalid Data based on FOVIO
-Row 6432: Invalid Data based on FOVIO
-Row 6434: Invalid Data based on FOVIO
-Row 6436: Invalid Data based on FOVIO
-Row 6437: Invalid Data based on FOVIO
-Row 6443: Invalid Data based on FOVIO
-Row 6444: Invalid Data based on FOVIO
-Row 6453: Invalid Data based on FOVIO
-Row 6461: Invalid Data based on FOVIO
-Row 6464: Invalid Data based on FOVIO
-Row 6466: Invalid Data based on FOVIO
-Row 6469: Invalid Data based on FOVIO
-Row 6471: Invalid Data based on FOVIO
-Row 6478: Invalid Data based on FOVIO
-Row 6480: Invalid Data based on FOVIO
-Row 6482: Invalid Data based on FOVIO
-Row 6525: Invalid Data based on FOVIO
-Row 6535: Invalid Data based on FOVIO
-Row 6561: Invalid Data based on FOVIO
-Row 6562: Invalid Data based on FOVIO
-Row 6567: Invalid Data based on FOVIO
-Row 6571: Invalid Data based on FOVIO
-Row 6572: Invalid Data based on FOVIO
-Row 6595: Invalid Data based on FOVIO
-Row 6618: Invalid Data based on FOVIO
-Row 6677: Invalid Data based on FOVIO
-Row 6679: Invalid Data based on FOVIO
-Row 6685: Invalid Data based on FOVIO
-Row 6711: Invalid Data based on FOVIO
-Row 6717: Invalid Data based on FOVIO
-Row 6730: Invalid Data based on FOVIO
-Row 6760: Invalid Data based on FOVIO
-Row 6768: Invalid Data based on FOVIO
-Row 6794: Invalid Data based on FOVIO
-Row 6800: Invalid Data based on FOVIO
-Row 6805: Invalid Data based on FOVIO
-Row 6875: Invalid Data based on FOVIO
-Row 6879: Invalid Data based on FOVIO
-Row 6880: Invalid Data based on FOVIO
-Row 6929: Invalid Data based on FOVIO
-Row 6950: Invalid Data based on FOVIO
-Row 6964: Invalid Data based on FOVIO
-Row 6966: Invalid Data based on FOVIO
-Row 6968: Invalid Data based on FOVIO
-Row 6970: Invalid Data based on FOVIO
-Row 6972: Invalid Data based on FOVIO
-Row 6974: Invalid Data based on FOVIO
-Row 6975: Invalid Data based on FOVIO
-Row 6976: Invalid Data based on FOVIO
-Row 7009: Invalid Data based on FOVIO
-Row 7010: Invalid Data based on FOVIO
-Row 7011: Invalid Data based on FOVIO
-Row 7012: Invalid Data based on FOVIO
-Row 7013: Invalid Data based on FOVIO
-Row 7183: Invalid Data based on FOVIO
-Row 7195: Invalid Data based on FOVIO
-Row 7196: Invalid Data based on FOVIO
-Row 7197: Invalid Data based on FOVIO
-Row 7198: Invalid Data based on FOVIO
-Row 7216: Invalid Data based on FOVIO
-Row 7217: Invalid Data based on FOVIO
-Row 7218: Invalid Data based on FOVIO
-Row 7221: Invalid Data based on FOVIO
-Row 7223: Invalid Data based on FOVIO
-Row 7233: Invalid Data based on FOVIO
-Row 7257: Invalid Data based on FOVIO
-Row 7259: Invalid Data based on FOVIO
-Row 7261: Invalid Data based on FOVIO
-Row 7384: Invalid Data based on FOVIO
-Row 7386: Invalid Data based on FOVIO
-Row 7388: Invalid Data based on FOVIO
-Row 7389: Invalid Data based on FOVIO
-Row 7402: Invalid Data based on FOVIO
-Row 7405: Invalid Data based on FOVIO
-Row 7408: Invalid Data based on FOVIO
-Row 7410: Invalid Data based on FOVIO
-Row 7455: Invalid Data based on FOVIO
-Row 7457: Invalid Data based on FOVIO
-Row 7458: Invalid Data based on FOVIO
-Row 7459: Invalid Data based on FOVIO
-Row 7460: Invalid Data based on FOVIO
-Row 7463: Invalid Data based on FOVIO
-Row 7469: Invalid Data based on FOVIO
-Row 7471: Invalid Data based on FOVIO
-Row 7476: Invalid Data based on FOVIO
-Row 7539: Invalid Data based on FOVIO
-Row 7542: Invalid Data based on FOVIO
-Row 7545: Invalid Data based on FOVIO
-Row 7549: Invalid Data based on FOVIO
-Row 7550: Invalid Data based on FOVIO
-Row 7561: Invalid Data based on FOVIO
-Row 7562: Invalid Data based on FOVIO
-Row 7564: Invalid Data based on FOVIO
-Row 7566: Invalid Data based on FOVIO
-Row 7568: Invalid Data based on FOVIO
-Row 7570: Invalid Data based on FOVIO
-Row 7572: Invalid Data based on FOVIO
-Row 7574: Invalid Data based on FOVIO
-Row 7576: Invalid Data based on FOVIO
-Row 7673: Invalid Data based on FOVIO
-Row 7681: Invalid Data based on FOVIO
-Row 7704: Invalid Data based on FOVIO
-Row 7753: Invalid Data based on FOVIO
-Row 7757: Invalid Data based on FOVIO
-Row 7759: Invalid Data based on FOVIO
-Row 7761: Invalid Data based on FOVIO
-Row 7763: Invalid Data based on FOVIO
-Row 7764: Invalid Data based on FOVIO
-Row 7765: Invalid Data based on FOVIO
-Row 7767: Invalid Data based on FOVIO
-Row 7768: Invalid Data based on FOVIO
-Row 7771: Invalid Data based on FOVIO
-Row 7772: Invalid Data based on FOVIO
-Row 7773: Invalid Data based on FOVIO
-Row 7774: Invalid Data based on FOVIO
-Row 7777: Invalid Data based on FOVIO
-Row 7778: Invalid Data based on FOVIO
-Row 7779: Invalid Data based on FOVIO
-Row 7781: Invalid Data based on FOVIO
-Row 7783: Invalid Data based on FOVIO
-Row 7785: Invalid Data based on FOVIO
-Row 7787: Invalid Data based on FOVIO
-Row 7789: Invalid Data based on FOVIO
-Row 7790: Invalid Data based on FOVIO
-Row 7791: Invalid Data based on FOVIO
-Row 7792: Invalid Data based on FOVIO
-Row 7793: Invalid Data based on FOVIO
-Row 7795: Invalid Data based on FOVIO
-Row 7797: Invalid Data based on FOVIO
-Row 7798: Invalid Data based on FOVIO
-Row 7799: Invalid Data based on FOVIO
-Row 7800: Invalid Data based on FOVIO
-Row 7801: Invalid Data based on FOVIO
-Row 7803: Invalid Data based on FOVIO
-Row 7804: Invalid Data based on FOVIO
-Row 7807: Invalid Data based on FOVIO
-Row 7809: Invalid Data based on FOVIO
-Row 7813: Invalid Data based on FOVIO
-Row 7815: Invalid Data based on FOVIO
-Row 7817: Invalid Data based on FOVIO
-Row 7818: Invalid Data based on FOVIO
-Row 7819: Invalid Data based on FOVIO
-Row 7820: Invalid Data based on FOVIO
-Row 7838: Invalid Data based on FOVIO
-Row 7840: Invalid Data based on FOVIO
-Row 7842: Invalid Data based on FOVIO
-Row 7844: Invalid Data based on FOVIO
-Row 7845: Invalid Data based on FOVIO
-Row 7846: Invalid Data based on FOVIO
-Row 7847: Invalid Data based on FOVIO
-Row 7848: Invalid Data based on FOVIO
-Row 7849: Invalid Data based on FOVIO
-Row 7850: Invalid Data based on FOVIO
-Row 7851: Invalid Data based on FOVIO
-Row 7853: Invalid Data based on FOVIO
-Row 7855: Invalid Data based on FOVIO
-Row 7857: Invalid Data based on FOVIO
-Row 7859: Invalid Data based on FOVIO
-Row 7861: Invalid Data based on FOVIO
-Row 7873: Invalid Data based on FOVIO
-Row 7875: Invalid Data based on FOVIO
-Row 7876: Invalid Data based on FOVIO
-Row 7878: Invalid Data based on FOVIO
-Row 7880: Invalid Data based on FOVIO
-Row 7882: Invalid Data based on FOVIO
-Row 7883: Invalid Data based on FOVIO
-Row 7884: Invalid Data based on FOVIO
-Row 7886: Invalid Data based on FOVIO
-Row 7888: Invalid Data based on FOVIO
-Row 7913: Invalid Data based on FOVIO
-Row 7917: Invalid Data based on FOVIO
-Row 7921: Invalid Data based on FOVIO
-Row 7929: Invalid Data based on FOVIO
-Row 7931: Invalid Data based on FOVIO
-Row 7941: Invalid Data based on FOVIO
-Row 7997: Invalid Data based on FOVIO
-Row 8067: Invalid Data based on FOVIO
-Row 8081: Invalid Data based on FOVIO
-Row 8131: Invalid Data based on FOVIO
-Row 8139: Invalid Data based on FOVIO
-Row 8181: Invalid Data based on FOVIO
-Row 8182: Invalid Data based on FOVIO
-Row 8183: Invalid Data based on FOVIO
-Row 8219: Invalid Data based on FOVIO
-Row 8222: Invalid Data based on FOVIO
-Row 8224: Invalid Data based on FOVIO
-Row 8227: Invalid Data based on FOVIO
-Row 8245: Invalid Data based on FOVIO
-Row 8247: Invalid Data based on FOVIO
-Row 8277: Invalid Data based on FOVIO
-Row 8279: Invalid Data based on FOVIO
-Row 8281: Invalid Data based on FOVIO
-Row 8287: Invalid Data based on FOVIO
-Row 8294: Invalid Data based on FOVIO
-Row 8295: Invalid Data based on FOVIO
-Row 8296: Invalid Data based on FOVIO
-Row 8297: Invalid Data based on FOVIO
-Row 8334: Invalid Data based on FOVIO
-Row 8336: Invalid Data based on FOVIO
-Row 8339: Invalid Data based on FOVIO
-Row 8340: Invalid Data based on FOVIO
-Row 8343: Invalid Data based on FOVIO
-Row 8344: Invalid Data based on FOVIO
-Row 8354: Invalid Data based on FOVIO
-Row 8358: Invalid Data based on FOVIO
-Row 8360: Invalid Data based on FOVIO
-Row 8362: Invalid Data based on FOVIO
-Row 8383: Invalid Data based on FOVIO
-Row 8384: Invalid Data based on FOVIO
-Row 8385: Invalid Data based on FOVIO
-Row 8386: Invalid Data based on FOVIO
-Row 8387: Invalid Data based on FOVIO
-Row 8388: Invalid Data based on FOVIO
-Row 8389: Invalid Data based on FOVIO
-Row 8390: Invalid Data based on FOVIO
-Row 8391: Invalid Data based on FOVIO
-Row 8392: Invalid Data based on FOVIO
-Row 8393: Invalid Data based on FOVIO
-Row 8394: Invalid Data based on FOVIO
-Row 8395: Invalid Data based on FOVIO
-Row 8396: Invalid Data based on FOVIO
-Row 8397: Invalid Data based on FOVIO
-Row 8398: Invalid Data based on FOVIO
-Row 8399: Invalid Data based on FOVIO
-Row 8400: Invalid Data based on FOVIO
-Row 8401: Invalid Data based on FOVIO
-Row 8402: Invalid Data based on FOVIO
-Row 8403: Invalid Data based on FOVIO
-Row 8404: Invalid Data based on FOVIO
-Row 8405: Invalid Data based on FOVIO
-Row 8555: Invalid Data based on FOVIO
-Row 8557: Invalid Data based on FOVIO
-Row 8559: Invalid Data based on FOVIO
-Row 8561: Invalid Data based on FOVIO
-Row 8569: Invalid Data based on FOVIO
-Row 8627: Invalid Data based on FOVIO
-Row 8749: Invalid Data based on FOVIO
-Row 8766: Invalid Data based on FOVIO
-Row 8782: Invalid Data based on FOVIO
-Row 8784: Invalid Data based on FOVIO
-Row 8786: Invalid Data based on FOVIO
-Row 8788: Invalid Data based on FOVIO
-Row 8790: Invalid Data based on FOVIO
-Row 8813: Invalid Data based on FOVIO
-Row 8844: Invalid Data based on FOVIO
-Row 8846: Invalid Data based on FOVIO
-Row 8856: Invalid Data based on FOVIO
-Row 8858: Invalid Data based on FOVIO
-Row 8860: Invalid Data based on FOVIO
-Row 8862: Invalid Data based on FOVIO
-Row 9255: Invalid Data based on FOVIO
-Row 9300: Invalid Data based on FOVIO
-Row 9348: Invalid Data based on FOVIO
-Row 9356: Invalid Data based on FOVIO
-Row 9377: Invalid Data based on FOVIO
-Row 9408: Invalid Data based on FOVIO
-Row 9528: Invalid Data based on FOVIO
-Row 9548: Invalid Data based on FOVIO
-Row 9550: Invalid Data based on FOVIO
-Row 9552: Invalid Data based on FOVIO
-Row 9554: Invalid Data based on FOVIO
-Row 9556: Invalid Data based on FOVIO
-Row 9558: Invalid Data based on FOVIO
-Row 9560: Invalid Data based on FOVIO
-Row 9570: Invalid Data based on FOVIO
-Row 9573: Invalid Data based on FOVIO
-Row 9581: Invalid Data based on FOVIO
-Row 9640: Invalid Data based on FOVIO
-Row 9642: Invalid Data based on FOVIO
-Row 9644: Invalid Data based on FOVIO
-Row 9646: Invalid Data based on FOVIO
-Row 9648: Invalid Data based on FOVIO
-Row 9650: Invalid Data based on FOVIO
-Row 9652: Invalid Data based on FOVIO
-Row 9654: Invalid Data based on FOVIO
-Row 9655: Invalid Data based on FOVIO
-Row 9657: Invalid Data based on FOVIO
-Row 9659: Invalid Data based on FOVIO
-Row 9661: Invalid Data based on FOVIO
-Row 9665: Invalid Data based on FOVIO
-Row 9667: Invalid Data based on FOVIO
-Row 9671: Invalid Data based on FOVIO
-Row 9679: Invalid Data based on FOVIO
-Row 9683: Invalid Data based on FOVIO
-Row 9695: Invalid Data based on FOVIO
-Row 9715: Invalid Data based on FOVIO
-Row 9721: Invalid Data based on FOVIO
-Row 9727: Invalid Data based on FOVIO
-Row 9729: Invalid Data based on FOVIO
-Row 9751: Invalid Data based on FOVIO
-Row 9832: Invalid Data based on FOVIO
-Row 9833: Invalid Data based on FOVIO
-Row 9834: Invalid Data based on FOVIO
-Row 9838: Invalid Data based on FOVIO
-Row 9840: Invalid Data based on FOVIO
-Row 9846: Invalid Data based on FOVIO
-Row 9850: Invalid Data based on FOVIO
-Row 9909: Invalid Data based on FOVIO
-Row 9956: Invalid Data based on FOVIO
-Row 9958: Invalid Data based on FOVIO
-Row 9974: Invalid Data based on FOVIO
-Row 10260: Invalid Data based on FOVIO
-Row 10261: Invalid Data based on FOVIO
-Row 10370: Invalid Data based on FOVIO
-Row 10380: Invalid Data based on FOVIO
-Row 10387: Invalid Data based on FOVIO
-Row 10388: Invalid Data based on FOVIO
-Row 10420: Invalid Data based on FOVIO
-Row 10574: Invalid Data based on FOVIO
-Row 10576: Invalid Data based on FOVIO
-Row 10578: Invalid Data based on FOVIO
-Row 10667: Invalid Data based on FOVIO
-Row 10668: Invalid Data based on FOVIO
-Row 10691: Invalid Data based on FOVIO
-Row 10693: Invalid Data based on FOVIO
-Row 10913: Invalid Data based on FOVIO
-Row 10935: Invalid Data based on FOVIO
-Row 10937: Invalid Data based on FOVIO
-Row 10946: Invalid Data based on FOVIO
-Row 10947: Invalid Data based on FOVIO
-Row 10948: Invalid Data based on FOVIO
-Row 10949: Invalid Data based on FOVIO
-Row 10954: Invalid Data based on FOVIO
-Row 10956: Invalid Data based on FOVIO
-Row 10958: Invalid Data based on FOVIO
-Row 10959: Invalid Data based on FOVIO
-Row 10960: Invalid Data based on FOVIO
-Row 10969: Invalid Data based on FOVIO
-Row 10970: Invalid Data based on FOVIO
-Row 11063: Invalid Data based on FOVIO
-Row 11067: Invalid Data based on FOVIO
-Row 11069: Invalid Data based on FOVIO
-Row 11070: Invalid Data based on FOVIO
-Row 11071: Invalid Data based on FOVIO
-Row 11072: Invalid Data based on FOVIO
-Row 11079: Invalid Data based on FOVIO
-Row 11143: Invalid Data based on FOVIO
-Row 11145: Invalid Data based on FOVIO
-Row 11155: Invalid Data based on FOVIO
-Row 11157: Invalid Data based on FOVIO
-Row 11158: Invalid Data based on FOVIO
-Row 11161: Invalid Data based on FOVIO
-Row 11171: Invalid Data based on FOVIO
-Row 11175: Invalid Data based on FOVIO
-Row 11228: Invalid Data based on FOVIO
-Row 11230: Invalid Data based on FOVIO
-Row 11250: Invalid Data based on FOVIO
-Row 11256: Invalid Data based on FOVIO
-Row 11308: Invalid Data based on FOVIO
-Row 11309: Invalid Data based on FOVIO
-Row 11409: Invalid Data based on FOVIO
-Row 11413: Invalid Data based on FOVIO
-Row 11451: Invalid Data based on FOVIO
-Row 11525: Invalid Data based on FOVIO
-Row 11597: Invalid Data based on FOVIO
-Row 11598: Invalid Data based on FOVIO
-Row 11600: Invalid Data based on FOVIO
-Row 11608: Invalid Data based on FOVIO
-Row 11610: Invalid Data based on FOVIO
-Row 11612: Invalid Data based on FOVIO
-Row 11634: Invalid Data based on FOVIO
-Row 11641: Invalid Data based on FOVIO
-Row 11840: Invalid Data based on FOVIO
-Row 11841: Invalid Data based on FOVIO
-Row 11842: Invalid Data based on FOVIO
-Row 11843: Invalid Data based on FOVIO
-Row 11844: Invalid Data based on FOVIO
-Row 11845: Invalid Data based on FOVIO
-Row 11846: Invalid Data based on FOVIO
-Row 11847: Invalid Data based on FOVIO
-Row 11848: Invalid Data based on FOVIO
-Row 11849: Invalid Data based on FOVIO
-Row 11850: Invalid Data based on FOVIO
-Row 11851: Invalid Data based on FOVIO
-Row 11852: Invalid Data based on FOVIO
-Row 11853: Invalid Data based on FOVIO
-Row 11854: Invalid Data based on FOVIO
-Row 11855: Invalid Data based on FOVIO
-Row 11856: Invalid Data based on FOVIO
-Row 11857: Invalid Data based on FOVIO
-Row 11858: Invalid Data based on FOVIO
-Row 11859: Invalid Data based on FOVIO
-Row 11860: Invalid Data based on FOVIO
-Row 11861: Invalid Data based on FOVIO
-Row 11862: Invalid Data based on FOVIO
-Row 11863: Invalid Data based on FOVIO
-Row 11864: Invalid Data based on FOVIO
-Row 11865: Invalid Data based on FOVIO
-Row 11866: Invalid Data based on FOVIO
-Row 11867: Invalid Data based on FOVIO
-Row 11868: Invalid Data based on FOVIO
-Row 11869: Invalid Data based on FOVIO
-Row 11870: Invalid Data based on FOVIO
-Row 11871: Invalid Data based on FOVIO
-Row 11872: Invalid Data based on FOVIO
-Row 11973: Invalid Data based on FOVIO
-Row 11987: Invalid Data based on FOVIO
-Row 12003: Invalid Data based on FOVIO
-Row 12005: Invalid Data based on FOVIO
-Row 12009: Invalid Data based on FOVIO
-Row 12011: Invalid Data based on FOVIO
-Row 12013: Invalid Data based on FOVIO
-Row 12021: Invalid Data based on FOVIO
-Row 12041: Invalid Data based on FOVIO
-Row 12043: Invalid Data based on FOVIO
-Row 12045: Invalid Data based on FOVIO
-Row 12047: Invalid Data based on FOVIO
-Row 12051: Invalid Data based on FOVIO
-Row 12055: Invalid Data based on FOVIO
-Row 12057: Invalid Data based on FOVIO
-Row 12087: Invalid Data based on FOVIO
-Row 12089: Invalid Data based on FOVIO
-Row 12093: Invalid Data based on FOVIO
-Row 12103: Invalid Data based on FOVIO
-Row 12115: Invalid Data based on FOVIO
-Row 12437: Invalid Data based on FOVIO
-Row 12438: Invalid Data based on FOVIO
-Row 12453: Invalid Data based on FOVIO
-Row 12463: Invalid Data based on FOVIO
-Row 12465: Invalid Data based on FOVIO
-Row 12467: Invalid Data based on FOVIO
-Row 12469: Invalid Data based on FOVIO
-Row 12471: Invalid Data based on FOVIO
-Row 12473: Invalid Data based on FOVIO
-Row 12475: Invalid Data based on FOVIO
-Row 12476: Invalid Data based on FOVIO
-Row 12477: Invalid Data based on FOVIO
-Row 12479: Invalid Data based on FOVIO
-Row 12481: Invalid Data based on FOVIO
-Row 12482: Invalid Data based on FOVIO
-Row 12483: Invalid Data based on FOVIO
-Row 12484: Invalid Data based on FOVIO
-Row 12485: Invalid Data based on FOVIO
-Row 12487: Invalid Data based on FOVIO
-Row 12489: Invalid Data based on FOVIO
-Row 12490: Invalid Data based on FOVIO
-Row 12491: Invalid Data based on FOVIO
-Row 12493: Invalid Data based on FOVIO
-Row 12495: Invalid Data based on FOVIO
-Row 12497: Invalid Data based on FOVIO
-Row 12498: Invalid Data based on FOVIO
-Row 12535: Invalid Data based on FOVIO
-Row 12543: Invalid Data based on FOVIO
-Row 12544: Invalid Data based on FOVIO
-Row 12605: Invalid Data based on FOVIO
-Row 12613: Invalid Data based on FOVIO
-Row 12636: Invalid Data based on FOVIO
-Row 12655: Invalid Data based on FOVIO
-Row 12656: Invalid Data based on FOVIO
-Row 12689: Invalid Data based on FOVIO
-Row 12695: Invalid Data based on FOVIO
-Row 12707: Invalid Data based on FOVIO
-Row 12708: Invalid Data based on FOVIO
-Row 12709: Invalid Data based on FOVIO
-Row 12717: Invalid Data based on FOVIO
-Row 12718: Invalid Data based on FOVIO
-Row 12719: Invalid Data based on FOVIO
-Row 12720: Invalid Data based on FOVIO
-Row 12728: Invalid Data based on FOVIO
-Row 12733: Invalid Data based on FOVIO
-Row 12734: Invalid Data based on FOVIO
-Row 12735: Invalid Data based on FOVIO
-Row 12736: Invalid Data based on FOVIO
-Row 12737: Invalid Data based on FOVIO
-Row 12739: Invalid Data based on FOVIO
-Row 12741: Invalid Data based on FOVIO
-Row 12742: Invalid Data based on FOVIO
-Row 12743: Invalid Data based on FOVIO
-Row 12745: Invalid Data based on FOVIO
-Row 12746: Invalid Data based on FOVIO
-Row 12747: Invalid Data based on FOVIO
-Row 12748: Invalid Data based on FOVIO
-Row 12749: Invalid Data based on FOVIO
-Row 12750: Invalid Data based on FOVIO
-Row 12751: Invalid Data based on FOVIO
-Row 12752: Invalid Data based on FOVIO
-Row 12759: Invalid Data based on FOVIO
-Row 12760: Invalid Data based on FOVIO
-Row 12761: Invalid Data based on FOVIO
-Row 12763: Invalid Data based on FOVIO
-Row 12769: Invalid Data based on FOVIO
-Row 12770: Invalid Data based on FOVIO
-Row 12815: Invalid Data based on FOVIO
-Row 12817: Invalid Data based on FOVIO
-Row 12820: Invalid Data based on FOVIO
-Row 12849: Invalid Data based on FOVIO
-Row 12901: Invalid Data based on FOVIO
-Row 12919: Invalid Data based on FOVIO
-Row 12921: Invalid Data based on FOVIO
-Row 12927: Invalid Data based on FOVIO
-Row 12929: Invalid Data based on FOVIO
-Row 12933: Invalid Data based on FOVIO
-Row 12937: Invalid Data based on FOVIO
-Row 12941: Invalid Data based on FOVIO
-Row 12943: Invalid Data based on FOVIO
-Row 12945: Invalid Data based on FOVIO
-Row 12947: Invalid Data based on FOVIO
-Row 12948: Invalid Data based on FOVIO
-Row 12949: Invalid Data based on FOVIO
-Row 12995: Invalid Data based on FOVIO
-Row 12999: Invalid Data based on FOVIO
-Row 13003: Invalid Data based on FOVIO
-Row 13009: Invalid Data based on FOVIO
-Row 13015: Invalid Data based on FOVIO
-Row 13017: Invalid Data based on FOVIO
-Row 13029: Invalid Data based on FOVIO
-Row 13030: Invalid Data based on FOVIO
-Row 13031: Invalid Data based on FOVIO
-Row 13033: Invalid Data based on FOVIO
-Row 13035: Invalid Data based on FOVIO
-Row 13037: Invalid Data based on FOVIO
-Row 13039: Invalid Data based on FOVIO
-Row 13145: Invalid Data based on FOVIO
-Row 13170: Invalid Data based on FOVIO
-Row 13172: Invalid Data based on FOVIO
-Row 13201: Invalid Data based on FOVIO
-Row 13202: Invalid Data based on FOVIO
-Row 13203: Invalid Data based on FOVIO
-Row 13204: Invalid Data based on FOVIO
-Row 13235: Invalid Data based on FOVIO
-Row 13291: Invalid Data based on FOVIO
-Row 13293: Invalid Data based on FOVIO
-Row 13297: Invalid Data based on FOVIO
-Row 13301: Invalid Data based on FOVIO
-Row 13305: Invalid Data based on FOVIO
-Row 13313: Invalid Data based on FOVIO
-Row 13314: Invalid Data based on FOVIO
-Row 13325: Invalid Data based on FOVIO
-Row 13341: Invalid Data based on FOVIO
-Row 13342: Invalid Data based on FOVIO
-Row 13351: Invalid Data based on FOVIO
-Row 13353: Invalid Data based on FOVIO
-Row 13355: Invalid Data based on FOVIO
-Row 13357: Invalid Data based on FOVIO
-Row 13389: Invalid Data based on FOVIO
-Row 13390: Invalid Data based on FOVIO
-Row 13395: Invalid Data based on FOVIO
-Row 13401: Invalid Data based on FOVIO
-Row 13413: Invalid Data based on FOVIO
-Row 13417: Invalid Data based on FOVIO
-Row 13419: Invalid Data based on FOVIO
-Row 13421: Invalid Data based on FOVIO
-Row 13425: Invalid Data based on FOVIO
-Row 13426: Invalid Data based on FOVIO
-Row 13427: Invalid Data based on FOVIO
-Row 13429: Invalid Data based on FOVIO
-Row 13431: Invalid Data based on FOVIO
-Row 13437: Invalid Data based on FOVIO
-Row 13449: Invalid Data based on FOVIO
-Row 13488: Invalid Data based on FOVIO
-Row 13498: Invalid Data based on FOVIO
-Row 13517: Invalid Data based on FOVIO
-Row 13519: Invalid Data based on FOVIO
-Row 13530: Invalid Data based on FOVIO
-Row 13589: Invalid Data based on FOVIO
-Row 13621: Invalid Data based on FOVIO
-Row 13627: Invalid Data based on FOVIO
-Row 13631: Invalid Data based on FOVIO
-Row 13633: Invalid Data based on FOVIO
-Row 13635: Invalid Data based on FOVIO
-Row 13637: Invalid Data based on FOVIO
-Row 13639: Invalid Data based on FOVIO
-Row 13641: Invalid Data based on FOVIO
-Row 13643: Invalid Data based on FOVIO
-Row 13681: Invalid Data based on FOVIO
-Row 13682: Invalid Data based on FOVIO
-Row 13683: Invalid Data based on FOVIO
-Row 13717: Invalid Data based on FOVIO
-Row 13719: Invalid Data based on FOVIO
-Row 13722: Invalid Data based on FOVIO
-Row 13724: Invalid Data based on FOVIO
-Row 13729: Invalid Data based on FOVIO
-Row 13732: Invalid Data based on FOVIO
-Row 13734: Invalid Data based on FOVIO
-Row 13737: Invalid Data based on FOVIO
-Row 13739: Invalid Data based on FOVIO
-Row 13741: Invalid Data based on FOVIO
-Row 13743: Invalid Data based on FOVIO
-Row 13749: Invalid Data based on FOVIO
-Row 13751: Invalid Data based on FOVIO
-Row 13939: Invalid Data based on FOVIO
-Row 14029: Invalid Data based on FOVIO
-Row 14033: Invalid Data based on FOVIO
-Row 14035: Invalid Data based on FOVIO
-Row 14037: Invalid Data based on FOVIO
-Row 14039: Invalid Data based on FOVIO
-Row 14041: Invalid Data based on FOVIO
-Row 14043: Invalid Data based on FOVIO
-Row 14051: Invalid Data based on FOVIO
-Row 14055: Invalid Data based on FOVIO
-Row 14057: Invalid Data based on FOVIO
-Row 14058: Invalid Data based on FOVIO
-Row 14061: Invalid Data based on FOVIO
-Row 14063: Invalid Data based on FOVIO
-Row 14067: Invalid Data based on FOVIO
-Row 14069: Invalid Data based on FOVIO
-Row 14089: Invalid Data based on FOVIO
-Row 14090: Invalid Data based on FOVIO
-Row 14091: Invalid Data based on FOVIO
-Row 14092: Invalid Data based on FOVIO
-Row 14205: Invalid Data based on FOVIO
-Row 14206: Invalid Data based on FOVIO
-Row 14209: Invalid Data based on FOVIO
-Row 14210: Invalid Data based on FOVIO
-Row 14215: Invalid Data based on FOVIO
-Row 14216: Invalid Data based on FOVIO
-Row 14217: Invalid Data based on FOVIO
-Row 14218: Invalid Data based on FOVIO
-Row 14221: Invalid Data based on FOVIO
-Row 14222: Invalid Data based on FOVIO
-Row 14223: Invalid Data based on FOVIO
-Row 14224: Invalid Data based on FOVIO
-Row 14299: Invalid Data based on FOVIO
-Row 14323: Invalid Data based on FOVIO
-Row 14325: Invalid Data based on FOVIO
-Row 14357: Invalid Data based on FOVIO
-Row 14368: Invalid Data based on FOVIO
-Row 14369: Invalid Data based on FOVIO
-Row 14370: Invalid Data based on FOVIO
-Row 14371: Invalid Data based on FOVIO
-Row 14372: Invalid Data based on FOVIO
-Row 14373: Invalid Data based on FOVIO
-Row 14482: Invalid Data based on FOVIO
-Row 14533: Invalid Data based on FOVIO
-Row 14576: Invalid Data based on FOVIO
-Row 14578: Invalid Data based on FOVIO
-Row 14580: Invalid Data based on FOVIO
-Row 14582: Invalid Data based on FOVIO
-Row 14584: Invalid Data based on FOVIO
-Row 14586: Invalid Data based on FOVIO
-Row 14588: Invalid Data based on FOVIO
-Row 14590: Invalid Data based on FOVIO
-Row 14639: Invalid Data based on FOVIO
-Row 14640: Invalid Data based on FOVIO
-Row 14649: Invalid Data based on FOVIO
-Row 14659: Invalid Data based on FOVIO
-Row 14663: Invalid Data based on FOVIO
-Row 14669: Invalid Data based on FOVIO
-Row 14673: Invalid Data based on FOVIO
-Row 14674: Invalid Data based on FOVIO
-Row 14675: Invalid Data based on FOVIO
-Row 14676: Invalid Data based on FOVIO
-Row 14683: Invalid Data based on FOVIO
-Row 14684: Invalid Data based on FOVIO
-Row 14685: Invalid Data based on FOVIO
-Row 14687: Invalid Data based on FOVIO
-Row 14689: Invalid Data based on FOVIO
-Row 14699: Invalid Data based on FOVIO
-Row 14700: Invalid Data based on FOVIO
-Row 14764: Invalid Data based on FOVIO
-Row 14766: Invalid Data based on FOVIO
-Row 14770: Invalid Data based on FOVIO
-Row 14772: Invalid Data based on FOVIO
-Row 14774: Invalid Data based on FOVIO
-Row 14787: Invalid Data based on FOVIO
-Row 14789: Invalid Data based on FOVIO
-Row 14791: Invalid Data based on FOVIO
-Row 14793: Invalid Data based on FOVIO
-Row 14794: Invalid Data based on FOVIO
-Row 14805: Invalid Data based on FOVIO
-Row 14817: Invalid Data based on FOVIO
-Row 14827: Invalid Data based on FOVIO
-Row 14841: Invalid Data based on FOVIO
-Row 14842: Invalid Data based on FOVIO
-Row 14867: Invalid Data based on FOVIO
-Row 14869: Invalid Data based on FOVIO
-Row 14870: Invalid Data based on FOVIO
-Row 14873: Invalid Data based on FOVIO
-Row 14877: Invalid Data based on FOVIO
-Row 14879: Invalid Data based on FOVIO
-Row 14880: Invalid Data based on FOVIO
-Row 14881: Invalid Data based on FOVIO
-Row 14923: Invalid Data based on FOVIO
-Row 14973: Invalid Data based on FOVIO
-Row 14974: Invalid Data based on FOVIO
-Row 14975: Invalid Data based on FOVIO
-Row 14976: Invalid Data based on FOVIO
-Row 14977: Invalid Data based on FOVIO
-Row 14978: Invalid Data based on FOVIO
-Row 14991: Invalid Data based on FOVIO
-Row 14995: Invalid Data based on FOVIO
-Row 14997: Invalid Data based on FOVIO
-Row 14999: Invalid Data based on FOVIO
-Row 15012: Invalid Data based on FOVIO
-Row 15013: Invalid Data based on FOVIO
-Row 15014: Invalid Data based on FOVIO
-Row 15078: Invalid Data based on FOVIO
-Row 15080: Invalid Data based on FOVIO
-Row 15083: Invalid Data based on FOVIO
-Row 15084: Invalid Data based on FOVIO
-Row 15102: Invalid Data based on FOVIO
-Row 15155: Invalid Data based on FOVIO
-Row 15225: Invalid Data based on FOVIO
-Row 15226: Invalid Data based on FOVIO
-Row 15239: Invalid Data based on FOVIO
-Row 15240: Invalid Data based on FOVIO
-Row 15242: Invalid Data based on FOVIO
-Row 15245: Invalid Data based on FOVIO
-Row 15247: Invalid Data based on FOVIO
-Row 15249: Invalid Data based on FOVIO
-Row 15261: Invalid Data based on FOVIO
-Row 15262: Invalid Data based on FOVIO
-Row 15263: Invalid Data based on FOVIO
-Row 15265: Invalid Data based on FOVIO
-Row 15267: Invalid Data based on FOVIO
-Row 15268: Invalid Data based on FOVIO
-Row 15271: Invalid Data based on FOVIO
-Row 15273: Invalid Data based on FOVIO
-Row 15274: Invalid Data based on FOVIO
-Row 15289: Invalid Data based on FOVIO
-Row 15291: Invalid Data based on FOVIO
-Row 15293: Invalid Data based on FOVIO
-Row 15294: Invalid Data based on FOVIO
-Row 15295: Invalid Data based on FOVIO
-Row 15297: Invalid Data based on FOVIO
-Row 15298: Invalid Data based on FOVIO
-Row 15299: Invalid Data based on FOVIO
-Row 15311: Invalid Data based on FOVIO
-Row 15323: Invalid Data based on FOVIO
-Row 15325: Invalid Data based on FOVIO
-Row 15338: Invalid Data based on FOVIO
-Row 15363: Invalid Data based on FOVIO
-Row 15364: Invalid Data based on FOVIO
-Row 15367: Invalid Data based on FOVIO
-Row 15368: Invalid Data based on FOVIO
-Row 15371: Invalid Data based on FOVIO
-Row 15381: Invalid Data based on FOVIO
-Row 15391: Invalid Data based on FOVIO
-Row 15403: Invalid Data based on FOVIO
-Row 15428: Invalid Data based on FOVIO
-Row 15439: Invalid Data based on FOVIO
-Row 15455: Invalid Data based on FOVIO
-Row 15459: Invalid Data based on FOVIO
-Row 15481: Invalid Data based on FOVIO
-Row 15483: Invalid Data based on FOVIO
-Row 15503: Invalid Data based on FOVIO
-Row 15509: Invalid Data based on FOVIO
-Row 15511: Invalid Data based on FOVIO
-Row 15525: Invalid Data based on FOVIO
-Row 15552: Invalid Data based on FOVIO
-Row 15558: Invalid Data based on FOVIO
-Row 15596: Invalid Data based on FOVIO
-Row 15597: Invalid Data based on FOVIO
-Row 15598: Invalid Data based on FOVIO
-Row 15599: Invalid Data based on FOVIO
-Row 15600: Invalid Data based on FOVIO
-Row 15601: Invalid Data based on FOVIO
-Row 15639: Invalid Data based on FOVIO
-Row 15656: Invalid Data based on FOVIO
-Row 15657: Invalid Data based on FOVIO
-Row 15658: Invalid Data based on FOVIO
-Row 15796: Invalid Data based on FOVIO
-Row 15799: Invalid Data based on FOVIO
-Row 15803: Invalid Data based on FOVIO
-Row 15804: Invalid Data based on FOVIO
-Row 15811: Invalid Data based on FOVIO
-Row 15951: Invalid Data based on FOVIO
-Row 16005: Invalid Data based on FOVIO
-Row 16032: Invalid Data based on FOVIO
-Row 16064: Invalid Data based on FOVIO
-Row 16084: Invalid Data based on FOVIO
-Row 16085: Invalid Data based on FOVIO
-Row 16086: Invalid Data based on FOVIO
-Row 16088: Invalid Data based on FOVIO
-Row 16089: Invalid Data based on FOVIO
-Row 16092: Invalid Data based on FOVIO
-Row 16148: Invalid Data based on FOVIO
-Row 16153: Invalid Data based on FOVIO
-Row 16155: Invalid Data based on FOVIO
-Row 16157: Invalid Data based on FOVIO
-Row 16161: Invalid Data based on FOVIO
-Row 16167: Invalid Data based on FOVIO
-Row 16169: Invalid Data based on FOVIO
-Row 16171: Invalid Data based on FOVIO
-Row 16173: Invalid Data based on FOVIO
-Row 16174: Invalid Data based on FOVIO
-Row 16175: Invalid Data based on FOVIO
-Row 16176: Invalid Data based on FOVIO
-Row 16192: Invalid Data based on FOVIO
-Row 16197: Invalid Data based on FOVIO
-Row 16199: Invalid Data based on FOVIO
-Row 16203: Invalid Data based on FOVIO
-Row 16205: Invalid Data based on FOVIO
-Row 16207: Invalid Data based on FOVIO
-Row 16232: Invalid Data based on FOVIO
-Row 16234: Invalid Data based on FOVIO
-Row 16286: Invalid Data based on FOVIO
-Row 16288: Invalid Data based on FOVIO
-Row 16290: Invalid Data based on FOVIO
-Row 16305: Invalid Data based on FOVIO
-Row 16306: Invalid Data based on FOVIO
-Row 16323: Invalid Data based on FOVIO
-Row 16324: Invalid Data based on FOVIO
-Row 16340: Invalid Data based on FOVIO
-Row 16341: Invalid Data based on FOVIO
-Row 16342: Invalid Data based on FOVIO
-Row 16343: Invalid Data based on FOVIO
-Row 16344: Invalid Data based on FOVIO
-Row 16345: Invalid Data based on FOVIO
-Row 16346: Invalid Data based on FOVIO
-Row 16347: Invalid Data based on FOVIO
-Row 16377: Invalid Data based on FOVIO
-Row 16427: Invalid Data based on FOVIO
-Row 16546: Invalid Data based on FOVIO
-Row 16674: Invalid Data based on FOVIO
-Row 16679: Invalid Data based on FOVIO
-Row 16683: Invalid Data based on FOVIO
-Row 16685: Invalid Data based on FOVIO
-Row 16687: Invalid Data based on FOVIO
-Row 16688: Invalid Data based on FOVIO
-Row 16691: Invalid Data based on FOVIO
-Row 16692: Invalid Data based on FOVIO
-Row 16693: Invalid Data based on FOVIO
-Row 16694: Invalid Data based on FOVIO
-Row 16697: Invalid Data based on FOVIO
-Row 16698: Invalid Data based on FOVIO
-Row 16716: Invalid Data based on FOVIO
-Row 16793: Invalid Data based on FOVIO
-Row 16799: Invalid Data based on FOVIO
-Row 16825: Invalid Data based on FOVIO
-Row 16992: Invalid Data based on FOVIO
-Row 16998: Invalid Data based on FOVIO
-Row 17003: Invalid Data based on FOVIO
-Row 17004: Invalid Data based on FOVIO
-Row 17007: Invalid Data based on FOVIO
-Row 17008: Invalid Data based on FOVIO
-Row 17025: Invalid Data based on FOVIO
-Row 17026: Invalid Data based on FOVIO
-Row 17082: Invalid Data based on FOVIO
-Row 17086: Invalid Data based on FOVIO
-Row 17095: Invalid Data based on FOVIO
-Row 17096: Invalid Data based on FOVIO
-Row 17113: Invalid Data based on FOVIO
-Row 17129: Invalid Data based on FOVIO
-Row 17131: Invalid Data based on FOVIO
-Row 17132: Invalid Data based on FOVIO
-Row 17133: Invalid Data based on FOVIO
-Row 17149: Invalid Data based on FOVIO
-Row 17151: Invalid Data based on FOVIO
-Row 17153: Invalid Data based on FOVIO
-Row 17155: Invalid Data based on FOVIO
-Row 17157: Invalid Data based on FOVIO
-Row 17159: Invalid Data based on FOVIO
-Row 17185: Invalid Data based on FOVIO
-Row 17186: Invalid Data based on FOVIO
-Row 17187: Invalid Data based on FOVIO
-Row 17188: Invalid Data based on FOVIO
-Row 17189: Invalid Data based on FOVIO
-Row 17195: Invalid Data based on FOVIO
-Row 17197: Invalid Data based on FOVIO
-Row 17201: Invalid Data based on FOVIO
-Row 17211: Invalid Data based on FOVIO
-Row 17212: Invalid Data based on FOVIO
-Row 17248: Invalid Data based on FOVIO
-Row 17254: Invalid Data based on FOVIO
-Row 17387: Invalid Data based on FOVIO
-Row 17391: Invalid Data based on FOVIO
-Row 17393: Invalid Data based on FOVIO
-Row 17395: Invalid Data based on FOVIO
-Row 17397: Invalid Data based on FOVIO
-Row 17401: Invalid Data based on FOVIO
-Row 17403: Invalid Data based on FOVIO
-Row 17407: Invalid Data based on FOVIO
-Row 17408: Invalid Data based on FOVIO
-Row 17409: Invalid Data based on FOVIO
-Row 17411: Invalid Data based on FOVIO
-Row 17487: Invalid Data based on FOVIO
-Row 17491: Invalid Data based on FOVIO
-Row 17499: Invalid Data based on FOVIO
-Row 17613: Invalid Data based on FOVIO
-Row 17735: Invalid Data based on FOVIO
-Row 17745: Invalid Data based on FOVIO
-Row 17748: Invalid Data based on FOVIO
-Row 17751: Invalid Data based on FOVIO
-Row 17753: Invalid Data based on FOVIO
-Row 17755: Invalid Data based on FOVIO
-Row 17757: Invalid Data based on FOVIO
-Row 17759: Invalid Data based on FOVIO
-Row 17761: Invalid Data based on FOVIO
-Row 17767: Invalid Data based on FOVIO
-Row 17769: Invalid Data based on FOVIO
-Row 17774: Invalid Data based on FOVIO
-Row 17780: Invalid Data based on FOVIO
-Row 17790: Invalid Data based on FOVIO
-Row 17793: Invalid Data based on FOVIO
-Row 17800: Invalid Data based on FOVIO
-Row 17845: Invalid Data based on FOVIO
-Row 17909: Invalid Data based on FOVIO
-Row 17916: Invalid Data based on FOVIO
-Row 17977: Invalid Data based on FOVIO
-Row 18024: Invalid Data based on FOVIO
-Row 18025: Invalid Data based on FOVIO
-Row 18026: Invalid Data based on FOVIO
-Row 18027: Invalid Data based on FOVIO
-Row 18028: Invalid Data based on FOVIO
-Row 18029: Invalid Data based on FOVIO
-Row 18030: Invalid Data based on FOVIO
-Row 18031: Invalid Data based on FOVIO
-Row 18032: Invalid Data based on FOVIO
-Row 18033: Invalid Data based on FOVIO
-Row 18034: Invalid Data based on FOVIO
-Row 18035: Invalid Data based on FOVIO
-Row 18036: Invalid Data based on FOVIO
-Row 18041: Invalid Data based on FOVIO
-Row 18051: Invalid Data based on FOVIO
-Row 18052: Invalid Data based on FOVIO
-Row 18060: Invalid Data based on FOVIO
-Row 18061: Invalid Data based on FOVIO
-Row 18062: Invalid Data based on FOVIO
-Row 18063: Invalid Data based on FOVIO
-Row 18064: Invalid Data based on FOVIO
-Row 18065: Invalid Data based on FOVIO
-Row 18066: Invalid Data based on FOVIO
-Row 18067: Invalid Data based on FOVIO
-Row 18072: Invalid Data based on FOVIO
-Row 18073: Invalid Data based on FOVIO
-Row 18074: Invalid Data based on FOVIO
-Row 18075: Invalid Data based on FOVIO
-Row 18076: Invalid Data based on FOVIO
-Row 18077: Invalid Data based on FOVIO
-Row 18078: Invalid Data based on FOVIO
-Row 18079: Invalid Data based on FOVIO
-Row 18080: Invalid Data based on FOVIO
-Row 18081: Invalid Data based on FOVIO
-Row 18082: Invalid Data based on FOVIO
-Row 18116: Invalid Data based on FOVIO
-Row 18118: Invalid Data based on FOVIO
-Row 18154: Invalid Data based on FOVIO
-Row 18180: Invalid Data based on FOVIO
-Row 18202: Invalid Data based on FOVIO
-Row 18317: Invalid Data based on FOVIO
-Row 18319: Invalid Data based on FOVIO
-Row 18321: Invalid Data based on FOVIO
-Row 18327: Invalid Data based on FOVIO
-Row 18354: Invalid Data based on FOVIO
-Row 18355: Invalid Data based on FOVIO
-Row 18359: Invalid Data based on FOVIO
-Row 18361: Invalid Data based on FOVIO
-Row 18433: Invalid Data based on FOVIO
-Row 18435: Invalid Data based on FOVIO
-Row 18538: Invalid Data based on FOVIO
-Row 18539: Invalid Data based on FOVIO
-Row 18551: Invalid Data based on FOVIO
-Row 18563: Invalid Data based on FOVIO
-Row 18565: Invalid Data based on FOVIO
-Row 18569: Invalid Data based on FOVIO
-Row 18571: Invalid Data based on FOVIO
-Row 18573: Invalid Data based on FOVIO
-Row 18575: Invalid Data based on FOVIO
-Row 18577: Invalid Data based on FOVIO
-Row 18580: Invalid Data based on FOVIO
-Row 18581: Invalid Data based on FOVIO
-Row 18582: Invalid Data based on FOVIO
-Row 18583: Invalid Data based on FOVIO
-Row 18584: Invalid Data based on FOVIO
-Row 18585: Invalid Data based on FOVIO
-Row 18586: Invalid Data based on FOVIO
-Row 18587: Invalid Data based on FOVIO
-Row 18588: Invalid Data based on FOVIO
-Row 18589: Invalid Data based on FOVIO
-Row 18590: Invalid Data based on FOVIO
-Row 18591: Invalid Data based on FOVIO
-Row 18592: Invalid Data based on FOVIO
-Row 18593: Invalid Data based on FOVIO
-Row 18594: Invalid Data based on FOVIO
-Row 18613: Invalid Data based on FOVIO
-Row 18618: Invalid Data based on FOVIO
-Row 18630: Invalid Data based on FOVIO
-Row 18632: Invalid Data based on FOVIO
-Row 18637: Invalid Data based on FOVIO
-Row 18639: Invalid Data based on FOVIO
-Row 18641: Invalid Data based on FOVIO
-Row 18646: Invalid Data based on FOVIO
-Row 18647: Invalid Data based on FOVIO
-Row 18648: Invalid Data based on FOVIO
-Row 18650: Invalid Data based on FOVIO
-Row 18651: Invalid Data based on FOVIO
-Row 18703: Invalid Data based on FOVIO
-Row 18759: Invalid Data based on FOVIO
-Row 18760: Invalid Data based on FOVIO
-Row 18773: Invalid Data based on FOVIO
-Row 18774: Invalid Data based on FOVIO
-Row 18783: Invalid Data based on FOVIO
-Row 18901: Invalid Data based on FOVIO
-Row 18907: Invalid Data based on FOVIO
-Row 18909: Invalid Data based on FOVIO
-Row 18911: Invalid Data based on FOVIO
-Row 18915: Invalid Data based on FOVIO
-Row 18917: Invalid Data based on FOVIO
-Row 18968: Invalid Data based on FOVIO
-Row 18973: Invalid Data based on FOVIO
-Row 19108: Invalid Data based on FOVIO
-Row 19123: Invalid Data based on FOVIO
-Row 19127: Invalid Data based on FOVIO
-Row 19156: Invalid Data based on FOVIO
-Row 19157: Invalid Data based on FOVIO
-Row 19158: Invalid Data based on FOVIO
-Row 19165: Invalid Data based on FOVIO
-Row 19166: Invalid Data based on FOVIO
-Row 19170: Invalid Data based on FOVIO
-Row 19172: Invalid Data based on FOVIO
-Row 19174: Invalid Data based on FOVIO
-Row 19184: Invalid Data based on FOVIO
-Row 19192: Invalid Data based on FOVIO
-Row 19229: Invalid Data based on FOVIO
-Row 19233: Invalid Data based on FOVIO
-Row 19237: Invalid Data based on FOVIO
-Row 19241: Invalid Data based on FOVIO
-Row 19279: Invalid Data based on FOVIO
-Row 19280: Invalid Data based on FOVIO
-Row 19309: Invalid Data based on FOVIO
-Row 19310: Invalid Data based on FOVIO
-Row 19311: Invalid Data based on FOVIO
-Row 19312: Invalid Data based on FOVIO
-Row 19313: Invalid Data based on FOVIO
-Row 19314: Invalid Data based on FOVIO
-Row 19359: Invalid Data based on FOVIO
-Row 19363: Invalid Data based on FOVIO
-Row 19389: Invalid Data based on FOVIO
-Row 19390: Invalid Data based on FOVIO
-Row 19392: Invalid Data based on FOVIO
-Row 19394: Invalid Data based on FOVIO
-Row 19398: Invalid Data based on FOVIO
-Row 19399: Invalid Data based on FOVIO
-Row 19400: Invalid Data based on FOVIO
-Row 19401: Invalid Data based on FOVIO
-Row 19402: Invalid Data based on FOVIO
-Row 19403: Invalid Data based on FOVIO
-Row 19404: Invalid Data based on FOVIO
-Row 19422: Invalid Data based on FOVIO
-Row 19489: Invalid Data based on FOVIO
-Row 19493: Invalid Data based on FOVIO
-Row 19497: Invalid Data based on FOVIO
-Row 19498: Invalid Data based on FOVIO
-Row 19503: Invalid Data based on FOVIO
-Row 19504: Invalid Data based on FOVIO
-Row 19526: Invalid Data based on FOVIO
-Row 19528: Invalid Data based on FOVIO
-Row 19533: Invalid Data based on FOVIO
-Row 19535: Invalid Data based on FOVIO
-Row 19539: Invalid Data based on FOVIO
-Row 19542: Invalid Data based on FOVIO
-Row 19628: Invalid Data based on FOVIO
-Row 19630: Invalid Data based on FOVIO
-Row 19632: Invalid Data based on FOVIO
-Row 19635: Invalid Data based on FOVIO
-Row 19720: Invalid Data based on FOVIO
-Row 19722: Invalid Data based on FOVIO
-Row 19724: Invalid Data based on FOVIO
-Row 19727: Invalid Data based on FOVIO
-Row 19728: Invalid Data based on FOVIO
-Row 19730: Invalid Data based on FOVIO
-Row 19732: Invalid Data based on FOVIO
-Row 19734: Invalid Data based on FOVIO
-Row 19736: Invalid Data based on FOVIO
-Row 19738: Invalid Data based on FOVIO
-Row 19740: Invalid Data based on FOVIO
-Row 19790: Invalid Data based on FOVIO
-Row 19830: Invalid Data based on FOVIO
-Row 19939: Invalid Data based on FOVIO
-Row 19940: Invalid Data based on FOVIO
-Row 20041: Invalid Data based on FOVIO
-Row 20043: Invalid Data based on FOVIO
-Row 20046: Invalid Data based on FOVIO
-Row 20049: Invalid Data based on FOVIO
-Row 20052: Invalid Data based on FOVIO
-Row 20055: Invalid Data based on FOVIO
-Row 20057: Invalid Data based on FOVIO
-Row 20059: Invalid Data based on FOVIO
-Row 20061: Invalid Data based on FOVIO
-Row 20064: Invalid Data based on FOVIO
-Row 20066: Invalid Data based on FOVIO
-Row 20068: Invalid Data based on FOVIO
-Row 20070: Invalid Data based on FOVIO
-Row 20072: Invalid Data based on FOVIO
-Row 20076: Invalid Data based on FOVIO
-Row 20078: Invalid Data based on FOVIO
-Row 20081: Invalid Data based on FOVIO
-Row 20083: Invalid Data based on FOVIO
-Row 20085: Invalid Data based on FOVIO
-Row 20087: Invalid Data based on FOVIO
-Row 20091: Invalid Data based on FOVIO
-Row 20101: Invalid Data based on FOVIO
-Row 20103: Invalid Data based on FOVIO
-Row 20105: Invalid Data based on FOVIO
-Row 20138: Invalid Data based on FOVIO
-Row 20140: Invalid Data based on FOVIO
-Row 20179: Invalid Data based on FOVIO
-Row 20180: Invalid Data based on FOVIO
-Row 20181: Invalid Data based on FOVIO
-Row 20182: Invalid Data based on FOVIO
-Row 20183: Invalid Data based on FOVIO
-Row 20184: Invalid Data based on FOVIO
-Row 20185: Invalid Data based on FOVIO
-Row 20186: Invalid Data based on FOVIO
-Row 20187: Invalid Data based on FOVIO
-Row 20188: Invalid Data based on FOVIO
-Row 20189: Invalid Data based on FOVIO
-Row 20190: Invalid Data based on FOVIO
-Row 20191: Invalid Data based on FOVIO
-Row 20192: Invalid Data based on FOVIO
-Row 20193: Invalid Data based on FOVIO
-Row 20194: Invalid Data based on FOVIO
-Row 20195: Invalid Data based on FOVIO
-Row 20196: Invalid Data based on FOVIO
-Row 20197: Invalid Data based on FOVIO
-Row 20198: Invalid Data based on FOVIO
-Row 20199: Invalid Data based on FOVIO
-Row 20200: Invalid Data based on FOVIO
-Row 20201: Invalid Data based on FOVIO
-Row 20202: Invalid Data based on FOVIO
-Row 20203: Invalid Data based on FOVIO
-Row 20204: Invalid Data based on FOVIO
-Row 20205: Invalid Data based on FOVIO
-Row 20274: Invalid Data based on FOVIO
-Row 20275: Invalid Data based on FOVIO
-Row 20276: Invalid Data based on FOVIO
-Row 20277: Invalid Data based on FOVIO
-Row 20289: Invalid Data based on FOVIO
-Row 20290: Invalid Data based on FOVIO
-Row 20295: Invalid Data based on FOVIO
-Row 20296: Invalid Data based on FOVIO
-Row 20297: Invalid Data based on FOVIO
-Row 20298: Invalid Data based on FOVIO
-Row 20299: Invalid Data based on FOVIO
-Row 20300: Invalid Data based on FOVIO
-Row 20314: Invalid Data based on FOVIO
-Row 20331: Invalid Data based on FOVIO
-Row 20332: Invalid Data based on FOVIO
-Row 20333: Invalid Data based on FOVIO
-Row 20334: Invalid Data based on FOVIO
-Row 20335: Invalid Data based on FOVIO
-Row 20336: Invalid Data based on FOVIO
-Row 20389: Invalid Data based on FOVIO
-Row 20414: Invalid Data based on FOVIO
-Row 20451: Invalid Data based on FOVIO
-Row 20515: Invalid Data based on FOVIO
-Row 20521: Invalid Data based on FOVIO
-Row 20523: Invalid Data based on FOVIO
-Row 20524: Invalid Data based on FOVIO
-Row 20525: Invalid Data based on FOVIO
-Row 20526: Invalid Data based on FOVIO
-Row 20556: Invalid Data based on FOVIO
-Row 20557: Invalid Data based on FOVIO
-Row 20558: Invalid Data based on FOVIO
-Row 20559: Invalid Data based on FOVIO
-Row 20560: Invalid Data based on FOVIO
-Row 20561: Invalid Data based on FOVIO
-Row 20562: Invalid Data based on FOVIO
-Row 20563: Invalid Data based on FOVIO
-Row 20612: Invalid Data based on FOVIO
-Row 20615: Invalid Data based on FOVIO
-Row 20625: Invalid Data based on FOVIO
-Row 20627: Invalid Data based on FOVIO
-Row 20633: Invalid Data based on FOVIO
-Row 20636: Invalid Data based on FOVIO
-Row 20638: Invalid Data based on FOVIO
-Row 20668: Invalid Data based on FOVIO
-Row 20669: Invalid Data based on FOVIO
-Row 20670: Invalid Data based on FOVIO
-Row 20671: Invalid Data based on FOVIO
-Row 20672: Invalid Data based on FOVIO
-Row 20673: Invalid Data based on FOVIO
-Row 20674: Invalid Data based on FOVIO
-Row 20675: Invalid Data based on FOVIO
-Row 20676: Invalid Data based on FOVIO
-Row 20677: Invalid Data based on FOVIO
-Row 20678: Invalid Data based on FOVIO
-Row 20727: Invalid Data based on FOVIO
-Row 20741: Invalid Data based on FOVIO
-Row 20742: Invalid Data based on FOVIO
-Row 20743: Invalid Data based on FOVIO
-Row 20745: Invalid Data based on FOVIO
-Row 20746: Invalid Data based on FOVIO
-Row 20747: Invalid Data based on FOVIO
-Row 20748: Invalid Data based on FOVIO
-Row 20885: Invalid Data based on FOVIO
-Row 20951: Invalid Data based on FOVIO
-Row 20952: Invalid Data based on FOVIO
-Row 20962: Invalid Data based on FOVIO
-Row 20963: Invalid Data based on FOVIO
-Row 20964: Invalid Data based on FOVIO
-Row 20965: Invalid Data based on FOVIO
-Row 20966: Invalid Data based on FOVIO
-Row 20967: Invalid Data based on FOVIO
-Row 20968: Invalid Data based on FOVIO
-Row 20969: Invalid Data based on FOVIO
-Row 20970: Invalid Data based on FOVIO
-Row 20971: Invalid Data based on FOVIO
-Row 20972: Invalid Data based on FOVIO
-Row 20973: Invalid Data based on FOVIO
-Row 20977: Invalid Data based on FOVIO
-Row 20978: Invalid Data based on FOVIO
-Row 20993: Invalid Data based on FOVIO
-Row 20994: Invalid Data based on FOVIO
-Row 20995: Invalid Data based on FOVIO
-Row 20996: Invalid Data based on FOVIO
-Row 20997: Invalid Data based on FOVIO
-Row 20998: Invalid Data based on FOVIO
-Row 20999: Invalid Data based on FOVIO
-Row 21042: Invalid Data based on FOVIO
-Row 21044: Invalid Data based on FOVIO
-Row 21075: Invalid Data based on FOVIO
-Row 21081: Invalid Data based on FOVIO
-Row 21085: Invalid Data based on FOVIO
-Row 21163: Invalid Data based on FOVIO
-Row 21167: Invalid Data based on FOVIO
-Row 21169: Invalid Data based on FOVIO
-Row 21173: Invalid Data based on FOVIO
-Row 21219: Invalid Data based on FOVIO
-Row 21339: Invalid Data based on FOVIO
-Row 21403: Invalid Data based on FOVIO
-Row 21409: Invalid Data based on FOVIO
-Row 21410: Invalid Data based on FOVIO
-Row 21428: Invalid Data based on FOVIO
-Row 21430: Invalid Data based on FOVIO
-Row 21434: Invalid Data based on FOVIO
-Row 21443: Invalid Data based on FOVIO
-Row 21445: Invalid Data based on FOVIO
-Row 21457: Invalid Data based on FOVIO
-Row 21464: Invalid Data based on FOVIO
-Row 21466: Invalid Data based on FOVIO
-Row 21468: Invalid Data based on FOVIO
-Row 21474: Invalid Data based on FOVIO
-Row 21487: Invalid Data based on FOVIO
-Row 21502: Invalid Data based on FOVIO
-Row 21504: Invalid Data based on FOVIO
-Row 21513: Invalid Data based on FOVIO
-Row 21517: Invalid Data based on FOVIO
-Row 21521: Invalid Data based on FOVIO
-Row 21527: Invalid Data based on FOVIO
-Row 21649: Invalid Data based on FOVIO
-Row 21661: Invalid Data based on FOVIO
-Row 21691: Invalid Data based on FOVIO
-Row 21692: Invalid Data based on FOVIO
-Row 21722: Invalid Data based on FOVIO
-Row 21724: Invalid Data based on FOVIO
-Row 21728: Invalid Data based on FOVIO
-Row 21729: Invalid Data based on FOVIO
-Row 21730: Invalid Data based on FOVIO
-Row 21739: Invalid Data based on FOVIO
-Row 21741: Invalid Data based on FOVIO
-Row 21775: Invalid Data based on FOVIO
-Row 21776: Invalid Data based on FOVIO
-Row 21779: Invalid Data based on FOVIO
-Row 21781: Invalid Data based on FOVIO
-Row 21843: Invalid Data based on FOVIO
-Row 21844: Invalid Data based on FOVIO
-Row 21869: Invalid Data based on FOVIO
-Row 21870: Invalid Data based on FOVIO
-Row 21871: Invalid Data based on FOVIO
-Row 21872: Invalid Data based on FOVIO
-Row 21873: Invalid Data based on FOVIO
-Row 21874: Invalid Data based on FOVIO
-Row 21875: Invalid Data based on FOVIO
-Row 21876: Invalid Data based on FOVIO
-Row 21899: Invalid Data based on FOVIO
-Row 22064: Invalid Data based on FOVIO
-Row 22072: Invalid Data based on FOVIO
-Row 22076: Invalid Data based on FOVIO
-Row 22081: Invalid Data based on FOVIO
-Row 22085: Invalid Data based on FOVIO
-Row 22126: Invalid Data based on FOVIO
-Row 22138: Invalid Data based on FOVIO
-Row 22157: Invalid Data based on FOVIO
-Row 22158: Invalid Data based on FOVIO
-Row 22183: Invalid Data based on FOVIO
-Row 22184: Invalid Data based on FOVIO
-Row 22185: Invalid Data based on FOVIO
-Row 22186: Invalid Data based on FOVIO
-Row 22187: Invalid Data based on FOVIO
-Row 22188: Invalid Data based on FOVIO
-Row 22189: Invalid Data based on FOVIO
-Row 22190: Invalid Data based on FOVIO
-Row 22191: Invalid Data based on FOVIO
-Row 22192: Invalid Data based on FOVIO
-Row 22193: Invalid Data based on FOVIO
-Row 22194: Invalid Data based on FOVIO
-Row 22195: Invalid Data based on FOVIO
-Row 22220: Invalid Data based on FOVIO
-Row 22222: Invalid Data based on FOVIO
-Row 22227: Invalid Data based on FOVIO
-Row 22241: Invalid Data based on FOVIO
-Row 22251: Invalid Data based on FOVIO
-Row 22263: Invalid Data based on FOVIO
-Row 22265: Invalid Data based on FOVIO
-Row 22266: Invalid Data based on FOVIO
-Row 22275: Invalid Data based on FOVIO
-Row 22279: Invalid Data based on FOVIO
-Row 22282: Invalid Data based on FOVIO
-Row 22285: Invalid Data based on FOVIO
-Row 22291: Invalid Data based on FOVIO
-Row 22292: Invalid Data based on FOVIO
-Row 22301: Invalid Data based on FOVIO
-Row 22338: Invalid Data based on FOVIO
-Row 22340: Invalid Data based on FOVIO
-Row 22342: Invalid Data based on FOVIO
-Row 22348: Invalid Data based on FOVIO
-Row 22350: Invalid Data based on FOVIO
-Row 22382: Invalid Data based on FOVIO
-Row 22441: Invalid Data based on FOVIO
-Row 22443: Invalid Data based on FOVIO
-Row 22446: Invalid Data based on FOVIO
-Row 22448: Invalid Data based on FOVIO
-Row 22451: Invalid Data based on FOVIO
-Row 22454: Invalid Data based on FOVIO
-Row 22460: Invalid Data based on FOVIO
-Row 22466: Invalid Data based on FOVIO
-Row 22468: Invalid Data based on FOVIO
-Row 22470: Invalid Data based on FOVIO
-Row 22479: Invalid Data based on FOVIO
-Row 22521: Invalid Data based on FOVIO
-Row 22522: Invalid Data based on FOVIO
-Row 22523: Invalid Data based on FOVIO
-Row 22549: Invalid Data based on FOVIO
-Row 22550: Invalid Data based on FOVIO
-Row 22708: Invalid Data based on FOVIO
-Row 22712: Invalid Data based on FOVIO
-Row 22809: Invalid Data based on FOVIO
-Row 22817: Invalid Data based on FOVIO
-Row 22913: Invalid Data based on FOVIO
-Row 22914: Invalid Data based on FOVIO
-Row 22915: Invalid Data based on FOVIO
-Row 22916: Invalid Data based on FOVIO
-Row 22917: Invalid Data based on FOVIO
-Row 22918: Invalid Data based on FOVIO
-Row 22932: Invalid Data based on FOVIO
-Row 22933: Invalid Data based on FOVIO
-Row 22934: Invalid Data based on FOVIO
-Row 22935: Invalid Data based on FOVIO
-Row 22967: Invalid Data based on FOVIO
-Row 22968: Invalid Data based on FOVIO
-Row 22969: Invalid Data based on FOVIO
-Row 22970: Invalid Data based on FOVIO
-Row 22971: Invalid Data based on FOVIO
-Row 22972: Invalid Data based on FOVIO
-Row 22973: Invalid Data based on FOVIO
-Row 22974: Invalid Data based on FOVIO
-Row 22975: Invalid Data based on FOVIO
-Row 22976: Invalid Data based on FOVIO
-Row 22977: Invalid Data based on FOVIO
-Row 22978: Invalid Data based on FOVIO
-Row 23024: Invalid Data based on FOVIO
-Row 23026: Invalid Data based on FOVIO
-Row 23028: Invalid Data based on FOVIO
-Row 23030: Invalid Data based on FOVIO
-Row 23032: Invalid Data based on FOVIO
-Row 23167: Invalid Data based on FOVIO
-Row 23181: Invalid Data based on FOVIO
-Row 23271: Invalid Data based on FOVIO
-Row 23273: Invalid Data based on FOVIO
-Row 23277: Invalid Data based on FOVIO
-Row 23335: Invalid Data based on FOVIO
-Row 23336: Invalid Data based on FOVIO
-Row 23341: Invalid Data based on FOVIO
-Row 23345: Invalid Data based on FOVIO
-Row 23379: Invalid Data based on FOVIO
-Row 23405: Invalid Data based on FOVIO
-Row 23407: Invalid Data based on FOVIO
-Row 23413: Invalid Data based on FOVIO
-Row 23423: Invalid Data based on FOVIO
-Row 23425: Invalid Data based on FOVIO
-Row 23429: Invalid Data based on FOVIO
-Row 23449: Invalid Data based on FOVIO
-Row 23481: Invalid Data based on FOVIO
-Row 23482: Invalid Data based on FOVIO
-Row 23487: Invalid Data based on FOVIO
-Row 23491: Invalid Data based on FOVIO
-Row 23492: Invalid Data based on FOVIO
-Row 23493: Invalid Data based on FOVIO
-Row 23509: Invalid Data based on FOVIO
-Row 23527: Invalid Data based on FOVIO
-Row 23529: Invalid Data based on FOVIO
-Row 23531: Invalid Data based on FOVIO
-Row 23533: Invalid Data based on FOVIO
-Row 23535: Invalid Data based on FOVIO
-Row 23537: Invalid Data based on FOVIO
-Row 23539: Invalid Data based on FOVIO
-Row 23570: Invalid Data based on FOVIO
-Row 23591: Invalid Data based on FOVIO
-Row 23595: Invalid Data based on FOVIO
-Row 23599: Invalid Data based on FOVIO
-Row 23605: Invalid Data based on FOVIO
-Row 23606: Invalid Data based on FOVIO
-Row 23607: Invalid Data based on FOVIO
-Row 23610: Invalid Data based on FOVIO
-Row 23615: Invalid Data based on FOVIO
-Row 23617: Invalid Data based on FOVIO
-Row 23619: Invalid Data based on FOVIO
-Row 23670: Invalid Data based on FOVIO
-Row 23672: Invalid Data based on FOVIO
-Row 23674: Invalid Data based on FOVIO
-Row 23708: Invalid Data based on FOVIO
-Row 23725: Invalid Data based on FOVIO
-Row 23729: Invalid Data based on FOVIO
-Row 23785: Invalid Data based on FOVIO
-Row 23787: Invalid Data based on FOVIO
-Row 23793: Invalid Data based on FOVIO
-Row 23887: Invalid Data based on FOVIO
-Row 23889: Invalid Data based on FOVIO
-Row 23914: Invalid Data based on FOVIO
-Row 23925: Invalid Data based on FOVIO
-Row 23930: Invalid Data based on FOVIO
-Row 23932: Invalid Data based on FOVIO
-Row 23934: Invalid Data based on FOVIO
-Row 23958: Invalid Data based on FOVIO
-Row 23960: Invalid Data based on FOVIO
-Row 23962: Invalid Data based on FOVIO
-Row 23964: Invalid Data based on FOVIO
-Row 23966: Invalid Data based on FOVIO
-Row 23974: Invalid Data based on FOVIO
-Row 23983: Invalid Data based on FOVIO
-Row 23985: Invalid Data based on FOVIO
-Row 23991: Invalid Data based on FOVIO
-Row 23999: Invalid Data based on FOVIO
-Row 24009: Invalid Data based on FOVIO
-Row 24019: Invalid Data based on FOVIO
-Row 24021: Invalid Data based on FOVIO
-Row 24043: Invalid Data based on FOVIO
-Row 24045: Invalid Data based on FOVIO
-Row 24047: Invalid Data based on FOVIO
-Row 24049: Invalid Data based on FOVIO
-Row 24051: Invalid Data based on FOVIO
-Row 24053: Invalid Data based on FOVIO
-Row 24056: Invalid Data based on FOVIO
-Row 24057: Invalid Data based on FOVIO
-Row 24059: Invalid Data based on FOVIO
-Row 24061: Invalid Data based on FOVIO
-Row 24065: Invalid Data based on FOVIO
-Row 24069: Invalid Data based on FOVIO
-Row 24071: Invalid Data based on FOVIO
-Row 24075: Invalid Data based on FOVIO
-Row 24077: Invalid Data based on FOVIO
-Row 24079: Invalid Data based on FOVIO
-Row 24081: Invalid Data based on FOVIO
-Row 24083: Invalid Data based on FOVIO
-Row 24085: Invalid Data based on FOVIO
-Row 24089: Invalid Data based on FOVIO
-Row 24090: Invalid Data based on FOVIO
-Row 24091: Invalid Data based on FOVIO
-Row 24093: Invalid Data based on FOVIO
-Row 24094: Invalid Data based on FOVIO
-Row 24101: Invalid Data based on FOVIO
-Row 24102: Invalid Data based on FOVIO
-Row 24103: Invalid Data based on FOVIO
-Row 24104: Invalid Data based on FOVIO
-Row 24105: Invalid Data based on FOVIO
-Row 24107: Invalid Data based on FOVIO
-Row 24109: Invalid Data based on FOVIO
-Row 24119: Invalid Data based on FOVIO
-Row 24122: Invalid Data based on FOVIO
-Row 24127: Invalid Data based on FOVIO
-Row 24132: Invalid Data based on FOVIO
-Row 24134: Invalid Data based on FOVIO
-Row 24170: Invalid Data based on FOVIO
-Row 24173: Invalid Data based on FOVIO
-Row 24185: Invalid Data based on FOVIO
-Row 24191: Invalid Data based on FOVIO
-Row 24203: Invalid Data based on FOVIO
-Row 24205: Invalid Data based on FOVIO
-Row 24207: Invalid Data based on FOVIO
-Row 24209: Invalid Data based on FOVIO
-Row 24210: Invalid Data based on FOVIO
-Row 24221: Invalid Data based on FOVIO
-Row 24261: Invalid Data based on FOVIO
-Row 24266: Invalid Data based on FOVIO
-Row 24268: Invalid Data based on FOVIO
-Row 24270: Invalid Data based on FOVIO
-Row 24272: Invalid Data based on FOVIO
-Row 24274: Invalid Data based on FOVIO
-Row 24278: Invalid Data based on FOVIO
-Row 24279: Invalid Data based on FOVIO
-Row 24281: Invalid Data based on FOVIO
-Row 24331: Invalid Data based on FOVIO
-Row 24339: Invalid Data based on FOVIO
-Row 24340: Invalid Data based on FOVIO
-Row 24395: Invalid Data based on FOVIO
-Row 24397: Invalid Data based on FOVIO
-Row 24401: Invalid Data based on FOVIO
-Row 24402: Invalid Data based on FOVIO
-Row 24403: Invalid Data based on FOVIO
-Row 24405: Invalid Data based on FOVIO
-Row 24407: Invalid Data based on FOVIO
-Row 24409: Invalid Data based on FOVIO
-Row 24411: Invalid Data based on FOVIO
-Row 24413: Invalid Data based on FOVIO
-Row 24415: Invalid Data based on FOVIO
-Row 24417: Invalid Data based on FOVIO
-Row 24418: Invalid Data based on FOVIO
-Row 24423: Invalid Data based on FOVIO
-Row 24472: Invalid Data based on FOVIO
-Row 24474: Invalid Data based on FOVIO
-Row 24476: Invalid Data based on FOVIO
-Row 24481: Invalid Data based on FOVIO
-Row 24533: Invalid Data based on FOVIO
-Row 24605: Invalid Data based on FOVIO
-Row 24607: Invalid Data based on FOVIO
-Row 24609: Invalid Data based on FOVIO
-Row 24619: Invalid Data based on FOVIO
-Row 24623: Invalid Data based on FOVIO
-Row 24625: Invalid Data based on FOVIO
-Row 24639: Invalid Data based on FOVIO
-Row 24653: Invalid Data based on FOVIO
-Row 24657: Invalid Data based on FOVIO
-Row 24658: Invalid Data based on FOVIO
-Row 24661: Invalid Data based on FOVIO
-Row 24663: Invalid Data based on FOVIO
-Row 24665: Invalid Data based on FOVIO
-Row 24667: Invalid Data based on FOVIO
-Row 24669: Invalid Data based on FOVIO
-Row 24671: Invalid Data based on FOVIO
-Row 24680: Invalid Data based on FOVIO
-Row 24691: Invalid Data based on FOVIO
-Row 24715: Invalid Data based on FOVIO
-Row 24743: Invalid Data based on FOVIO
-Row 24757: Invalid Data based on FOVIO
-Row 24767: Invalid Data based on FOVIO
-Row 24785: Invalid Data based on FOVIO
-Row 24797: Invalid Data based on FOVIO
-Row 24801: Invalid Data based on FOVIO
-Row 24815: Invalid Data based on FOVIO
-Row 24817: Invalid Data based on FOVIO
-Row 24827: Invalid Data based on FOVIO
-Row 24828: Invalid Data based on FOVIO
-Row 24855: Invalid Data based on FOVIO
-Row 24861: Invalid Data based on FOVIO
-Row 24863: Invalid Data based on FOVIO
-Row 24865: Invalid Data based on FOVIO
-Row 24867: Invalid Data based on FOVIO
-Row 24870: Invalid Data based on FOVIO
-Row 24872: Invalid Data based on FOVIO
-Row 24875: Invalid Data based on FOVIO
-Row 24877: Invalid Data based on FOVIO
-Row 24879: Invalid Data based on FOVIO
-Row 24883: Invalid Data based on FOVIO
-Row 24886: Invalid Data based on FOVIO
-Row 24888: Invalid Data based on FOVIO
-Row 24890: Invalid Data based on FOVIO
-Row 24892: Invalid Data based on FOVIO
-Row 24894: Invalid Data based on FOVIO
-Row 24941: Invalid Data based on FOVIO
-Row 24945: Invalid Data based on FOVIO
-Row 24949: Invalid Data based on FOVIO
-Row 24956: Invalid Data based on FOVIO
-Row 24958: Invalid Data based on FOVIO
-Row 24959: Invalid Data based on FOVIO
-Row 24960: Invalid Data based on FOVIO
-Row 24961: Invalid Data based on FOVIO
-Row 24962: Invalid Data based on FOVIO
-Row 24963: Invalid Data based on FOVIO
-Row 24964: Invalid Data based on FOVIO
-Row 24975: Invalid Data based on FOVIO
-Row 25009: Invalid Data based on FOVIO
-Row 25055: Invalid Data based on FOVIO
-Row 25067: Invalid Data based on FOVIO
-Row 25076: Invalid Data based on FOVIO
-Row 25096: Invalid Data based on FOVIO
-Row 25098: Invalid Data based on FOVIO
-Row 25107: Invalid Data based on FOVIO
-Row 25111: Invalid Data based on FOVIO
-Row 25115: Invalid Data based on FOVIO
-Row 25119: Invalid Data based on FOVIO
-Row 25129: Invalid Data based on FOVIO
-Row 25133: Invalid Data based on FOVIO
-Row 25141: Invalid Data based on FOVIO
-Row 25142: Invalid Data based on FOVIO
-Row 25143: Invalid Data based on FOVIO
-Row 25144: Invalid Data based on FOVIO
-Row 25145: Invalid Data based on FOVIO
-Row 25147: Invalid Data based on FOVIO
-Row 25149: Invalid Data based on FOVIO
-Row 25151: Invalid Data based on FOVIO
-Row 25153: Invalid Data based on FOVIO
-Row 25155: Invalid Data based on FOVIO
-Row 25156: Invalid Data based on FOVIO
-Row 25157: Invalid Data based on FOVIO
-Row 25158: Invalid Data based on FOVIO
-Row 25199: Invalid Data based on FOVIO
-Row 25203: Invalid Data based on FOVIO
-Row 25215: Invalid Data based on FOVIO
-Row 25221: Invalid Data based on FOVIO
-Row 25233: Invalid Data based on FOVIO
-Row 25235: Invalid Data based on FOVIO
-Row 25237: Invalid Data based on FOVIO
-Row 25245: Invalid Data based on FOVIO
-Row 25247: Invalid Data based on FOVIO
-Row 25263: Invalid Data based on FOVIO
-Row 25264: Invalid Data based on FOVIO
-Row 25265: Invalid Data based on FOVIO
-Row 25266: Invalid Data based on FOVIO
-Row 25267: Invalid Data based on FOVIO
-Row 25269: Invalid Data based on FOVIO
-Row 25271: Invalid Data based on FOVIO
-Row 25273: Invalid Data based on FOVIO
-Row 25275: Invalid Data based on FOVIO
-Row 25277: Invalid Data based on FOVIO
-Row 25279: Invalid Data based on FOVIO
-Row 25281: Invalid Data based on FOVIO
-Row 25283: Invalid Data based on FOVIO
-Row 25285: Invalid Data based on FOVIO
-Row 25287: Invalid Data based on FOVIO
-Row 25319: Invalid Data based on FOVIO
-Row 25325: Invalid Data based on FOVIO
-Row 25335: Invalid Data based on FOVIO
-Row 25345: Invalid Data based on FOVIO
-Row 25377: Invalid Data based on FOVIO
-Row 25379: Invalid Data based on FOVIO
-Row 25381: Invalid Data based on FOVIO
-Row 25397: Invalid Data based on FOVIO
-Row 25418: Invalid Data based on FOVIO
-Row 25476: Invalid Data based on FOVIO
-Row 25478: Invalid Data based on FOVIO
-Row 25525: Invalid Data based on FOVIO
-Row 25527: Invalid Data based on FOVIO
-Row 25543: Invalid Data based on FOVIO
-Row 25631: Invalid Data based on FOVIO
-Row 25634: Invalid Data based on FOVIO
-Row 25711: Invalid Data based on FOVIO
-Row 25713: Invalid Data based on FOVIO
-Row 25715: Invalid Data based on FOVIO
-Row 25716: Invalid Data based on FOVIO
-Row 25744: Invalid Data based on FOVIO
-Row 25746: Invalid Data based on FOVIO
-Row 25750: Invalid Data based on FOVIO
-Row 25752: Invalid Data based on FOVIO
-Row 25771: Invalid Data based on FOVIO
-Row 25793: Invalid Data based on FOVIO
-Row 25797: Invalid Data based on FOVIO
-Row 25803: Invalid Data based on FOVIO
-Row 25805: Invalid Data based on FOVIO
-Row 25811: Invalid Data based on FOVIO
-Row 25813: Invalid Data based on FOVIO
-Row 25817: Invalid Data based on FOVIO
-Row 25821: Invalid Data based on FOVIO
-Row 25833: Invalid Data based on FOVIO
-Row 25837: Invalid Data based on FOVIO
-Row 25839: Invalid Data based on FOVIO
-Row 25845: Invalid Data based on FOVIO
-Row 25847: Invalid Data based on FOVIO
-Row 25848: Invalid Data based on FOVIO
-Row 25851: Invalid Data based on FOVIO
-Row 25853: Invalid Data based on FOVIO
-Row 25863: Invalid Data based on FOVIO
-Row 25865: Invalid Data based on FOVIO
-Row 25871: Invalid Data based on FOVIO
-Row 25873: Invalid Data based on FOVIO
-Row 25877: Invalid Data based on FOVIO
-Row 25881: Invalid Data based on FOVIO
-Row 25885: Invalid Data based on FOVIO
-Row 25889: Invalid Data based on FOVIO
-Row 25891: Invalid Data based on FOVIO
-Row 25899: Invalid Data based on FOVIO
-Row 25970: Invalid Data based on FOVIO
-Row 25973: Invalid Data based on FOVIO
-Row 25975: Invalid Data based on FOVIO
-Row 26013: Invalid Data based on FOVIO
-Row 26030: Invalid Data based on FOVIO
-Row 26034: Invalid Data based on FOVIO
-Row 26038: Invalid Data based on FOVIO
-Row 26042: Invalid Data based on FOVIO
-Row 26046: Invalid Data based on FOVIO
-Row 26049: Invalid Data based on FOVIO
-Row 26050: Invalid Data based on FOVIO
-Row 26065: Invalid Data based on FOVIO
-Row 26066: Invalid Data based on FOVIO
-Row 26067: Invalid Data based on FOVIO
-Row 26068: Invalid Data based on FOVIO
-Row 26069: Invalid Data based on FOVIO
-Row 26070: Invalid Data based on FOVIO
-Row 26071: Invalid Data based on FOVIO
-Row 26072: Invalid Data based on FOVIO
-Row 26080: Invalid Data based on FOVIO
-Row 26087: Invalid Data based on FOVIO
-Row 26157: Invalid Data based on FOVIO
-Row 26193: Invalid Data based on FOVIO
-Row 26199: Invalid Data based on FOVIO
-Row 26200: Invalid Data based on FOVIO
-Row 26205: Invalid Data based on FOVIO
-Row 26207: Invalid Data based on FOVIO
-Row 26209: Invalid Data based on FOVIO
-Row 26211: Invalid Data based on FOVIO
-Row 26217: Invalid Data based on FOVIO
-Row 26219: Invalid Data based on FOVIO
-Row 26221: Invalid Data based on FOVIO
-Row 26223: Invalid Data based on FOVIO
-Row 26225: Invalid Data based on FOVIO
-Row 26227: Invalid Data based on FOVIO
-Row 26228: Invalid Data based on FOVIO
-Row 26241: Invalid Data based on FOVIO
-Row 26243: Invalid Data based on FOVIO
-Row 26267: Invalid Data based on FOVIO
-Row 26341: Invalid Data based on FOVIO
-Row 26342: Invalid Data based on FOVIO
-Row 26472: Invalid Data based on FOVIO
-Row 26511: Invalid Data based on FOVIO
-Row 26550: Invalid Data based on FOVIO
-Row 26552: Invalid Data based on FOVIO
-Row 26565: Invalid Data based on FOVIO
-Row 26577: Invalid Data based on FOVIO
-Row 26578: Invalid Data based on FOVIO
-Row 26619: Invalid Data based on FOVIO
-Row 26628: Invalid Data based on FOVIO
-Row 26642: Invalid Data based on FOVIO
-Row 26643: Invalid Data based on FOVIO
-Row 26646: Invalid Data based on FOVIO
-Row 26647: Invalid Data based on FOVIO
-Row 26650: Invalid Data based on FOVIO
-Row 26651: Invalid Data based on FOVIO
-Row 26654: Invalid Data based on FOVIO
-Row 26672: Invalid Data based on FOVIO
-Row 26673: Invalid Data based on FOVIO
-Row 26674: Invalid Data based on FOVIO
-Row 26703: Invalid Data based on FOVIO
-Row 26705: Invalid Data based on FOVIO
-Row 26707: Invalid Data based on FOVIO
-Row 26709: Invalid Data based on FOVIO
-Row 26713: Invalid Data based on FOVIO
-Row 26715: Invalid Data based on FOVIO
-Row 26718: Invalid Data based on FOVIO
-Row 26721: Invalid Data based on FOVIO
-Row 26723: Invalid Data based on FOVIO
-Row 26726: Invalid Data based on FOVIO
-Row 26780: Invalid Data based on FOVIO
-Row 26791: Invalid Data based on FOVIO
-Row 26808: Invalid Data based on FOVIO
-Row 27001: Invalid Data based on FOVIO
-Row 27073: Invalid Data based on FOVIO
-Row 27074: Invalid Data based on FOVIO
-Row 27137: Invalid Data based on FOVIO
-Row 27143: Invalid Data based on FOVIO
-Row 27147: Invalid Data based on FOVIO
-Row 27151: Invalid Data based on FOVIO
-Row 27194: Invalid Data based on FOVIO
-Row 27204: Invalid Data based on FOVIO
-Row 27250: Invalid Data based on FOVIO
-Row 27252: Invalid Data based on FOVIO
-Row 27318: Invalid Data based on FOVIO
-Row 27319: Invalid Data based on FOVIO
-Row 27321: Invalid Data based on FOVIO
-Row 27323: Invalid Data based on FOVIO
-Row 27325: Invalid Data based on FOVIO
-Row 27327: Invalid Data based on FOVIO
-Row 27333: Invalid Data based on FOVIO
-Row 27336: Invalid Data based on FOVIO
-Row 27338: Invalid Data based on FOVIO
-Row 27340: Invalid Data based on FOVIO
-Row 27343: Invalid Data based on FOVIO
-Row 27345: Invalid Data based on FOVIO
-Row 27359: Invalid Data based on FOVIO
-Row 27365: Invalid Data based on FOVIO
-Row 27371: Invalid Data based on FOVIO
-Row 27373: Invalid Data based on FOVIO
-Row 27375: Invalid Data based on FOVIO
-Row 27377: Invalid Data based on FOVIO
-Row 27429: Invalid Data based on FOVIO
-Row 27431: Invalid Data based on FOVIO
-Row 27433: Invalid Data based on FOVIO
-Row 27435: Invalid Data based on FOVIO
-Row 27439: Invalid Data based on FOVIO
-Row 27441: Invalid Data based on FOVIO
-Row 27443: Invalid Data based on FOVIO
-Row 27445: Invalid Data based on FOVIO
-Row 27448: Invalid Data based on FOVIO
-Row 27451: Invalid Data based on FOVIO
-Row 27526: Invalid Data based on FOVIO
-Row 27528: Invalid Data based on FOVIO
-Row 27667: Invalid Data based on FOVIO
-Row 27669: Invalid Data based on FOVIO
-Row 27671: Invalid Data based on FOVIO
-Row 27689: Invalid Data based on FOVIO
-Row 27690: Invalid Data based on FOVIO
-Row 27737: Invalid Data based on FOVIO
-Row 27747: Invalid Data based on FOVIO
-Row 27748: Invalid Data based on FOVIO
-Row 27751: Invalid Data based on FOVIO
-Row 27778: Invalid Data based on FOVIO
-Row 27785: Invalid Data based on FOVIO
-Row 27786: Invalid Data based on FOVIO
-Row 27787: Invalid Data based on FOVIO
-Row 27788: Invalid Data based on FOVIO
-Row 27792: Invalid Data based on FOVIO
-Row 27794: Invalid Data based on FOVIO
-Row 27796: Invalid Data based on FOVIO
-Row 27798: Invalid Data based on FOVIO
-Row 27800: Invalid Data based on FOVIO
-Row 27804: Invalid Data based on FOVIO
-Row 27837: Invalid Data based on FOVIO
-Row 27850: Invalid Data based on FOVIO
-Row 27873: Invalid Data based on FOVIO
-Row 27929: Invalid Data based on FOVIO
-Row 27930: Invalid Data based on FOVIO
-Row 27931: Invalid Data based on FOVIO
-Row 27932: Invalid Data based on FOVIO
-Row 27933: Invalid Data based on FOVIO
-Row 27934: Invalid Data based on FOVIO
-Row 27935: Invalid Data based on FOVIO
-Row 27936: Invalid Data based on FOVIO
-Row 27937: Invalid Data based on FOVIO
-Row 27942: Invalid Data based on FOVIO
-Row 27943: Invalid Data based on FOVIO
-Row 27944: Invalid Data based on FOVIO
-Row 27945: Invalid Data based on FOVIO
-Row 27951: Invalid Data based on FOVIO
-Row 28100: Invalid Data based on FOVIO
-Row 28101: Invalid Data based on FOVIO
-Row 28102: Invalid Data based on FOVIO
-Row 28103: Invalid Data based on FOVIO
-Row 28104: Invalid Data based on FOVIO
-Row 28105: Invalid Data based on FOVIO
-Row 28106: Invalid Data based on FOVIO
-Row 28107: Invalid Data based on FOVIO
-Row 28108: Invalid Data based on FOVIO
-Row 28109: Invalid Data based on FOVIO
-Row 28110: Invalid Data based on FOVIO
-Row 28111: Invalid Data based on FOVIO
-Row 28161: Invalid Data based on FOVIO
-Row 28376: Invalid Data based on FOVIO
-Row 28380: Invalid Data based on FOVIO
-Row 28434: Invalid Data based on FOVIO
-Row 28436: Invalid Data based on FOVIO
-Row 28437: Invalid Data based on FOVIO
-Row 28438: Invalid Data based on FOVIO
-Row 28439: Invalid Data based on FOVIO
-Row 28442: Invalid Data based on FOVIO
-Row 28443: Invalid Data based on FOVIO
-Row 28450: Invalid Data based on FOVIO
-Row 28456: Invalid Data based on FOVIO
-Row 28460: Invalid Data based on FOVIO
-Row 28463: Invalid Data based on FOVIO
-Row 28465: Invalid Data based on FOVIO
-Row 28469: Invalid Data based on FOVIO
-Row 28477: Invalid Data based on FOVIO
-Row 28479: Invalid Data based on FOVIO
-Row 28487: Invalid Data based on FOVIO
-Row 28491: Invalid Data based on FOVIO
-Row 28495: Invalid Data based on FOVIO
-Row 28501: Invalid Data based on FOVIO
-Row 28517: Invalid Data based on FOVIO
-Row 28523: Invalid Data based on FOVIO
-Row 28524: Invalid Data based on FOVIO
-Row 28527: Invalid Data based on FOVIO
-Row 28528: Invalid Data based on FOVIO
-Row 28546: Invalid Data based on FOVIO
-Row 28547: Invalid Data based on FOVIO
-Row 28548: Invalid Data based on FOVIO
-Row 28549: Invalid Data based on FOVIO
-Row 28550: Invalid Data based on FOVIO
-Row 28551: Invalid Data based on FOVIO
-Row 28582: Invalid Data based on FOVIO
-Row 28584: Invalid Data based on FOVIO
-Row 28586: Invalid Data based on FOVIO
-Row 28589: Invalid Data based on FOVIO
-Row 28591: Invalid Data based on FOVIO
-Row 28593: Invalid Data based on FOVIO
-Row 28595: Invalid Data based on FOVIO
-Row 28601: Invalid Data based on FOVIO
-Row 28604: Invalid Data based on FOVIO
-Row 28606: Invalid Data based on FOVIO
-Row 28611: Invalid Data based on FOVIO
-Row 28617: Invalid Data based on FOVIO
-Row 28621: Invalid Data based on FOVIO
-Row 28623: Invalid Data based on FOVIO
-Row 28625: Invalid Data based on FOVIO
-Row 28627: Invalid Data based on FOVIO
-Row 28637: Invalid Data based on FOVIO
-Row 28639: Invalid Data based on FOVIO
-Row 28641: Invalid Data based on FOVIO
-Row 28643: Invalid Data based on FOVIO
-Row 28646: Invalid Data based on FOVIO
-Row 28666: Invalid Data based on FOVIO
-Row 28668: Invalid Data based on FOVIO
-Row 28671: Invalid Data based on FOVIO
-Row 28674: Invalid Data based on FOVIO
-Row 28763: Invalid Data based on FOVIO
-Row 28912: Invalid Data based on FOVIO
-Row 28927: Invalid Data based on FOVIO
-Row 28940: Invalid Data based on FOVIO
-Row 28950: Invalid Data based on FOVIO
-Row 29034: Invalid Data based on FOVIO
-Row 29045: Invalid Data based on FOVIO
-Row 29085: Invalid Data based on FOVIO
-Row 29116: Invalid Data based on FOVIO
-Row 29130: Invalid Data based on FOVIO
-Row 29132: Invalid Data based on FOVIO
-Row 29141: Invalid Data based on FOVIO
-Row 29142: Invalid Data based on FOVIO
-Row 29185: Invalid Data based on FOVIO
-Row 29186: Invalid Data based on FOVIO
-Row 29187: Invalid Data based on FOVIO
-Row 29188: Invalid Data based on FOVIO
-Row 29189: Invalid Data based on FOVIO
-Row 29190: Invalid Data based on FOVIO
-Row 29191: Invalid Data based on FOVIO
-Row 29192: Invalid Data based on FOVIO
-Row 29193: Invalid Data based on FOVIO
-Row 29194: Invalid Data based on FOVIO
-Row 29195: Invalid Data based on FOVIO
-Row 29196: Invalid Data based on FOVIO
-Row 29197: Invalid Data based on FOVIO
-Row 29198: Invalid Data based on FOVIO
-Row 29199: Invalid Data based on FOVIO
-Row 29200: Invalid Data based on FOVIO
-Row 29201: Invalid Data based on FOVIO
-Row 29202: Invalid Data based on FOVIO
-Row 29203: Invalid Data based on FOVIO
-Row 29220: Invalid Data based on FOVIO
-Row 29222: Invalid Data based on FOVIO
-Row 29230: Invalid Data based on FOVIO
-Row 29238: Invalid Data based on FOVIO
-Row 29246: Invalid Data based on FOVIO
-Row 29247: Invalid Data based on FOVIO
-Row 29248: Invalid Data based on FOVIO
-Row 29249: Invalid Data based on FOVIO
-Row 29250: Invalid Data based on FOVIO
-Row 29251: Invalid Data based on FOVIO
-Row 29252: Invalid Data based on FOVIO
-Row 29253: Invalid Data based on FOVIO
-Row 29254: Invalid Data based on FOVIO
-Row 29255: Invalid Data based on FOVIO
-Row 29260: Invalid Data based on FOVIO
-Row 29268: Invalid Data based on FOVIO
-Row 29269: Invalid Data based on FOVIO
-Row 29293: Invalid Data based on FOVIO
-Row 29345: Invalid Data based on FOVIO
-Row 29484: Invalid Data based on FOVIO
-Row 29487: Invalid Data based on FOVIO
-Row 29492: Invalid Data based on FOVIO
-Row 29516: Invalid Data based on FOVIO
-Row 29517: Invalid Data based on FOVIO
-Row 29518: Invalid Data based on FOVIO
-Row 29519: Invalid Data based on FOVIO
-Row 29520: Invalid Data based on FOVIO
-Row 29521: Invalid Data based on FOVIO
-Row 29522: Invalid Data based on FOVIO
-Row 29523: Invalid Data based on FOVIO
-Row 29524: Invalid Data based on FOVIO
-Row 29525: Invalid Data based on FOVIO
-Row 29526: Invalid Data based on FOVIO
-Row 29527: Invalid Data based on FOVIO
-Row 29528: Invalid Data based on FOVIO
-Row 29529: Invalid Data based on FOVIO
-Row 29530: Invalid Data based on FOVIO
-Row 29531: Invalid Data based on FOVIO
-Row 29532: Invalid Data based on FOVIO
-Row 29566: Invalid Data based on FOVIO
-Row 29568: Invalid Data based on FOVIO
-Row 29570: Invalid Data based on FOVIO
-Row 29572: Invalid Data based on FOVIO
-Row 29574: Invalid Data based on FOVIO
-Row 29576: Invalid Data based on FOVIO
-Row 29578: Invalid Data based on FOVIO
-Row 29581: Invalid Data based on FOVIO
-Row 29675: Invalid Data based on FOVIO
-Row 29779: Invalid Data based on FOVIO
-Row 29782: Invalid Data based on FOVIO
-Row 29785: Invalid Data based on FOVIO
-Row 29787: Invalid Data based on FOVIO
-Row 29789: Invalid Data based on FOVIO
-Row 29791: Invalid Data based on FOVIO
-Row 29795: Invalid Data based on FOVIO
-Row 29797: Invalid Data based on FOVIO
-Row 29799: Invalid Data based on FOVIO
-Row 29801: Invalid Data based on FOVIO
-Row 29806: Invalid Data based on FOVIO
-Row 29808: Invalid Data based on FOVIO
-Row 29810: Invalid Data based on FOVIO
-Row 29812: Invalid Data based on FOVIO
-Row 29816: Invalid Data based on FOVIO
-Row 29821: Invalid Data based on FOVIO
-Row 29824: Invalid Data based on FOVIO
-Row 29827: Invalid Data based on FOVIO
-Row 29829: Invalid Data based on FOVIO
-Row 29939: Invalid Data based on FOVIO
-Row 29953: Invalid Data based on FOVIO
-Row 29955: Invalid Data based on FOVIO
-Row 29957: Invalid Data based on FOVIO
-Row 29959: Invalid Data based on FOVIO
-Row 29961: Invalid Data based on FOVIO
-Row 29963: Invalid Data based on FOVIO
-Row 30022: Invalid Data based on FOVIO
-Row 30034: Invalid Data based on FOVIO
-Row 30141: Invalid Data based on FOVIO
-Row 30145: Invalid Data based on FOVIO
-Row 30146: Invalid Data based on FOVIO
-Row 30147: Invalid Data based on FOVIO
-Row 30148: Invalid Data based on FOVIO
-Row 30149: Invalid Data based on FOVIO
-Row 30150: Invalid Data based on FOVIO
-Row 30165: Invalid Data based on FOVIO
-Row 30166: Invalid Data based on FOVIO
-Row 30269: Invalid Data based on FOVIO
-Row 30333: Invalid Data based on FOVIO
-Row 30335: Invalid Data based on FOVIO
-Row 30337: Invalid Data based on FOVIO
-Row 30346: Invalid Data based on FOVIO
-Row 30412: Invalid Data based on FOVIO
-Row 30413: Invalid Data based on FOVIO
-Row 30414: Invalid Data based on FOVIO
-Row 30415: Invalid Data based on FOVIO
-Row 30416: Invalid Data based on FOVIO
-Row 30417: Invalid Data based on FOVIO
-Row 30689: Invalid Data based on FOVIO
-Row 30691: Invalid Data based on FOVIO
-Row 30693: Invalid Data based on FOVIO
-Row 30695: Invalid Data based on FOVIO
-Row 30697: Invalid Data based on FOVIO
-Row 30701: Invalid Data based on FOVIO
-Row 30723: Invalid Data based on FOVIO
-Row 30733: Invalid Data based on FOVIO
-Row 30734: Invalid Data based on FOVIO
-Row 30888: Invalid Data based on FOVIO
-Row 30890: Invalid Data based on FOVIO
-Row 30892: Invalid Data based on FOVIO
-Row 30896: Invalid Data based on FOVIO
-Row 30910: Invalid Data based on FOVIO
-Row 31020: Invalid Data based on FOVIO
-Row 31022: Invalid Data based on FOVIO
-Row 31031: Invalid Data based on FOVIO
-Row 31032: Invalid Data based on FOVIO
-Row 31033: Invalid Data based on FOVIO
-Row 31034: Invalid Data based on FOVIO
-Row 31035: Invalid Data based on FOVIO
-Row 31036: Invalid Data based on FOVIO
-Row 31037: Invalid Data based on FOVIO
-Row 31038: Invalid Data based on FOVIO
-Row 31063: Invalid Data based on FOVIO
-Row 31067: Invalid Data based on FOVIO
-Row 31068: Invalid Data based on FOVIO
-Row 31070: Invalid Data based on FOVIO
-Row 31072: Invalid Data based on FOVIO
-Row 31135: Invalid Data based on FOVIO
-Row 31137: Invalid Data based on FOVIO
-Row 31147: Invalid Data based on FOVIO
-Row 31149: Invalid Data based on FOVIO
-Row 31151: Invalid Data based on FOVIO
-Row 31153: Invalid Data based on FOVIO
-Row 31159: Invalid Data based on FOVIO
-Row 31161: Invalid Data based on FOVIO
-Row 31163: Invalid Data based on FOVIO
-Row 31165: Invalid Data based on FOVIO
-Row 31167: Invalid Data based on FOVIO
-Row 31169: Invalid Data based on FOVIO
-Row 31171: Invalid Data based on FOVIO
-Row 31175: Invalid Data based on FOVIO
-Row 31177: Invalid Data based on FOVIO
-Row 31179: Invalid Data based on FOVIO
-Row 31181: Invalid Data based on FOVIO
-Row 31185: Invalid Data based on FOVIO
-Row 31187: Invalid Data based on FOVIO
-Row 31189: Invalid Data based on FOVIO
-Row 31191: Invalid Data based on FOVIO
-Row 31192: Invalid Data based on FOVIO
-Row 31207: Invalid Data based on FOVIO
-Row 31209: Invalid Data based on FOVIO
-Row 31211: Invalid Data based on FOVIO
-Row 31213: Invalid Data based on FOVIO
-Row 31217: Invalid Data based on FOVIO
-Row 31219: Invalid Data based on FOVIO
-Row 31222: Invalid Data based on FOVIO
-Row 31299: Invalid Data based on FOVIO
-Row 31315: Invalid Data based on FOVIO
-Row 31317: Invalid Data based on FOVIO
-Row 31319: Invalid Data based on FOVIO
-Row 31343: Invalid Data based on FOVIO
-Row 31345: Invalid Data based on FOVIO
-Row 31346: Invalid Data based on FOVIO
-Row 31381: Invalid Data based on FOVIO
-Row 31382: Invalid Data based on FOVIO
-Row 31384: Invalid Data based on FOVIO
-Row 31386: Invalid Data based on FOVIO
-Row 31388: Invalid Data based on FOVIO
-Row 31390: Invalid Data based on FOVIO
-Row 31392: Invalid Data based on FOVIO
-Row 31495: Invalid Data based on FOVIO
-Row 31506: Invalid Data based on FOVIO
-Row 31519: Invalid Data based on FOVIO
-Row 31541: Invalid Data based on FOVIO
-Row 31542: Invalid Data based on FOVIO
-Row 31562: Invalid Data based on FOVIO
-Row 31583: Invalid Data based on FOVIO
-Row 31584: Invalid Data based on FOVIO
-Row 31587: Invalid Data based on FOVIO
-Row 31592: Invalid Data based on FOVIO
-Row 31594: Invalid Data based on FOVIO
-Row 31596: Invalid Data based on FOVIO
-Row 31659: Invalid Data based on FOVIO
-Row 31660: Invalid Data based on FOVIO
-Row 31661: Invalid Data based on FOVIO
-Row 31662: Invalid Data based on FOVIO
-Row 31663: Invalid Data based on FOVIO
-Row 31664: Invalid Data based on FOVIO
-Row 31783: Invalid Data based on FOVIO
-Row 31784: Invalid Data based on FOVIO
-Row 31785: Invalid Data based on FOVIO
-Row 31786: Invalid Data based on FOVIO
-Row 31788: Invalid Data based on FOVIO
-Row 31792: Invalid Data based on FOVIO
-Row 31794: Invalid Data based on FOVIO
-Row 31796: Invalid Data based on FOVIO
-Row 31814: Invalid Data based on FOVIO
-Row 31823: Invalid Data based on FOVIO
-Row 31825: Invalid Data based on FOVIO
-Row 31827: Invalid Data based on FOVIO
-Row 31829: Invalid Data based on FOVIO
-Row 31833: Invalid Data based on FOVIO
-Row 31851: Invalid Data based on FOVIO
-Row 31877: Invalid Data based on FOVIO
-Row 31901: Invalid Data based on FOVIO
-Row 31902: Invalid Data based on FOVIO
-Row 31927: Invalid Data based on FOVIO
-Row 31928: Invalid Data based on FOVIO
-Row 31930: Invalid Data based on FOVIO
-Row 31969: Invalid Data based on FOVIO
-Row 31978: Invalid Data based on FOVIO
-Row 31980: Invalid Data based on FOVIO
-Row 32005: Invalid Data based on FOVIO
-Row 32006: Invalid Data based on FOVIO
-Row 32017: Invalid Data based on FOVIO
-Row 32029: Invalid Data based on FOVIO
-Row 32030: Invalid Data based on FOVIO
-Row 32067: Invalid Data based on FOVIO
-Row 32069: Invalid Data based on FOVIO
-Row 32135: Invalid Data based on FOVIO
-Row 32136: Invalid Data based on FOVIO
-Row 32137: Invalid Data based on FOVIO
-Row 32148: Invalid Data based on FOVIO
-Row 32156: Invalid Data based on FOVIO
-Row 32158: Invalid Data based on FOVIO
-Row 32166: Invalid Data based on FOVIO
-Row 32167: Invalid Data based on FOVIO
-Row 32176: Invalid Data based on FOVIO
-Row 32177: Invalid Data based on FOVIO
-Row 32178: Invalid Data based on FOVIO
-Row 32179: Invalid Data based on FOVIO
-Row 32180: Invalid Data based on FOVIO
-Row 32181: Invalid Data based on FOVIO
-Row 32182: Invalid Data based on FOVIO
-Row 32183: Invalid Data based on FOVIO
-Row 32184: Invalid Data based on FOVIO
-Row 32185: Invalid Data based on FOVIO
-Row 32186: Invalid Data based on FOVIO
-Row 32187: Invalid Data based on FOVIO
-Row 32188: Invalid Data based on FOVIO
-Row 32189: Invalid Data based on FOVIO
-Row 32190: Invalid Data based on FOVIO
-Row 32191: Invalid Data based on FOVIO
-Row 32192: Invalid Data based on FOVIO
-Row 32193: Invalid Data based on FOVIO
-Row 32194: Invalid Data based on FOVIO
-Row 32195: Invalid Data based on FOVIO
-Row 32196: Invalid Data based on FOVIO
-Row 32197: Invalid Data based on FOVIO
-Row 32198: Invalid Data based on FOVIO
-Row 32199: Invalid Data based on FOVIO
-Row 32200: Invalid Data based on FOVIO
-Row 32201: Invalid Data based on FOVIO
-Row 32202: Invalid Data based on FOVIO
-Row 32203: Invalid Data based on FOVIO
-Row 32204: Invalid Data based on FOVIO
-Row 32205: Invalid Data based on FOVIO
-Row 32206: Invalid Data based on FOVIO
-Row 32207: Invalid Data based on FOVIO
-Row 32208: Invalid Data based on FOVIO
-Row 32209: Invalid Data based on FOVIO
-Row 32210: Invalid Data based on FOVIO
-Row 32211: Invalid Data based on FOVIO
-Row 32212: Invalid Data based on FOVIO
-Row 32213: Invalid Data based on FOVIO
-Row 32214: Invalid Data based on FOVIO
-Row 32215: Invalid Data based on FOVIO
-Row 32216: Invalid Data based on FOVIO
-Row 32217: Invalid Data based on FOVIO
-Row 32218: Invalid Data based on FOVIO
-Row 32240: Invalid Data based on FOVIO
-Row 32241: Invalid Data based on FOVIO
-Row 32242: Invalid Data based on FOVIO
-Row 32245: Invalid Data based on FOVIO
-Row 32247: Invalid Data based on FOVIO
-Row 32249: Invalid Data based on FOVIO
-Row 32257: Invalid Data based on FOVIO
-Row 32265: Invalid Data based on FOVIO
-Row 32267: Invalid Data based on FOVIO
-Row 32269: Invalid Data based on FOVIO
-Row 32271: Invalid Data based on FOVIO
-Row 32277: Invalid Data based on FOVIO
-Row 32278: Invalid Data based on FOVIO
-Row 32281: Invalid Data based on FOVIO
-Row 32282: Invalid Data based on FOVIO
-Row 32299: Invalid Data based on FOVIO
-Row 32300: Invalid Data based on FOVIO
-Row 32301: Invalid Data based on FOVIO
-Row 32302: Invalid Data based on FOVIO
-Row 32351: Invalid Data based on FOVIO
-Row 32353: Invalid Data based on FOVIO
-Row 32356: Invalid Data based on FOVIO
-Row 32358: Invalid Data based on FOVIO
-Row 32368: Invalid Data based on FOVIO
-Row 32369: Invalid Data based on FOVIO
-Row 32371: Invalid Data based on FOVIO
-Row 32372: Invalid Data based on FOVIO
-Row 32574: Invalid Data based on FOVIO
-Row 32579: Invalid Data based on FOVIO
-Row 32581: Invalid Data based on FOVIO
-Row 32585: Invalid Data based on FOVIO
-Row 32594: Invalid Data based on FOVIO
-Row 32596: Invalid Data based on FOVIO
-Row 32598: Invalid Data based on FOVIO
-Row 32608: Invalid Data based on FOVIO
-Row 32609: Invalid Data based on FOVIO
-Row 32610: Invalid Data based on FOVIO
-Row 32611: Invalid Data based on FOVIO
-Row 32612: Invalid Data based on FOVIO
-Row 32613: Invalid Data based on FOVIO
-Row 32614: Invalid Data based on FOVIO
-Row 32615: Invalid Data based on FOVIO
-Row 32616: Invalid Data based on FOVIO
-Row 32617: Invalid Data based on FOVIO
-Row 32618: Invalid Data based on FOVIO
-Row 32619: Invalid Data based on FOVIO
-Row 32620: Invalid Data based on FOVIO
-Row 32621: Invalid Data based on FOVIO
-Row 32622: Invalid Data based on FOVIO
-Row 32623: Invalid Data based on FOVIO
-Row 32624: Invalid Data based on FOVIO
-Row 32625: Invalid Data based on FOVIO
-Row 32626: Invalid Data based on FOVIO
-Row 32627: Invalid Data based on FOVIO
-Row 32713: Invalid Data based on FOVIO
-Row 32739: Invalid Data based on FOVIO
-Row 32751: Invalid Data based on FOVIO
-Row 32753: Invalid Data based on FOVIO
-Row 32758: Invalid Data based on FOVIO
-Row 32759: Invalid Data based on FOVIO
-Row 32762: Invalid Data based on FOVIO
-Row 32763: Invalid Data based on FOVIO
-Row 32766: Invalid Data based on FOVIO
-Row 32767: Invalid Data based on FOVIO
-Row 32770: Invalid Data based on FOVIO
-Row 32771: Invalid Data based on FOVIO
-Row 32774: Invalid Data based on FOVIO
-Row 32775: Invalid Data based on FOVIO
-Row 32876: Invalid Data based on FOVIO
-Row 32877: Invalid Data based on FOVIO
-Row 32878: Invalid Data based on FOVIO
-Row 32879: Invalid Data based on FOVIO
-Row 32880: Invalid Data based on FOVIO
-Row 32881: Invalid Data based on FOVIO
-Row 32882: Invalid Data based on FOVIO
-Row 32883: Invalid Data based on FOVIO
-Row 32884: Invalid Data based on FOVIO
-Row 32885: Invalid Data based on FOVIO
-Row 32886: Invalid Data based on FOVIO
-Row 32889: Invalid Data based on FOVIO
-Row 32891: Invalid Data based on FOVIO
-Row 32893: Invalid Data based on FOVIO
-Row 32897: Invalid Data based on FOVIO
-Row 32901: Invalid Data based on FOVIO
-Row 32903: Invalid Data based on FOVIO
-Row 32904: Invalid Data based on FOVIO
-Row 32907: Invalid Data based on FOVIO
-Row 32909: Invalid Data based on FOVIO
-Row 32911: Invalid Data based on FOVIO
-Row 32913: Invalid Data based on FOVIO
-Row 32914: Invalid Data based on FOVIO
-Row 32964: Invalid Data based on FOVIO
-Row 32967: Invalid Data based on FOVIO
-Row 32969: Invalid Data based on FOVIO
-Row 32970: Invalid Data based on FOVIO
-Row 32972: Invalid Data based on FOVIO
-Row 32981: Invalid Data based on FOVIO
-Row 32982: Invalid Data based on FOVIO
-Row 32987: Invalid Data based on FOVIO
-Row 32988: Invalid Data based on FOVIO
-Row 32989: Invalid Data based on FOVIO
-Row 32990: Invalid Data based on FOVIO
-Row 32991: Invalid Data based on FOVIO
-Row 32992: Invalid Data based on FOVIO
-Row 32993: Invalid Data based on FOVIO
-Row 32994: Invalid Data based on FOVIO
-Row 32995: Invalid Data based on FOVIO
-Row 32996: Invalid Data based on FOVIO
-Row 32997: Invalid Data based on FOVIO
-Row 32998: Invalid Data based on FOVIO
-Row 32999: Invalid Data based on FOVIO
-Row 33000: Invalid Data based on FOVIO
-Row 33001: Invalid Data based on FOVIO
-Row 33002: Invalid Data based on FOVIO
-Row 33003: Invalid Data based on FOVIO
-Row 33004: Invalid Data based on FOVIO
-Row 33045: Invalid Data based on FOVIO
-Row 33046: Invalid Data based on FOVIO
-Row 33054: Invalid Data based on FOVIO
-Row 33056: Invalid Data based on FOVIO
-Row 33057: Invalid Data based on FOVIO
-Row 33191: Invalid Data based on FOVIO
-Row 33199: Invalid Data based on FOVIO
-Row 33201: Invalid Data based on FOVIO
-Row 33208: Invalid Data based on FOVIO
-Row 33231: Invalid Data based on FOVIO
-Row 33232: Invalid Data based on FOVIO
-Row 33239: Invalid Data based on FOVIO
-Row 33243: Invalid Data based on FOVIO
-Row 33244: Invalid Data based on FOVIO
-Row 33289: Invalid Data based on FOVIO
-Row 33293: Invalid Data based on FOVIO
-Row 33294: Invalid Data based on FOVIO
-Row 33305: Invalid Data based on FOVIO
-Row 33306: Invalid Data based on FOVIO
-Row 33307: Invalid Data based on FOVIO
-Row 33308: Invalid Data based on FOVIO
-Row 33310: Invalid Data based on FOVIO
-Row 33311: Invalid Data based on FOVIO
-Row 33312: Invalid Data based on FOVIO
-Row 33315: Invalid Data based on FOVIO
-Row 33316: Invalid Data based on FOVIO
-Row 33317: Invalid Data based on FOVIO
-Row 33318: Invalid Data based on FOVIO
-Row 33320: Invalid Data based on FOVIO
-Row 33323: Invalid Data based on FOVIO
-Row 33325: Invalid Data based on FOVIO
-Row 33326: Invalid Data based on FOVIO
-Row 33328: Invalid Data based on FOVIO
-Row 33339: Invalid Data based on FOVIO
-Row 33457: Invalid Data based on FOVIO
-Row 33484: Invalid Data based on FOVIO
-Row 33544: Invalid Data based on FOVIO
-Row 33546: Invalid Data based on FOVIO
-Row 33548: Invalid Data based on FOVIO
-Row 33550: Invalid Data based on FOVIO
-Row 33559: Invalid Data based on FOVIO
-Row 33562: Invalid Data based on FOVIO
-Row 33564: Invalid Data based on FOVIO
-Row 33567: Invalid Data based on FOVIO
-Row 33569: Invalid Data based on FOVIO
-Row 33571: Invalid Data based on FOVIO
-Row 33573: Invalid Data based on FOVIO
-Row 33579: Invalid Data based on FOVIO
-Row 33581: Invalid Data based on FOVIO
-Row 33583: Invalid Data based on FOVIO
-Row 33585: Invalid Data based on FOVIO
-Row 33587: Invalid Data based on FOVIO
-Row 33589: Invalid Data based on FOVIO
-Row 33591: Invalid Data based on FOVIO
-Row 33594: Invalid Data based on FOVIO
-Row 33596: Invalid Data based on FOVIO
-Row 33598: Invalid Data based on FOVIO
-Row 33600: Invalid Data based on FOVIO
-Row 33602: Invalid Data based on FOVIO
-Row 33604: Invalid Data based on FOVIO
-Row 33606: Invalid Data based on FOVIO
-Row 33608: Invalid Data based on FOVIO
-Row 33645: Invalid Data based on FOVIO
-Row 33647: Invalid Data based on FOVIO
-Row 33648: Invalid Data based on FOVIO
-Row 33675: Invalid Data based on FOVIO
-Row 33677: Invalid Data based on FOVIO
-Row 33748: Invalid Data based on FOVIO
-Row 33749: Invalid Data based on FOVIO
-Row 33750: Invalid Data based on FOVIO
-Row 33751: Invalid Data based on FOVIO
-Row 33752: Invalid Data based on FOVIO
-Row 33753: Invalid Data based on FOVIO
-Row 33754: Invalid Data based on FOVIO
-Row 33755: Invalid Data based on FOVIO
-Row 33756: Invalid Data based on FOVIO
-Row 33757: Invalid Data based on FOVIO
-Row 33758: Invalid Data based on FOVIO
-Row 33759: Invalid Data based on FOVIO
-Row 33760: Invalid Data based on FOVIO
-Row 33761: Invalid Data based on FOVIO
-Row 33762: Invalid Data based on FOVIO
-Row 33763: Invalid Data based on FOVIO
-Row 33887: Invalid Data based on FOVIO
-Row 33888: Invalid Data based on FOVIO
-Row 33895: Invalid Data based on FOVIO
-Row 33897: Invalid Data based on FOVIO
-Row 33901: Invalid Data based on FOVIO
-Row 33903: Invalid Data based on FOVIO
-Row 33926: Invalid Data based on FOVIO
-Row 33945: Invalid Data based on FOVIO
-Row 33947: Invalid Data based on FOVIO
-Row 34032: Invalid Data based on FOVIO
-Row 34065: Invalid Data based on FOVIO
-Row 34111: Invalid Data based on FOVIO
-Row 34112: Invalid Data based on FOVIO
-Row 34113: Invalid Data based on FOVIO
-Row 34114: Invalid Data based on FOVIO
-Row 34115: Invalid Data based on FOVIO
-Row 34116: Invalid Data based on FOVIO
-Row 34117: Invalid Data based on FOVIO
-Row 34118: Invalid Data based on FOVIO
-Row 34119: Invalid Data based on FOVIO
-Row 34120: Invalid Data based on FOVIO
-Row 34121: Invalid Data based on FOVIO
-Row 34122: Invalid Data based on FOVIO
-Row 34143: Invalid Data based on FOVIO
-Row 34144: Invalid Data based on FOVIO
-Row 34145: Invalid Data based on FOVIO
-Row 34146: Invalid Data based on FOVIO
-Row 34147: Invalid Data based on FOVIO
-Row 34169: Invalid Data based on FOVIO
-Row 34171: Invalid Data based on FOVIO
-Row 34173: Invalid Data based on FOVIO
-Row 34175: Invalid Data based on FOVIO
-Row 34180: Invalid Data based on FOVIO
-Row 34182: Invalid Data based on FOVIO
-Row 34184: Invalid Data based on FOVIO
-Row 34190: Invalid Data based on FOVIO
-Row 34197: Invalid Data based on FOVIO
-Row 34198: Invalid Data based on FOVIO
-Row 34199: Invalid Data based on FOVIO
-Row 34200: Invalid Data based on FOVIO
-Row 34201: Invalid Data based on FOVIO
-Row 34202: Invalid Data based on FOVIO
-Row 34203: Invalid Data based on FOVIO
-Row 34204: Invalid Data based on FOVIO
-Row 34205: Invalid Data based on FOVIO
-Row 34206: Invalid Data based on FOVIO
-Row 34262: Invalid Data based on FOVIO
-Row 34273: Invalid Data based on FOVIO
-Row 34274: Invalid Data based on FOVIO
-Row 34523: Invalid Data based on FOVIO
-Row 34556: Invalid Data based on FOVIO
-Row 34560: Invalid Data based on FOVIO
-Row 34561: Invalid Data based on FOVIO
-Row 34562: Invalid Data based on FOVIO
-Row 34563: Invalid Data based on FOVIO
-Row 34564: Invalid Data based on FOVIO
-Row 34565: Invalid Data based on FOVIO
-Row 34566: Invalid Data based on FOVIO
-Row 34567: Invalid Data based on FOVIO
-Row 34568: Invalid Data based on FOVIO
-Row 34569: Invalid Data based on FOVIO
-Row 34570: Invalid Data based on FOVIO
-Row 34571: Invalid Data based on FOVIO
-Row 34572: Invalid Data based on FOVIO
-Row 34573: Invalid Data based on FOVIO
-Row 34574: Invalid Data based on FOVIO
-Row 34575: Invalid Data based on FOVIO
-Row 34576: Invalid Data based on FOVIO
-Row 34593: Invalid Data based on FOVIO
-Row 34594: Invalid Data based on FOVIO
-Row 34597: Invalid Data based on FOVIO
-Row 34599: Invalid Data based on FOVIO
-Row 34600: Invalid Data based on FOVIO
-Row 34601: Invalid Data based on FOVIO
-Row 34602: Invalid Data based on FOVIO
-Row 34603: Invalid Data based on FOVIO
-Row 34607: Invalid Data based on FOVIO
-Row 34716: Invalid Data based on FOVIO
-Row 34731: Invalid Data based on FOVIO
-Row 34732: Invalid Data based on FOVIO
-Row 34733: Invalid Data based on FOVIO
-Row 34734: Invalid Data based on FOVIO
-Row 34735: Invalid Data based on FOVIO
-Row 34736: Invalid Data based on FOVIO
-Row 34737: Invalid Data based on FOVIO
-Row 34782: Invalid Data based on FOVIO
-Row 34803: Invalid Data based on FOVIO
-Row 34807: Invalid Data based on FOVIO
-Row 34867: Invalid Data based on FOVIO
-Row 34961: Invalid Data based on FOVIO
-Row 34978: Invalid Data based on FOVIO
-Row 34980: Invalid Data based on FOVIO
-Row 35025: Invalid Data based on FOVIO
-Row 35034: Invalid Data based on FOVIO
-Row 35035: Invalid Data based on FOVIO
-Row 35049: Invalid Data based on FOVIO
-Row 35051: Invalid Data based on FOVIO
-Row 35055: Invalid Data based on FOVIO
-Row 35057: Invalid Data based on FOVIO
-Row 35059: Invalid Data based on FOVIO
-Row 35061: Invalid Data based on FOVIO
-Row 35063: Invalid Data based on FOVIO
-Row 35069: Invalid Data based on FOVIO
-Row 35071: Invalid Data based on FOVIO
-Row 35087: Invalid Data based on FOVIO
-Row 35089: Invalid Data based on FOVIO
-Row 35091: Invalid Data based on FOVIO
-Row 35093: Invalid Data based on FOVIO
-Row 35099: Invalid Data based on FOVIO
-Row 35101: Invalid Data based on FOVIO
-Row 35103: Invalid Data based on FOVIO
-Row 35105: Invalid Data based on FOVIO
-Row 35113: Invalid Data based on FOVIO
-Row 35155: Invalid Data based on FOVIO
-Row 35159: Invalid Data based on FOVIO
-Row 35161: Invalid Data based on FOVIO
-Row 35163: Invalid Data based on FOVIO
-Row 35165: Invalid Data based on FOVIO
-Row 35167: Invalid Data based on FOVIO
-Row 35173: Invalid Data based on FOVIO
-Row 35175: Invalid Data based on FOVIO
-Row 35213: Invalid Data based on FOVIO
-Row 35231: Invalid Data based on FOVIO
-Row 35233: Invalid Data based on FOVIO
-Row 35234: Invalid Data based on FOVIO
-Row 35235: Invalid Data based on FOVIO
-Row 35237: Invalid Data based on FOVIO
-Row 35240: Invalid Data based on FOVIO
-Row 35241: Invalid Data based on FOVIO
-Row 35260: Invalid Data based on FOVIO
-Row 35266: Invalid Data based on FOVIO
-Row 35335: Invalid Data based on FOVIO
-Row 35337: Invalid Data based on FOVIO
-Row 35339: Invalid Data based on FOVIO
-Row 35341: Invalid Data based on FOVIO
-Row 35343: Invalid Data based on FOVIO
-Row 35345: Invalid Data based on FOVIO
-Row 35349: Invalid Data based on FOVIO
-Row 35351: Invalid Data based on FOVIO
-Row 35353: Invalid Data based on FOVIO
-Row 35357: Invalid Data based on FOVIO
-Row 35360: Invalid Data based on FOVIO
-Row 35417: Invalid Data based on FOVIO
-Row 35523: Invalid Data based on FOVIO
-Row 35529: Invalid Data based on FOVIO
-Row 35530: Invalid Data based on FOVIO
-Row 35531: Invalid Data based on FOVIO
-Row 35532: Invalid Data based on FOVIO
-Row 35545: Invalid Data based on FOVIO
-Row 35549: Invalid Data based on FOVIO
-Row 35555: Invalid Data based on FOVIO
-Row 35557: Invalid Data based on FOVIO
-Row 35559: Invalid Data based on FOVIO
-Row 35563: Invalid Data based on FOVIO
-Row 35565: Invalid Data based on FOVIO
-Row 35585: Invalid Data based on FOVIO
-Row 35589: Invalid Data based on FOVIO
-Row 35593: Invalid Data based on FOVIO
-Row 35649: Invalid Data based on FOVIO
-Row 35653: Invalid Data based on FOVIO
-Row 35661: Invalid Data based on FOVIO
-Row 35667: Invalid Data based on FOVIO
-Row 35669: Invalid Data based on FOVIO
-Row 35671: Invalid Data based on FOVIO
-Row 35673: Invalid Data based on FOVIO
-Row 35679: Invalid Data based on FOVIO
-Row 35683: Invalid Data based on FOVIO
-Row 35685: Invalid Data based on FOVIO
-Row 35687: Invalid Data based on FOVIO
-Row 35689: Invalid Data based on FOVIO
-Row 35691: Invalid Data based on FOVIO
-Row 35693: Invalid Data based on FOVIO
-Row 35695: Invalid Data based on FOVIO
-Row 35697: Invalid Data based on FOVIO
-Row 35699: Invalid Data based on FOVIO
-Row 35701: Invalid Data based on FOVIO
-Row 35703: Invalid Data based on FOVIO
-Row 35705: Invalid Data based on FOVIO
-Row 35707: Invalid Data based on FOVIO
-Row 35709: Invalid Data based on FOVIO
-Row 35713: Invalid Data based on FOVIO
-Row 35717: Invalid Data based on FOVIO
-Row 35719: Invalid Data based on FOVIO
-Row 35721: Invalid Data based on FOVIO
-Row 35723: Invalid Data based on FOVIO
-Row 35725: Invalid Data based on FOVIO
-Row 35727: Invalid Data based on FOVIO
-Row 35729: Invalid Data based on FOVIO
-Row 35731: Invalid Data based on FOVIO
-Row 35733: Invalid Data based on FOVIO
-Row 35743: Invalid Data based on FOVIO
-Row 35961: Invalid Data based on FOVIO
-Row 35963: Invalid Data based on FOVIO
-Row 35967: Invalid Data based on FOVIO
-Row 35971: Invalid Data based on FOVIO
-Row 36005: Invalid Data based on FOVIO
-Row 36006: Invalid Data based on FOVIO
-Row 36073: Invalid Data based on FOVIO
-Row 36089: Invalid Data based on FOVIO
-Row 36093: Invalid Data based on FOVIO
-Row 36094: Invalid Data based on FOVIO
-Row 36097: Invalid Data based on FOVIO
-Row 36257: Invalid Data based on FOVIO
-Row 36258: Invalid Data based on FOVIO
-Row 36269: Invalid Data based on FOVIO
-Row 36270: Invalid Data based on FOVIO
-Row 36271: Invalid Data based on FOVIO
-Row 36272: Invalid Data based on FOVIO
-Row 36275: Invalid Data based on FOVIO
-Row 36279: Invalid Data based on FOVIO
-Row 36283: Invalid Data based on FOVIO
-Row 36284: Invalid Data based on FOVIO
-Row 36285: Invalid Data based on FOVIO
-Row 36286: Invalid Data based on FOVIO
-Row 36289: Invalid Data based on FOVIO
-Row 36313: Invalid Data based on FOVIO
-Row 36314: Invalid Data based on FOVIO
-Row 36403: Invalid Data based on FOVIO
-Row 36472: Invalid Data based on FOVIO
-Row 36475: Invalid Data based on FOVIO
-Row 36477: Invalid Data based on FOVIO
-Row 36499: Invalid Data based on FOVIO
-Row 36511: Invalid Data based on FOVIO
-Row 36512: Invalid Data based on FOVIO
-Row 36697: Invalid Data based on FOVIO
-Row 36703: Invalid Data based on FOVIO
-Row 36775: Invalid Data based on FOVIO
-Row 36935: Invalid Data based on FOVIO
-Row 37015: Invalid Data based on FOVIO
-Row 37047: Invalid Data based on FOVIO
-Row 37065: Invalid Data based on FOVIO
-Row 37132: Invalid Data based on FOVIO
-Row 37404: Invalid Data based on FOVIO
-Row 37405: Invalid Data based on FOVIO
-Row 37417: Invalid Data based on FOVIO
-Row 37429: Invalid Data based on FOVIO
-Row 37431: Invalid Data based on FOVIO
-Row 37451: Invalid Data based on FOVIO
-Row 37459: Invalid Data based on FOVIO
-Row 37471: Invalid Data based on FOVIO
-Row 37531: Invalid Data based on FOVIO
-Row 37532: Invalid Data based on FOVIO
-Row 37533: Invalid Data based on FOVIO
-Row 37534: Invalid Data based on FOVIO
-Row 37535: Invalid Data based on FOVIO
-Row 37536: Invalid Data based on FOVIO
-Row 37537: Invalid Data based on FOVIO
-Row 37538: Invalid Data based on FOVIO
-Row 37539: Invalid Data based on FOVIO
-Row 37540: Invalid Data based on FOVIO
-Row 37541: Invalid Data based on FOVIO
-Row 37542: Invalid Data based on FOVIO
-Row 37589: Invalid Data based on FOVIO
-Row 37590: Invalid Data based on FOVIO
-Row 37613: Invalid Data based on FOVIO
-Row 37693: Invalid Data based on FOVIO
-Row 37694: Invalid Data based on FOVIO
-Row 37757: Invalid Data based on FOVIO
-Row 37761: Invalid Data based on FOVIO
-Row 37762: Invalid Data based on FOVIO
-Row 37804: Invalid Data based on FOVIO
-Row 37808: Invalid Data based on FOVIO
-Row 37816: Invalid Data based on FOVIO
-Row 37824: Invalid Data based on FOVIO
-Row 37844: Invalid Data based on FOVIO
-Row 37846: Invalid Data based on FOVIO
-Row 37848: Invalid Data based on FOVIO
-Row 37850: Invalid Data based on FOVIO
-Row 37852: Invalid Data based on FOVIO
-Row 37866: Invalid Data based on FOVIO
-Row 37867: Invalid Data based on FOVIO
-Row 37868: Invalid Data based on FOVIO
-Row 37869: Invalid Data based on FOVIO
-Row 37870: Invalid Data based on FOVIO
-Row 37871: Invalid Data based on FOVIO
-Row 37872: Invalid Data based on FOVIO
-Row 37873: Invalid Data based on FOVIO
-Row 37874: Invalid Data based on FOVIO
-Row 37875: Invalid Data based on FOVIO
-Row 37876: Invalid Data based on FOVIO
-Row 37877: Invalid Data based on FOVIO
-Row 37878: Invalid Data based on FOVIO
-Row 37879: Invalid Data based on FOVIO
-Row 37880: Invalid Data based on FOVIO
-Row 37881: Invalid Data based on FOVIO
-Row 37900: Invalid Data based on FOVIO
-Row 38051: Invalid Data based on FOVIO
-Row 38057: Invalid Data based on FOVIO
-Row 38059: Invalid Data based on FOVIO
-Row 38061: Invalid Data based on FOVIO
-Row 38063: Invalid Data based on FOVIO
-Row 38065: Invalid Data based on FOVIO
-Row 38067: Invalid Data based on FOVIO
-Row 38068: Invalid Data based on FOVIO
-Row 38069: Invalid Data based on FOVIO
-Row 38070: Invalid Data based on FOVIO
-Row 38090: Invalid Data based on FOVIO
-Row 38144: Invalid Data based on FOVIO
-Row 38145: Invalid Data based on FOVIO
-Row 38146: Invalid Data based on FOVIO
-Row 38147: Invalid Data based on FOVIO
-Row 38148: Invalid Data based on FOVIO
-Row 38149: Invalid Data based on FOVIO
-Row 38150: Invalid Data based on FOVIO
-Row 38151: Invalid Data based on FOVIO
-Row 38152: Invalid Data based on FOVIO
-Row 38153: Invalid Data based on FOVIO
-Row 38154: Invalid Data based on FOVIO
-Row 38155: Invalid Data based on FOVIO
-Row 38156: Invalid Data based on FOVIO
-Row 38157: Invalid Data based on FOVIO
-Row 38158: Invalid Data based on FOVIO
-Row 38159: Invalid Data based on FOVIO
-Row 38196: Invalid Data based on FOVIO
-Row 38198: Invalid Data based on FOVIO
-Row 38205: Invalid Data based on FOVIO
-Row 38211: Invalid Data based on FOVIO
-Row 38304: Invalid Data based on FOVIO
-Row 38359: Invalid Data based on FOVIO
-Row 38379: Invalid Data based on FOVIO
-Row 38380: Invalid Data based on FOVIO
-Row 38409: Invalid Data based on FOVIO
-Row 38411: Invalid Data based on FOVIO
-Row 38413: Invalid Data based on FOVIO
-Row 38581: Invalid Data based on FOVIO
-Row 38629: Invalid Data based on FOVIO
-Row 38634: Invalid Data based on FOVIO
-Row 38636: Invalid Data based on FOVIO
-Row 38638: Invalid Data based on FOVIO
-Row 38811: Invalid Data based on FOVIO
-Row 38812: Invalid Data based on FOVIO
-Row 38813: Invalid Data based on FOVIO
-Row 38814: Invalid Data based on FOVIO
-Row 38815: Invalid Data based on FOVIO
-Row 38816: Invalid Data based on FOVIO
-Row 38817: Invalid Data based on FOVIO
-Row 38819: Invalid Data based on FOVIO
-Row 38821: Invalid Data based on FOVIO
-Row 38823: Invalid Data based on FOVIO
-Row 38829: Invalid Data based on FOVIO
-Row 38831: Invalid Data based on FOVIO
-Row 38833: Invalid Data based on FOVIO
-Row 38837: Invalid Data based on FOVIO
-Row 38839: Invalid Data based on FOVIO
-Row 38841: Invalid Data based on FOVIO
-Row 38843: Invalid Data based on FOVIO
-Row 38845: Invalid Data based on FOVIO
-Row 38847: Invalid Data based on FOVIO
-Row 38849: Invalid Data based on FOVIO
-Row 38851: Invalid Data based on FOVIO
-Row 38852: Invalid Data based on FOVIO
-Row 38853: Invalid Data based on FOVIO
-Row 38859: Invalid Data based on FOVIO
-Row 38955: Invalid Data based on FOVIO
-Row 38967: Invalid Data based on FOVIO
-Row 38969: Invalid Data based on FOVIO
-Row 38977: Invalid Data based on FOVIO
-Row 38979: Invalid Data based on FOVIO
-Row 38983: Invalid Data based on FOVIO
-Row 38985: Invalid Data based on FOVIO
-Row 38987: Invalid Data based on FOVIO
-Row 38989: Invalid Data based on FOVIO
-Row 38991: Invalid Data based on FOVIO
-Row 38993: Invalid Data based on FOVIO
-Row 38995: Invalid Data based on FOVIO
-Row 38997: Invalid Data based on FOVIO
-Row 38998: Invalid Data based on FOVIO
-Row 39007: Invalid Data based on FOVIO
-Row 39008: Invalid Data based on FOVIO
-Row 39009: Invalid Data based on FOVIO
-Row 39010: Invalid Data based on FOVIO
-Row 39116: Invalid Data based on FOVIO
-Row 39117: Invalid Data based on FOVIO
-Row 39163: Invalid Data based on FOVIO
-Row 39167: Invalid Data based on FOVIO
-Row 39175: Invalid Data based on FOVIO
-Row 39284: Invalid Data based on FOVIO
-Row 39286: Invalid Data based on FOVIO
-Row 39322: Invalid Data based on FOVIO
-Row 39324: Invalid Data based on FOVIO
-Row 39326: Invalid Data based on FOVIO
-Row 39330: Invalid Data based on FOVIO
-Row 39339: Invalid Data based on FOVIO
-Row 39353: Invalid Data based on FOVIO
-Row 39356: Invalid Data based on FOVIO
-Row 39388: Invalid Data based on FOVIO
-Row 39394: Invalid Data based on FOVIO
-Row 39407: Invalid Data based on FOVIO
-Row 39409: Invalid Data based on FOVIO
-Row 39420: Invalid Data based on FOVIO
-Row 39441: Invalid Data based on FOVIO
-Row 39442: Invalid Data based on FOVIO
-Row 39445: Invalid Data based on FOVIO
-Row 39446: Invalid Data based on FOVIO
-Row 39453: Invalid Data based on FOVIO
-Row 39465: Invalid Data based on FOVIO
-Row 39466: Invalid Data based on FOVIO
-Row 39503: Invalid Data based on FOVIO
-Row 39591: Invalid Data based on FOVIO
-Row 39595: Invalid Data based on FOVIO
-Row 39597: Invalid Data based on FOVIO
-Row 39601: Invalid Data based on FOVIO
-Row 39603: Invalid Data based on FOVIO
-Row 39605: Invalid Data based on FOVIO
-Row 39607: Invalid Data based on FOVIO
-Row 39676: Invalid Data based on FOVIO
-Row 39733: Invalid Data based on FOVIO
-Row 39734: Invalid Data based on FOVIO
-Row 39735: Invalid Data based on FOVIO
-Row 39736: Invalid Data based on FOVIO
-Row 39737: Invalid Data based on FOVIO
-Row 39738: Invalid Data based on FOVIO
-Row 39739: Invalid Data based on FOVIO
-Row 39740: Invalid Data based on FOVIO
-Row 39741: Invalid Data based on FOVIO
-Row 39742: Invalid Data based on FOVIO
-Row 39743: Invalid Data based on FOVIO
-Row 39744: Invalid Data based on FOVIO
-Row 39774: Invalid Data based on FOVIO
-Row 39796: Invalid Data based on FOVIO
-Row 39806: Invalid Data based on FOVIO
-Row 39905: Invalid Data based on FOVIO
-Row 39945: Invalid Data based on FOVIO
-Row 39947: Invalid Data based on FOVIO
-Row 40114: Invalid Data based on FOVIO
-Row 40227: Invalid Data based on FOVIO
-Row 40253: Invalid Data based on FOVIO
-Row 40254: Invalid Data based on FOVIO
-Row 40255: Invalid Data based on FOVIO
-Row 40256: Invalid Data based on FOVIO
-Row 40257: Invalid Data based on FOVIO
-Row 40306: Invalid Data based on FOVIO
-Row 40442: Invalid Data based on FOVIO
-Row 40450: Invalid Data based on FOVIO
-Row 40452: Invalid Data based on FOVIO
-Row 40460: Invalid Data based on FOVIO
-Row 40463: Invalid Data based on FOVIO
-Row 40658: Invalid Data based on FOVIO
-Row 40659: Invalid Data based on FOVIO
-Row 40761: Invalid Data based on FOVIO
-Row 40763: Invalid Data based on FOVIO
-Row 40764: Invalid Data based on FOVIO
-Row 40769: Invalid Data based on FOVIO
-Row 40770: Invalid Data based on FOVIO
-Row 40774: Invalid Data based on FOVIO
-Row 40776: Invalid Data based on FOVIO
-Row 40777: Invalid Data based on FOVIO
-Row 40779: Invalid Data based on FOVIO
-Row 40780: Invalid Data based on FOVIO
-Row 40781: Invalid Data based on FOVIO
-Row 40782: Invalid Data based on FOVIO
-Row 40784: Invalid Data based on FOVIO
-Row 40786: Invalid Data based on FOVIO
-Row 40788: Invalid Data based on FOVIO
-Row 40792: Invalid Data based on FOVIO
-Row 40824: Invalid Data based on FOVIO
-Row 40853: Invalid Data based on FOVIO
-Row 40855: Invalid Data based on FOVIO
-Row 40868: Invalid Data based on FOVIO
-Row 40870: Invalid Data based on FOVIO
-Row 40872: Invalid Data based on FOVIO
-Row 40879: Invalid Data based on FOVIO
-Row 40881: Invalid Data based on FOVIO
-Row 40886: Invalid Data based on FOVIO
-Row 40890: Invalid Data based on FOVIO
-Row 40893: Invalid Data based on FOVIO
-Row 40896: Invalid Data based on FOVIO
-Row 40898: Invalid Data based on FOVIO
-Row 40900: Invalid Data based on FOVIO
-Row 41016: Invalid Data based on FOVIO
-Row 41022: Invalid Data based on FOVIO
-Row 41024: Invalid Data based on FOVIO
-Row 41159: Invalid Data based on FOVIO
-Row 41160: Invalid Data based on FOVIO
-Row 41240: Invalid Data based on FOVIO
-Row 41247: Invalid Data based on FOVIO
-Row 41248: Invalid Data based on FOVIO
-Row 41249: Invalid Data based on FOVIO
-Row 41250: Invalid Data based on FOVIO
-Row 41251: Invalid Data based on FOVIO
-Row 41252: Invalid Data based on FOVIO
-Row 41258: Invalid Data based on FOVIO
-Row 41297: Invalid Data based on FOVIO
-Row 41351: Invalid Data based on FOVIO
-Row 41365: Invalid Data based on FOVIO
-Row 41498: Invalid Data based on FOVIO
-Row 41500: Invalid Data based on FOVIO
-Row 41502: Invalid Data based on FOVIO
-Row 41504: Invalid Data based on FOVIO
-Row 41507: Invalid Data based on FOVIO
-Row 41508: Invalid Data based on FOVIO
-Row 41509: Invalid Data based on FOVIO
-Row 41510: Invalid Data based on FOVIO
-Row 41511: Invalid Data based on FOVIO
-Row 41512: Invalid Data based on FOVIO
-Row 41513: Invalid Data based on FOVIO
-Row 41514: Invalid Data based on FOVIO
-Row 41516: Invalid Data based on FOVIO
-Row 41517: Invalid Data based on FOVIO
-Row 41518: Invalid Data based on FOVIO
-Row 41519: Invalid Data based on FOVIO
-Row 41520: Invalid Data based on FOVIO
-Row 41521: Invalid Data based on FOVIO
-Row 41522: Invalid Data based on FOVIO
-Row 41523: Invalid Data based on FOVIO
-Row 41524: Invalid Data based on FOVIO
-Row 41525: Invalid Data based on FOVIO
-Row 41526: Invalid Data based on FOVIO
-Row 41527: Invalid Data based on FOVIO
-Row 41528: Invalid Data based on FOVIO
-Row 41529: Invalid Data based on FOVIO
-Row 41530: Invalid Data based on FOVIO
-Row 41531: Invalid Data based on FOVIO
-Row 41532: Invalid Data based on FOVIO
-Row 41533: Invalid Data based on FOVIO
-Row 41534: Invalid Data based on FOVIO
-Row 41556: Invalid Data based on FOVIO
-Row 41557: Invalid Data based on FOVIO
-Row 41558: Invalid Data based on FOVIO
-Row 41559: Invalid Data based on FOVIO
-Row 41560: Invalid Data based on FOVIO
-Row 41561: Invalid Data based on FOVIO
-Row 41562: Invalid Data based on FOVIO
-Row 41563: Invalid Data based on FOVIO
-Row 41564: Invalid Data based on FOVIO
-Row 41565: Invalid Data based on FOVIO
-Row 41566: Invalid Data based on FOVIO
-Row 41567: Invalid Data based on FOVIO
-Row 41568: Invalid Data based on FOVIO
-Row 41569: Invalid Data based on FOVIO
-Row 41570: Invalid Data based on FOVIO
-Row 41571: Invalid Data based on FOVIO
-Row 41572: Invalid Data based on FOVIO
-Row 41573: Invalid Data based on FOVIO
-Row 41574: Invalid Data based on FOVIO
-Row 41575: Invalid Data based on FOVIO
-Row 41576: Invalid Data based on FOVIO
-Row 41577: Invalid Data based on FOVIO
-Row 41578: Invalid Data based on FOVIO
-Row 41579: Invalid Data based on FOVIO
-Row 41580: Invalid Data based on FOVIO
-Row 41601: Invalid Data based on FOVIO
-Row 41615: Invalid Data based on FOVIO
-Row 41616: Invalid Data based on FOVIO
-Row 41617: Invalid Data based on FOVIO
-Row 41637: Invalid Data based on FOVIO
-Row 41643: Invalid Data based on FOVIO
-Row 41647: Invalid Data based on FOVIO
-Row 41693: Invalid Data based on FOVIO
-Row 41694: Invalid Data based on FOVIO
-Row 41721: Invalid Data based on FOVIO
-Row 41829: Invalid Data based on FOVIO
-Row 41830: Invalid Data based on FOVIO
-Row 41831: Invalid Data based on FOVIO
-Row 41832: Invalid Data based on FOVIO
-Row 41833: Invalid Data based on FOVIO
-Row 41834: Invalid Data based on FOVIO
-Row 41835: Invalid Data based on FOVIO
-Row 41836: Invalid Data based on FOVIO
-Row 41837: Invalid Data based on FOVIO
-Row 41838: Invalid Data based on FOVIO
-Row 41839: Invalid Data based on FOVIO
-Row 41840: Invalid Data based on FOVIO
-Row 41895: Invalid Data based on FOVIO
-Row 41927: Invalid Data based on FOVIO
-Row 42086: Invalid Data based on FOVIO
-Row 42094: Invalid Data based on FOVIO
-Row 42095: Invalid Data based on FOVIO
-Row 42096: Invalid Data based on FOVIO
-Row 42097: Invalid Data based on FOVIO
-Row 42098: Invalid Data based on FOVIO
-Row 42099: Invalid Data based on FOVIO
-Row 42100: Invalid Data based on FOVIO
-Row 42101: Invalid Data based on FOVIO
-Row 42102: Invalid Data based on FOVIO
-Row 42108: Invalid Data based on FOVIO
-Row 42110: Invalid Data based on FOVIO
-Row 42114: Invalid Data based on FOVIO
-Row 42115: Invalid Data based on FOVIO
-Row 42116: Invalid Data based on FOVIO
-Row 42117: Invalid Data based on FOVIO
-Row 42118: Invalid Data based on FOVIO
-Row 42119: Invalid Data based on FOVIO
-Row 42120: Invalid Data based on FOVIO
-Row 42123: Invalid Data based on FOVIO
-Row 42185: Invalid Data based on FOVIO
-Row 42187: Invalid Data based on FOVIO
-Row 42223: Invalid Data based on FOVIO
-Row 42226: Invalid Data based on FOVIO
-Row 42446: Invalid Data based on FOVIO
-Row 42448: Invalid Data based on FOVIO
-Row 42458: Invalid Data based on FOVIO
-Row 42477: Invalid Data based on FOVIO
-Row 42536: Invalid Data based on FOVIO
-Row 42540: Invalid Data based on FOVIO
-Row 42571: Invalid Data based on FOVIO
-Row 42572: Invalid Data based on FOVIO
-Row 42653: Invalid Data based on FOVIO
-Row 42655: Invalid Data based on FOVIO
-Row 42724: Invalid Data based on FOVIO
-Row 42725: Invalid Data based on FOVIO
-Row 42726: Invalid Data based on FOVIO
-Row 42727: Invalid Data based on FOVIO
-Row 42728: Invalid Data based on FOVIO
-Row 42788: Invalid Data based on FOVIO
-Row 42790: Invalid Data based on FOVIO
-Row 42792: Invalid Data based on FOVIO
-Row 42796: Invalid Data based on FOVIO
-Row 42798: Invalid Data based on FOVIO
-Row 42800: Invalid Data based on FOVIO
-Row 42802: Invalid Data based on FOVIO
-Row 42835: Invalid Data based on FOVIO
-Row 42837: Invalid Data based on FOVIO
-Row 42840: Invalid Data based on FOVIO
-Row 42845: Invalid Data based on FOVIO
-Row 42846: Invalid Data based on FOVIO
-Row 42849: Invalid Data based on FOVIO
-Row 42859: Invalid Data based on FOVIO
-Row 42866: Invalid Data based on FOVIO
-Row 42887: Invalid Data based on FOVIO
-Row 42889: Invalid Data based on FOVIO
-Row 42902: Invalid Data based on FOVIO
-Row 42904: Invalid Data based on FOVIO
-Row 42931: Invalid Data based on FOVIO
-Row 42933: Invalid Data based on FOVIO
-Row 43029: Invalid Data based on FOVIO
-Row 43042: Invalid Data based on FOVIO
-Row 43203: Invalid Data based on FOVIO
-Row 43204: Invalid Data based on FOVIO
-Row 43207: Invalid Data based on FOVIO
-Row 43208: Invalid Data based on FOVIO
-Row 43331: Invalid Data based on FOVIO
-Row 43332: Invalid Data based on FOVIO
-Row 43333: Invalid Data based on FOVIO
-Row 43334: Invalid Data based on FOVIO
-Row 43335: Invalid Data based on FOVIO
-Row 43336: Invalid Data based on FOVIO
-Row 43338: Invalid Data based on FOVIO
-Row 43340: Invalid Data based on FOVIO
-Row 43342: Invalid Data based on FOVIO
-Row 43344: Invalid Data based on FOVIO
-Row 43346: Invalid Data based on FOVIO
-Row 43360: Invalid Data based on FOVIO
-Row 43361: Invalid Data based on FOVIO
-Row 43362: Invalid Data based on FOVIO
-Row 43363: Invalid Data based on FOVIO
-Row 43364: Invalid Data based on FOVIO
-Row 43365: Invalid Data based on FOVIO
-Row 43366: Invalid Data based on FOVIO
-Row 43367: Invalid Data based on FOVIO
-Row 43368: Invalid Data based on FOVIO
-Row 43369: Invalid Data based on FOVIO
-Row 43370: Invalid Data based on FOVIO
-Row 43371: Invalid Data based on FOVIO
-Row 43372: Invalid Data based on FOVIO
-Row 43373: Invalid Data based on FOVIO
-Row 43374: Invalid Data based on FOVIO
-Row 43375: Invalid Data based on FOVIO
-Row 43376: Invalid Data based on FOVIO
-Row 43377: Invalid Data based on FOVIO
-Row 43378: Invalid Data based on FOVIO
-Row 43379: Invalid Data based on FOVIO
-Row 43380: Invalid Data based on FOVIO
-Row 43381: Invalid Data based on FOVIO
-Row 43382: Invalid Data based on FOVIO
-Row 43383: Invalid Data based on FOVIO
-Row 43384: Invalid Data based on FOVIO
-Row 43385: Invalid Data based on FOVIO
-Row 43386: Invalid Data based on FOVIO
-Row 43387: Invalid Data based on FOVIO
-Row 43470: Invalid Data based on FOVIO
-Row 43481: Invalid Data based on FOVIO
-Row 43482: Invalid Data based on FOVIO
-Row 43679: Invalid Data based on FOVIO
-Row 43680: Invalid Data based on FOVIO
-Row 43722: Invalid Data based on FOVIO
-Row 43785: Invalid Data based on FOVIO
-Row 43786: Invalid Data based on FOVIO
-Row 43791: Invalid Data based on FOVIO
-Row 43792: Invalid Data based on FOVIO
-Row 43794: Invalid Data based on FOVIO
-Row 43795: Invalid Data based on FOVIO
-Row 43796: Invalid Data based on FOVIO
-Row 43838: Invalid Data based on FOVIO
-Row 43839: Invalid Data based on FOVIO
-Row 43840: Invalid Data based on FOVIO
-Row 43841: Invalid Data based on FOVIO
-Row 43842: Invalid Data based on FOVIO
-Row 43843: Invalid Data based on FOVIO
-Row 43844: Invalid Data based on FOVIO
-Row 43845: Invalid Data based on FOVIO
-Row 43846: Invalid Data based on FOVIO
-Row 43936: Invalid Data based on FOVIO
-Row 44012: Invalid Data based on FOVIO
-Row 44013: Invalid Data based on FOVIO
-Row 44014: Invalid Data based on FOVIO
-Row 44015: Invalid Data based on FOVIO
-Row 44016: Invalid Data based on FOVIO
-Row 44017: Invalid Data based on FOVIO
-Row 44018: Invalid Data based on FOVIO
-Row 44019: Invalid Data based on FOVIO
-Row 44020: Invalid Data based on FOVIO
-Row 44049: Invalid Data based on FOVIO
-Row 44166: Invalid Data based on FOVIO
-Row 44175: Invalid Data based on FOVIO
-Row 44262: Invalid Data based on FOVIO
-Row 44291: Invalid Data based on FOVIO
-Row 44409: Invalid Data based on FOVIO
-Row 44410: Invalid Data based on FOVIO
-Row 44411: Invalid Data based on FOVIO
-Row 44412: Invalid Data based on FOVIO
-Row 44413: Invalid Data based on FOVIO
-Row 44414: Invalid Data based on FOVIO
-Row 44415: Invalid Data based on FOVIO
-Row 44416: Invalid Data based on FOVIO
-Row 44417: Invalid Data based on FOVIO
-Row 44418: Invalid Data based on FOVIO
-Row 44419: Invalid Data based on FOVIO
-Row 44420: Invalid Data based on FOVIO
-Row 44421: Invalid Data based on FOVIO
-Row 44455: Invalid Data based on FOVIO
-Row 44459: Invalid Data based on FOVIO
-Row 44461: Invalid Data based on FOVIO
-Row 44465: Invalid Data based on FOVIO
-Row 44467: Invalid Data based on FOVIO
-Row 44469: Invalid Data based on FOVIO
-Row 44470: Invalid Data based on FOVIO
-Row 44479: Invalid Data based on FOVIO
-Row 44514: Invalid Data based on FOVIO
-Row 44567: Invalid Data based on FOVIO
-Row 44569: Invalid Data based on FOVIO
-Row 44575: Invalid Data based on FOVIO
-Row 44578: Invalid Data based on FOVIO
-Row 44580: Invalid Data based on FOVIO
-Row 44582: Invalid Data based on FOVIO
-Row 44584: Invalid Data based on FOVIO
-Row 44588: Invalid Data based on FOVIO
-Row 44590: Invalid Data based on FOVIO
-Row 44592: Invalid Data based on FOVIO
-Row 44594: Invalid Data based on FOVIO
-Row 44601: Invalid Data based on FOVIO
-Row 44603: Invalid Data based on FOVIO
-Row 44607: Invalid Data based on FOVIO
-Row 44609: Invalid Data based on FOVIO
-Row 44611: Invalid Data based on FOVIO
-Row 44618: Invalid Data based on FOVIO
-Row 44620: Invalid Data based on FOVIO
-Row 44718: Invalid Data based on FOVIO
-Row 44719: Invalid Data based on FOVIO
-Row 44720: Invalid Data based on FOVIO
-Row 44721: Invalid Data based on FOVIO
-Row 44722: Invalid Data based on FOVIO
-Row 44827: Invalid Data based on FOVIO
-Row 44828: Invalid Data based on FOVIO
-Row 44831: Invalid Data based on FOVIO
-Row 44833: Invalid Data based on FOVIO
-Row 44834: Invalid Data based on FOVIO
-Row 44837: Invalid Data based on FOVIO
-Row 44857: Invalid Data based on FOVIO
-Row 44858: Invalid Data based on FOVIO
-Row 44994: Invalid Data based on FOVIO
-Row 45030: Invalid Data based on FOVIO
-Row 45048: Invalid Data based on FOVIO
-Row 45070: Invalid Data based on FOVIO
-Row 45074: Invalid Data based on FOVIO
-Row 45075: Invalid Data based on FOVIO
-Row 45200: Invalid Data based on FOVIO
-Row 45202: Invalid Data based on FOVIO
-Row 45241: Invalid Data based on FOVIO
-Row 45244: Invalid Data based on FOVIO
-Row 45262: Invalid Data based on FOVIO
-Row 45263: Invalid Data based on FOVIO
-Row 45265: Invalid Data based on FOVIO
-Row 45267: Invalid Data based on FOVIO
-Row 45269: Invalid Data based on FOVIO
-Row 45271: Invalid Data based on FOVIO
-Row 45273: Invalid Data based on FOVIO
-Row 45275: Invalid Data based on FOVIO
-Row 45277: Invalid Data based on FOVIO
-Row 45279: Invalid Data based on FOVIO
-Row 45281: Invalid Data based on FOVIO
-Row 45283: Invalid Data based on FOVIO
-Row 45285: Invalid Data based on FOVIO
-Row 45286: Invalid Data based on FOVIO
-Row 45287: Invalid Data based on FOVIO
-Row 45288: Invalid Data based on FOVIO
-Row 45289: Invalid Data based on FOVIO
-Row 45293: Invalid Data based on FOVIO
-Row 45294: Invalid Data based on FOVIO
-Row 45297: Invalid Data based on FOVIO
-Row 45298: Invalid Data based on FOVIO
-Row 45301: Invalid Data based on FOVIO
-Row 45302: Invalid Data based on FOVIO
-Row 45305: Invalid Data based on FOVIO
-Row 45307: Invalid Data based on FOVIO
-Row 45308: Invalid Data based on FOVIO
-Row 45311: Invalid Data based on FOVIO
-Row 45312: Invalid Data based on FOVIO
-Row 45313: Invalid Data based on FOVIO
-Row 45314: Invalid Data based on FOVIO
-Row 45317: Invalid Data based on FOVIO
-Row 45318: Invalid Data based on FOVIO
-Row 45325: Invalid Data based on FOVIO
-Row 45326: Invalid Data based on FOVIO
-Row 45327: Invalid Data based on FOVIO
-Row 45328: Invalid Data based on FOVIO
-Row 45329: Invalid Data based on FOVIO
-Row 45331: Invalid Data based on FOVIO
-Row 45333: Invalid Data based on FOVIO
-Row 45334: Invalid Data based on FOVIO
-Row 45335: Invalid Data based on FOVIO
-Row 45336: Invalid Data based on FOVIO
-Row 45337: Invalid Data based on FOVIO
-Row 45338: Invalid Data based on FOVIO
-Row 45339: Invalid Data based on FOVIO
-Row 45340: Invalid Data based on FOVIO
-Row 45341: Invalid Data based on FOVIO
-Row 45342: Invalid Data based on FOVIO
-Row 45343: Invalid Data based on FOVIO
-Row 45344: Invalid Data based on FOVIO
-Row 45345: Invalid Data based on FOVIO
-Row 45346: Invalid Data based on FOVIO
-Row 45347: Invalid Data based on FOVIO
-Row 45348: Invalid Data based on FOVIO
-Row 45349: Invalid Data based on FOVIO
-Row 45350: Invalid Data based on FOVIO
-Row 45351: Invalid Data based on FOVIO
+Row 505: Negative/Zero/Impossible Coordinates
+Row 506: Negative/Zero/Impossible Coordinates
+Row 507: Negative/Zero/Impossible Coordinates
+Row 508: Negative/Zero/Impossible Coordinates
+Row 509: Negative/Zero/Impossible Coordinates
+Row 510: Negative/Zero/Impossible Coordinates
+Row 511: Negative/Zero/Impossible Coordinates
+Row 8100: Negative/Zero/Impossible Coordinates
+Row 8714: Negative/Zero/Impossible Coordinates
+Row 8715: Negative/Zero/Impossible Coordinates
+Row 8716: Negative/Zero/Impossible Coordinates
+Row 8717: Negative/Zero/Impossible Coordinates
+Row 8718: Negative/Zero/Impossible Coordinates
+Row 9331: Negative/Zero/Impossible Coordinates
+Row 9332: Negative/Zero/Impossible Coordinates
+Row 10117: Negative/Zero/Impossible Coordinates
+Row 10118: Negative/Zero/Impossible Coordinates
+Row 10389: Negative/Zero/Impossible Coordinates
+Row 10390: Negative/Zero/Impossible Coordinates
+Row 10391: Negative/Zero/Impossible Coordinates
+Row 10392: Negative/Zero/Impossible Coordinates
+Row 10397: Negative/Zero/Impossible Coordinates
+Row 10398: Negative/Zero/Impossible Coordinates
+Row 10399: Negative/Zero/Impossible Coordinates
+Row 10400: Negative/Zero/Impossible Coordinates
+Row 10401: Negative/Zero/Impossible Coordinates
+Row 10402: Negative/Zero/Impossible Coordinates
+Row 10403: Negative/Zero/Impossible Coordinates
+Row 11547: Negative/Zero/Impossible Coordinates
+Row 11548: Negative/Zero/Impossible Coordinates
+Row 11549: Negative/Zero/Impossible Coordinates
+Row 11550: Negative/Zero/Impossible Coordinates
+Row 11551: Negative/Zero/Impossible Coordinates
+Row 11552: Negative/Zero/Impossible Coordinates
+Row 11553: Negative/Zero/Impossible Coordinates
+Row 11554: Negative/Zero/Impossible Coordinates
+Row 11555: Negative/Zero/Impossible Coordinates
+Row 11556: Negative/Zero/Impossible Coordinates
+Row 11557: Negative/Zero/Impossible Coordinates
+Row 11976: Negative/Zero/Impossible Coordinates
+Row 11977: Negative/Zero/Impossible Coordinates
+Row 11978: Negative/Zero/Impossible Coordinates
+Row 11979: Negative/Zero/Impossible Coordinates
+Row 11980: Negative/Zero/Impossible Coordinates
+Row 11981: Negative/Zero/Impossible Coordinates
+Row 11982: Negative/Zero/Impossible Coordinates
+Row 12350: Negative/Zero/Impossible Coordinates
+Row 12351: Negative/Zero/Impossible Coordinates
+Row 12352: Negative/Zero/Impossible Coordinates
+Row 12353: Negative/Zero/Impossible Coordinates
+Row 12354: Negative/Zero/Impossible Coordinates
+Row 12526: Negative/Zero/Impossible Coordinates
+Row 12527: Negative/Zero/Impossible Coordinates
+Row 12528: Negative/Zero/Impossible Coordinates
+Row 12529: Negative/Zero/Impossible Coordinates
+Row 12899: Negative/Zero/Impossible Coordinates
+Row 12900: Negative/Zero/Impossible Coordinates
+Row 12901: Negative/Zero/Impossible Coordinates
+Row 12902: Negative/Zero/Impossible Coordinates
+Row 12903: Negative/Zero/Impossible Coordinates
+Row 12904: Negative/Zero/Impossible Coordinates
+Row 12905: Negative/Zero/Impossible Coordinates
+Row 12906: Negative/Zero/Impossible Coordinates
+Row 12907: Negative/Zero/Impossible Coordinates
+Row 13888: Negative/Zero/Impossible Coordinates
+Row 13889: Negative/Zero/Impossible Coordinates
+Row 13890: Negative/Zero/Impossible Coordinates
+Row 13891: Negative/Zero/Impossible Coordinates
+Row 16095: Negative/Zero/Impossible Coordinates
+Row 16440: Negative/Zero/Impossible Coordinates
+Row 16441: Negative/Zero/Impossible Coordinates
+Row 16442: Negative/Zero/Impossible Coordinates
+Row 16443: Negative/Zero/Impossible Coordinates
+Row 16444: Negative/Zero/Impossible Coordinates
+Row 16445: Negative/Zero/Impossible Coordinates
+Row 16446: Negative/Zero/Impossible Coordinates
+Row 16447: Negative/Zero/Impossible Coordinates
+Row 16448: Negative/Zero/Impossible Coordinates
+Row 16449: Negative/Zero/Impossible Coordinates
+Row 16450: Negative/Zero/Impossible Coordinates
+Row 16451: Negative/Zero/Impossible Coordinates
+Row 16452: Negative/Zero/Impossible Coordinates
+Row 16453: Negative/Zero/Impossible Coordinates
+Row 16739: Negative/Zero/Impossible Coordinates
+Row 16740: Negative/Zero/Impossible Coordinates
+Row 16741: Negative/Zero/Impossible Coordinates
+Row 16742: Negative/Zero/Impossible Coordinates
+Row 16743: Negative/Zero/Impossible Coordinates
+Row 16744: Negative/Zero/Impossible Coordinates
+Row 17269: Negative/Zero/Impossible Coordinates
+Row 17270: Negative/Zero/Impossible Coordinates
+Row 17271: Negative/Zero/Impossible Coordinates
+Row 17272: Negative/Zero/Impossible Coordinates
+Row 17273: Negative/Zero/Impossible Coordinates
+Row 17274: Negative/Zero/Impossible Coordinates
+Row 17275: Negative/Zero/Impossible Coordinates
+Row 17276: Negative/Zero/Impossible Coordinates
+Row 17277: Negative/Zero/Impossible Coordinates
+Row 17278: Negative/Zero/Impossible Coordinates
+Row 17279: Negative/Zero/Impossible Coordinates
+Row 17280: Negative/Zero/Impossible Coordinates
+Row 17281: Negative/Zero/Impossible Coordinates
+Row 17282: Negative/Zero/Impossible Coordinates
+Row 17283: Negative/Zero/Impossible Coordinates
+Row 17284: Negative/Zero/Impossible Coordinates
+Row 17351: Negative/Zero/Impossible Coordinates
+Row 19460: Negative/Zero/Impossible Coordinates
+Row 19462: Negative/Zero/Impossible Coordinates
+Row 19463: Negative/Zero/Impossible Coordinates
+Row 19464: Negative/Zero/Impossible Coordinates
+Row 19465: Negative/Zero/Impossible Coordinates
+Row 19469: Negative/Zero/Impossible Coordinates
+Row 19470: Negative/Zero/Impossible Coordinates
+Row 19478: Negative/Zero/Impossible Coordinates
+Row 19479: Negative/Zero/Impossible Coordinates
+Row 19480: Negative/Zero/Impossible Coordinates
+Row 19481: Negative/Zero/Impossible Coordinates
+Row 19809: Negative/Zero/Impossible Coordinates
+Row 19810: Negative/Zero/Impossible Coordinates
+Row 19878: Negative/Zero/Impossible Coordinates
+Row 19879: Negative/Zero/Impossible Coordinates
+Row 19880: Negative/Zero/Impossible Coordinates
+Row 19881: Negative/Zero/Impossible Coordinates
+Row 20013: Negative/Zero/Impossible Coordinates
+Row 20014: Negative/Zero/Impossible Coordinates
+Row 20015: Negative/Zero/Impossible Coordinates
+Row 20016: Negative/Zero/Impossible Coordinates
+Row 20017: Negative/Zero/Impossible Coordinates
+Row 21650: Negative/Zero/Impossible Coordinates
+Row 21651: Negative/Zero/Impossible Coordinates
+Row 21652: Negative/Zero/Impossible Coordinates
+Row 21653: Negative/Zero/Impossible Coordinates
+Row 21654: Negative/Zero/Impossible Coordinates
+Row 21655: Negative/Zero/Impossible Coordinates
+Row 21656: Negative/Zero/Impossible Coordinates
+Row 21657: Negative/Zero/Impossible Coordinates
+Row 21658: Negative/Zero/Impossible Coordinates
+Row 21659: Negative/Zero/Impossible Coordinates
+Row 21660: Negative/Zero/Impossible Coordinates
+Row 21661: Negative/Zero/Impossible Coordinates
+Row 21662: Negative/Zero/Impossible Coordinates
+Row 21663: Negative/Zero/Impossible Coordinates
+Row 22285: Negative/Zero/Impossible Coordinates
+Row 22286: Negative/Zero/Impossible Coordinates
+Row 22287: Negative/Zero/Impossible Coordinates
+Row 22288: Negative/Zero/Impossible Coordinates
+Row 22289: Negative/Zero/Impossible Coordinates
+Row 22354: Negative/Zero/Impossible Coordinates
+Row 22355: Negative/Zero/Impossible Coordinates
+Row 22356: Negative/Zero/Impossible Coordinates
+Row 22357: Negative/Zero/Impossible Coordinates
+Row 23424: Negative/Zero/Impossible Coordinates
+Row 23425: Negative/Zero/Impossible Coordinates
+Row 23426: Negative/Zero/Impossible Coordinates
+Row 23427: Negative/Zero/Impossible Coordinates
+Row 23429: Negative/Zero/Impossible Coordinates
+Row 25219: Negative/Zero/Impossible Coordinates
+Row 25220: Negative/Zero/Impossible Coordinates
+Row 25221: Negative/Zero/Impossible Coordinates
+Row 25222: Negative/Zero/Impossible Coordinates
+Row 25223: Negative/Zero/Impossible Coordinates
+Row 25224: Negative/Zero/Impossible Coordinates
+Row 25225: Negative/Zero/Impossible Coordinates
+Row 25226: Negative/Zero/Impossible Coordinates
+Row 25227: Negative/Zero/Impossible Coordinates
+Row 25228: Negative/Zero/Impossible Coordinates
+Row 25229: Negative/Zero/Impossible Coordinates
+Row 25230: Negative/Zero/Impossible Coordinates
+Row 25231: Negative/Zero/Impossible Coordinates
+Row 25708: Negative/Zero/Impossible Coordinates
+Row 25709: Negative/Zero/Impossible Coordinates
+Row 25710: Negative/Zero/Impossible Coordinates
+Row 25711: Negative/Zero/Impossible Coordinates
+Row 25712: Negative/Zero/Impossible Coordinates
+Row 25713: Negative/Zero/Impossible Coordinates
+Row 25714: Negative/Zero/Impossible Coordinates
+Row 25715: Negative/Zero/Impossible Coordinates
+Row 25716: Negative/Zero/Impossible Coordinates
+Row 25717: Negative/Zero/Impossible Coordinates
+Row 25719: Negative/Zero/Impossible Coordinates
+Row 25720: Negative/Zero/Impossible Coordinates
+Row 25721: Negative/Zero/Impossible Coordinates
+Row 25722: Negative/Zero/Impossible Coordinates
+Row 25723: Negative/Zero/Impossible Coordinates
+Row 25724: Negative/Zero/Impossible Coordinates
+Row 26357: Negative/Zero/Impossible Coordinates
+Row 26358: Negative/Zero/Impossible Coordinates
+Row 26359: Negative/Zero/Impossible Coordinates
+Row 26360: Negative/Zero/Impossible Coordinates
+Row 26361: Negative/Zero/Impossible Coordinates
+Row 26362: Negative/Zero/Impossible Coordinates
+Row 26368: Negative/Zero/Impossible Coordinates
+Row 26369: Negative/Zero/Impossible Coordinates
+Row 26370: Negative/Zero/Impossible Coordinates
+Row 26371: Negative/Zero/Impossible Coordinates
+Row 26372: Negative/Zero/Impossible Coordinates
+Row 26373: Negative/Zero/Impossible Coordinates
+Row 26374: Negative/Zero/Impossible Coordinates
+Row 26375: Negative/Zero/Impossible Coordinates
+Row 26376: Negative/Zero/Impossible Coordinates
+Row 26377: Negative/Zero/Impossible Coordinates
+Row 26653: Negative/Zero/Impossible Coordinates
+Row 26654: Negative/Zero/Impossible Coordinates
+Row 26655: Negative/Zero/Impossible Coordinates
+Row 26656: Negative/Zero/Impossible Coordinates
+Row 26657: Negative/Zero/Impossible Coordinates
+Row 26658: Negative/Zero/Impossible Coordinates
+Row 26758: Negative/Zero/Impossible Coordinates
+Row 26759: Negative/Zero/Impossible Coordinates
+Row 26760: Negative/Zero/Impossible Coordinates
+Row 26761: Negative/Zero/Impossible Coordinates
+Row 26762: Negative/Zero/Impossible Coordinates
+Row 26763: Negative/Zero/Impossible Coordinates
+Row 26764: Negative/Zero/Impossible Coordinates
+Row 26765: Negative/Zero/Impossible Coordinates
+Row 26766: Negative/Zero/Impossible Coordinates
+Row 26767: Negative/Zero/Impossible Coordinates
+Row 26768: Negative/Zero/Impossible Coordinates
+Row 27480: Negative/Zero/Impossible Coordinates
+Row 27481: Negative/Zero/Impossible Coordinates
+Row 27482: Negative/Zero/Impossible Coordinates
+Row 27483: Negative/Zero/Impossible Coordinates
+Row 27484: Negative/Zero/Impossible Coordinates
+Row 27485: Negative/Zero/Impossible Coordinates
+Row 27486: Negative/Zero/Impossible Coordinates
+Row 27487: Negative/Zero/Impossible Coordinates
+Row 29112: Negative/Zero/Impossible Coordinates
+Row 29113: Negative/Zero/Impossible Coordinates
+Row 29114: Negative/Zero/Impossible Coordinates
+Row 29316: Negative/Zero/Impossible Coordinates
+Row 29317: Negative/Zero/Impossible Coordinates
+Row 29318: Negative/Zero/Impossible Coordinates
+Row 29319: Negative/Zero/Impossible Coordinates
+Row 29320: Negative/Zero/Impossible Coordinates
+Row 29961: Negative/Zero/Impossible Coordinates
+Row 29962: Negative/Zero/Impossible Coordinates
+Row 29963: Negative/Zero/Impossible Coordinates
+Row 30331: Negative/Zero/Impossible Coordinates
+Row 30332: Negative/Zero/Impossible Coordinates
+Row 30509: Negative/Zero/Impossible Coordinates
+Row 30510: Negative/Zero/Impossible Coordinates
+Row 30511: Negative/Zero/Impossible Coordinates
+Row 30512: Negative/Zero/Impossible Coordinates
+Row 30513: Negative/Zero/Impossible Coordinates
+Row 30514: Negative/Zero/Impossible Coordinates
+Row 30515: Negative/Zero/Impossible Coordinates
+Row 30522: Negative/Zero/Impossible Coordinates
+Row 30523: Negative/Zero/Impossible Coordinates
+Row 30524: Negative/Zero/Impossible Coordinates
+Row 30525: Negative/Zero/Impossible Coordinates
+Row 30526: Negative/Zero/Impossible Coordinates
+Row 30527: Negative/Zero/Impossible Coordinates
+Row 30674: Negative/Zero/Impossible Coordinates
+Row 30675: Negative/Zero/Impossible Coordinates
+Row 30676: Negative/Zero/Impossible Coordinates
+Row 30677: Negative/Zero/Impossible Coordinates
+Row 30678: Negative/Zero/Impossible Coordinates
+Row 30679: Negative/Zero/Impossible Coordinates
+Row 30680: Negative/Zero/Impossible Coordinates
+Row 30681: Negative/Zero/Impossible Coordinates
+Row 30682: Negative/Zero/Impossible Coordinates
+Row 30683: Negative/Zero/Impossible Coordinates
+Row 30684: Negative/Zero/Impossible Coordinates
+Row 30685: Negative/Zero/Impossible Coordinates
+Row 30686: Negative/Zero/Impossible Coordinates
+Row 30687: Negative/Zero/Impossible Coordinates
+Row 30688: Negative/Zero/Impossible Coordinates
+Row 30689: Negative/Zero/Impossible Coordinates
+Row 30690: Negative/Zero/Impossible Coordinates
+Row 30691: Negative/Zero/Impossible Coordinates
+Row 30692: Negative/Zero/Impossible Coordinates
+Row 30718: Negative/Zero/Impossible Coordinates
+Row 30719: Negative/Zero/Impossible Coordinates
+Row 30720: Negative/Zero/Impossible Coordinates
+Row 30721: Negative/Zero/Impossible Coordinates
+Row 30722: Negative/Zero/Impossible Coordinates
+Row 30723: Negative/Zero/Impossible Coordinates
+Row 30724: Negative/Zero/Impossible Coordinates
+Row 30725: Negative/Zero/Impossible Coordinates
+Row 30726: Negative/Zero/Impossible Coordinates
+Row 30727: Negative/Zero/Impossible Coordinates
+Row 31282: Negative/Zero/Impossible Coordinates
+Row 31283: Negative/Zero/Impossible Coordinates
+Row 31284: Negative/Zero/Impossible Coordinates
+Row 31285: Negative/Zero/Impossible Coordinates
+Row 31286: Negative/Zero/Impossible Coordinates
+Row 31287: Negative/Zero/Impossible Coordinates
+Row 31288: Negative/Zero/Impossible Coordinates
+Row 31289: Negative/Zero/Impossible Coordinates
+Row 31290: Negative/Zero/Impossible Coordinates
+Row 31291: Negative/Zero/Impossible Coordinates
+Row 31292: Negative/Zero/Impossible Coordinates
+Row 31293: Negative/Zero/Impossible Coordinates
+Row 31294: Negative/Zero/Impossible Coordinates
+Row 31295: Negative/Zero/Impossible Coordinates
+Row 31296: Negative/Zero/Impossible Coordinates
+Row 31351: Negative/Zero/Impossible Coordinates
+Row 31352: Negative/Zero/Impossible Coordinates
+Row 31353: Negative/Zero/Impossible Coordinates
+Row 31354: Negative/Zero/Impossible Coordinates
+Row 31355: Negative/Zero/Impossible Coordinates
+Row 31523: Negative/Zero/Impossible Coordinates
+Row 31524: Negative/Zero/Impossible Coordinates
+Row 31525: Negative/Zero/Impossible Coordinates
+Row 31526: Negative/Zero/Impossible Coordinates
+Row 31527: Negative/Zero/Impossible Coordinates
+Row 31567: Negative/Zero/Impossible Coordinates
+Row 31568: Negative/Zero/Impossible Coordinates
+Row 31569: Negative/Zero/Impossible Coordinates
+Row 31570: Negative/Zero/Impossible Coordinates
+Row 31844: Negative/Zero/Impossible Coordinates
+Row 31845: Negative/Zero/Impossible Coordinates
+Row 31846: Negative/Zero/Impossible Coordinates
+Row 31847: Negative/Zero/Impossible Coordinates
+Row 31848: Negative/Zero/Impossible Coordinates
+Row 31849: Negative/Zero/Impossible Coordinates
+Row 31850: Negative/Zero/Impossible Coordinates
+Row 31851: Negative/Zero/Impossible Coordinates
+Row 31852: Negative/Zero/Impossible Coordinates
+Row 31853: Negative/Zero/Impossible Coordinates
+Row 31854: Negative/Zero/Impossible Coordinates
+Row 31855: Negative/Zero/Impossible Coordinates
+Row 31856: Negative/Zero/Impossible Coordinates
+Row 31857: Negative/Zero/Impossible Coordinates
+Row 32757: Negative/Zero/Impossible Coordinates
+Row 32758: Negative/Zero/Impossible Coordinates
+Row 32759: Negative/Zero/Impossible Coordinates
+Row 32760: Negative/Zero/Impossible Coordinates
+Row 33032: Negative/Zero/Impossible Coordinates
+Row 33047: Negative/Zero/Impossible Coordinates
+Row 33048: Negative/Zero/Impossible Coordinates
+Row 35222: Negative/Zero/Impossible Coordinates
+Row 35223: Negative/Zero/Impossible Coordinates
+Row 35224: Negative/Zero/Impossible Coordinates
+Row 36038: Negative/Zero/Impossible Coordinates
+Row 36039: Negative/Zero/Impossible Coordinates
+Row 36040: Negative/Zero/Impossible Coordinates
+Row 36041: Negative/Zero/Impossible Coordinates
+Row 36042: Negative/Zero/Impossible Coordinates
+Row 36043: Negative/Zero/Impossible Coordinates
+Row 36917: Negative/Zero/Impossible Coordinates
+Row 36918: Negative/Zero/Impossible Coordinates
+Row 36919: Negative/Zero/Impossible Coordinates
+Row 36920: Negative/Zero/Impossible Coordinates
+Row 36921: Negative/Zero/Impossible Coordinates
+Row 36922: Negative/Zero/Impossible Coordinates
+Row 37084: Negative/Zero/Impossible Coordinates
+Row 37085: Negative/Zero/Impossible Coordinates
+Row 37086: Negative/Zero/Impossible Coordinates
+Row 37087: Negative/Zero/Impossible Coordinates
+Row 37088: Negative/Zero/Impossible Coordinates
+Row 37756: Negative/Zero/Impossible Coordinates
+Row 37757: Negative/Zero/Impossible Coordinates
+Row 37758: Negative/Zero/Impossible Coordinates
+Row 37759: Negative/Zero/Impossible Coordinates
+Row 37760: Negative/Zero/Impossible Coordinates
+Row 37855: Negative/Zero/Impossible Coordinates
+Row 37856: Negative/Zero/Impossible Coordinates
+Row 37857: Negative/Zero/Impossible Coordinates
+Row 37858: Negative/Zero/Impossible Coordinates
+Row 37859: Negative/Zero/Impossible Coordinates
+Row 37897: Negative/Zero/Impossible Coordinates
+Row 37898: Negative/Zero/Impossible Coordinates
+Row 37899: Negative/Zero/Impossible Coordinates
+Row 37900: Negative/Zero/Impossible Coordinates
+Row 37901: Negative/Zero/Impossible Coordinates
+Row 37902: Negative/Zero/Impossible Coordinates
+Row 37903: Negative/Zero/Impossible Coordinates
+Row 37904: Negative/Zero/Impossible Coordinates
+Row 38332: Negative/Zero/Impossible Coordinates
+Row 38333: Negative/Zero/Impossible Coordinates
+Row 38334: Negative/Zero/Impossible Coordinates
+Row 38931: Negative/Zero/Impossible Coordinates
+Row 38932: Negative/Zero/Impossible Coordinates
+Row 38933: Negative/Zero/Impossible Coordinates
+Row 38934: Negative/Zero/Impossible Coordinates
+Row 38935: Negative/Zero/Impossible Coordinates
+Row 38936: Negative/Zero/Impossible Coordinates
+Row 39537: Negative/Zero/Impossible Coordinates
+Row 39538: Negative/Zero/Impossible Coordinates
+Row 41063: Negative/Zero/Impossible Coordinates
+Row 41555: Negative/Zero/Impossible Coordinates
+Row 41556: Negative/Zero/Impossible Coordinates
+Row 41557: Negative/Zero/Impossible Coordinates
+Row 41558: Negative/Zero/Impossible Coordinates
+Row 41559: Negative/Zero/Impossible Coordinates
+Row 41560: Negative/Zero/Impossible Coordinates
+Row 41561: Negative/Zero/Impossible Coordinates
+Row 41562: Negative/Zero/Impossible Coordinates
+Row 41563: Negative/Zero/Impossible Coordinates
+Row 41564: Negative/Zero/Impossible Coordinates
+Row 41565: Negative/Zero/Impossible Coordinates
+Row 41566: Negative/Zero/Impossible Coordinates
+Row 41567: Negative/Zero/Impossible Coordinates
+Row 41568: Negative/Zero/Impossible Coordinates
+Row 42782: Negative/Zero/Impossible Coordinates
+Row 42783: Negative/Zero/Impossible Coordinates
+Row 42784: Negative/Zero/Impossible Coordinates
+Row 42785: Negative/Zero/Impossible Coordinates
+Row 42786: Negative/Zero/Impossible Coordinates
+Row 42787: Negative/Zero/Impossible Coordinates
+Row 43326: Negative/Zero/Impossible Coordinates
+Row 43403: Negative/Zero/Impossible Coordinates
+Row 43404: Negative/Zero/Impossible Coordinates
+Row 43405: Negative/Zero/Impossible Coordinates
+Row 43532: Negative/Zero/Impossible Coordinates
+Row 43533: Negative/Zero/Impossible Coordinates
+Row 43534: Negative/Zero/Impossible Coordinates
+Row 43535: Negative/Zero/Impossible Coordinates
+Row 43536: Negative/Zero/Impossible Coordinates
+Row 43537: Negative/Zero/Impossible Coordinates
+Row 43538: Negative/Zero/Impossible Coordinates
+Row 43539: Negative/Zero/Impossible Coordinates
+Row 44782: Negative/Zero/Impossible Coordinates
+Row 44783: Negative/Zero/Impossible Coordinates
+Row 44787: Negative/Zero/Impossible Coordinates
+Row 44788: Negative/Zero/Impossible Coordinates
+Row 44789: Negative/Zero/Impossible Coordinates
+Row 44790: Negative/Zero/Impossible Coordinates
+Row 44791: Negative/Zero/Impossible Coordinates
+Row 44792: Negative/Zero/Impossible Coordinates
+Row 44793: Negative/Zero/Impossible Coordinates
+Row 44794: Negative/Zero/Impossible Coordinates
+Row 44879: Negative/Zero/Impossible Coordinates
+Row 44880: Negative/Zero/Impossible Coordinates
+Row 44881: Negative/Zero/Impossible Coordinates
+Row 44882: Negative/Zero/Impossible Coordinates
+Row 44883: Negative/Zero/Impossible Coordinates
+Row 44884: Negative/Zero/Impossible Coordinates
+Row 44885: Negative/Zero/Impossible Coordinates
+Row 44886: Negative/Zero/Impossible Coordinates
+Row 44887: Negative/Zero/Impossible Coordinates
+Row 44888: Negative/Zero/Impossible Coordinates
+Row 44889: Negative/Zero/Impossible Coordinates
+Row 44890: Negative/Zero/Impossible Coordinates
+Row 44891: Negative/Zero/Impossible Coordinates
+Row 44892: Negative/Zero/Impossible Coordinates
+Row 44893: Negative/Zero/Impossible Coordinates
+Row 44894: Negative/Zero/Impossible Coordinates
+Row 44895: Negative/Zero/Impossible Coordinates
+Row 44896: Negative/Zero/Impossible Coordinates
+Row 44897: Negative/Zero/Impossible Coordinates
+Row 44898: Negative/Zero/Impossible Coordinates
+Row 44899: Negative/Zero/Impossible Coordinates
+Row 44900: Negative/Zero/Impossible Coordinates
+Row 44901: Negative/Zero/Impossible Coordinates
+Row 44903: Negative/Zero/Impossible Coordinates
+Row 44905: Negative/Zero/Impossible Coordinates
+Row 44906: Negative/Zero/Impossible Coordinates
+Row 44907: Negative/Zero/Impossible Coordinates
+Row 44908: Negative/Zero/Impossible Coordinates
+Row 44909: Negative/Zero/Impossible Coordinates
+Row 46351: Negative/Zero/Impossible Coordinates
+Row 46352: Negative/Zero/Impossible Coordinates
+Row 46353: Negative/Zero/Impossible Coordinates
+Row 46354: Negative/Zero/Impossible Coordinates
+Row 46975: Negative/Zero/Impossible Coordinates
+Row 46976: Negative/Zero/Impossible Coordinates
+Row 46977: Negative/Zero/Impossible Coordinates
+Row 46978: Negative/Zero/Impossible Coordinates
+Row 46979: Negative/Zero/Impossible Coordinates
+Row 46980: Negative/Zero/Impossible Coordinates
+Row 46981: Negative/Zero/Impossible Coordinates
+Row 48667: Negative/Zero/Impossible Coordinates
+Row 48668: Negative/Zero/Impossible Coordinates
+Row 48669: Negative/Zero/Impossible Coordinates
+Row 48670: Negative/Zero/Impossible Coordinates
+Row 48671: Negative/Zero/Impossible Coordinates
+Row 48672: Negative/Zero/Impossible Coordinates
+Row 48673: Negative/Zero/Impossible Coordinates
+Row 48866: Negative/Zero/Impossible Coordinates
+Row 48867: Negative/Zero/Impossible Coordinates
+Row 48868: Negative/Zero/Impossible Coordinates
+Row 48869: Negative/Zero/Impossible Coordinates
+Row 48870: Negative/Zero/Impossible Coordinates
+Row 48871: Negative/Zero/Impossible Coordinates
+Row 49001: Negative/Zero/Impossible Coordinates
+Row 49002: Negative/Zero/Impossible Coordinates
+Row 49003: Negative/Zero/Impossible Coordinates
+Row 49004: Negative/Zero/Impossible Coordinates
+Row 49005: Negative/Zero/Impossible Coordinates
+Row 49006: Negative/Zero/Impossible Coordinates
+Row 49007: Negative/Zero/Impossible Coordinates
+Row 49008: Negative/Zero/Impossible Coordinates
+Row 49250: Negative/Zero/Impossible Coordinates
+Row 49251: Negative/Zero/Impossible Coordinates
+Row 49252: Negative/Zero/Impossible Coordinates
+Row 49253: Negative/Zero/Impossible Coordinates
+Row 49254: Negative/Zero/Impossible Coordinates
+Row 49255: Negative/Zero/Impossible Coordinates
+Row 49256: Negative/Zero/Impossible Coordinates
+Row 49257: Negative/Zero/Impossible Coordinates
+Row 49258: Negative/Zero/Impossible Coordinates
+Row 49259: Negative/Zero/Impossible Coordinates
+Row 49260: Negative/Zero/Impossible Coordinates
+Row 49261: Negative/Zero/Impossible Coordinates
+Row 49262: Negative/Zero/Impossible Coordinates
+Row 49263: Negative/Zero/Impossible Coordinates
+Row 49264: Negative/Zero/Impossible Coordinates
+Row 49265: Negative/Zero/Impossible Coordinates
+Row 49266: Negative/Zero/Impossible Coordinates
+Row 49267: Negative/Zero/Impossible Coordinates
+Row 49268: Negative/Zero/Impossible Coordinates
+Row 49269: Negative/Zero/Impossible Coordinates
+Row 50037: Negative/Zero/Impossible Coordinates
+Row 50038: Negative/Zero/Impossible Coordinates
+Row 50039: Negative/Zero/Impossible Coordinates
+Row 50040: Negative/Zero/Impossible Coordinates
+Row 50041: Negative/Zero/Impossible Coordinates
+Row 50042: Negative/Zero/Impossible Coordinates
+Row 50468: Negative/Zero/Impossible Coordinates
+Row 50469: Negative/Zero/Impossible Coordinates
+Row 50470: Negative/Zero/Impossible Coordinates
+Row 50471: Negative/Zero/Impossible Coordinates
+Row 50776: Negative/Zero/Impossible Coordinates
+Row 50777: Negative/Zero/Impossible Coordinates
+Row 51358: Negative/Zero/Impossible Coordinates
+Row 51359: Negative/Zero/Impossible Coordinates
+Row 51360: Negative/Zero/Impossible Coordinates
+Row 51361: Negative/Zero/Impossible Coordinates
+Row 51362: Negative/Zero/Impossible Coordinates
+Row 52127: Negative/Zero/Impossible Coordinates
+Row 52128: Negative/Zero/Impossible Coordinates
+Row 52129: Negative/Zero/Impossible Coordinates
+Row 52130: Negative/Zero/Impossible Coordinates
+Row 52131: Negative/Zero/Impossible Coordinates
+Row 52132: Negative/Zero/Impossible Coordinates
+Row 52133: Negative/Zero/Impossible Coordinates
+Row 52134: Negative/Zero/Impossible Coordinates
+Row 52135: Negative/Zero/Impossible Coordinates
+Row 52511: Negative/Zero/Impossible Coordinates
+Row 52512: Negative/Zero/Impossible Coordinates
+Row 52513: Negative/Zero/Impossible Coordinates
+Row 52514: Negative/Zero/Impossible Coordinates
+Row 52887: Negative/Zero/Impossible Coordinates
+Row 52888: Negative/Zero/Impossible Coordinates
+Row 52889: Negative/Zero/Impossible Coordinates
+Row 52890: Negative/Zero/Impossible Coordinates
+Row 52891: Negative/Zero/Impossible Coordinates
+Row 52892: Negative/Zero/Impossible Coordinates
+Row 52893: Negative/Zero/Impossible Coordinates
+Row 52894: Negative/Zero/Impossible Coordinates
+Row 52895: Negative/Zero/Impossible Coordinates
+Row 52896: Negative/Zero/Impossible Coordinates
+Row 52949: Negative/Zero/Impossible Coordinates
+Row 52950: Negative/Zero/Impossible Coordinates
+Row 52951: Negative/Zero/Impossible Coordinates
+Row 52952: Negative/Zero/Impossible Coordinates
+Row 52953: Negative/Zero/Impossible Coordinates
+Row 52954: Negative/Zero/Impossible Coordinates
+Row 52955: Negative/Zero/Impossible Coordinates
+Row 52956: Negative/Zero/Impossible Coordinates
+Row 52957: Negative/Zero/Impossible Coordinates
+Row 52958: Negative/Zero/Impossible Coordinates
+Row 52959: Negative/Zero/Impossible Coordinates
+Row 52960: Negative/Zero/Impossible Coordinates
+Row 52961: Negative/Zero/Impossible Coordinates
+Row 52962: Negative/Zero/Impossible Coordinates
+Row 52963: Negative/Zero/Impossible Coordinates
+Row 52964: Negative/Zero/Impossible Coordinates
+Row 52965: Negative/Zero/Impossible Coordinates
+Row 52966: Negative/Zero/Impossible Coordinates
+Row 52967: Negative/Zero/Impossible Coordinates
+Row 52968: Negative/Zero/Impossible Coordinates
+Row 52969: Negative/Zero/Impossible Coordinates
+Row 52970: Negative/Zero/Impossible Coordinates
+Row 52971: Negative/Zero/Impossible Coordinates
+Row 52972: Negative/Zero/Impossible Coordinates
+Row 52973: Negative/Zero/Impossible Coordinates
+Row 52974: Negative/Zero/Impossible Coordinates
+Row 52975: Negative/Zero/Impossible Coordinates
+Row 52976: Negative/Zero/Impossible Coordinates
+Row 52977: Negative/Zero/Impossible Coordinates
+Row 52978: Negative/Zero/Impossible Coordinates
+Row 52979: Negative/Zero/Impossible Coordinates
+Row 52980: Negative/Zero/Impossible Coordinates
+Row 52981: Negative/Zero/Impossible Coordinates
+Row 52982: Negative/Zero/Impossible Coordinates
+Row 52983: Negative/Zero/Impossible Coordinates
+Row 52984: Negative/Zero/Impossible Coordinates
+Row 53124: Negative/Zero/Impossible Coordinates
+Row 53125: Negative/Zero/Impossible Coordinates
+Row 53265: Negative/Zero/Impossible Coordinates
+Row 53266: Negative/Zero/Impossible Coordinates
+Row 53267: Negative/Zero/Impossible Coordinates
+Row 53268: Negative/Zero/Impossible Coordinates
+Row 53269: Negative/Zero/Impossible Coordinates
+Row 53270: Negative/Zero/Impossible Coordinates
+Row 53271: Negative/Zero/Impossible Coordinates
+Row 53272: Negative/Zero/Impossible Coordinates
+Row 53273: Negative/Zero/Impossible Coordinates
+Row 53274: Negative/Zero/Impossible Coordinates
+Row 53609: Negative/Zero/Impossible Coordinates
+Row 53610: Negative/Zero/Impossible Coordinates
+Row 53611: Negative/Zero/Impossible Coordinates
+Row 53612: Negative/Zero/Impossible Coordinates
+Row 53613: Negative/Zero/Impossible Coordinates
+Row 53614: Negative/Zero/Impossible Coordinates
+Row 53615: Negative/Zero/Impossible Coordinates
+Row 53723: Negative/Zero/Impossible Coordinates
+Row 53724: Negative/Zero/Impossible Coordinates
+Row 53750: Negative/Zero/Impossible Coordinates
+Row 53751: Negative/Zero/Impossible Coordinates
+Row 53752: Negative/Zero/Impossible Coordinates
+Row 53753: Negative/Zero/Impossible Coordinates
+Row 53754: Negative/Zero/Impossible Coordinates
+Row 53755: Negative/Zero/Impossible Coordinates
+Row 55055: Negative/Zero/Impossible Coordinates
+Row 55090: Negative/Zero/Impossible Coordinates
+Row 55091: Negative/Zero/Impossible Coordinates
+Row 55092: Negative/Zero/Impossible Coordinates
+Row 55093: Negative/Zero/Impossible Coordinates
+Row 55094: Negative/Zero/Impossible Coordinates
+Row 55095: Negative/Zero/Impossible Coordinates
+Row 55345: Negative/Zero/Impossible Coordinates
+Row 55346: Negative/Zero/Impossible Coordinates
+Row 55347: Negative/Zero/Impossible Coordinates
+Row 55377: Negative/Zero/Impossible Coordinates
+Row 55378: Negative/Zero/Impossible Coordinates
+Row 55379: Negative/Zero/Impossible Coordinates
+Row 55380: Negative/Zero/Impossible Coordinates
+Row 55381: Negative/Zero/Impossible Coordinates
+Row 55382: Negative/Zero/Impossible Coordinates
+Row 55383: Negative/Zero/Impossible Coordinates
+Row 55384: Negative/Zero/Impossible Coordinates
+Row 55385: Negative/Zero/Impossible Coordinates
+Row 55386: Negative/Zero/Impossible Coordinates
+Row 55387: Negative/Zero/Impossible Coordinates
+Row 55388: Negative/Zero/Impossible Coordinates
+Row 55389: Negative/Zero/Impossible Coordinates
+Row 55390: Negative/Zero/Impossible Coordinates
+Row 55391: Negative/Zero/Impossible Coordinates
+Row 55392: Negative/Zero/Impossible Coordinates
+Row 55393: Negative/Zero/Impossible Coordinates
+Row 55394: Negative/Zero/Impossible Coordinates
+Row 55395: Negative/Zero/Impossible Coordinates
+Row 55396: Negative/Zero/Impossible Coordinates
+Row 55397: Negative/Zero/Impossible Coordinates
+Row 55398: Negative/Zero/Impossible Coordinates
+Row 55399: Negative/Zero/Impossible Coordinates
+Row 55400: Negative/Zero/Impossible Coordinates
+Row 55401: Negative/Zero/Impossible Coordinates
+Row 55402: Negative/Zero/Impossible Coordinates
+Row 55403: Negative/Zero/Impossible Coordinates
+Row 55404: Negative/Zero/Impossible Coordinates
+Row 55405: Negative/Zero/Impossible Coordinates
 
-Total Negative/Zero/Impossible Coordinates: 0
+Total Negative/Zero/Impossible Coordinates: 646
 Total Unordered Data Packets: 0
-Total Invalid Data based on Gazepoint: 3654
-Negative/Zero/Impossible Coordinates: 0.0%
+Negative/Zero/Impossible Coordinates: 1.1601803128535766%
 Unordered Data Packets: 0.0%
-Invalid Data based on Eye Tracker: 8.041196276490394%
 
-Total Time Elapsed: 15.30655 minutes (918.393 seconds)
-Total Amount Of Time Of Invalid Data: 0.003653992692014616 minutes (0.21923956152087698 seconds)
+Total Time Elapsed: 15.149716666666075 minutes (908.9829999999645 seconds)
+Total Amount Of Time Of Invalid Data: 0.17944480333333332 minutes (10.766688199999999 seconds)
 
-Largest Timegap of missing data: 0.022 seconds
+Largest Timegap of missing data: 0.604 seconds

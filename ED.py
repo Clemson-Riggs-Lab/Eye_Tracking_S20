@@ -43,6 +43,7 @@ def event_detection(tracker_type):
     peak_times = []
     peaks = [] 
     sac_amps= []
+    max_amps=[]
     saccade_indices = []
     onset_indices=[]
     offset_indices=[]
@@ -265,15 +266,18 @@ def event_detection(tracker_type):
     # Saccade amplitude calculation
     for i in range(len(onsets_times)):
         df1=df[(df.MissionTime>=onsets_times[i])&(df.MissionTime<=offsets_times[i])] #create a mini dataframe consisting of the data of 1 saccade
+        maxAmp=df1['Velocity (degrees of visual angle/second)'].max()#find the peak velocity for this saccade
+        max_amps.append(maxAmp) 
         vel = df1['Velocity (degrees of visual angle/second)'].sum() #sum the velocity values
         count=df1.MissionTime.count() #get number of elements to use in average calculation
         if (float(count!=0)):
             avg= float(vel)/float(count)
             time_diff = (offsets_times[i] - onsets_times[i])
             sac_amp = avg * time_diff
-            sac_amps.append(sac_amp)
+            sac_amps.append(sac_amp)           
         else:
              sac_amps.append(0) #This value will be discarded, it is only to keep the list value in check with all other lists to prevent out of range errors
+             max_amps.append(0) #This value will be discarded, it is only to keep the list value in check with all other lists to prevent out of range errors
 
 
               
@@ -307,6 +311,7 @@ def event_detection(tracker_type):
     out_event=[]
     out_start_time = []
     out_amp =[]
+    out_mamp=[]
     out_X=[]
     out_Y=[]
     out_duration = []
@@ -327,6 +332,7 @@ def event_detection(tracker_type):
             else:
                 out_event.append("Saccade")
                 out_amp.append(sac_amps[i]) 
+                out_mamp.append(max_amps[i])
                 out_start_time.append(onsets_times[i])
                 out_duration.append(saccade_duration[i])
                 out_X.append("N/A")
@@ -341,6 +347,7 @@ def event_detection(tracker_type):
             else:
                 out_event.append("Fixation")
                 out_amp.append("N/A")
+                out_mamp.append("N/A")
                 out_start_time.append(fix_start_time[j]) #Find time of the center of the fixation
                 out_duration.append((len(fixations_after_constraints[j])-1)*samp_rate) 
                 out_X.append(df.at[center_points[j],"BestPogX"]) #Find X of the center of the fixation
@@ -359,7 +366,8 @@ def event_detection(tracker_type):
                 i=i+1
             else:
                 out_event.append("Saccade")
-                out_amp.append(sac_amps[i]) 
+                out_amp.append([i]) 
+                out_mamp.append(max_amps[i])
                 out_start_time.append(onsets_times[i])
                 out_duration.append(saccade_duration[i])
                 out_X.append("N/A")
@@ -370,6 +378,7 @@ def event_detection(tracker_type):
         while (j < len(fix_start_time)):            
             out_event.append("Fixation")
             out_amp.append("N/A")
+            out_mamp.append("N/A")
             out_start_time.append(fix_start_time[j]) #Find time of the center of the fixation
             out_duration.append((len(fixations_after_constraints[j])-1)*samp_rate) 
             out_X.append(df.at[center_points[j],"BestPogX"]) #Find X of the center of the fixation
@@ -382,6 +391,7 @@ def event_detection(tracker_type):
     out["Start time (s)"] = out_start_time
     out["Duration (ms)"] = out_duration
     out["Amplitude (degrees)"] = out_amp
+    out["Peak Velocity (degrees/second)"] = out_mamp
     out["X"] = out_X
     out["Y"] = out_Y
     out["AOI"] = out_AOI
