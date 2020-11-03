@@ -79,7 +79,7 @@ def find_mission_start(first_perf_time,df):
         count+=1
     
     #if we didn't find the start of the mission 
-    return -1 
+    return -1
 
 """
 This function allows us to add time, because this is strangely difficult 
@@ -112,10 +112,9 @@ software I believe.
 """
 
 #Only setting the mission time for start index + 900 to avoid unnecessary computation
-#^^I think this is is an old thought as we find the end of the scenario specifically now in function "find_end"
-def setMissionTime(df, start_index):
+def setMissionTime(df, start_index, end):
     df["MissionTime"] = 0
-    for i in range(start_index, df.index.stop):
+    for i in range(start_index, start_index + end):
         if i > start_index:
             x = (df.loc[i, "Time"]) - (df.loc[i-1, "Time"])
             df.loc[i, "MissionTime"] = float(df.loc[i-1, "MissionTime"]) + x
@@ -190,16 +189,14 @@ def calculateDistance(x1,y1,x2,y2):
      dist = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)  
      return dist  
 
-#This allows MissionTime to get created for the entire dataset and not just cutoff at the 15 minutes flat (there may be a whole second of data left)
+#This works!
 
-# def find_end(start, df):
-#     counter = 0
-#     for each in df["NST"]:
-#         if(each.minute - df["NST"][start].minute == 15):
-#             if(each.second == df["NST"][start].second):
-#                 return counter
-#         counter +=1
-#     return counter
+def find_end(start, df):
+    counter = 0
+    for each in df["NST"]:
+        if(each.minute - df["NST"][start].minute == 15):
+            return counter
+        counter +=1
 
 
 
@@ -234,7 +231,6 @@ def preProcess(df):
         # CHANGE RESOLUTION OF Y HERE
         for each in column_names_Y:
             df[each] = df[each].multiply(height_of_screen)
-            
 def dq(df, inputP, xError, yError):
             #REMOVING BLANK LINE FROM GAZEPOINT
             df = df[1:df.index.stop]
@@ -252,8 +248,8 @@ def dq(df, inputP, xError, yError):
             add_NST_to_df(arr, df)
             #Does performance start with blank line as well? 
             start = find_mission_start(performance["SystemTime"][0], df)
-            #end = find_end(start, df)
-            setMissionTime(df, start) #, end)
+            end = find_end(start, df)
+            setMissionTime(df, start, end)
             
        
             """
@@ -405,5 +401,5 @@ def dq(df, inputP, xError, yError):
             """
             TODO: Change the return df to return 900 seconds after starting point
             """
-            return df[start:df.index.stop]
+            return df[start:end]
 
