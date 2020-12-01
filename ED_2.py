@@ -30,10 +30,10 @@ def event_detection(tracker_type):
     duration_threshold=int(dur_thresh.get())
     spatial_threshold=int(fix_radius.get())
     
-    #Identify key columns
-    PT = int(peak_thresh.get())
-    onset_threshold = int(on_thresh.get())
-    offset_threshold = int(off_thresh.get())
+    #Extract thresholds from files
+    PT = df["Peak Threshold"][1] #int(peak_thresh.get())
+    onset_threshold = df["Onset Threshold"][1]    #int(on_thresh.get())
+    offset_threshold = df["Offset Threshold"][1]  #int(off_thresh.get())
 
     onsets_times = []
     onsets_velocities = []
@@ -399,8 +399,8 @@ def event_detection(tracker_type):
         out['Eyetracker']='Gazepoint'
     else:
         out['Eyetracker']='FOVIO'
-    p = participant.get()
-    w = workload.get()
+    p = df["ParticipantNumber"][1] #participant.get()
+    w = df["Workload"][1] #workload.get()
     out["Workload"] = w
     out["Participant Number"] = p
     df.to_csv(out_file1, index=False)
@@ -460,20 +460,20 @@ text3.pack(side=LEFT)
 output2_name = Entry(frame3)
 output2_name.pack(side=LEFT)
 
-text4 = Label(frame4, text='Enter Peak Threshold:                                     ')
-text4.pack(side=LEFT)
-peak_thresh = (Entry(frame4))
-peak_thresh.pack(side=LEFT)
+# text4 = Label(frame4, text='Enter Peak Threshold:                                     ')
+# text4.pack(side=LEFT)
+# peak_thresh = (Entry(frame4))
+# peak_thresh.pack(side=LEFT)
 
-text5 = Label(frame5, text='Enter Onset Threshold:                                   ')
-text5.pack(side=LEFT)
-on_thresh = Entry(frame5)
-on_thresh.pack(side=LEFT)
+# text5 = Label(frame5, text='Enter Onset Threshold:                                   ')
+# text5.pack(side=LEFT)
+# on_thresh = Entry(frame5)
+# on_thresh.pack(side=LEFT)
 
-text6 = Label(frame6, text='Enter Offset Threshold:                                   ')
-text6.pack(side=LEFT)
-off_thresh = Entry(frame6)
-off_thresh.pack(side=LEFT)
+# text6 = Label(frame6, text='Enter Offset Threshold:                                   ')
+# text6.pack(side=LEFT)
+# off_thresh = Entry(frame6)
+# off_thresh.pack(side=LEFT)
  
 text7 = Label(frame7, text='Enter Fixation Radius (px):                             ')
 text7.pack(side=LEFT)
@@ -485,15 +485,15 @@ text8.pack(side=LEFT)
 dur_thresh = Entry(frame8)
 dur_thresh.pack(side=LEFT)
 
-text9 = Label(frame9, text='Enter Participant Number:                             ')
-text9.pack(side=LEFT)
-participant = Entry(frame9)
-participant.pack(side=LEFT)
+# text9 = Label(frame9, text='Enter Participant Number:                             ')
+# text9.pack(side=LEFT)
+# participant = Entry(frame9)
+# participant.pack(side=LEFT)
 
-text10 = Label(frame10, text='Enter Workload type:                                      ')
-text10.pack(side=LEFT)
-workload = Entry(frame10)
-workload.pack(side=LEFT)
+# text10 = Label(frame10, text='Enter Workload type:                                      ')
+# text10.pack(side=LEFT)
+# workload = Entry(frame10)
+# workload.pack(side=LEFT)
 one = Button(window, text="Gazepoint", width="10", height="3",command=lambda : event_detection(1))
 one.pack(side="top")
 
